@@ -3,9 +3,14 @@ import { jsonParser } from './data/json.ts'
 import { xmlParser } from './data/xml.ts'
 import { yamlParser } from './data/yaml.ts'
 import { cSharpParser } from './code/csharp.ts'
+import { dartParser } from './code/dart.ts'
+import { goParser } from './code/go.ts'
 import { javaParser } from './code/java.ts'
 import { kotlinParser } from './code/kotlin.ts'
+import { phpParser } from './code/php.ts'
 import { pythonParser } from './code/python.ts'
+import { rustParser } from './code/rust.ts'
+import { swiftParser } from './code/swift.ts'
 import { javaScriptParser, typeScriptParser } from './code/typescript.ts'
 import { jsonSchemaParser } from './schema/jsonSchema.ts'
 import { openApiParser } from './schema/openapi.ts'
@@ -25,6 +30,11 @@ export const parsers: readonly InputParser[] = [
   javaParser,
   cSharpParser,
   kotlinParser,
+  dartParser,
+  swiftParser,
+  goParser,
+  rustParser,
+  phpParser,
 ]
 
 export function findParser(id: InputFormatId): InputParser | undefined {

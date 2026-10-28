@@ -41,6 +41,8 @@ export interface LexerConfig {
   identifierChars?: string
   /** Rust raw strings `r#"…"#` */
   rawHashStrings?: boolean
+  /** `#[…]` is an attribute even though `#` starts a comment (PHP 8) */
+  hashAttributes?: boolean
 }
 
 export class LexError extends Error {
@@ -154,7 +156,9 @@ export function tokenize(text: string, config: LexerConfig): Token[] {
       continue
     }
 
-    const lineComment = config.lineComments.find((marker) => text.startsWith(marker, index))
+    const lineComment = config.lineComments.find(
+      (marker) => text.startsWith(marker, index) && !(config.hashAttributes && marker === '#' && text[index + 1] === '['),
+    )
     if (lineComment) {
       const end = text.indexOf('\n', index)
       const stop = end === -1 ? text.length : end
@@ -239,7 +243,8 @@ export function tokenize(text: string, config: LexerConfig): Token[] {
   return tokens
 }
 
-const OPEN: Record<string, string> = { '(': ')', '[': ']', '{': '}' }
+// `#[` opens a Rust or PHP attribute and closes with `]`
+const OPEN: Record<string, string> = { '(': ')', '[': ']', '{': '}', '#[': ']' }
 
 /** Reading position over the tokens, with the helpers every declaration parser needs. */
 export class Cursor {
