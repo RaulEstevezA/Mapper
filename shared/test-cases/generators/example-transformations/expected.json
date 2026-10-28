@@ -1,0 +1,900 @@
+{
+ "typescript-functions": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import { type ProductModel, type ProductResponse, ProductState, ProductStatus } from './models'\n\nexport function mapProductResponseToProductModel(source: ProductResponse): ProductModel {\n  return Object.assign(new ProductModel(), {\n    sku: source.sku,\n    supplierFullName: `${source.first_name} ${source.last_name}`,\n    price: source.price_cents / 100,\n    status: mapProductStatusToProductState(source.status),\n    active: source.status === ProductStatus.Active,\n    createdAt: new Date(source.created * 1000),\n    stock: Number.parseInt(source.stock, 10),\n    // TODO: the source may be missing, but \"discount\" is required\n    discount: source.discount!,\n  })\n}\n\nfunction mapProductStatusToProductState(value: ProductStatus): ProductState {\n  switch (value) {\n    case ProductStatus.Active:\n      return ProductState.ACTIVE\n    case ProductStatus.Discontinued:\n      return ProductState.DISCONTINUED\n    default:\n      throw new Error(`Unexpected ProductStatus: ${String(value)}`)\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "typescript-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import { type ProductModel, type ProductResponse, ProductState, ProductStatus } from './models'\n\nexport function mapProductResponseToProductModel(source: ProductResponse): ProductModel {\n  return Object.assign(new ProductModel(), {\n    sku: source.sku,\n    supplier_full_name: `${source.first_name} ${source.last_name}`,\n    price: source.price_cents / 100,\n    status: mapProductStatusToProductState(source.status),\n    active: source.status === ProductStatus.Active,\n    created_at: new Date(source.created * 1000),\n    stock: Number.parseInt(source.stock, 10),\n    // TODO: the source may be missing, but \"discount\" is required\n    discount: source.discount!,\n  })\n}\n\nfunction mapProductStatusToProductState(value: ProductStatus): ProductState {\n  switch (value) {\n    case ProductStatus.Active:\n      return ProductState.ACTIVE\n    case ProductStatus.Discontinued:\n      return ProductState.DISCONTINUED\n    default:\n      throw new Error(`Unexpected ProductStatus: ${String(value)}`)\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "typescript-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import { type ProductModel, type ProductResponse, ProductState, ProductStatus } from './models'\n\nexport function mapProductResponseToProductModel(source: ProductResponse): ProductModel {\n  return Object.assign(new ProductModel(), {\n    sku: source.sku,\n    supplierFullName: `${source.firstName} ${source.lastName}`,\n    price: source.priceCents / 100,\n    status: mapProductStatusToProductState(source.status),\n    active: source.status === ProductStatus.Active,\n    createdAt: new Date(source.created * 1000),\n    stock: Number.parseInt(source.stock, 10),\n    // TODO: the source may be missing, but \"discount\" is required\n    discount: source.discount!,\n  })\n}\n\nfunction mapProductStatusToProductState(value: ProductStatus): ProductState {\n  switch (value) {\n    case ProductStatus.Active:\n      return ProductState.ACTIVE\n    case ProductStatus.Discontinued:\n      return ProductState.DISCONTINUED\n    default:\n      throw new Error(`Unexpected ProductStatus: ${String(value)}`)\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "javascript-functions": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {ProductResponse} source\n * @returns {ProductModel}\n */\nexport function mapProductResponseToProductModel(source) {\n  return Object.assign(new ProductModel(), {\n    sku: source.sku,\n    supplierFullName: `${source.first_name} ${source.last_name}`,\n    price: source.price_cents / 100,\n    status: mapProductStatusToProductState(source.status),\n    active: source.status === ProductStatus.Active,\n    createdAt: new Date(source.created * 1000),\n    stock: Number.parseInt(source.stock, 10),\n    // TODO: the source may be missing, but \"discount\" is required\n    discount: source.discount,\n  })\n}\n\n/** @param {ProductStatus} value @returns {ProductState} */\nfunction mapProductStatusToProductState(value) {\n  switch (value) {\n    case ProductStatus.Active:\n      return ProductState.ACTIVE\n    case ProductStatus.Discontinued:\n      return ProductState.DISCONTINUED\n    default:\n      throw new Error(`Unexpected ProductStatus: ${String(value)}`)\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "javascript-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {ProductResponse} source\n * @returns {ProductModel}\n */\nexport function mapProductResponseToProductModel(source) {\n  return Object.assign(new ProductModel(), {\n    sku: source.sku,\n    supplier_full_name: `${source.first_name} ${source.last_name}`,\n    price: source.price_cents / 100,\n    status: mapProductStatusToProductState(source.status),\n    active: source.status === ProductStatus.Active,\n    created_at: new Date(source.created * 1000),\n    stock: Number.parseInt(source.stock, 10),\n    // TODO: the source may be missing, but \"discount\" is required\n    discount: source.discount,\n  })\n}\n\n/** @param {ProductStatus} value @returns {ProductState} */\nfunction mapProductStatusToProductState(value) {\n  switch (value) {\n    case ProductStatus.Active:\n      return ProductState.ACTIVE\n    case ProductStatus.Discontinued:\n      return ProductState.DISCONTINUED\n    default:\n      throw new Error(`Unexpected ProductStatus: ${String(value)}`)\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "javascript-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {ProductResponse} source\n * @returns {ProductModel}\n */\nexport function mapProductResponseToProductModel(source) {\n  return Object.assign(new ProductModel(), {\n    sku: source.sku,\n    supplierFullName: `${source.firstName} ${source.lastName}`,\n    price: source.priceCents / 100,\n    status: mapProductStatusToProductState(source.status),\n    active: source.status === ProductStatus.Active,\n    createdAt: new Date(source.created * 1000),\n    stock: Number.parseInt(source.stock, 10),\n    // TODO: the source may be missing, but \"discount\" is required\n    discount: source.discount,\n  })\n}\n\n/** @param {ProductStatus} value @returns {ProductState} */\nfunction mapProductStatusToProductState(value) {\n  switch (value) {\n    case ProductStatus.Active:\n      return ProductState.ACTIVE\n    case ProductStatus.Discontinued:\n      return ProductState.DISCONTINUED\n    default:\n      throw new Error(`Unexpected ProductStatus: ${String(value)}`)\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "python-functions": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from datetime import datetime, timezone\nfrom decimal import Decimal\n\nfrom models import ProductModel, ProductResponse, ProductState, ProductStatus\n\n\ndef map_product_response_to_product_model(source: ProductResponse) -> ProductModel:\n    return ProductModel(\n        sku=source.sku,\n        supplier_full_name=f\"{source.first_name} {source.last_name}\",\n        price=Decimal(str(source.price_cents)) / 100,\n        status=_map_product_status_to_product_state(source.status),\n        active=source.status == ProductStatus.Active,\n        created_at=datetime.fromtimestamp(source.created, tz=timezone.utc),\n        stock=int(source.stock),\n        # TODO: the source may be missing, but \"discount\" is required\n        discount=source.discount,\n    )\n\n\n_PRODUCT_STATUS_TO_PRODUCT_STATE = {\n    ProductStatus.Active: ProductState.ACTIVE,\n    ProductStatus.Discontinued: ProductState.DISCONTINUED,\n}\n\n\ndef _map_product_status_to_product_state(value: ProductStatus) -> ProductState:\n    return _PRODUCT_STATUS_TO_PRODUCT_STATE[value]\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "python-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from datetime import datetime, timezone\nfrom decimal import Decimal\n\nfrom models import ProductModel, ProductResponse, ProductState, ProductStatus\n\n\ndef map_product_response_to_product_model(source: ProductResponse) -> ProductModel:\n    return ProductModel(\n        sku=source.sku,\n        supplier_full_name=f\"{source.first_name} {source.last_name}\",\n        price=Decimal(str(source.price_cents)) / 100,\n        status=_map_product_status_to_product_state(source.status),\n        active=source.status == ProductStatus.Active,\n        created_at=datetime.fromtimestamp(source.created, tz=timezone.utc),\n        stock=int(source.stock),\n        # TODO: the source may be missing, but \"discount\" is required\n        discount=source.discount,\n    )\n\n\n_PRODUCT_STATUS_TO_PRODUCT_STATE = {\n    ProductStatus.Active: ProductState.ACTIVE,\n    ProductStatus.Discontinued: ProductState.DISCONTINUED,\n}\n\n\ndef _map_product_status_to_product_state(value: ProductStatus) -> ProductState:\n    return _PRODUCT_STATUS_TO_PRODUCT_STATE[value]\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "python-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from datetime import datetime, timezone\nfrom decimal import Decimal\n\nfrom models import ProductModel, ProductResponse, ProductState, ProductStatus\n\n\ndef map_product_response_to_product_model(source: ProductResponse) -> ProductModel:\n    return ProductModel(\n        sku=source.sku,\n        supplier_full_name=f\"{source.first_name} {source.last_name}\",\n        price=Decimal(str(source.price_cents)) / 100,\n        status=_map_product_status_to_product_state(source.status),\n        active=source.status == ProductStatus.Active,\n        created_at=datetime.fromtimestamp(source.created, tz=timezone.utc),\n        stock=int(source.stock),\n        # TODO: the source may be missing, but \"discount\" is required\n        discount=source.discount,\n    )\n\n\n_PRODUCT_STATUS_TO_PRODUCT_STATE = {\n    ProductStatus.Active: ProductState.ACTIVE,\n    ProductStatus.Discontinued: ProductState.DISCONTINUED,\n}\n\n\ndef _map_product_status_to_product_state(value: ProductStatus) -> ProductState:\n    return _PRODUCT_STATUS_TO_PRODUCT_STATE[value]\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "python-sourceAccess-dict": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from datetime import datetime, timezone\nfrom decimal import Decimal\nfrom typing import Any\n\nfrom models import ProductModel, ProductState\n\n\ndef map_product_response_to_product_model(source: dict[str, Any]) -> ProductModel:\n    return ProductModel(\n        sku=source[\"sku\"],\n        supplier_full_name=\" \".join([source[\"first_name\"], source[\"last_name\"]]),\n        price=Decimal(str(source[\"price_cents\"])) / 100,\n        status=_map_product_status_to_product_state(source[\"status\"]),\n        active=source[\"status\"] == \"ACTIVE\",\n        created_at=datetime.fromtimestamp(source[\"created\"], tz=timezone.utc),\n        stock=int(source[\"stock\"]),\n        # TODO: the source may be missing, but \"discount\" is required\n        discount=source.get(\"discount\"),\n    )\n\n\n_PRODUCT_STATUS_TO_PRODUCT_STATE = {\n    \"ACTIVE\": ProductState.ACTIVE,\n    \"DISCONTINUED\": ProductState.DISCONTINUED,\n}\n\n\ndef _map_product_status_to_product_state(value: str) -> ProductState:\n    return _PRODUCT_STATUS_TO_PRODUCT_STATE[value]\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "python-targetStyle-dict": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from datetime import datetime, timezone\nfrom decimal import Decimal\nfrom typing import Any\n\nfrom models import ProductResponse, ProductStatus\n\n\ndef map_product_response_to_product_model(source: ProductResponse) -> dict[str, Any]:\n    return {\n        \"sku\": source.sku,\n        \"supplier_full_name\": f\"{source.first_name} {source.last_name}\",\n        \"price\": Decimal(str(source.price_cents)) / 100,\n        \"status\": _map_product_status_to_product_state(source.status),\n        \"active\": source.status == ProductStatus.Active,\n        \"created_at\": datetime.fromtimestamp(source.created, tz=timezone.utc),\n        \"stock\": int(source.stock),\n        # TODO: the source may be missing, but \"discount\" is required\n        \"discount\": source.discount,\n    }\n\n\n_PRODUCT_STATUS_TO_PRODUCT_STATE = {\n    ProductStatus.Active: \"active\",\n    ProductStatus.Discontinued: \"discontinued\",\n}\n\n\ndef _map_product_status_to_product_state(value: ProductStatus) -> str:\n    return _PRODUCT_STATUS_TO_PRODUCT_STATE[value]\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "java-manual": {
+  "files": [
+   {
+    "name": "ProductResponseMapper.java",
+    "code": "import java.math.BigDecimal;\nimport java.math.MathContext;\nimport java.time.Instant;\nimport java.time.OffsetDateTime;\nimport java.time.ZoneOffset;\nimport java.util.Objects;\n\npublic final class ProductResponseMapper {\n\n    private ProductResponseMapper() {\n    }\n\n    public static ProductModel toProductModel(ProductResponse source) {\n        if (source == null) {\n            return null;\n        }\n        ProductModel target = new ProductModel();\n        target.setSku(source.getSku());\n        target.setSupplierFullName(source.getFirstName() + \" \" + source.getLastName());\n        target.setPrice(BigDecimal.valueOf(source.getPriceCents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128));\n        target.setStatus(toProductState(source.getStatus()));\n        target.setActive(source.getStatus() == ProductStatus.Active);\n        target.setCreatedAt(OffsetDateTime.ofInstant(Instant.ofEpochSecond((long) source.getCreated()), ZoneOffset.UTC));\n        target.setStock(Long.parseLong(source.getStock()));\n        // \"discount\" is required: fails if the source is missing\n        target.setDiscount(Objects.requireNonNull(source.getDiscount()));\n        return target;\n    }\n\n    private static ProductState toProductState(ProductStatus value) {\n        return switch (value) {\n            case Active -> ProductState.ACTIVE;\n            case Discontinued -> ProductState.DISCONTINUED;\n            default -> throw new IllegalArgumentException(\"Unexpected ProductStatus: \" + value);\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "java-mapstruct": {
+  "files": [
+   {
+    "name": "ProductResponseMapper.java",
+    "code": "import org.mapstruct.Mapper;\nimport org.mapstruct.Mapping;\nimport org.mapstruct.MappingConstants;\nimport org.mapstruct.ValueMapping;\n\nimport java.math.BigDecimal;\nimport java.math.MathContext;\nimport java.time.Instant;\nimport java.time.OffsetDateTime;\nimport java.time.ZoneOffset;\n\n@Mapper(imports = {BigDecimal.class, MathContext.class, Instant.class, OffsetDateTime.class, ZoneOffset.class})\npublic interface ProductResponseMapper {\n\n    @Mapping(target = \"supplierFullName\", expression = \"java(source.getFirstName() + \\\" \\\" + source.getLastName())\")\n    @Mapping(target = \"price\", expression = \"java(BigDecimal.valueOf(source.getPriceCents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128))\")\n    @Mapping(target = \"active\", expression = \"java(source.getStatus() == ProductStatus.Active)\")\n    @Mapping(target = \"createdAt\", expression = \"java(OffsetDateTime.ofInstant(Instant.ofEpochSecond((long) source.getCreated()), ZoneOffset.UTC))\")\n    ProductModel toProductModel(ProductResponse source);\n\n    @ValueMapping(source = \"Active\", target = \"ACTIVE\")\n    @ValueMapping(source = \"Discontinued\", target = \"DISCONTINUED\")\n    @ValueMapping(source = MappingConstants.ANY_REMAINING, target = MappingConstants.THROW_EXCEPTION)\n    ProductState toProductState(ProductStatus value);\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "java-naming-keep": {
+  "files": [
+   {
+    "name": "ProductResponseMapper.java",
+    "code": "import java.math.BigDecimal;\nimport java.math.MathContext;\nimport java.time.Instant;\nimport java.time.OffsetDateTime;\nimport java.time.ZoneOffset;\nimport java.util.Objects;\n\npublic final class ProductResponseMapper {\n\n    private ProductResponseMapper() {\n    }\n\n    public static ProductModel toProductModel(ProductResponse source) {\n        if (source == null) {\n            return null;\n        }\n        ProductModel target = new ProductModel();\n        target.setSku(source.getSku());\n        target.setSupplier_full_name(source.getFirst_name() + \" \" + source.getLast_name());\n        target.setPrice(BigDecimal.valueOf(source.getPrice_cents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128));\n        target.setStatus(toProductState(source.getStatus()));\n        target.setActive(source.getStatus() == ProductStatus.Active);\n        target.setCreated_at(OffsetDateTime.ofInstant(Instant.ofEpochSecond((long) source.getCreated()), ZoneOffset.UTC));\n        target.setStock(Long.parseLong(source.getStock()));\n        // \"discount\" is required: fails if the source is missing\n        target.setDiscount(Objects.requireNonNull(source.getDiscount()));\n        return target;\n    }\n\n    private static ProductState toProductState(ProductStatus value) {\n        return switch (value) {\n            case Active -> ProductState.ACTIVE;\n            case Discontinued -> ProductState.DISCONTINUED;\n            default -> throw new IllegalArgumentException(\"Unexpected ProductStatus: \" + value);\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "java-naming-convention": {
+  "files": [
+   {
+    "name": "ProductResponseMapper.java",
+    "code": "import java.math.BigDecimal;\nimport java.math.MathContext;\nimport java.time.Instant;\nimport java.time.OffsetDateTime;\nimport java.time.ZoneOffset;\nimport java.util.Objects;\n\npublic final class ProductResponseMapper {\n\n    private ProductResponseMapper() {\n    }\n\n    public static ProductModel toProductModel(ProductResponse source) {\n        if (source == null) {\n            return null;\n        }\n        ProductModel target = new ProductModel();\n        target.setSku(source.getSku());\n        target.setSupplierFullName(source.getFirstName() + \" \" + source.getLastName());\n        target.setPrice(BigDecimal.valueOf(source.getPriceCents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128));\n        target.setStatus(toProductState(source.getStatus()));\n        target.setActive(source.getStatus() == ProductStatus.Active);\n        target.setCreatedAt(OffsetDateTime.ofInstant(Instant.ofEpochSecond((long) source.getCreated()), ZoneOffset.UTC));\n        target.setStock(Long.parseLong(source.getStock()));\n        // \"discount\" is required: fails if the source is missing\n        target.setDiscount(Objects.requireNonNull(source.getDiscount()));\n        return target;\n    }\n\n    private static ProductState toProductState(ProductStatus value) {\n        return switch (value) {\n            case Active -> ProductState.ACTIVE;\n            case Discontinued -> ProductState.DISCONTINUED;\n            default -> throw new IllegalArgumentException(\"Unexpected ProductStatus: \" + value);\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "java-componentModel-spring": {
+  "files": [
+   {
+    "name": "ProductResponseMapper.java",
+    "code": "import java.math.BigDecimal;\nimport java.math.MathContext;\nimport java.time.Instant;\nimport java.time.OffsetDateTime;\nimport java.time.ZoneOffset;\nimport java.util.Objects;\n\npublic final class ProductResponseMapper {\n\n    private ProductResponseMapper() {\n    }\n\n    public static ProductModel toProductModel(ProductResponse source) {\n        if (source == null) {\n            return null;\n        }\n        ProductModel target = new ProductModel();\n        target.setSku(source.getSku());\n        target.setSupplierFullName(source.getFirstName() + \" \" + source.getLastName());\n        target.setPrice(BigDecimal.valueOf(source.getPriceCents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128));\n        target.setStatus(toProductState(source.getStatus()));\n        target.setActive(source.getStatus() == ProductStatus.Active);\n        target.setCreatedAt(OffsetDateTime.ofInstant(Instant.ofEpochSecond((long) source.getCreated()), ZoneOffset.UTC));\n        target.setStock(Long.parseLong(source.getStock()));\n        // \"discount\" is required: fails if the source is missing\n        target.setDiscount(Objects.requireNonNull(source.getDiscount()));\n        return target;\n    }\n\n    private static ProductState toProductState(ProductStatus value) {\n        return switch (value) {\n            case Active -> ProductState.ACTIVE;\n            case Discontinued -> ProductState.DISCONTINUED;\n            default -> throw new IllegalArgumentException(\"Unexpected ProductStatus: \" + value);\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "java-componentModel-cdi": {
+  "files": [
+   {
+    "name": "ProductResponseMapper.java",
+    "code": "import java.math.BigDecimal;\nimport java.math.MathContext;\nimport java.time.Instant;\nimport java.time.OffsetDateTime;\nimport java.time.ZoneOffset;\nimport java.util.Objects;\n\npublic final class ProductResponseMapper {\n\n    private ProductResponseMapper() {\n    }\n\n    public static ProductModel toProductModel(ProductResponse source) {\n        if (source == null) {\n            return null;\n        }\n        ProductModel target = new ProductModel();\n        target.setSku(source.getSku());\n        target.setSupplierFullName(source.getFirstName() + \" \" + source.getLastName());\n        target.setPrice(BigDecimal.valueOf(source.getPriceCents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128));\n        target.setStatus(toProductState(source.getStatus()));\n        target.setActive(source.getStatus() == ProductStatus.Active);\n        target.setCreatedAt(OffsetDateTime.ofInstant(Instant.ofEpochSecond((long) source.getCreated()), ZoneOffset.UTC));\n        target.setStock(Long.parseLong(source.getStock()));\n        // \"discount\" is required: fails if the source is missing\n        target.setDiscount(Objects.requireNonNull(source.getDiscount()));\n        return target;\n    }\n\n    private static ProductState toProductState(ProductStatus value) {\n        return switch (value) {\n            case Active -> ProductState.ACTIVE;\n            case Discontinued -> ProductState.DISCONTINUED;\n            default -> throw new IllegalArgumentException(\"Unexpected ProductStatus: \" + value);\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "java-componentModel-jakarta": {
+  "files": [
+   {
+    "name": "ProductResponseMapper.java",
+    "code": "import java.math.BigDecimal;\nimport java.math.MathContext;\nimport java.time.Instant;\nimport java.time.OffsetDateTime;\nimport java.time.ZoneOffset;\nimport java.util.Objects;\n\npublic final class ProductResponseMapper {\n\n    private ProductResponseMapper() {\n    }\n\n    public static ProductModel toProductModel(ProductResponse source) {\n        if (source == null) {\n            return null;\n        }\n        ProductModel target = new ProductModel();\n        target.setSku(source.getSku());\n        target.setSupplierFullName(source.getFirstName() + \" \" + source.getLastName());\n        target.setPrice(BigDecimal.valueOf(source.getPriceCents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128));\n        target.setStatus(toProductState(source.getStatus()));\n        target.setActive(source.getStatus() == ProductStatus.Active);\n        target.setCreatedAt(OffsetDateTime.ofInstant(Instant.ofEpochSecond((long) source.getCreated()), ZoneOffset.UTC));\n        target.setStock(Long.parseLong(source.getStock()));\n        // \"discount\" is required: fails if the source is missing\n        target.setDiscount(Objects.requireNonNull(source.getDiscount()));\n        return target;\n    }\n\n    private static ProductState toProductState(ProductStatus value) {\n        return switch (value) {\n            case Active -> ProductState.ACTIVE;\n            case Discontinued -> ProductState.DISCONTINUED;\n            default -> throw new IllegalArgumentException(\"Unexpected ProductStatus: \" + value);\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "csharp-manual": {
+  "files": [
+   {
+    "name": "ProductResponseMappings.cs",
+    "code": "using System;\nusing System.Globalization;\n\npublic static class ProductResponseMappings\n{\n    public static ProductModel ToProductModel(this ProductResponse source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new ProductModel\n        {\n            Sku = source.Sku,\n            SupplierFullName = $\"{source.FirstName} {source.LastName}\",\n            Price = (decimal)source.PriceCents / 100m,\n            Status = ToProductState(source.Status),\n            Active = source.Status == ProductStatus.Active,\n            CreatedAt = DateTimeOffset.FromUnixTimeSeconds((long)source.Created).UtcDateTime,\n            Stock = long.Parse(source.Stock, CultureInfo.InvariantCulture),\n            Discount = source.Discount ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n        };\n    }\n\n    private static ProductState ToProductState(ProductStatus value) => value switch\n    {\n        ProductStatus.Active => ProductState.ACTIVE,\n        ProductStatus.Discontinued => ProductState.DISCONTINUED,\n        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),\n    };\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "csharp-automapper": {
+  "files": [
+   {
+    "name": "ProductResponseProfile.cs",
+    "code": "using System;\nusing AutoMapper;\n\npublic class ProductResponseProfile : Profile\n{\n    public ProductResponseProfile()\n    {\n        CreateMap<ProductResponse, ProductModel>()\n            .ForMember(dest => dest.SupplierFullName, opt => opt.MapFrom(src => $\"{src.FirstName} {src.LastName}\"))\n            .ForMember(dest => dest.Price, opt => opt.MapFrom(src => (decimal)src.PriceCents / 100m))\n            .ForMember(dest => dest.Active, opt => opt.MapFrom(src => src.Status == ProductStatus.Active))\n            .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTimeOffset.FromUnixTimeSeconds((long)src.Created).UtcDateTime));\n\n        CreateMap<ProductStatus, ProductState>().ConvertUsing(value => ToProductState(value));\n    }\n\n    private static ProductState ToProductState(ProductStatus value) => value switch\n    {\n        ProductStatus.Active => ProductState.ACTIVE,\n        ProductStatus.Discontinued => ProductState.DISCONTINUED,\n        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),\n    };\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "csharp-naming-keep": {
+  "files": [
+   {
+    "name": "ProductResponseMappings.cs",
+    "code": "using System;\nusing System.Globalization;\n\npublic static class ProductResponseMappings\n{\n    public static ProductModel ToProductModel(this ProductResponse source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new ProductModel\n        {\n            sku = source.sku,\n            supplier_full_name = $\"{source.first_name} {source.last_name}\",\n            price = (decimal)source.price_cents / 100m,\n            status = ToProductState(source.status),\n            active = source.status == ProductStatus.Active,\n            created_at = DateTimeOffset.FromUnixTimeSeconds((long)source.created).UtcDateTime,\n            stock = long.Parse(source.stock, CultureInfo.InvariantCulture),\n            discount = source.discount ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n        };\n    }\n\n    private static ProductState ToProductState(ProductStatus value) => value switch\n    {\n        ProductStatus.Active => ProductState.ACTIVE,\n        ProductStatus.Discontinued => ProductState.DISCONTINUED,\n        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),\n    };\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "csharp-naming-convention": {
+  "files": [
+   {
+    "name": "ProductResponseMappings.cs",
+    "code": "using System;\nusing System.Globalization;\n\npublic static class ProductResponseMappings\n{\n    public static ProductModel ToProductModel(this ProductResponse source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new ProductModel\n        {\n            Sku = source.Sku,\n            SupplierFullName = $\"{source.FirstName} {source.LastName}\",\n            Price = (decimal)source.PriceCents / 100m,\n            Status = ToProductState(source.Status),\n            Active = source.Status == ProductStatus.Active,\n            CreatedAt = DateTimeOffset.FromUnixTimeSeconds((long)source.Created).UtcDateTime,\n            Stock = long.Parse(source.Stock, CultureInfo.InvariantCulture),\n            Discount = source.Discount ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n        };\n    }\n\n    private static ProductState ToProductState(ProductStatus value) => value switch\n    {\n        ProductStatus.Active => ProductState.ACTIVE,\n        ProductStatus.Discontinued => ProductState.DISCONTINUED,\n        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),\n    };\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "kotlin-extensions": {
+  "files": [
+   {
+    "name": "ProductResponseMappers.kt",
+    "code": "import java.math.BigDecimal\nimport java.math.MathContext\nimport java.time.Instant\n\nfun ProductResponse.toProductModel(): ProductModel = ProductModel(\n    sku = sku,\n    supplierFullName = \"${firstName} ${lastName}\",\n    price = priceCents.toBigDecimal().divide(BigDecimal.valueOf(100L), MathContext.DECIMAL128),\n    status = toProductState(status),\n    active = status == ProductStatus.Active,\n    createdAt = Instant.ofEpochSecond(created.toLong()),\n    stock = stock.toLong(),\n    discount = requireNotNull(discount) { \"A required value is missing in the source\" },\n)\n\nprivate fun toProductState(value: ProductStatus): ProductState = when (value) {\n    ProductStatus.Active -> ProductState.ACTIVE\n    ProductStatus.Discontinued -> ProductState.DISCONTINUED\n    else -> throw IllegalArgumentException(\"Unexpected ProductStatus: $value\")\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "kotlin-naming-keep": {
+  "files": [
+   {
+    "name": "ProductResponseMappers.kt",
+    "code": "import java.math.BigDecimal\nimport java.math.MathContext\nimport java.time.Instant\n\nfun ProductResponse.toProductModel(): ProductModel = ProductModel(\n    sku = sku,\n    supplier_full_name = \"${first_name} ${last_name}\",\n    price = price_cents.toBigDecimal().divide(BigDecimal.valueOf(100L), MathContext.DECIMAL128),\n    status = toProductState(status),\n    active = status == ProductStatus.Active,\n    created_at = Instant.ofEpochSecond(created.toLong()),\n    stock = stock.toLong(),\n    discount = requireNotNull(discount) { \"A required value is missing in the source\" },\n)\n\nprivate fun toProductState(value: ProductStatus): ProductState = when (value) {\n    ProductStatus.Active -> ProductState.ACTIVE\n    ProductStatus.Discontinued -> ProductState.DISCONTINUED\n    else -> throw IllegalArgumentException(\"Unexpected ProductStatus: $value\")\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "kotlin-naming-convention": {
+  "files": [
+   {
+    "name": "ProductResponseMappers.kt",
+    "code": "import java.math.BigDecimal\nimport java.math.MathContext\nimport java.time.Instant\n\nfun ProductResponse.toProductModel(): ProductModel = ProductModel(\n    sku = sku,\n    supplierFullName = \"${firstName} ${lastName}\",\n    price = priceCents.toBigDecimal().divide(BigDecimal.valueOf(100L), MathContext.DECIMAL128),\n    status = toProductState(status),\n    active = status == ProductStatus.Active,\n    createdAt = Instant.ofEpochSecond(created.toLong()),\n    stock = stock.toLong(),\n    discount = requireNotNull(discount) { \"A required value is missing in the source\" },\n)\n\nprivate fun toProductState(value: ProductStatus): ProductState = when (value) {\n    ProductStatus.Active -> ProductState.ACTIVE\n    ProductStatus.Discontinued -> ProductState.DISCONTINUED\n    else -> throw IllegalArgumentException(\"Unexpected ProductStatus: $value\")\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "dart-extensions": {
+  "files": [
+   {
+    "name": "product_response_mapping.dart",
+    "code": "import 'models.dart';\n\nextension ProductResponseMapping on ProductResponse {\n  ProductModel toProductModel() => ProductModel(\n        sku: sku,\n        supplierFullName: '${firstName} ${lastName}',\n        price: priceCents / 100,\n        status: _toProductState(status),\n        active: status == ProductStatus.active,\n        createdAt: DateTime.fromMillisecondsSinceEpoch((created * 1000).round(), isUtc: true),\n        stock: int.parse(stock),\n        discount: discount!,\n      );\n}\n\nProductState _toProductState(ProductStatus value) => switch (value) {\n      ProductStatus.active => ProductState.active,\n      ProductStatus.discontinued => ProductState.discontinued,\n      _ => throw ArgumentError.value(value, 'value', 'Unexpected ProductStatus'),\n    };\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "dart-naming-keep": {
+  "files": [
+   {
+    "name": "product_response_mapping.dart",
+    "code": "import 'models.dart';\n\nextension ProductResponseMapping on ProductResponse {\n  ProductModel toProductModel() => ProductModel(\n        sku: sku,\n        supplier_full_name: '${first_name} ${last_name}',\n        price: price_cents / 100,\n        status: _toProductState(status),\n        active: status == ProductStatus.active,\n        created_at: DateTime.fromMillisecondsSinceEpoch((created * 1000).round(), isUtc: true),\n        stock: int.parse(stock),\n        discount: discount!,\n      );\n}\n\nProductState _toProductState(ProductStatus value) => switch (value) {\n      ProductStatus.active => ProductState.active,\n      ProductStatus.discontinued => ProductState.discontinued,\n      _ => throw ArgumentError.value(value, 'value', 'Unexpected ProductStatus'),\n    };\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "dart-naming-convention": {
+  "files": [
+   {
+    "name": "product_response_mapping.dart",
+    "code": "import 'models.dart';\n\nextension ProductResponseMapping on ProductResponse {\n  ProductModel toProductModel() => ProductModel(\n        sku: sku,\n        supplierFullName: '${firstName} ${lastName}',\n        price: priceCents / 100,\n        status: _toProductState(status),\n        active: status == ProductStatus.active,\n        createdAt: DateTime.fromMillisecondsSinceEpoch((created * 1000).round(), isUtc: true),\n        stock: int.parse(stock),\n        discount: discount!,\n      );\n}\n\nProductState _toProductState(ProductStatus value) => switch (value) {\n      ProductStatus.active => ProductState.active,\n      ProductStatus.discontinued => ProductState.discontinued,\n      _ => throw ArgumentError.value(value, 'value', 'Unexpected ProductStatus'),\n    };\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "swift-extensions": {
+  "files": [
+   {
+    "name": "ProductResponse+Mapping.swift",
+    "code": "import Foundation\n\nextension ProductResponse {\n    func toProductModel() -> ProductModel {\n        ProductModel(\n            sku: sku,\n            supplierFullName: \"\\(firstName) \\(lastName)\",\n            price: Decimal(priceCents) / 100,\n            status: toProductState(status),\n            active: status == .active,\n            createdAt: Date(timeIntervalSince1970: TimeInterval(created)),\n            stock: Int(stock)!,\n            discount: discount!\n        )\n    }\n}\n\nprivate func toProductState(_ value: ProductStatus) -> ProductState {\n    switch value {\n    case .active: return .active\n    case .discontinued: return .discontinued\n    default: fatalError(\"Unexpected ProductStatus: \\(value)\")\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "swift-naming-keep": {
+  "files": [
+   {
+    "name": "ProductResponse+Mapping.swift",
+    "code": "import Foundation\n\nextension ProductResponse {\n    func toProductModel() -> ProductModel {\n        ProductModel(\n            sku: sku,\n            supplier_full_name: \"\\(first_name) \\(last_name)\",\n            price: Decimal(price_cents) / 100,\n            status: toProductState(status),\n            active: status == .active,\n            created_at: Date(timeIntervalSince1970: TimeInterval(created)),\n            stock: Int(stock)!,\n            discount: discount!\n        )\n    }\n}\n\nprivate func toProductState(_ value: ProductStatus) -> ProductState {\n    switch value {\n    case .active: return .active\n    case .discontinued: return .discontinued\n    default: fatalError(\"Unexpected ProductStatus: \\(value)\")\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "swift-naming-convention": {
+  "files": [
+   {
+    "name": "ProductResponse+Mapping.swift",
+    "code": "import Foundation\n\nextension ProductResponse {\n    func toProductModel() -> ProductModel {\n        ProductModel(\n            sku: sku,\n            supplierFullName: \"\\(firstName) \\(lastName)\",\n            price: Decimal(priceCents) / 100,\n            status: toProductState(status),\n            active: status == .active,\n            createdAt: Date(timeIntervalSince1970: TimeInterval(created)),\n            stock: Int(stock)!,\n            discount: discount!\n        )\n    }\n}\n\nprivate func toProductState(_ value: ProductStatus) -> ProductState {\n    switch value {\n    case .active: return .active\n    case .discontinued: return .discontinued\n    default: fatalError(\"Unexpected ProductStatus: \\(value)\")\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "go-functions": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\nimport (\n\t\"errors\"\n\t\"fmt\"\n\t\"strconv\"\n\t\"time\"\n)\n\n// MapProductResponseToProductModel maps a ProductResponse to a ProductModel. The error lists every value that could not be converted.\nfunc MapProductResponseToProductModel(source ProductResponse) (ProductModel, error) {\n\tvar errs []error\n\ttarget := mapProductResponseToProductModel(source, &errs)\n\treturn target, errors.Join(errs...)\n}\n\nfunc mapProductResponseToProductModel(source ProductResponse, errs *[]error) ProductModel {\n\treturn ProductModel{\n\t\tSku: source.Sku,\n\t\tSupplierFullName: source.FirstName + \" \" + source.LastName,\n\t\tPrice: source.PriceCents / 100.0,\n\t\tStatus: toProductState(source.Status),\n\t\tActive: source.Status == ProductStatusActive,\n\t\tCreatedAt: time.Unix(int64(source.Created), 0).UTC(),\n\t\tStock: parseInt[int64](source.Stock, errs),\n\t\t// \"discount\" is required: panics if the source is missing\n\t\tDiscount: *source.Discount,\n\t}\n}\n\nfunc toProductState(value ProductStatus) ProductState {\n\tswitch value {\n\tcase ProductStatusActive:\n\t\treturn ProductStateActive\n\tcase ProductStatusDiscontinued:\n\t\treturn ProductStateDiscontinued\n\tdefault:\n\t\tpanic(fmt.Sprintf(\"unexpected ProductStatus: %v\", value))\n\t}\n}\n\nfunc parseInt[T int8 | int16 | int32 | int64](text string, errs *[]error) T {\n\tvalue, err := strconv.ParseInt(text, 10, 64)\n\tif err != nil {\n\t\t*errs = append(*errs, err)\n\t}\n\treturn T(value)\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "go-naming-keep": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\nimport (\n\t\"errors\"\n\t\"fmt\"\n\t\"strconv\"\n\t\"time\"\n)\n\n// MapProductResponseToProductModel maps a ProductResponse to a ProductModel. The error lists every value that could not be converted.\nfunc MapProductResponseToProductModel(source ProductResponse) (ProductModel, error) {\n\tvar errs []error\n\ttarget := mapProductResponseToProductModel(source, &errs)\n\treturn target, errors.Join(errs...)\n}\n\nfunc mapProductResponseToProductModel(source ProductResponse, errs *[]error) ProductModel {\n\treturn ProductModel{\n\t\tsku: source.sku,\n\t\tsupplier_full_name: source.first_name + \" \" + source.last_name,\n\t\tprice: source.price_cents / 100.0,\n\t\tstatus: toProductState(source.status),\n\t\tactive: source.status == ProductStatusActive,\n\t\tcreated_at: time.Unix(int64(source.created), 0).UTC(),\n\t\tstock: parseInt[int64](source.stock, errs),\n\t\t// \"discount\" is required: panics if the source is missing\n\t\tdiscount: *source.discount,\n\t}\n}\n\nfunc toProductState(value ProductStatus) ProductState {\n\tswitch value {\n\tcase ProductStatusActive:\n\t\treturn ProductStateActive\n\tcase ProductStatusDiscontinued:\n\t\treturn ProductStateDiscontinued\n\tdefault:\n\t\tpanic(fmt.Sprintf(\"unexpected ProductStatus: %v\", value))\n\t}\n}\n\nfunc parseInt[T int8 | int16 | int32 | int64](text string, errs *[]error) T {\n\tvalue, err := strconv.ParseInt(text, 10, 64)\n\tif err != nil {\n\t\t*errs = append(*errs, err)\n\t}\n\treturn T(value)\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "go-naming-convention": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\nimport (\n\t\"errors\"\n\t\"fmt\"\n\t\"strconv\"\n\t\"time\"\n)\n\n// MapProductResponseToProductModel maps a ProductResponse to a ProductModel. The error lists every value that could not be converted.\nfunc MapProductResponseToProductModel(source ProductResponse) (ProductModel, error) {\n\tvar errs []error\n\ttarget := mapProductResponseToProductModel(source, &errs)\n\treturn target, errors.Join(errs...)\n}\n\nfunc mapProductResponseToProductModel(source ProductResponse, errs *[]error) ProductModel {\n\treturn ProductModel{\n\t\tSku: source.Sku,\n\t\tSupplierFullName: source.FirstName + \" \" + source.LastName,\n\t\tPrice: source.PriceCents / 100.0,\n\t\tStatus: toProductState(source.Status),\n\t\tActive: source.Status == ProductStatusActive,\n\t\tCreatedAt: time.Unix(int64(source.Created), 0).UTC(),\n\t\tStock: parseInt[int64](source.Stock, errs),\n\t\t// \"discount\" is required: panics if the source is missing\n\t\tDiscount: *source.Discount,\n\t}\n}\n\nfunc toProductState(value ProductStatus) ProductState {\n\tswitch value {\n\tcase ProductStatusActive:\n\t\treturn ProductStateActive\n\tcase ProductStatusDiscontinued:\n\t\treturn ProductStateDiscontinued\n\tdefault:\n\t\tpanic(fmt.Sprintf(\"unexpected ProductStatus: %v\", value))\n\t}\n}\n\nfunc parseInt[T int8 | int16 | int32 | int64](text string, errs *[]error) T {\n\tvalue, err := strconv.ParseInt(text, 10, 64)\n\tif err != nil {\n\t\t*errs = append(*errs, err)\n\t}\n\treturn T(value)\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "rust-from": {
+  "files": [
+   {
+    "name": "product_response_mapping.rs",
+    "code": "use chrono::DateTime;\nuse rust_decimal::Decimal;\nuse crate::models::{ProductModel, ProductResponse, ProductState, ProductStatus};\n\nimpl From<&ProductResponse> for ProductModel {\n    fn from(source: &ProductResponse) -> Self {\n        Self {\n            sku: source.sku.clone(),\n            supplier_full_name: format!(\"{} {}\", source.first_name, source.last_name),\n            price: Decimal::try_from(source.price_cents).expect(\"number out of range\") / Decimal::from(100),\n            status: to_product_state(&source.status),\n            active: matches!(source.status, ProductStatus::Active),\n            created_at: DateTime::from_timestamp(source.created as i64, 0).expect(\"timestamp out of range\"),\n            stock: source.stock.parse::<i64>().expect(\"number is not valid\"),\n            discount: source.discount.expect(\"a required value is missing in the source\"),\n        }\n    }\n}\n\nfn to_product_state(value: &ProductStatus) -> ProductState {\n    match value {\n        ProductStatus::Active => ProductState::ACTIVE,\n        ProductStatus::Discontinued => ProductState::DISCONTINUED,\n        _ => panic!(\"unexpected ProductStatus: {:?}\", value),\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "rust-naming-keep": {
+  "files": [
+   {
+    "name": "product_response_mapping.rs",
+    "code": "use chrono::DateTime;\nuse rust_decimal::Decimal;\nuse crate::models::{ProductModel, ProductResponse, ProductState, ProductStatus};\n\nimpl From<&ProductResponse> for ProductModel {\n    fn from(source: &ProductResponse) -> Self {\n        Self {\n            sku: source.sku.clone(),\n            supplier_full_name: format!(\"{} {}\", source.first_name, source.last_name),\n            price: Decimal::try_from(source.price_cents).expect(\"number out of range\") / Decimal::from(100),\n            status: to_product_state(&source.status),\n            active: matches!(source.status, ProductStatus::Active),\n            created_at: DateTime::from_timestamp(source.created as i64, 0).expect(\"timestamp out of range\"),\n            stock: source.stock.parse::<i64>().expect(\"number is not valid\"),\n            discount: source.discount.expect(\"a required value is missing in the source\"),\n        }\n    }\n}\n\nfn to_product_state(value: &ProductStatus) -> ProductState {\n    match value {\n        ProductStatus::Active => ProductState::ACTIVE,\n        ProductStatus::Discontinued => ProductState::DISCONTINUED,\n        _ => panic!(\"unexpected ProductStatus: {:?}\", value),\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "rust-naming-convention": {
+  "files": [
+   {
+    "name": "product_response_mapping.rs",
+    "code": "use chrono::DateTime;\nuse rust_decimal::Decimal;\nuse crate::models::{ProductModel, ProductResponse, ProductState, ProductStatus};\n\nimpl From<&ProductResponse> for ProductModel {\n    fn from(source: &ProductResponse) -> Self {\n        Self {\n            sku: source.sku.clone(),\n            supplier_full_name: format!(\"{} {}\", source.first_name, source.last_name),\n            price: Decimal::try_from(source.price_cents).expect(\"number out of range\") / Decimal::from(100),\n            status: to_product_state(&source.status),\n            active: matches!(source.status, ProductStatus::Active),\n            created_at: DateTime::from_timestamp(source.created as i64, 0).expect(\"timestamp out of range\"),\n            stock: source.stock.parse::<i64>().expect(\"number is not valid\"),\n            discount: source.discount.expect(\"a required value is missing in the source\"),\n        }\n    }\n}\n\nfn to_product_state(value: &ProductStatus) -> ProductState {\n    match value {\n        ProductStatus::Active => ProductState::ACTIVE,\n        ProductStatus::Discontinued => ProductState::DISCONTINUED,\n        _ => panic!(\"unexpected ProductStatus: {:?}\", value),\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "php-static": {
+  "files": [
+   {
+    "name": "ProductResponseMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class ProductResponseMapper\n{\n    public static function toProductModel(ProductResponse $source): ProductModel\n    {\n        return new ProductModel(\n            sku: $source->sku,\n            supplierFullName: $source->firstName . ' ' . $source->lastName,\n            price: $source->priceCents / 100,\n            status: self::toProductState($source->status),\n            active: $source->status === ProductStatus::Active,\n            createdAt: (new \\DateTimeImmutable())->setTimestamp((int) $source->created),\n            stock: (int) $source->stock,\n            discount: $source->discount ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n        );\n    }\n\n    private static function toProductState(ProductStatus $value): ProductState\n    {\n        return match ($value) {\n            ProductStatus::Active => ProductState::ACTIVE,\n            ProductStatus::Discontinued => ProductState::DISCONTINUED,\n            default => throw new \\UnexpectedValueException('Unexpected ProductStatus'),\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "php-naming-keep": {
+  "files": [
+   {
+    "name": "ProductResponseMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class ProductResponseMapper\n{\n    public static function toProductModel(ProductResponse $source): ProductModel\n    {\n        return new ProductModel(\n            sku: $source->sku,\n            supplier_full_name: $source->first_name . ' ' . $source->last_name,\n            price: $source->price_cents / 100,\n            status: self::toProductState($source->status),\n            active: $source->status === ProductStatus::Active,\n            created_at: (new \\DateTimeImmutable())->setTimestamp((int) $source->created),\n            stock: (int) $source->stock,\n            discount: $source->discount ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n        );\n    }\n\n    private static function toProductState(ProductStatus $value): ProductState\n    {\n        return match ($value) {\n            ProductStatus::Active => ProductState::ACTIVE,\n            ProductStatus::Discontinued => ProductState::DISCONTINUED,\n            default => throw new \\UnexpectedValueException('Unexpected ProductStatus'),\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "php-naming-convention": {
+  "files": [
+   {
+    "name": "ProductResponseMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class ProductResponseMapper\n{\n    public static function toProductModel(ProductResponse $source): ProductModel\n    {\n        return new ProductModel(\n            sku: $source->sku,\n            supplierFullName: $source->firstName . ' ' . $source->lastName,\n            price: $source->priceCents / 100,\n            status: self::toProductState($source->status),\n            active: $source->status === ProductStatus::Active,\n            createdAt: (new \\DateTimeImmutable())->setTimestamp((int) $source->created),\n            stock: (int) $source->stock,\n            discount: $source->discount ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n        );\n    }\n\n    private static function toProductState(ProductStatus $value): ProductState\n    {\n        return match ($value) {\n            ProductStatus::Active => ProductState::ACTIVE,\n            ProductStatus::Discontinued => ProductState::DISCONTINUED,\n            default => throw new \\UnexpectedValueException('Unexpected ProductStatus'),\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "php-sourceAccess-array": {
+  "files": [
+   {
+    "name": "ProductResponseMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class ProductResponseMapper\n{\n    public static function toProductModel(array $source): ProductModel\n    {\n        return new ProductModel(\n            sku: $source['sku'],\n            supplierFullName: $source['first_name'] . ' ' . $source['last_name'],\n            price: $source['price_cents'] / 100,\n            status: self::toProductState($source['status']),\n            active: $source['status'] === 'ACTIVE',\n            createdAt: (new \\DateTimeImmutable())->setTimestamp((int) $source['created']),\n            stock: (int) $source['stock'],\n            discount: $source['discount'] ?? null ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n        );\n    }\n\n    private static function toProductState(string $value): ProductState\n    {\n        return match ($value) {\n            'ACTIVE' => ProductState::ACTIVE,\n            'DISCONTINUED' => ProductState::DISCONTINUED,\n            default => throw new \\UnexpectedValueException('Unexpected ProductStatus'),\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ },
+ "php-targetStyle-array": {
+  "files": [
+   {
+    "name": "ProductResponseMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class ProductResponseMapper\n{\n    public static function toProductModel(ProductResponse $source): array\n    {\n        return [\n            'sku' => $source->sku,\n            'supplier_full_name' => $source->firstName . ' ' . $source->lastName,\n            'price' => $source->priceCents / 100,\n            'status' => self::toProductState($source->status),\n            'active' => $source->status === ProductStatus::Active,\n            'created_at' => (new \\DateTimeImmutable())->setTimestamp((int) $source->created),\n            'stock' => (int) $source->stock,\n            'discount' => $source->discount ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n        ];\n    }\n\n    private static function toProductState(ProductStatus $value): string\n    {\n        return match ($value) {\n            ProductStatus::Active => 'active',\n            ProductStatus::Discontinued => 'discontinued',\n            default => throw new \\UnexpectedValueException('Unexpected ProductStatus'),\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "enumFallbackThrows",
+    "params": {
+     "enum": "ProductState"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "discount"
+    }
+   }
+  ]
+ }
+}

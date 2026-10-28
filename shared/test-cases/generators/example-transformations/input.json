@@ -1,0 +1,12 @@
+{
+ "source": {
+  "format": "typescript",
+  "text": "export interface ProductResponse {\n  sku: string\n  first_name: string\n  last_name: string\n  price_cents: number\n  status: ProductStatus\n  created: number\n  stock: string\n  discount: number | null\n}\n\nexport enum ProductStatus {\n  Active = 'ACTIVE',\n  Discontinued = 'DISCONTINUED',\n  Draft = 'DRAFT',\n}\n",
+  "model": "ProductResponse"
+ },
+ "target": {
+  "format": "python",
+  "text": "from datetime import datetime\nfrom decimal import Decimal\nfrom enum import Enum\n\nfrom pydantic import BaseModel\n\n\nclass ProductState(str, Enum):\n    ACTIVE = \"active\"\n    DISCONTINUED = \"discontinued\"\n    HIDDEN = \"hidden\"\n\n\nclass ProductModel(BaseModel):\n    sku: str\n    supplier_full_name: str\n    price: Decimal\n    status: ProductState\n    active: bool\n    created_at: datetime\n    stock: int\n    discount: float\n",
+  "model": "ProductModel"
+ }
+}

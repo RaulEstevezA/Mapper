@@ -1,0 +1,12 @@
+{
+ "source": {
+  "text": "from dataclasses import dataclass, field\nfrom datetime import date, datetime\nfrom decimal import Decimal\nfrom enum import Enum\nfrom typing import Optional\n\n\nclass InvoiceStatus(str, Enum):\n    DRAFT = \"draft\"\n    PENDING = \"pending\"\n    PAID = \"paid\"\n    CANCELLED = \"cancelled\"\n\n\n@dataclass\nclass BillingAddress:\n    \"\"\"Address where the invoice is sent.\"\"\"\n\n    street: str\n    city: str\n    zip_code: str\n    country: str = \"ES\"\n\n\n@dataclass\nclass Customer:\n    customer_id: int\n    first_name: str\n    last_name: str\n    email: str\n    phone: Optional[str] = None\n    billing_address: Optional[BillingAddress] = None\n\n\n@dataclass\nclass InvoiceLine:\n    sku: str\n    description: str\n    quantity: int\n    unit_price: Decimal\n    tax_rate: float = 0.21\n\n\n@dataclass\nclass InvoiceRecord:\n    \"\"\"An invoice as the billing service stores it.\"\"\"\n\n    invoice_number: str\n    issued_at: datetime\n    due_date: date\n    status: InvoiceStatus\n    total: Decimal\n    currency: str\n    customer: Customer\n    lines: list[InvoiceLine] = field(default_factory=list)\n    notes: Optional[str] = None\n    paid: bool = False\n",
+  "format": "python",
+  "model": "InvoiceRecord"
+ },
+ "target": {
+  "text": "package com.example.billing\n\nimport java.math.BigDecimal\nimport java.time.Instant\nimport java.time.LocalDate\n\nenum class InvoiceStatus { DRAFT, PENDING, PAID, CANCELLED }\n\ndata class Invoice(\n    val id: String,\n    val issuedAt: Instant,\n    val dueDate: LocalDate,\n    val status: InvoiceStatus,\n    val total: BigDecimal,\n    val currency: String,\n    val notes: String? = null,\n    val customerId: Long,\n    val customerName: String,\n    val customerEmail: String,\n    val billingAddress: Address,\n    val items: List<InvoiceItem>,\n    val isPaid: Boolean,\n    val createdBy: String,\n)\n\ndata class Address(\n    val street: String,\n    val city: String,\n    val postalCode: String,\n    val countryCode: String,\n)\n\ndata class InvoiceItem(\n    val sku: String,\n    val description: String,\n    val quantity: Int,\n    val unitPrice: BigDecimal,\n    val taxRate: Double,\n)\n",
+  "format": "kotlin",
+  "model": "Invoice"
+ }
+}

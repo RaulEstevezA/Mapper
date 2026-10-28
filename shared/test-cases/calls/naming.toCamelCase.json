@@ -1,0 +1,404 @@
+[
+ {
+  "args": [
+   "Id"
+  ],
+  "result": "id"
+ },
+ {
+  "args": [
+   "id"
+  ],
+  "result": "id"
+ },
+ {
+  "args": [
+   "dob"
+  ],
+  "result": "dob"
+ },
+ {
+  "args": [
+   "pdf"
+  ],
+  "result": "pdf"
+ },
+ {
+  "args": [
+   "sku"
+  ],
+  "result": "sku"
+ },
+ {
+  "args": [
+   "tel"
+  ],
+  "result": "tel"
+ },
+ {
+  "args": [
+   "City"
+  ],
+  "result": "city"
+ },
+ {
+  "args": [
+   "city"
+  ],
+  "result": "city"
+ },
+ {
+  "args": [
+   "mail"
+  ],
+  "result": "mail"
+ },
+ {
+  "args": [
+   "name"
+  ],
+  "result": "name"
+ },
+ {
+  "args": [
+   "paid"
+  ],
+  "result": "paid"
+ },
+ {
+  "args": [
+   "tags"
+  ],
+  "result": "tags"
+ },
+ {
+  "args": [
+   "email"
+  ],
+  "result": "email"
+ },
+ {
+  "args": [
+   "items"
+  ],
+  "result": "items"
+ },
+ {
+  "args": [
+   "lines"
+  ],
+  "result": "lines"
+ },
+ {
+  "args": [
+   "notes"
+  ],
+  "result": "notes"
+ },
+ {
+  "args": [
+   "phone"
+  ],
+  "result": "phone"
+ },
+ {
+  "args": [
+   "price"
+  ],
+  "result": "price"
+ },
+ {
+  "args": [
+   "stock"
+  ],
+  "result": "stock"
+ },
+ {
+  "args": [
+   "title"
+  ],
+  "result": "title"
+ },
+ {
+  "args": [
+   "ACTIVE"
+  ],
+  "result": "active"
+ },
+ {
+  "args": [
+   "Active"
+  ],
+  "result": "active"
+ },
+ {
+  "args": [
+   "Status"
+  ],
+  "result": "status"
+ },
+ {
+  "args": [
+   "Street"
+  ],
+  "result": "street"
+ },
+ {
+  "args": [
+   "active"
+  ],
+  "result": "active"
+ },
+ {
+  "args": [
+   "coupon"
+  ],
+  "result": "coupon"
+ },
+ {
+  "args": [
+   "status"
+  ],
+  "result": "status"
+ },
+ {
+  "args": [
+   "street"
+  ],
+  "result": "street"
+ },
+ {
+  "args": [
+   "userId"
+  ],
+  "result": "userId"
+ },
+ {
+  "args": [
+   "Country"
+  ],
+  "result": "country"
+ },
+ {
+  "args": [
+   "country"
+  ],
+  "result": "country"
+ },
+ {
+  "args": [
+   "created"
+  ],
+  "result": "created"
+ },
+ {
+  "args": [
+   "orderId"
+  ],
+  "result": "orderId"
+ },
+ {
+  "args": [
+   "surname"
+  ],
+  "result": "surname"
+ },
+ {
+  "args": [
+   "zipCode"
+  ],
+  "result": "zipCode"
+ },
+ {
+  "args": [
+   "customer"
+  ],
+  "result": "customer"
+ },
+ {
+  "args": [
+   "discount"
+  ],
+  "result": "discount"
+ },
+ {
+  "args": [
+   "isActive"
+  ],
+  "result": "isActive"
+ },
+ {
+  "args": [
+   "lastName"
+  ],
+  "result": "lastName"
+ },
+ {
+  "args": [
+   "placedAt"
+  ],
+  "result": "placedAt"
+ },
+ {
+  "args": [
+   "quantity"
+  ],
+  "result": "quantity"
+ },
+ {
+  "args": [
+   "shipping"
+  ],
+  "result": "shipping"
+ },
+ {
+  "args": [
+   "birthDate"
+  ],
+  "result": "birthDate"
+ },
+ {
+  "args": [
+   "createdAt"
+  ],
+  "result": "createdAt"
+ },
+ {
+  "args": [
+   "firstName"
+  ],
+  "result": "firstName"
+ },
+ {
+  "args": [
+   "issued_at"
+  ],
+  "result": "issuedAt"
+ },
+ {
+  "args": [
+   "last_name"
+  ],
+  "result": "lastName"
+ },
+ {
+  "args": [
+   "productId"
+  ],
+  "result": "productId"
+ },
+ {
+  "args": [
+   "unitPrice"
+  ],
+  "result": "unitPrice"
+ },
+ {
+  "args": [
+   "CustomerId"
+  ],
+  "result": "customerId"
+ },
+ {
+  "args": [
+   "PostalCode"
+  ],
+  "result": "postalCode"
+ },
+ {
+  "args": [
+   "created_at"
+  ],
+  "result": "createdAt"
+ },
+ {
+  "args": [
+   "customerId"
+  ],
+  "result": "customerId"
+ },
+ {
+  "args": [
+   "first_name"
+  ],
+  "result": "firstName"
+ },
+ {
+  "args": [
+   "given_name"
+  ],
+  "result": "givenName"
+ },
+ {
+  "args": [
+   "qty_orders"
+  ],
+  "result": "qtyOrders"
+ },
+ {
+  "args": [
+   "customer_id"
+  ],
+  "result": "customerId"
+ },
+ {
+  "args": [
+   "price_cents"
+  ],
+  "result": "priceCents"
+ },
+ {
+  "args": [
+   "CustomerName"
+  ],
+  "result": "customerName"
+ },
+ {
+  "args": [
+   "DISCONTINUED"
+  ],
+  "result": "discontinued"
+ },
+ {
+  "args": [
+   "Discontinued"
+  ],
+  "result": "discontinued"
+ },
+ {
+  "args": [
+   "emailAddress"
+  ],
+  "result": "emailAddress"
+ },
+ {
+  "args": [
+   "creation_date"
+  ],
+  "result": "creationDate"
+ },
+ {
+  "args": [
+   "customer_name"
+  ],
+  "result": "customerName"
+ },
+ {
+  "args": [
+   "orderQuantity"
+  ],
+  "result": "orderQuantity"
+ },
+ {
+  "args": [
+   "ShippingAddress"
+  ],
+  "result": "shippingAddress"
+ },
+ {
+  "args": [
+   "supplier_full_name"
+  ],
+  "result": "supplierFullName"
+ }
+]

@@ -1,0 +1,73 @@
+{
+ "source": {
+  "text": "{\n  \"invoice_id\": \"INV-2026-0042\",\n  \"issued_at\": \"2026-10-15T09:30:00Z\",\n  \"due_date\": \"2026-11-14\",\n  \"status\": \"PENDING\",\n  \"total_cents\": 152340,\n  \"currency\": \"EUR\",\n  \"notes\": null,\n  \"customer\": {\n    \"customer_id\": 1042,\n    \"first_name\": \"Raúl\",\n    \"last_name\": \"Estévez\",\n    \"email_address\": \"raul@example.com\",\n    \"phone\": \"+34 600 000 000\",\n    \"billing_address\": {\n      \"street\": \"Calle Mayor 12\",\n      \"city\": \"Villaluna\",\n      \"zip_code\": \"28013\",\n      \"country\": \"ES\"\n    }\n  },\n  \"lines\": [\n    { \"sku\": \"LIC-PRO\", \"description\": \"Annual license\", \"qty\": 1, \"unit_price_cents\": 120000, \"tax_rate\": 0.21 },\n    { \"sku\": \"SUP-HRS\", \"description\": \"Support hours\", \"qty\": 4, \"unit_price_cents\": 8085, \"tax_rate\": 0.21 }\n  ],\n  \"paid\": false,\n  \"legacy_code\": \"A7-X\"\n}\n",
+  "format": "json",
+  "model": "InvoiceResponse"
+ },
+ "target": {
+  "text": "package com.example.billing\n\nimport java.math.BigDecimal\nimport java.time.Instant\nimport java.time.LocalDate\n\nenum class InvoiceStatus { DRAFT, PENDING, PAID, CANCELLED }\n\ndata class Invoice(\n    val id: String,\n    val issuedAt: Instant,\n    val dueDate: LocalDate,\n    val status: InvoiceStatus,\n    val total: BigDecimal,\n    val currency: String,\n    val notes: String? = null,\n    val customerId: Long,\n    val customerName: String,\n    val customerEmail: String,\n    val billingAddress: Address,\n    val items: List<InvoiceItem>,\n    val isPaid: Boolean,\n    val createdBy: String,\n)\n\ndata class Address(\n    val street: String,\n    val city: String,\n    val postalCode: String,\n    val countryCode: String,\n)\n\ndata class InvoiceItem(\n    val sku: String,\n    val description: String,\n    val quantity: Int,\n    val unitPrice: BigDecimal,\n    val taxRate: Double,\n)\n",
+  "format": "kotlin",
+  "model": "Invoice"
+ },
+ "edits": [
+  {
+   "fn": "edit.setExpression",
+   "args": [
+    "InvoiceResponse->Invoice",
+    "customerName",
+    "trim(concat(upper(customer.first_name), \" \", customer.last_name))"
+   ]
+  },
+  {
+   "fn": "edit.setTransform",
+   "args": [
+    "InvoiceResponse->Invoice",
+    "createdBy",
+    {
+     "kind": "constant",
+     "value": "importer"
+    }
+   ]
+  },
+  {
+   "fn": "edit.setExpression",
+   "args": [
+    "InvoiceResponse->Invoice",
+    "total",
+    "total_cents > 0 ? round(total_cents / 100) : 0"
+   ]
+  },
+  {
+   "fn": "edit.setFallback",
+   "args": [
+    "InvoiceResponse->Invoice",
+    "notes",
+    "none"
+   ]
+  },
+  {
+   "fn": "edit.setTransform",
+   "args": [
+    "InvoiceResponse->Invoice",
+    "status",
+    {
+     "kind": "enum",
+     "pairs": [
+      {
+       "from": "paid",
+       "to": "PAID"
+      }
+     ],
+     "fallback": "DRAFT"
+    }
+   ]
+  },
+  {
+   "fn": "edit.ignoreTarget",
+   "args": [
+    "BillingAddress->Address",
+    "countryCode"
+   ]
+  }
+ ]
+}

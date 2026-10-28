@@ -1,0 +1,573 @@
+[
+ {
+  "args": [
+   {
+    "text": "   ",
+    "format": null,
+    "model": null
+   },
+   "source"
+  ],
+  "result": {
+   "format": null,
+   "outcome": null,
+   "model": null
+  }
+ },
+ {
+  "args": [
+   {
+    "text": "{\"a\": 1}",
+    "format": null,
+    "model": null
+   },
+   "source"
+  ],
+  "result": {
+   "format": "json",
+   "outcome": {
+    "ok": true,
+    "schema": {
+     "format": "model-schema",
+     "version": 1,
+     "origin": {
+      "format": "json"
+     },
+     "models": [
+      {
+       "name": "Source",
+       "kind": "object",
+       "fields": [
+        {
+         "name": "a",
+         "type": {
+          "kind": "primitive",
+          "name": "integer"
+         },
+         "nullable": false,
+         "optional": false
+        }
+       ]
+      }
+     ],
+     "enums": [],
+     "root": "Source"
+    },
+    "warnings": []
+   },
+   "model": "Source"
+  }
+ },
+ {
+  "args": [
+   {
+    "text": "interface A { id: number; extra: string }",
+    "format": null,
+    "model": null
+   },
+   "source"
+  ],
+  "result": {
+   "format": "typescript",
+   "outcome": {
+    "ok": true,
+    "schema": {
+     "format": "model-schema",
+     "version": 1,
+     "origin": {
+      "format": "typescript",
+      "language": "typescript"
+     },
+     "models": [
+      {
+       "name": "A",
+       "kind": "interface",
+       "fields": [
+        {
+         "name": "id",
+         "type": {
+          "kind": "primitive",
+          "name": "float"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "number"
+        },
+        {
+         "name": "extra",
+         "type": {
+          "kind": "primitive",
+          "name": "string"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "string"
+        }
+       ]
+      }
+     ],
+     "enums": []
+    },
+    "warnings": []
+   },
+   "model": "A"
+  }
+ },
+ {
+  "args": [
+   {
+    "text": "interface A { b: string }\ninterface Root { a: A }",
+    "format": null,
+    "model": "A"
+   },
+   "source"
+  ],
+  "result": {
+   "format": "typescript",
+   "outcome": {
+    "ok": true,
+    "schema": {
+     "format": "model-schema",
+     "version": 1,
+     "origin": {
+      "format": "typescript",
+      "language": "typescript"
+     },
+     "models": [
+      {
+       "name": "A",
+       "kind": "interface",
+       "fields": [
+        {
+         "name": "b",
+         "type": {
+          "kind": "primitive",
+          "name": "string"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "string"
+        }
+       ]
+      },
+      {
+       "name": "Root",
+       "kind": "interface",
+       "fields": [
+        {
+         "name": "a",
+         "type": {
+          "kind": "model",
+          "name": "A"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "A"
+        }
+       ]
+      }
+     ],
+     "enums": []
+    },
+    "warnings": []
+   },
+   "model": "A"
+  }
+ },
+ {
+  "args": [
+   {
+    "text": "interface A { b: string }\ninterface Root { a: A }",
+    "format": null,
+    "model": null
+   },
+   "source"
+  ],
+  "result": {
+   "format": "typescript",
+   "outcome": {
+    "ok": true,
+    "schema": {
+     "format": "model-schema",
+     "version": 1,
+     "origin": {
+      "format": "typescript",
+      "language": "typescript"
+     },
+     "models": [
+      {
+       "name": "A",
+       "kind": "interface",
+       "fields": [
+        {
+         "name": "b",
+         "type": {
+          "kind": "primitive",
+          "name": "string"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "string"
+        }
+       ]
+      },
+      {
+       "name": "Root",
+       "kind": "interface",
+       "fields": [
+        {
+         "name": "a",
+         "type": {
+          "kind": "model",
+          "name": "A"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "A"
+        }
+       ]
+      }
+     ],
+     "enums": []
+    },
+    "warnings": []
+   },
+   "model": "Root"
+  }
+ },
+ {
+  "args": [
+   {
+    "text": "interface A { id: number; name: string; title: string }",
+    "format": null,
+    "model": null
+   },
+   "source"
+  ],
+  "result": {
+   "format": "typescript",
+   "outcome": {
+    "ok": true,
+    "schema": {
+     "format": "model-schema",
+     "version": 1,
+     "origin": {
+      "format": "typescript",
+      "language": "typescript"
+     },
+     "models": [
+      {
+       "name": "A",
+       "kind": "interface",
+       "fields": [
+        {
+         "name": "id",
+         "type": {
+          "kind": "primitive",
+          "name": "float"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "number"
+        },
+        {
+         "name": "name",
+         "type": {
+          "kind": "primitive",
+          "name": "string"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "string"
+        },
+        {
+         "name": "title",
+         "type": {
+          "kind": "primitive",
+          "name": "string"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "string"
+        }
+       ]
+      }
+     ],
+     "enums": []
+    },
+    "warnings": []
+   },
+   "model": "A"
+  }
+ },
+ {
+  "args": [
+   {
+    "text": "interface A { id: number; label: string; extra: string }",
+    "format": null,
+    "model": null
+   },
+   "source"
+  ],
+  "result": {
+   "format": "typescript",
+   "outcome": {
+    "ok": true,
+    "schema": {
+     "format": "model-schema",
+     "version": 1,
+     "origin": {
+      "format": "typescript",
+      "language": "typescript"
+     },
+     "models": [
+      {
+       "name": "A",
+       "kind": "interface",
+       "fields": [
+        {
+         "name": "id",
+         "type": {
+          "kind": "primitive",
+          "name": "float"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "number"
+        },
+        {
+         "name": "label",
+         "type": {
+          "kind": "primitive",
+          "name": "string"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "string"
+        },
+        {
+         "name": "extra",
+         "type": {
+          "kind": "primitive",
+          "name": "string"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "string"
+        }
+       ]
+      }
+     ],
+     "enums": []
+    },
+    "warnings": []
+   },
+   "model": "A"
+  }
+ },
+ {
+  "args": [
+   {
+    "text": "interface B { id: number; label: string; created: Date }",
+    "format": null,
+    "model": null
+   },
+   "source"
+  ],
+  "result": {
+   "format": "typescript",
+   "outcome": {
+    "ok": true,
+    "schema": {
+     "format": "model-schema",
+     "version": 1,
+     "origin": {
+      "format": "typescript",
+      "language": "typescript"
+     },
+     "models": [
+      {
+       "name": "B",
+       "kind": "interface",
+       "fields": [
+        {
+         "name": "id",
+         "type": {
+          "kind": "primitive",
+          "name": "float"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "number"
+        },
+        {
+         "name": "label",
+         "type": {
+          "kind": "primitive",
+          "name": "string"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "string"
+        },
+        {
+         "name": "created",
+         "type": {
+          "kind": "primitive",
+          "name": "datetime"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "Date"
+        }
+       ]
+      }
+     ],
+     "enums": []
+    },
+    "warnings": []
+   },
+   "model": "B"
+  }
+ },
+ {
+  "args": [
+   {
+    "text": "interface B { id: number; title: string; note?: string }",
+    "format": null,
+    "model": null
+   },
+   "source"
+  ],
+  "result": {
+   "format": "typescript",
+   "outcome": {
+    "ok": true,
+    "schema": {
+     "format": "model-schema",
+     "version": 1,
+     "origin": {
+      "format": "typescript",
+      "language": "typescript"
+     },
+     "models": [
+      {
+       "name": "B",
+       "kind": "interface",
+       "fields": [
+        {
+         "name": "id",
+         "type": {
+          "kind": "primitive",
+          "name": "float"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "number"
+        },
+        {
+         "name": "title",
+         "type": {
+          "kind": "primitive",
+          "name": "string"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "string"
+        },
+        {
+         "name": "note",
+         "type": {
+          "kind": "primitive",
+          "name": "string"
+         },
+         "nullable": false,
+         "optional": true,
+         "originalType": "string"
+        }
+       ]
+      }
+     ],
+     "enums": []
+    },
+    "warnings": []
+   },
+   "model": "B"
+  }
+ },
+ {
+  "args": [
+   {
+    "text": "interface A { id: number; label: string; extra: string; note: string }",
+    "format": null,
+    "model": null
+   },
+   "source"
+  ],
+  "result": {
+   "format": "typescript",
+   "outcome": {
+    "ok": true,
+    "schema": {
+     "format": "model-schema",
+     "version": 1,
+     "origin": {
+      "format": "typescript",
+      "language": "typescript"
+     },
+     "models": [
+      {
+       "name": "A",
+       "kind": "interface",
+       "fields": [
+        {
+         "name": "id",
+         "type": {
+          "kind": "primitive",
+          "name": "float"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "number"
+        },
+        {
+         "name": "label",
+         "type": {
+          "kind": "primitive",
+          "name": "string"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "string"
+        },
+        {
+         "name": "extra",
+         "type": {
+          "kind": "primitive",
+          "name": "string"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "string"
+        },
+        {
+         "name": "note",
+         "type": {
+          "kind": "primitive",
+          "name": "string"
+         },
+         "nullable": false,
+         "optional": false,
+         "originalType": "string"
+        }
+       ]
+      }
+     ],
+     "enums": []
+    },
+    "warnings": []
+   },
+   "model": "A"
+  }
+ }
+]

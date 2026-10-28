@@ -1,0 +1,380 @@
+{
+ "typescript-functions": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import type { User, UserDto } from './models'\n\nexport function mapUserDtoToUser(source: UserDto): User {\n  return {\n    id: source.userId,\n    firstName: source.firstName,\n    lastName: source.lastName,\n    email: source.emailAddress,\n    createdAt: new Date(source.createdAt),\n    active: source.isActive,\n  }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "typescript-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import type { User, UserDto } from './models'\n\nexport function mapUserDtoToUser(source: UserDto): User {\n  return {\n    id: source.userId,\n    firstName: source.firstName,\n    lastName: source.lastName,\n    email: source.emailAddress,\n    createdAt: new Date(source.createdAt),\n    active: source.isActive,\n  }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "typescript-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import type { User, UserDto } from './models'\n\nexport function mapUserDtoToUser(source: UserDto): User {\n  return {\n    id: source.userId,\n    firstName: source.firstName,\n    lastName: source.lastName,\n    email: source.emailAddress,\n    createdAt: new Date(source.createdAt),\n    active: source.isActive,\n  }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "javascript-functions": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {UserDto} source\n * @returns {User}\n */\nexport function mapUserDtoToUser(source) {\n  return {\n    id: source.userId,\n    firstName: source.firstName,\n    lastName: source.lastName,\n    email: source.emailAddress,\n    createdAt: new Date(source.createdAt),\n    active: source.isActive,\n  }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "javascript-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {UserDto} source\n * @returns {User}\n */\nexport function mapUserDtoToUser(source) {\n  return {\n    id: source.userId,\n    firstName: source.firstName,\n    lastName: source.lastName,\n    email: source.emailAddress,\n    createdAt: new Date(source.createdAt),\n    active: source.isActive,\n  }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "javascript-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {UserDto} source\n * @returns {User}\n */\nexport function mapUserDtoToUser(source) {\n  return {\n    id: source.userId,\n    firstName: source.firstName,\n    lastName: source.lastName,\n    email: source.emailAddress,\n    createdAt: new Date(source.createdAt),\n    active: source.isActive,\n  }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "python-functions": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from datetime import datetime\n\nfrom models import User, UserDto\n\n\ndef map_user_dto_to_user(source: UserDto) -> User:\n    return User(\n        id=source.user_id,\n        first_name=source.first_name,\n        last_name=source.last_name,\n        email=source.email_address,\n        created_at=datetime.fromisoformat(source.created_at),\n        active=source.is_active,\n    )\n"
+   }
+  ],
+  "notes": []
+ },
+ "python-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from datetime import datetime\n\nfrom models import User, UserDto\n\n\ndef map_user_dto_to_user(source: UserDto) -> User:\n    return User(\n        id=source.userId,\n        firstName=source.firstName,\n        lastName=source.lastName,\n        email=source.emailAddress,\n        createdAt=datetime.fromisoformat(source.createdAt),\n        active=source.isActive,\n    )\n"
+   }
+  ],
+  "notes": []
+ },
+ "python-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from datetime import datetime\n\nfrom models import User, UserDto\n\n\ndef map_user_dto_to_user(source: UserDto) -> User:\n    return User(\n        id=source.user_id,\n        first_name=source.first_name,\n        last_name=source.last_name,\n        email=source.email_address,\n        created_at=datetime.fromisoformat(source.created_at),\n        active=source.is_active,\n    )\n"
+   }
+  ],
+  "notes": []
+ },
+ "python-sourceAccess-dict": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from datetime import datetime\nfrom typing import Any\n\nfrom models import User\n\n\ndef map_user_dto_to_user(source: dict[str, Any]) -> User:\n    return User(\n        id=source[\"userId\"],\n        first_name=source[\"firstName\"],\n        last_name=source[\"lastName\"],\n        email=source[\"emailAddress\"],\n        created_at=datetime.fromisoformat(source[\"createdAt\"]),\n        active=source[\"isActive\"],\n    )\n"
+   }
+  ],
+  "notes": []
+ },
+ "python-targetStyle-dict": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from datetime import datetime\nfrom typing import Any\n\nfrom models import UserDto\n\n\ndef map_user_dto_to_user(source: UserDto) -> dict[str, Any]:\n    return {\n        \"id\": source.user_id,\n        \"firstName\": source.first_name,\n        \"lastName\": source.last_name,\n        \"email\": source.email_address,\n        \"createdAt\": datetime.fromisoformat(source.created_at),\n        \"active\": source.is_active,\n    }\n"
+   }
+  ],
+  "notes": []
+ },
+ "java-manual": {
+  "files": [
+   {
+    "name": "UserDtoMapper.java",
+    "code": "import java.time.OffsetDateTime;\n\npublic final class UserDtoMapper {\n\n    private UserDtoMapper() {\n    }\n\n    public static User toUser(UserDto source) {\n        if (source == null) {\n            return null;\n        }\n        User target = new User();\n        target.setId(source.getUserId());\n        target.setFirstName(source.getFirstName());\n        target.setLastName(source.getLastName());\n        target.setEmail(source.getEmailAddress());\n        target.setCreatedAt(OffsetDateTime.parse(source.getCreatedAt()));\n        target.setActive(source.getIsActive());\n        return target;\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "java-mapstruct": {
+  "files": [
+   {
+    "name": "UserDtoMapper.java",
+    "code": "import org.mapstruct.Mapper;\nimport org.mapstruct.Mapping;\n\n@Mapper\npublic interface UserDtoMapper {\n\n    @Mapping(target = \"id\", source = \"userId\")\n    @Mapping(target = \"email\", source = \"emailAddress\")\n    @Mapping(target = \"active\", source = \"isActive\")\n    User toUser(UserDto source);\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "java-naming-keep": {
+  "files": [
+   {
+    "name": "UserDtoMapper.java",
+    "code": "import java.time.OffsetDateTime;\n\npublic final class UserDtoMapper {\n\n    private UserDtoMapper() {\n    }\n\n    public static User toUser(UserDto source) {\n        if (source == null) {\n            return null;\n        }\n        User target = new User();\n        target.setId(source.getUserId());\n        target.setFirstName(source.getFirstName());\n        target.setLastName(source.getLastName());\n        target.setEmail(source.getEmailAddress());\n        target.setCreatedAt(OffsetDateTime.parse(source.getCreatedAt()));\n        target.setActive(source.getIsActive());\n        return target;\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "java-naming-convention": {
+  "files": [
+   {
+    "name": "UserDtoMapper.java",
+    "code": "import java.time.OffsetDateTime;\n\npublic final class UserDtoMapper {\n\n    private UserDtoMapper() {\n    }\n\n    public static User toUser(UserDto source) {\n        if (source == null) {\n            return null;\n        }\n        User target = new User();\n        target.setId(source.getUserId());\n        target.setFirstName(source.getFirstName());\n        target.setLastName(source.getLastName());\n        target.setEmail(source.getEmailAddress());\n        target.setCreatedAt(OffsetDateTime.parse(source.getCreatedAt()));\n        target.setActive(source.getIsActive());\n        return target;\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "java-componentModel-spring": {
+  "files": [
+   {
+    "name": "UserDtoMapper.java",
+    "code": "import java.time.OffsetDateTime;\n\npublic final class UserDtoMapper {\n\n    private UserDtoMapper() {\n    }\n\n    public static User toUser(UserDto source) {\n        if (source == null) {\n            return null;\n        }\n        User target = new User();\n        target.setId(source.getUserId());\n        target.setFirstName(source.getFirstName());\n        target.setLastName(source.getLastName());\n        target.setEmail(source.getEmailAddress());\n        target.setCreatedAt(OffsetDateTime.parse(source.getCreatedAt()));\n        target.setActive(source.getIsActive());\n        return target;\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "java-componentModel-cdi": {
+  "files": [
+   {
+    "name": "UserDtoMapper.java",
+    "code": "import java.time.OffsetDateTime;\n\npublic final class UserDtoMapper {\n\n    private UserDtoMapper() {\n    }\n\n    public static User toUser(UserDto source) {\n        if (source == null) {\n            return null;\n        }\n        User target = new User();\n        target.setId(source.getUserId());\n        target.setFirstName(source.getFirstName());\n        target.setLastName(source.getLastName());\n        target.setEmail(source.getEmailAddress());\n        target.setCreatedAt(OffsetDateTime.parse(source.getCreatedAt()));\n        target.setActive(source.getIsActive());\n        return target;\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "java-componentModel-jakarta": {
+  "files": [
+   {
+    "name": "UserDtoMapper.java",
+    "code": "import java.time.OffsetDateTime;\n\npublic final class UserDtoMapper {\n\n    private UserDtoMapper() {\n    }\n\n    public static User toUser(UserDto source) {\n        if (source == null) {\n            return null;\n        }\n        User target = new User();\n        target.setId(source.getUserId());\n        target.setFirstName(source.getFirstName());\n        target.setLastName(source.getLastName());\n        target.setEmail(source.getEmailAddress());\n        target.setCreatedAt(OffsetDateTime.parse(source.getCreatedAt()));\n        target.setActive(source.getIsActive());\n        return target;\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "csharp-manual": {
+  "files": [
+   {
+    "name": "UserDtoMappings.cs",
+    "code": "using System;\nusing System.Globalization;\n\npublic static class UserDtoMappings\n{\n    public static User ToUser(this UserDto source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new User\n        {\n            Id = source.UserId,\n            FirstName = source.FirstName,\n            LastName = source.LastName,\n            Email = source.EmailAddress,\n            CreatedAt = DateTime.Parse(source.CreatedAt, CultureInfo.InvariantCulture),\n            Active = source.IsActive,\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "csharp-automapper": {
+  "files": [
+   {
+    "name": "UserDtoProfile.cs",
+    "code": "using System;\nusing AutoMapper;\n\npublic class UserDtoProfile : Profile\n{\n    public UserDtoProfile()\n    {\n        CreateMap<UserDto, User>()\n            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.UserId))\n            .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.EmailAddress))\n            .ForMember(dest => dest.Active, opt => opt.MapFrom(src => src.IsActive));\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "csharp-naming-keep": {
+  "files": [
+   {
+    "name": "UserDtoMappings.cs",
+    "code": "using System;\nusing System.Globalization;\n\npublic static class UserDtoMappings\n{\n    public static User ToUser(this UserDto source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new User\n        {\n            id = source.userId,\n            firstName = source.firstName,\n            lastName = source.lastName,\n            email = source.emailAddress,\n            createdAt = DateTime.Parse(source.createdAt, CultureInfo.InvariantCulture),\n            active = source.isActive,\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "csharp-naming-convention": {
+  "files": [
+   {
+    "name": "UserDtoMappings.cs",
+    "code": "using System;\nusing System.Globalization;\n\npublic static class UserDtoMappings\n{\n    public static User ToUser(this UserDto source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new User\n        {\n            Id = source.UserId,\n            FirstName = source.FirstName,\n            LastName = source.LastName,\n            Email = source.EmailAddress,\n            CreatedAt = DateTime.Parse(source.CreatedAt, CultureInfo.InvariantCulture),\n            Active = source.IsActive,\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "kotlin-extensions": {
+  "files": [
+   {
+    "name": "UserDtoMappers.kt",
+    "code": "import java.time.Instant\n\nfun UserDto.toUser(): User = User(\n    id = userId,\n    firstName = firstName,\n    lastName = lastName,\n    email = emailAddress,\n    createdAt = Instant.parse(createdAt),\n    active = isActive,\n)\n"
+   }
+  ],
+  "notes": []
+ },
+ "kotlin-naming-keep": {
+  "files": [
+   {
+    "name": "UserDtoMappers.kt",
+    "code": "import java.time.Instant\n\nfun UserDto.toUser(): User = User(\n    id = userId,\n    firstName = firstName,\n    lastName = lastName,\n    email = emailAddress,\n    createdAt = Instant.parse(createdAt),\n    active = isActive,\n)\n"
+   }
+  ],
+  "notes": []
+ },
+ "kotlin-naming-convention": {
+  "files": [
+   {
+    "name": "UserDtoMappers.kt",
+    "code": "import java.time.Instant\n\nfun UserDto.toUser(): User = User(\n    id = userId,\n    firstName = firstName,\n    lastName = lastName,\n    email = emailAddress,\n    createdAt = Instant.parse(createdAt),\n    active = isActive,\n)\n"
+   }
+  ],
+  "notes": []
+ },
+ "dart-extensions": {
+  "files": [
+   {
+    "name": "user_dto_mapping.dart",
+    "code": "import 'models.dart';\n\nextension UserDtoMapping on UserDto {\n  User toUser() => User(\n        id: userId,\n        firstName: firstName,\n        lastName: lastName,\n        email: emailAddress,\n        createdAt: DateTime.parse(createdAt),\n        active: isActive,\n      );\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "dart-naming-keep": {
+  "files": [
+   {
+    "name": "user_dto_mapping.dart",
+    "code": "import 'models.dart';\n\nextension UserDtoMapping on UserDto {\n  User toUser() => User(\n        id: userId,\n        firstName: firstName,\n        lastName: lastName,\n        email: emailAddress,\n        createdAt: DateTime.parse(createdAt),\n        active: isActive,\n      );\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "dart-naming-convention": {
+  "files": [
+   {
+    "name": "user_dto_mapping.dart",
+    "code": "import 'models.dart';\n\nextension UserDtoMapping on UserDto {\n  User toUser() => User(\n        id: userId,\n        firstName: firstName,\n        lastName: lastName,\n        email: emailAddress,\n        createdAt: DateTime.parse(createdAt),\n        active: isActive,\n      );\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "swift-extensions": {
+  "files": [
+   {
+    "name": "UserDto+Mapping.swift",
+    "code": "import Foundation\n\nextension UserDto {\n    func toUser() -> User {\n        User(\n            id: userId,\n            firstName: firstName,\n            lastName: lastName,\n            email: emailAddress,\n            createdAt: ISO8601DateFormatter().date(from: createdAt)!,\n            active: isActive\n        )\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "swift-naming-keep": {
+  "files": [
+   {
+    "name": "UserDto+Mapping.swift",
+    "code": "import Foundation\n\nextension UserDto {\n    func toUser() -> User {\n        User(\n            id: userId,\n            firstName: firstName,\n            lastName: lastName,\n            email: emailAddress,\n            createdAt: ISO8601DateFormatter().date(from: createdAt)!,\n            active: isActive\n        )\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "swift-naming-convention": {
+  "files": [
+   {
+    "name": "UserDto+Mapping.swift",
+    "code": "import Foundation\n\nextension UserDto {\n    func toUser() -> User {\n        User(\n            id: userId,\n            firstName: firstName,\n            lastName: lastName,\n            email: emailAddress,\n            createdAt: ISO8601DateFormatter().date(from: createdAt)!,\n            active: isActive\n        )\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "go-functions": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\nimport (\n\t\"errors\"\n\t\"time\"\n)\n\n// MapUserDtoToUser maps a UserDto to a User. The error lists every value that could not be converted.\nfunc MapUserDtoToUser(source UserDto) (User, error) {\n\tvar errs []error\n\ttarget := mapUserDtoToUser(source, &errs)\n\treturn target, errors.Join(errs...)\n}\n\nfunc mapUserDtoToUser(source UserDto, errs *[]error) User {\n\treturn User{\n\t\tID: source.UserID,\n\t\tFirstName: source.FirstName,\n\t\tLastName: source.LastName,\n\t\tEmail: source.EmailAddress,\n\t\tCreatedAt: parseTime(source.CreatedAt, time.RFC3339, errs),\n\t\tActive: source.IsActive,\n\t}\n}\n\nfunc parseTime(text, layout string, errs *[]error) time.Time {\n\tvalue, err := time.Parse(layout, text)\n\tif err != nil {\n\t\t*errs = append(*errs, err)\n\t}\n\treturn value\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "go-naming-keep": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\nimport (\n\t\"errors\"\n\t\"time\"\n)\n\n// MapUserDtoToUser maps a UserDto to a User. The error lists every value that could not be converted.\nfunc MapUserDtoToUser(source UserDto) (User, error) {\n\tvar errs []error\n\ttarget := mapUserDtoToUser(source, &errs)\n\treturn target, errors.Join(errs...)\n}\n\nfunc mapUserDtoToUser(source UserDto, errs *[]error) User {\n\treturn User{\n\t\tid: source.userId,\n\t\tfirstName: source.firstName,\n\t\tlastName: source.lastName,\n\t\temail: source.emailAddress,\n\t\tcreatedAt: parseTime(source.createdAt, time.RFC3339, errs),\n\t\tactive: source.isActive,\n\t}\n}\n\nfunc parseTime(text, layout string, errs *[]error) time.Time {\n\tvalue, err := time.Parse(layout, text)\n\tif err != nil {\n\t\t*errs = append(*errs, err)\n\t}\n\treturn value\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "go-naming-convention": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\nimport (\n\t\"errors\"\n\t\"time\"\n)\n\n// MapUserDtoToUser maps a UserDto to a User. The error lists every value that could not be converted.\nfunc MapUserDtoToUser(source UserDto) (User, error) {\n\tvar errs []error\n\ttarget := mapUserDtoToUser(source, &errs)\n\treturn target, errors.Join(errs...)\n}\n\nfunc mapUserDtoToUser(source UserDto, errs *[]error) User {\n\treturn User{\n\t\tID: source.UserID,\n\t\tFirstName: source.FirstName,\n\t\tLastName: source.LastName,\n\t\tEmail: source.EmailAddress,\n\t\tCreatedAt: parseTime(source.CreatedAt, time.RFC3339, errs),\n\t\tActive: source.IsActive,\n\t}\n}\n\nfunc parseTime(text, layout string, errs *[]error) time.Time {\n\tvalue, err := time.Parse(layout, text)\n\tif err != nil {\n\t\t*errs = append(*errs, err)\n\t}\n\treturn value\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "rust-from": {
+  "files": [
+   {
+    "name": "user_dto_mapping.rs",
+    "code": "use chrono::DateTime;\nuse chrono::Utc;\nuse crate::models::{User, UserDto};\n\nimpl From<&UserDto> for User {\n    fn from(source: &UserDto) -> Self {\n        Self {\n            id: source.user_id,\n            first_name: source.first_name.clone(),\n            last_name: source.last_name.clone(),\n            email: source.email_address.clone(),\n            created_at: source.created_at.parse::<DateTime<Utc>>().expect(\"date and time is not valid\"),\n            active: source.is_active,\n        }\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "rust-naming-keep": {
+  "files": [
+   {
+    "name": "user_dto_mapping.rs",
+    "code": "use chrono::DateTime;\nuse chrono::Utc;\nuse crate::models::{User, UserDto};\n\nimpl From<&UserDto> for User {\n    fn from(source: &UserDto) -> Self {\n        Self {\n            id: source.userId,\n            firstName: source.firstName.clone(),\n            lastName: source.lastName.clone(),\n            email: source.emailAddress.clone(),\n            createdAt: source.createdAt.parse::<DateTime<Utc>>().expect(\"date and time is not valid\"),\n            active: source.isActive,\n        }\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "rust-naming-convention": {
+  "files": [
+   {
+    "name": "user_dto_mapping.rs",
+    "code": "use chrono::DateTime;\nuse chrono::Utc;\nuse crate::models::{User, UserDto};\n\nimpl From<&UserDto> for User {\n    fn from(source: &UserDto) -> Self {\n        Self {\n            id: source.user_id,\n            first_name: source.first_name.clone(),\n            last_name: source.last_name.clone(),\n            email: source.email_address.clone(),\n            created_at: source.created_at.parse::<DateTime<Utc>>().expect(\"date and time is not valid\"),\n            active: source.is_active,\n        }\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "php-static": {
+  "files": [
+   {
+    "name": "UserDtoMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class UserDtoMapper\n{\n    public static function toUser(UserDto $source): User\n    {\n        $target = new User();\n        $target->id = $source->userId;\n        $target->firstName = $source->firstName;\n        $target->lastName = $source->lastName;\n        $target->email = $source->emailAddress;\n        $target->createdAt = new \\DateTimeImmutable($source->createdAt);\n        $target->active = $source->isActive;\n        return $target;\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "php-naming-keep": {
+  "files": [
+   {
+    "name": "UserDtoMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class UserDtoMapper\n{\n    public static function toUser(UserDto $source): User\n    {\n        $target = new User();\n        $target->id = $source->userId;\n        $target->firstName = $source->firstName;\n        $target->lastName = $source->lastName;\n        $target->email = $source->emailAddress;\n        $target->createdAt = new \\DateTimeImmutable($source->createdAt);\n        $target->active = $source->isActive;\n        return $target;\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "php-naming-convention": {
+  "files": [
+   {
+    "name": "UserDtoMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class UserDtoMapper\n{\n    public static function toUser(UserDto $source): User\n    {\n        $target = new User();\n        $target->id = $source->userId;\n        $target->firstName = $source->firstName;\n        $target->lastName = $source->lastName;\n        $target->email = $source->emailAddress;\n        $target->createdAt = new \\DateTimeImmutable($source->createdAt);\n        $target->active = $source->isActive;\n        return $target;\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "php-sourceAccess-array": {
+  "files": [
+   {
+    "name": "UserDtoMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class UserDtoMapper\n{\n    public static function toUser(array $source): User\n    {\n        $target = new User();\n        $target->id = $source['userId'];\n        $target->firstName = $source['firstName'];\n        $target->lastName = $source['lastName'];\n        $target->email = $source['emailAddress'];\n        $target->createdAt = new \\DateTimeImmutable($source['createdAt']);\n        $target->active = $source['isActive'];\n        return $target;\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "php-targetStyle-array": {
+  "files": [
+   {
+    "name": "UserDtoMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class UserDtoMapper\n{\n    public static function toUser(UserDto $source): array\n    {\n        return [\n            'id' => $source->userId,\n            'firstName' => $source->firstName,\n            'lastName' => $source->lastName,\n            'email' => $source->emailAddress,\n            'createdAt' => new \\DateTimeImmutable($source->createdAt),\n            'active' => $source->isActive,\n        ];\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ }
+}

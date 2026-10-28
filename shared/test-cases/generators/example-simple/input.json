@@ -1,0 +1,12 @@
+{
+ "source": {
+  "format": "typescript",
+  "text": "export interface UserDto {\n  userId: number\n  firstName: string\n  lastName: string\n  emailAddress: string\n  createdAt: string\n  isActive: boolean\n}\n",
+  "model": "UserDto"
+ },
+ "target": {
+  "format": "typescript",
+  "text": "export interface User {\n  id: number\n  firstName: string\n  lastName: string\n  email: string\n  createdAt: Date\n  active: boolean\n}\n",
+  "model": "User"
+ }
+}

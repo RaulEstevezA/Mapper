@@ -1,0 +1,641 @@
+{
+ "source": {
+  "format": "model-schema",
+  "version": 1,
+  "origin": {
+   "format": "json"
+  },
+  "models": [
+   {
+    "name": "OrderApi",
+    "kind": "object",
+    "fields": [
+     {
+      "name": "orderId",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false
+     },
+     {
+      "name": "placedAt",
+      "type": {
+       "kind": "primitive",
+       "name": "datetime"
+      },
+      "nullable": false,
+      "optional": false
+     },
+     {
+      "name": "items",
+      "type": {
+       "kind": "array",
+       "items": {
+        "kind": "model",
+        "name": "Item"
+       }
+      },
+      "nullable": false,
+      "optional": false
+     },
+     {
+      "name": "tags",
+      "type": {
+       "kind": "array",
+       "items": {
+        "kind": "primitive",
+        "name": "string"
+       }
+      },
+      "nullable": false,
+      "optional": false
+     },
+     {
+      "name": "coupon",
+      "type": {
+       "kind": "primitive",
+       "name": "any"
+      },
+      "nullable": true,
+      "optional": false
+     }
+    ]
+   },
+   {
+    "name": "Item",
+    "kind": "object",
+    "fields": [
+     {
+      "name": "productId",
+      "type": {
+       "kind": "primitive",
+       "name": "integer"
+      },
+      "nullable": false,
+      "optional": false
+     },
+     {
+      "name": "title",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false
+     },
+     {
+      "name": "quantity",
+      "type": {
+       "kind": "primitive",
+       "name": "integer"
+      },
+      "nullable": false,
+      "optional": false
+     },
+     {
+      "name": "unitPrice",
+      "type": {
+       "kind": "primitive",
+       "name": "float"
+      },
+      "nullable": false,
+      "optional": false
+     }
+    ]
+   }
+  ],
+  "enums": [],
+  "root": "OrderApi"
+ },
+ "target": {
+  "format": "model-schema",
+  "version": 1,
+  "origin": {
+   "format": "java",
+   "language": "java"
+  },
+  "models": [
+   {
+    "name": "Order",
+    "kind": "record",
+    "fields": [
+     {
+      "name": "id",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     },
+     {
+      "name": "placedAt",
+      "type": {
+       "kind": "primitive",
+       "name": "datetime"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "OffsetDateTime"
+     },
+     {
+      "name": "lines",
+      "type": {
+       "kind": "array",
+       "items": {
+        "kind": "model",
+        "name": "OrderLine"
+       }
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "List<OrderLine>"
+     },
+     {
+      "name": "tags",
+      "type": {
+       "kind": "array",
+       "items": {
+        "kind": "primitive",
+        "name": "string"
+       }
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "Set<String>"
+     },
+     {
+      "name": "coupon",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     }
+    ],
+    "construction": "positional",
+    "metadata": {
+     "accessors": "record"
+    }
+   },
+   {
+    "name": "OrderLine",
+    "kind": "record",
+    "fields": [
+     {
+      "name": "productId",
+      "type": {
+       "kind": "primitive",
+       "name": "integer",
+       "bits": 64
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "long"
+     },
+     {
+      "name": "name",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     },
+     {
+      "name": "quantity",
+      "type": {
+       "kind": "primitive",
+       "name": "integer",
+       "bits": 32
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "int"
+     },
+     {
+      "name": "price",
+      "type": {
+       "kind": "primitive",
+       "name": "decimal"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "BigDecimal"
+     }
+    ],
+    "construction": "positional",
+    "metadata": {
+     "accessors": "record"
+    }
+   }
+  ],
+  "enums": []
+ },
+ "set": {
+  "root": "OrderApi->Order",
+  "mappings": [
+   {
+    "id": "OrderApi->Order",
+    "source": "OrderApi",
+    "target": "Order",
+    "fields": [
+     {
+      "target": "id",
+      "sources": [
+       [
+        "orderId"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "modelContext"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "orderId"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.9,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "modelContext"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "placedAt",
+      "sources": [
+       [
+        "placedAt"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "exact",
+      "reasons": [
+       {
+        "code": "sameName"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "placedAt"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 1,
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "lines",
+      "sources": [
+       [
+        "items"
+       ]
+      ],
+      "transform": {
+       "kind": "collection",
+       "mapping": "Item->OrderLine"
+      },
+      "status": "active",
+      "confidence": "review",
+      "reasons": [
+       {
+        "code": "synonym"
+       },
+       {
+        "code": "nestedModel"
+       },
+       {
+        "code": "collection"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "items"
+         ]
+        ],
+        "transform": {
+         "kind": "collection",
+         "mapping": "Item->OrderLine"
+        },
+        "score": 0.666,
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "synonym"
+         },
+         {
+          "code": "nestedModel"
+         },
+         {
+          "code": "collection"
+         }
+        ]
+       }
+      ],
+      "manual": true
+     },
+     {
+      "target": "tags",
+      "sources": [
+       [
+        "tags"
+       ]
+      ],
+      "transform": {
+       "kind": "collection"
+      },
+      "status": "active",
+      "confidence": "exact",
+      "reasons": [
+       {
+        "code": "sameName"
+       },
+       {
+        "code": "collection"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "tags"
+         ]
+        ],
+        "transform": {
+         "kind": "collection"
+        },
+        "score": 1,
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "collection"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "coupon",
+      "sources": [
+       [
+        "coupon"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "sameName"
+       },
+       {
+        "code": "typeFallible"
+       },
+       {
+        "code": "nullToRequired"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "coupon"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.8536,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "typeFallible"
+         },
+         {
+          "code": "nullToRequired"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "ignoredSources": []
+   },
+   {
+    "id": "Item->OrderLine",
+    "source": "Item",
+    "target": "OrderLine",
+    "fields": [
+     {
+      "target": "productId",
+      "sources": [
+       [
+        "productId"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "exact",
+      "reasons": [
+       {
+        "code": "sameName"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "productId"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 1,
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "name",
+      "sources": [
+       [
+        "title"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "probable",
+      "reasons": [
+       {
+        "code": "synonym"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "title"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.74,
+        "confidence": "probable",
+        "reasons": [
+         {
+          "code": "synonym"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "quantity",
+      "sources": [
+       [
+        "quantity"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "exact",
+      "reasons": [
+       {
+        "code": "sameName"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "quantity"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 1,
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "price",
+      "sources": [
+       [
+        "unitPrice"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "review",
+      "reasons": [
+       {
+        "code": "containsName",
+        "params": {
+         "similarity": 77
+        }
+       },
+       {
+        "code": "typeConversion"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "unitPrice"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.525,
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "containsName",
+          "params": {
+           "similarity": 77
+          }
+         },
+         {
+          "code": "typeConversion"
+         }
+        ]
+       }
+      ],
+      "manual": true
+     }
+    ],
+    "ignoredSources": []
+   }
+  ]
+ }
+}

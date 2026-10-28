@@ -1,0 +1,660 @@
+{
+ "typescript-functions": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import type { Item, Order, OrderApi, OrderLine } from './models'\n\nexport function mapOrderApiToOrder(source: OrderApi): Order {\n  return {\n    id: source.orderId,\n    placedAt: new Date(source.placedAt),\n    lines: source.items.map(mapItemToOrderLine),\n    tags: [...source.tags],\n    // TODO: the source may be missing, but \"coupon\" is required\n    coupon: (source.coupon == null ? undefined : String(source.coupon))!,\n  }\n}\n\nexport function mapItemToOrderLine(source: Item): OrderLine {\n  return {\n    productId: source.productId,\n    name: source.title,\n    quantity: source.quantity,\n    price: source.unitPrice,\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "typescript-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import type { Item, Order, OrderApi, OrderLine } from './models'\n\nexport function mapOrderApiToOrder(source: OrderApi): Order {\n  return {\n    id: source.orderId,\n    placedAt: new Date(source.placedAt),\n    lines: source.items.map(mapItemToOrderLine),\n    tags: [...source.tags],\n    // TODO: the source may be missing, but \"coupon\" is required\n    coupon: (source.coupon == null ? undefined : String(source.coupon))!,\n  }\n}\n\nexport function mapItemToOrderLine(source: Item): OrderLine {\n  return {\n    productId: source.productId,\n    name: source.title,\n    quantity: source.quantity,\n    price: source.unitPrice,\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "typescript-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import type { Item, Order, OrderApi, OrderLine } from './models'\n\nexport function mapOrderApiToOrder(source: OrderApi): Order {\n  return {\n    id: source.orderId,\n    placedAt: new Date(source.placedAt),\n    lines: source.items.map(mapItemToOrderLine),\n    tags: [...source.tags],\n    // TODO: the source may be missing, but \"coupon\" is required\n    coupon: (source.coupon == null ? undefined : String(source.coupon))!,\n  }\n}\n\nexport function mapItemToOrderLine(source: Item): OrderLine {\n  return {\n    productId: source.productId,\n    name: source.title,\n    quantity: source.quantity,\n    price: source.unitPrice,\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "javascript-functions": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {OrderApi} source\n * @returns {Order}\n */\nexport function mapOrderApiToOrder(source) {\n  return {\n    id: source.orderId,\n    placedAt: new Date(source.placedAt),\n    lines: source.items.map(mapItemToOrderLine),\n    tags: [...source.tags],\n    // TODO: the source may be missing, but \"coupon\" is required\n    coupon: source.coupon == null ? undefined : String(source.coupon),\n  }\n}\n\n/**\n * @param {Item} source\n * @returns {OrderLine}\n */\nexport function mapItemToOrderLine(source) {\n  return {\n    productId: source.productId,\n    name: source.title,\n    quantity: source.quantity,\n    price: source.unitPrice,\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "javascript-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {OrderApi} source\n * @returns {Order}\n */\nexport function mapOrderApiToOrder(source) {\n  return {\n    id: source.orderId,\n    placedAt: new Date(source.placedAt),\n    lines: source.items.map(mapItemToOrderLine),\n    tags: [...source.tags],\n    // TODO: the source may be missing, but \"coupon\" is required\n    coupon: source.coupon == null ? undefined : String(source.coupon),\n  }\n}\n\n/**\n * @param {Item} source\n * @returns {OrderLine}\n */\nexport function mapItemToOrderLine(source) {\n  return {\n    productId: source.productId,\n    name: source.title,\n    quantity: source.quantity,\n    price: source.unitPrice,\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "javascript-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {OrderApi} source\n * @returns {Order}\n */\nexport function mapOrderApiToOrder(source) {\n  return {\n    id: source.orderId,\n    placedAt: new Date(source.placedAt),\n    lines: source.items.map(mapItemToOrderLine),\n    tags: [...source.tags],\n    // TODO: the source may be missing, but \"coupon\" is required\n    coupon: source.coupon == null ? undefined : String(source.coupon),\n  }\n}\n\n/**\n * @param {Item} source\n * @returns {OrderLine}\n */\nexport function mapItemToOrderLine(source) {\n  return {\n    productId: source.productId,\n    name: source.title,\n    quantity: source.quantity,\n    price: source.unitPrice,\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "python-functions": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from datetime import datetime\nfrom decimal import Decimal\nfrom typing import Any\n\nfrom models import Order, OrderLine\n\n\ndef map_order_api_to_order(source: dict[str, Any]) -> Order:\n    return Order(\n        id=source[\"orderId\"],\n        placed_at=datetime.fromisoformat(source[\"placedAt\"]),\n        lines=[map_item_to_order_line(item) for item in source[\"items\"]],\n        tags=list(source[\"tags\"]),\n        # TODO: the source may be missing, but \"coupon\" is required\n        coupon=str(source.get(\"coupon\")) if source.get(\"coupon\") is not None else None,\n    )\n\n\ndef map_item_to_order_line(source: dict[str, Any]) -> OrderLine:\n    return OrderLine(\n        product_id=source[\"productId\"],\n        name=source[\"title\"],\n        quantity=source[\"quantity\"],\n        price=Decimal(str(source[\"unitPrice\"])),\n    )\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "python-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from datetime import datetime\nfrom decimal import Decimal\nfrom typing import Any\n\nfrom models import Order, OrderLine\n\n\ndef map_order_api_to_order(source: dict[str, Any]) -> Order:\n    return Order(\n        id=source[\"orderId\"],\n        placedAt=datetime.fromisoformat(source[\"placedAt\"]),\n        lines=[map_item_to_order_line(item) for item in source[\"items\"]],\n        tags=list(source[\"tags\"]),\n        # TODO: the source may be missing, but \"coupon\" is required\n        coupon=str(source.get(\"coupon\")) if source.get(\"coupon\") is not None else None,\n    )\n\n\ndef map_item_to_order_line(source: dict[str, Any]) -> OrderLine:\n    return OrderLine(\n        productId=source[\"productId\"],\n        name=source[\"title\"],\n        quantity=source[\"quantity\"],\n        price=Decimal(str(source[\"unitPrice\"])),\n    )\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "python-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from datetime import datetime\nfrom decimal import Decimal\nfrom typing import Any\n\nfrom models import Order, OrderLine\n\n\ndef map_order_api_to_order(source: dict[str, Any]) -> Order:\n    return Order(\n        id=source[\"orderId\"],\n        placed_at=datetime.fromisoformat(source[\"placedAt\"]),\n        lines=[map_item_to_order_line(item) for item in source[\"items\"]],\n        tags=list(source[\"tags\"]),\n        # TODO: the source may be missing, but \"coupon\" is required\n        coupon=str(source.get(\"coupon\")) if source.get(\"coupon\") is not None else None,\n    )\n\n\ndef map_item_to_order_line(source: dict[str, Any]) -> OrderLine:\n    return OrderLine(\n        product_id=source[\"productId\"],\n        name=source[\"title\"],\n        quantity=source[\"quantity\"],\n        price=Decimal(str(source[\"unitPrice\"])),\n    )\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "python-sourceAccess-dict": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from datetime import datetime\nfrom decimal import Decimal\nfrom typing import Any\n\nfrom models import Order, OrderLine\n\n\ndef map_order_api_to_order(source: dict[str, Any]) -> Order:\n    return Order(\n        id=source[\"orderId\"],\n        placed_at=datetime.fromisoformat(source[\"placedAt\"]),\n        lines=[map_item_to_order_line(item) for item in source[\"items\"]],\n        tags=list(source[\"tags\"]),\n        # TODO: the source may be missing, but \"coupon\" is required\n        coupon=str(source.get(\"coupon\")) if source.get(\"coupon\") is not None else None,\n    )\n\n\ndef map_item_to_order_line(source: dict[str, Any]) -> OrderLine:\n    return OrderLine(\n        product_id=source[\"productId\"],\n        name=source[\"title\"],\n        quantity=source[\"quantity\"],\n        price=Decimal(str(source[\"unitPrice\"])),\n    )\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "python-targetStyle-dict": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from datetime import datetime\nfrom decimal import Decimal\nfrom typing import Any\n\n\ndef map_order_api_to_order(source: dict[str, Any]) -> dict[str, Any]:\n    return {\n        \"id\": source[\"orderId\"],\n        \"placedAt\": datetime.fromisoformat(source[\"placedAt\"]),\n        \"lines\": [map_item_to_order_line(item) for item in source[\"items\"]],\n        \"tags\": list(source[\"tags\"]),\n        # TODO: the source may be missing, but \"coupon\" is required\n        \"coupon\": str(source.get(\"coupon\")) if source.get(\"coupon\") is not None else None,\n    }\n\n\ndef map_item_to_order_line(source: dict[str, Any]) -> dict[str, Any]:\n    return {\n        \"productId\": source[\"productId\"],\n        \"name\": source[\"title\"],\n        \"quantity\": source[\"quantity\"],\n        \"price\": Decimal(str(source[\"unitPrice\"])),\n    }\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "java-manual": {
+  "files": [
+   {
+    "name": "OrderApiMapper.java",
+    "code": "import java.math.BigDecimal;\nimport java.util.HashSet;\nimport java.util.Objects;\n\npublic final class OrderApiMapper {\n\n    private OrderApiMapper() {\n    }\n\n    public static Order toOrder(OrderApi source) {\n        if (source == null) {\n            return null;\n        }\n        return new Order(\n                source.getOrderId(),\n                source.getPlacedAt(),\n                source.getItems().stream().map(OrderApiMapper::toOrderLine).toList(),\n                new HashSet<>(source.getTags()),\n                // \"coupon\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getCoupon() != null ? String.valueOf(source.getCoupon()) : null)\n        );\n    }\n\n    public static OrderLine toOrderLine(Item source) {\n        if (source == null) {\n            return null;\n        }\n        return new OrderLine(\n                (long) source.getProductId(),\n                source.getTitle(),\n                Math.toIntExact(source.getQuantity()),\n                BigDecimal.valueOf(source.getUnitPrice())\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "java-mapstruct": {
+  "files": [
+   {
+    "name": "OrderApiMapper.java",
+    "code": "import org.mapstruct.Mapper;\nimport org.mapstruct.Mapping;\n\n@Mapper\npublic interface OrderApiMapper {\n\n    @Mapping(target = \"id\", source = \"orderId\")\n    @Mapping(target = \"lines\", source = \"items\")\n    Order toOrder(OrderApi source);\n\n    @Mapping(target = \"name\", source = \"title\")\n    @Mapping(target = \"price\", source = \"unitPrice\")\n    OrderLine toOrderLine(Item source);\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "java-naming-keep": {
+  "files": [
+   {
+    "name": "OrderApiMapper.java",
+    "code": "import java.math.BigDecimal;\nimport java.util.HashSet;\nimport java.util.Objects;\n\npublic final class OrderApiMapper {\n\n    private OrderApiMapper() {\n    }\n\n    public static Order toOrder(OrderApi source) {\n        if (source == null) {\n            return null;\n        }\n        return new Order(\n                source.getOrderId(),\n                source.getPlacedAt(),\n                source.getItems().stream().map(OrderApiMapper::toOrderLine).toList(),\n                new HashSet<>(source.getTags()),\n                // \"coupon\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getCoupon() != null ? String.valueOf(source.getCoupon()) : null)\n        );\n    }\n\n    public static OrderLine toOrderLine(Item source) {\n        if (source == null) {\n            return null;\n        }\n        return new OrderLine(\n                (long) source.getProductId(),\n                source.getTitle(),\n                Math.toIntExact(source.getQuantity()),\n                BigDecimal.valueOf(source.getUnitPrice())\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "java-naming-convention": {
+  "files": [
+   {
+    "name": "OrderApiMapper.java",
+    "code": "import java.math.BigDecimal;\nimport java.util.HashSet;\nimport java.util.Objects;\n\npublic final class OrderApiMapper {\n\n    private OrderApiMapper() {\n    }\n\n    public static Order toOrder(OrderApi source) {\n        if (source == null) {\n            return null;\n        }\n        return new Order(\n                source.getOrderId(),\n                source.getPlacedAt(),\n                source.getItems().stream().map(OrderApiMapper::toOrderLine).toList(),\n                new HashSet<>(source.getTags()),\n                // \"coupon\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getCoupon() != null ? String.valueOf(source.getCoupon()) : null)\n        );\n    }\n\n    public static OrderLine toOrderLine(Item source) {\n        if (source == null) {\n            return null;\n        }\n        return new OrderLine(\n                (long) source.getProductId(),\n                source.getTitle(),\n                Math.toIntExact(source.getQuantity()),\n                BigDecimal.valueOf(source.getUnitPrice())\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "java-componentModel-spring": {
+  "files": [
+   {
+    "name": "OrderApiMapper.java",
+    "code": "import java.math.BigDecimal;\nimport java.util.HashSet;\nimport java.util.Objects;\n\npublic final class OrderApiMapper {\n\n    private OrderApiMapper() {\n    }\n\n    public static Order toOrder(OrderApi source) {\n        if (source == null) {\n            return null;\n        }\n        return new Order(\n                source.getOrderId(),\n                source.getPlacedAt(),\n                source.getItems().stream().map(OrderApiMapper::toOrderLine).toList(),\n                new HashSet<>(source.getTags()),\n                // \"coupon\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getCoupon() != null ? String.valueOf(source.getCoupon()) : null)\n        );\n    }\n\n    public static OrderLine toOrderLine(Item source) {\n        if (source == null) {\n            return null;\n        }\n        return new OrderLine(\n                (long) source.getProductId(),\n                source.getTitle(),\n                Math.toIntExact(source.getQuantity()),\n                BigDecimal.valueOf(source.getUnitPrice())\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "java-componentModel-cdi": {
+  "files": [
+   {
+    "name": "OrderApiMapper.java",
+    "code": "import java.math.BigDecimal;\nimport java.util.HashSet;\nimport java.util.Objects;\n\npublic final class OrderApiMapper {\n\n    private OrderApiMapper() {\n    }\n\n    public static Order toOrder(OrderApi source) {\n        if (source == null) {\n            return null;\n        }\n        return new Order(\n                source.getOrderId(),\n                source.getPlacedAt(),\n                source.getItems().stream().map(OrderApiMapper::toOrderLine).toList(),\n                new HashSet<>(source.getTags()),\n                // \"coupon\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getCoupon() != null ? String.valueOf(source.getCoupon()) : null)\n        );\n    }\n\n    public static OrderLine toOrderLine(Item source) {\n        if (source == null) {\n            return null;\n        }\n        return new OrderLine(\n                (long) source.getProductId(),\n                source.getTitle(),\n                Math.toIntExact(source.getQuantity()),\n                BigDecimal.valueOf(source.getUnitPrice())\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "java-componentModel-jakarta": {
+  "files": [
+   {
+    "name": "OrderApiMapper.java",
+    "code": "import java.math.BigDecimal;\nimport java.util.HashSet;\nimport java.util.Objects;\n\npublic final class OrderApiMapper {\n\n    private OrderApiMapper() {\n    }\n\n    public static Order toOrder(OrderApi source) {\n        if (source == null) {\n            return null;\n        }\n        return new Order(\n                source.getOrderId(),\n                source.getPlacedAt(),\n                source.getItems().stream().map(OrderApiMapper::toOrderLine).toList(),\n                new HashSet<>(source.getTags()),\n                // \"coupon\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getCoupon() != null ? String.valueOf(source.getCoupon()) : null)\n        );\n    }\n\n    public static OrderLine toOrderLine(Item source) {\n        if (source == null) {\n            return null;\n        }\n        return new OrderLine(\n                (long) source.getProductId(),\n                source.getTitle(),\n                Math.toIntExact(source.getQuantity()),\n                BigDecimal.valueOf(source.getUnitPrice())\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "csharp-manual": {
+  "files": [
+   {
+    "name": "OrderApiMappings.cs",
+    "code": "using System;\nusing System.Linq;\n\npublic static class OrderApiMappings\n{\n    public static Order ToOrder(this OrderApi source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Order(\n            source.OrderId,\n            source.PlacedAt,\n            source.Items.Select(item => item.ToOrderLine()).ToList(),\n            source.Tags.ToHashSet(),\n            source.Coupon is { } value ? value.ToString() : null ?? throw new InvalidOperationException(\"A required value is missing in the source.\")\n        );\n    }\n\n    public static OrderLine ToOrderLine(this Item source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new OrderLine(\n            source.ProductId,\n            source.Title,\n            checked((int)source.Quantity),\n            (decimal)source.UnitPrice\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "csharp-automapper": {
+  "files": [
+   {
+    "name": "OrderApiProfile.cs",
+    "code": "using System;\nusing AutoMapper;\n\npublic class OrderApiProfile : Profile\n{\n    public OrderApiProfile()\n    {\n        CreateMap<OrderApi, Order>()\n            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.OrderId))\n            .ForMember(dest => dest.Lines, opt => opt.MapFrom(src => src.Items));\n\n        CreateMap<Item, OrderLine>()\n            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Title))\n            .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.UnitPrice));\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "csharp-naming-keep": {
+  "files": [
+   {
+    "name": "OrderApiMappings.cs",
+    "code": "using System;\nusing System.Linq;\n\npublic static class OrderApiMappings\n{\n    public static Order ToOrder(this OrderApi source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Order(\n            source.orderId,\n            source.placedAt,\n            source.items.Select(item => item.ToOrderLine()).ToList(),\n            source.tags.ToHashSet(),\n            source.coupon is { } value ? value.ToString() : null ?? throw new InvalidOperationException(\"A required value is missing in the source.\")\n        );\n    }\n\n    public static OrderLine ToOrderLine(this Item source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new OrderLine(\n            source.productId,\n            source.title,\n            checked((int)source.quantity),\n            (decimal)source.unitPrice\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "csharp-naming-convention": {
+  "files": [
+   {
+    "name": "OrderApiMappings.cs",
+    "code": "using System;\nusing System.Linq;\n\npublic static class OrderApiMappings\n{\n    public static Order ToOrder(this OrderApi source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Order(\n            source.OrderId,\n            source.PlacedAt,\n            source.Items.Select(item => item.ToOrderLine()).ToList(),\n            source.Tags.ToHashSet(),\n            source.Coupon is { } value ? value.ToString() : null ?? throw new InvalidOperationException(\"A required value is missing in the source.\")\n        );\n    }\n\n    public static OrderLine ToOrderLine(this Item source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new OrderLine(\n            source.ProductId,\n            source.Title,\n            checked((int)source.Quantity),\n            (decimal)source.UnitPrice\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "kotlin-extensions": {
+  "files": [
+   {
+    "name": "OrderApiMappers.kt",
+    "code": "import java.math.BigDecimal\n\nfun OrderApi.toOrder(): Order = Order(\n    id = orderId,\n    placedAt = placedAt,\n    lines = items.map { it.toOrderLine() },\n    tags = tags.toSet(),\n    coupon = requireNotNull(coupon?.let { value -> value.toString() }) { \"A required value is missing in the source\" },\n)\n\nfun Item.toOrderLine(): OrderLine = OrderLine(\n    productId = productId,\n    name = title,\n    quantity = quantity.toInt(),\n    price = unitPrice.toBigDecimal(),\n)\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "kotlin-naming-keep": {
+  "files": [
+   {
+    "name": "OrderApiMappers.kt",
+    "code": "import java.math.BigDecimal\n\nfun OrderApi.toOrder(): Order = Order(\n    id = orderId,\n    placedAt = placedAt,\n    lines = items.map { it.toOrderLine() },\n    tags = tags.toSet(),\n    coupon = requireNotNull(coupon?.let { value -> value.toString() }) { \"A required value is missing in the source\" },\n)\n\nfun Item.toOrderLine(): OrderLine = OrderLine(\n    productId = productId,\n    name = title,\n    quantity = quantity.toInt(),\n    price = unitPrice.toBigDecimal(),\n)\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "kotlin-naming-convention": {
+  "files": [
+   {
+    "name": "OrderApiMappers.kt",
+    "code": "import java.math.BigDecimal\n\nfun OrderApi.toOrder(): Order = Order(\n    id = orderId,\n    placedAt = placedAt,\n    lines = items.map { it.toOrderLine() },\n    tags = tags.toSet(),\n    coupon = requireNotNull(coupon?.let { value -> value.toString() }) { \"A required value is missing in the source\" },\n)\n\nfun Item.toOrderLine(): OrderLine = OrderLine(\n    productId = productId,\n    name = title,\n    quantity = quantity.toInt(),\n    price = unitPrice.toBigDecimal(),\n)\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "dart-extensions": {
+  "files": [
+   {
+    "name": "order_api_mapping.dart",
+    "code": "import 'models.dart';\n\nextension OrderApiMapping on OrderApi {\n  Order toOrder() => Order(\n        orderId,\n        placedAt,\n        items.map((item) => item.toOrderLine()).toList(),\n        Set.of(tags),\n        (coupon == null ? null : coupon!.toString())!,\n      );\n}\n\nextension ItemMapping on Item {\n  OrderLine toOrderLine() => OrderLine(\n        productId,\n        title,\n        quantity,\n        unitPrice,\n      );\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "dart-naming-keep": {
+  "files": [
+   {
+    "name": "order_api_mapping.dart",
+    "code": "import 'models.dart';\n\nextension OrderApiMapping on OrderApi {\n  Order toOrder() => Order(\n        orderId,\n        placedAt,\n        items.map((item) => item.toOrderLine()).toList(),\n        Set.of(tags),\n        (coupon == null ? null : coupon!.toString())!,\n      );\n}\n\nextension ItemMapping on Item {\n  OrderLine toOrderLine() => OrderLine(\n        productId,\n        title,\n        quantity,\n        unitPrice,\n      );\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "dart-naming-convention": {
+  "files": [
+   {
+    "name": "order_api_mapping.dart",
+    "code": "import 'models.dart';\n\nextension OrderApiMapping on OrderApi {\n  Order toOrder() => Order(\n        orderId,\n        placedAt,\n        items.map((item) => item.toOrderLine()).toList(),\n        Set.of(tags),\n        (coupon == null ? null : coupon!.toString())!,\n      );\n}\n\nextension ItemMapping on Item {\n  OrderLine toOrderLine() => OrderLine(\n        productId,\n        title,\n        quantity,\n        unitPrice,\n      );\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "swift-extensions": {
+  "files": [
+   {
+    "name": "OrderApi+Mapping.swift",
+    "code": "import Foundation\n\nextension OrderApi {\n    func toOrder() -> Order {\n        Order(\n            id: orderId,\n            placedAt: placedAt,\n            lines: items.map { $0.toOrderLine() },\n            tags: Set(tags),\n            coupon: (coupon.map { value in String(describing: value) })!\n        )\n    }\n}\n\nextension Item {\n    func toOrderLine() -> OrderLine {\n        OrderLine(\n            productId: productId,\n            name: title,\n            quantity: Int32(quantity),\n            price: Decimal(unitPrice)\n        )\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "swift-naming-keep": {
+  "files": [
+   {
+    "name": "OrderApi+Mapping.swift",
+    "code": "import Foundation\n\nextension OrderApi {\n    func toOrder() -> Order {\n        Order(\n            id: orderId,\n            placedAt: placedAt,\n            lines: items.map { $0.toOrderLine() },\n            tags: Set(tags),\n            coupon: (coupon.map { value in String(describing: value) })!\n        )\n    }\n}\n\nextension Item {\n    func toOrderLine() -> OrderLine {\n        OrderLine(\n            productId: productId,\n            name: title,\n            quantity: Int32(quantity),\n            price: Decimal(unitPrice)\n        )\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "swift-naming-convention": {
+  "files": [
+   {
+    "name": "OrderApi+Mapping.swift",
+    "code": "import Foundation\n\nextension OrderApi {\n    func toOrder() -> Order {\n        Order(\n            id: orderId,\n            placedAt: placedAt,\n            lines: items.map { $0.toOrderLine() },\n            tags: Set(tags),\n            coupon: (coupon.map { value in String(describing: value) })!\n        )\n    }\n}\n\nextension Item {\n    func toOrderLine() -> OrderLine {\n        OrderLine(\n            productId: productId,\n            name: title,\n            quantity: Int32(quantity),\n            price: Decimal(unitPrice)\n        )\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "go-functions": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\nimport \"fmt\"\n\n// MapOrderApiToOrder maps a OrderApi to a Order.\nfunc MapOrderApiToOrder(source OrderApi) Order {\n\treturn mapOrderApiToOrder(source)\n}\n\nfunc mapOrderApiToOrder(source OrderApi) Order {\n\treturn Order{\n\t\tID: source.OrderID,\n\t\tPlacedAt: source.PlacedAt,\n\t\tLines: mapSlice(source.Items, mapItemToOrderLine),\n\t\tTags: source.Tags,\n\t\t// \"coupon\" is required: panics if the source is missing\n\t\tCoupon: *mapPointer(source.Coupon, func(value any) string {\n\t\t\treturn fmt.Sprint(value)\n\t\t}),\n\t}\n}\n\nfunc mapItemToOrderLine(source Item) OrderLine {\n\treturn OrderLine{\n\t\tProductID: source.ProductID,\n\t\tName: source.Title,\n\t\tQuantity: int32(source.Quantity),\n\t\tPrice: source.UnitPrice,\n\t}\n}\n\nfunc mapPointer[T, R any](value *T, mapValue func(T) R) *R {\n\tif value == nil {\n\t\treturn nil\n\t}\n\tresult := mapValue(*value)\n\treturn &result\n}\n\nfunc mapSlice[T, R any](items []T, mapItem func(T) R) []R {\n\tif items == nil {\n\t\treturn nil\n\t}\n\tresult := make([]R, len(items))\n\tfor index, item := range items {\n\t\tresult[index] = mapItem(item)\n\t}\n\treturn result\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "go-naming-keep": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\nimport \"fmt\"\n\n// MapOrderApiToOrder maps a OrderApi to a Order.\nfunc MapOrderApiToOrder(source OrderApi) Order {\n\treturn mapOrderApiToOrder(source)\n}\n\nfunc mapOrderApiToOrder(source OrderApi) Order {\n\treturn Order{\n\t\tid: source.orderId,\n\t\tplacedAt: source.placedAt,\n\t\tlines: mapSlice(source.items, mapItemToOrderLine),\n\t\ttags: source.tags,\n\t\t// \"coupon\" is required: panics if the source is missing\n\t\tcoupon: *mapPointer(source.coupon, func(value any) string {\n\t\t\treturn fmt.Sprint(value)\n\t\t}),\n\t}\n}\n\nfunc mapItemToOrderLine(source Item) OrderLine {\n\treturn OrderLine{\n\t\tproductId: source.productId,\n\t\tname: source.title,\n\t\tquantity: int32(source.quantity),\n\t\tprice: source.unitPrice,\n\t}\n}\n\nfunc mapPointer[T, R any](value *T, mapValue func(T) R) *R {\n\tif value == nil {\n\t\treturn nil\n\t}\n\tresult := mapValue(*value)\n\treturn &result\n}\n\nfunc mapSlice[T, R any](items []T, mapItem func(T) R) []R {\n\tif items == nil {\n\t\treturn nil\n\t}\n\tresult := make([]R, len(items))\n\tfor index, item := range items {\n\t\tresult[index] = mapItem(item)\n\t}\n\treturn result\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "go-naming-convention": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\nimport \"fmt\"\n\n// MapOrderApiToOrder maps a OrderApi to a Order.\nfunc MapOrderApiToOrder(source OrderApi) Order {\n\treturn mapOrderApiToOrder(source)\n}\n\nfunc mapOrderApiToOrder(source OrderApi) Order {\n\treturn Order{\n\t\tID: source.OrderID,\n\t\tPlacedAt: source.PlacedAt,\n\t\tLines: mapSlice(source.Items, mapItemToOrderLine),\n\t\tTags: source.Tags,\n\t\t// \"coupon\" is required: panics if the source is missing\n\t\tCoupon: *mapPointer(source.Coupon, func(value any) string {\n\t\t\treturn fmt.Sprint(value)\n\t\t}),\n\t}\n}\n\nfunc mapItemToOrderLine(source Item) OrderLine {\n\treturn OrderLine{\n\t\tProductID: source.ProductID,\n\t\tName: source.Title,\n\t\tQuantity: int32(source.Quantity),\n\t\tPrice: source.UnitPrice,\n\t}\n}\n\nfunc mapPointer[T, R any](value *T, mapValue func(T) R) *R {\n\tif value == nil {\n\t\treturn nil\n\t}\n\tresult := mapValue(*value)\n\treturn &result\n}\n\nfunc mapSlice[T, R any](items []T, mapItem func(T) R) []R {\n\tif items == nil {\n\t\treturn nil\n\t}\n\tresult := make([]R, len(items))\n\tfor index, item := range items {\n\t\tresult[index] = mapItem(item)\n\t}\n\treturn result\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "rust-from": {
+  "files": [
+   {
+    "name": "order_api_mapping.rs",
+    "code": "use rust_decimal::Decimal;\nuse crate::models::{Item, Order, OrderApi, OrderLine};\n\nimpl From<&OrderApi> for Order {\n    fn from(source: &OrderApi) -> Self {\n        Self {\n            id: source.order_id.clone(),\n            placed_at: source.placed_at.clone(),\n            lines: source.items.iter().map(OrderLine::from).collect(),\n            tags: source.tags.iter().cloned().collect(),\n            coupon: source.coupon.as_ref().map(|value| value.to_string()).expect(\"a required value is missing in the source\"),\n        }\n    }\n}\n\nimpl From<&Item> for OrderLine {\n    fn from(source: &Item) -> Self {\n        Self {\n            product_id: source.product_id,\n            name: source.title.clone(),\n            quantity: source.quantity as i32,\n            price: Decimal::try_from(source.unit_price).expect(\"number out of range\"),\n        }\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "rust-naming-keep": {
+  "files": [
+   {
+    "name": "order_api_mapping.rs",
+    "code": "use rust_decimal::Decimal;\nuse crate::models::{Item, Order, OrderApi, OrderLine};\n\nimpl From<&OrderApi> for Order {\n    fn from(source: &OrderApi) -> Self {\n        Self {\n            id: source.orderId.clone(),\n            placedAt: source.placedAt.clone(),\n            lines: source.items.iter().map(OrderLine::from).collect(),\n            tags: source.tags.iter().cloned().collect(),\n            coupon: source.coupon.as_ref().map(|value| value.to_string()).expect(\"a required value is missing in the source\"),\n        }\n    }\n}\n\nimpl From<&Item> for OrderLine {\n    fn from(source: &Item) -> Self {\n        Self {\n            productId: source.productId,\n            name: source.title.clone(),\n            quantity: source.quantity as i32,\n            price: Decimal::try_from(source.unitPrice).expect(\"number out of range\"),\n        }\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "rust-naming-convention": {
+  "files": [
+   {
+    "name": "order_api_mapping.rs",
+    "code": "use rust_decimal::Decimal;\nuse crate::models::{Item, Order, OrderApi, OrderLine};\n\nimpl From<&OrderApi> for Order {\n    fn from(source: &OrderApi) -> Self {\n        Self {\n            id: source.order_id.clone(),\n            placed_at: source.placed_at.clone(),\n            lines: source.items.iter().map(OrderLine::from).collect(),\n            tags: source.tags.iter().cloned().collect(),\n            coupon: source.coupon.as_ref().map(|value| value.to_string()).expect(\"a required value is missing in the source\"),\n        }\n    }\n}\n\nimpl From<&Item> for OrderLine {\n    fn from(source: &Item) -> Self {\n        Self {\n            product_id: source.product_id,\n            name: source.title.clone(),\n            quantity: source.quantity as i32,\n            price: Decimal::try_from(source.unit_price).expect(\"number out of range\"),\n        }\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "php-static": {
+  "files": [
+   {
+    "name": "OrderApiMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class OrderApiMapper\n{\n    public static function toOrder(array $source): Order\n    {\n        return new Order(\n            id: $source['orderId'],\n            placedAt: new \\DateTimeImmutable($source['placedAt']),\n            lines: array_map(self::toOrderLine(...), $source['items']),\n            tags: $source['tags'],\n            coupon: ($source['coupon'] ?? null) === null ? null : (string) ($source['coupon'] ?? null) ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n        );\n    }\n\n    public static function toOrderLine(array $source): OrderLine\n    {\n        return new OrderLine(\n            productId: $source['productId'],\n            name: $source['title'],\n            quantity: $source['quantity'],\n            price: $source['unitPrice'],\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "php-naming-keep": {
+  "files": [
+   {
+    "name": "OrderApiMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class OrderApiMapper\n{\n    public static function toOrder(array $source): Order\n    {\n        return new Order(\n            id: $source['orderId'],\n            placedAt: new \\DateTimeImmutable($source['placedAt']),\n            lines: array_map(self::toOrderLine(...), $source['items']),\n            tags: $source['tags'],\n            coupon: ($source['coupon'] ?? null) === null ? null : (string) ($source['coupon'] ?? null) ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n        );\n    }\n\n    public static function toOrderLine(array $source): OrderLine\n    {\n        return new OrderLine(\n            productId: $source['productId'],\n            name: $source['title'],\n            quantity: $source['quantity'],\n            price: $source['unitPrice'],\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "php-naming-convention": {
+  "files": [
+   {
+    "name": "OrderApiMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class OrderApiMapper\n{\n    public static function toOrder(array $source): Order\n    {\n        return new Order(\n            id: $source['orderId'],\n            placedAt: new \\DateTimeImmutable($source['placedAt']),\n            lines: array_map(self::toOrderLine(...), $source['items']),\n            tags: $source['tags'],\n            coupon: ($source['coupon'] ?? null) === null ? null : (string) ($source['coupon'] ?? null) ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n        );\n    }\n\n    public static function toOrderLine(array $source): OrderLine\n    {\n        return new OrderLine(\n            productId: $source['productId'],\n            name: $source['title'],\n            quantity: $source['quantity'],\n            price: $source['unitPrice'],\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "php-sourceAccess-array": {
+  "files": [
+   {
+    "name": "OrderApiMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class OrderApiMapper\n{\n    public static function toOrder(array $source): Order\n    {\n        return new Order(\n            id: $source['orderId'],\n            placedAt: new \\DateTimeImmutable($source['placedAt']),\n            lines: array_map(self::toOrderLine(...), $source['items']),\n            tags: $source['tags'],\n            coupon: ($source['coupon'] ?? null) === null ? null : (string) ($source['coupon'] ?? null) ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n        );\n    }\n\n    public static function toOrderLine(array $source): OrderLine\n    {\n        return new OrderLine(\n            productId: $source['productId'],\n            name: $source['title'],\n            quantity: $source['quantity'],\n            price: $source['unitPrice'],\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ },
+ "php-targetStyle-array": {
+  "files": [
+   {
+    "name": "OrderApiMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class OrderApiMapper\n{\n    public static function toOrder(array $source): array\n    {\n        return [\n            'id' => $source['orderId'],\n            'placedAt' => new \\DateTimeImmutable($source['placedAt']),\n            'lines' => array_map(self::toOrderLine(...), $source['items']),\n            'tags' => $source['tags'],\n            'coupon' => ($source['coupon'] ?? null) === null ? null : (string) ($source['coupon'] ?? null) ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n        ];\n    }\n\n    public static function toOrderLine(array $source): array\n    {\n        return [\n            'productId' => $source['productId'],\n            'name' => $source['title'],\n            'quantity' => $source['quantity'],\n            'price' => $source['unitPrice'],\n        ];\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "coupon"
+    }
+   }
+  ]
+ }
+}

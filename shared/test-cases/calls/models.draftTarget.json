@@ -1,0 +1,3578 @@
+[
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "UserDto",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "userId",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "firstName",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "lastName",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "emailAddress",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "createdAt",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "isActive",
+        "type": {
+         "kind": "primitive",
+         "name": "boolean"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "boolean"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   "UserDto",
+   "java"
+  ],
+  "result": {
+   "text": "public record User(\n        double userId,\n        String firstName,\n        String lastName,\n        String emailAddress,\n        String createdAt,\n        boolean isActive\n) {\n}\n",
+   "model": "User"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "UserDto",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "userId",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "firstName",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "lastName",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "emailAddress",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "createdAt",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "isActive",
+        "type": {
+         "kind": "primitive",
+         "name": "boolean"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "boolean"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   "UserDto",
+   "csharp"
+  ],
+  "result": {
+   "text": "public class User\n{\n    public required double UserId { get; set; }\n    public required string FirstName { get; set; }\n    public required string LastName { get; set; }\n    public required string EmailAddress { get; set; }\n    public required string CreatedAt { get; set; }\n    public required bool IsActive { get; set; }\n}\n",
+   "model": "User"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "UserDto",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "userId",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "firstName",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "lastName",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "emailAddress",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "createdAt",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "isActive",
+        "type": {
+         "kind": "primitive",
+         "name": "boolean"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "boolean"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   "UserDto",
+   "kotlin"
+  ],
+  "result": {
+   "text": "data class User(\n    val userId: Double,\n    val firstName: String,\n    val lastName: String,\n    val emailAddress: String,\n    val createdAt: String,\n    val isActive: Boolean,\n)\n",
+   "model": "User"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "UserDto",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "userId",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "firstName",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "lastName",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "emailAddress",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "createdAt",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "isActive",
+        "type": {
+         "kind": "primitive",
+         "name": "boolean"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "boolean"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   "UserDto",
+   "python"
+  ],
+  "result": {
+   "text": "from dataclasses import dataclass\n\n\n@dataclass\nclass User:\n    user_id: float\n    first_name: str\n    last_name: str\n    email_address: str\n    created_at: str\n    is_active: bool\n",
+   "model": "User"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "UserDto",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "userId",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "firstName",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "lastName",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "emailAddress",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "createdAt",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "isActive",
+        "type": {
+         "kind": "primitive",
+         "name": "boolean"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "boolean"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   "UserDto",
+   "jsonschema"
+  ],
+  "result": {
+   "text": "{\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"title\": \"User\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"userId\": {\n      \"type\": \"number\"\n    },\n    \"firstName\": {\n      \"type\": \"string\"\n    },\n    \"lastName\": {\n      \"type\": \"string\"\n    },\n    \"emailAddress\": {\n      \"type\": \"string\"\n    },\n    \"createdAt\": {\n      \"type\": \"string\"\n    },\n    \"isActive\": {\n      \"type\": \"boolean\"\n    }\n  },\n  \"required\": [\n    \"userId\",\n    \"firstName\",\n    \"lastName\",\n    \"emailAddress\",\n    \"createdAt\",\n    \"isActive\"\n  ]\n}\n",
+   "model": "User"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "UserDto",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "userId",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "firstName",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "lastName",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "emailAddress",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "createdAt",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "isActive",
+        "type": {
+         "kind": "primitive",
+         "name": "boolean"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "boolean"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   "UserDto",
+   "typescript"
+  ],
+  "result": {
+   "text": "export interface User {\n  userId: number\n  firstName: string\n  lastName: string\n  emailAddress: string\n  createdAt: string\n  isActive: boolean\n}\n",
+   "model": "User"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "json"
+    },
+    "models": [
+     {
+      "name": "CustomerResponse",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "customer_id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "given_name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "surname",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "mail",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "dob",
+        "type": {
+         "kind": "primitive",
+         "name": "date"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "tel",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "qty_orders",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "creation_date",
+        "type": {
+         "kind": "primitive",
+         "name": "datetime"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "CustomerResponse"
+   },
+   "CustomerResponse",
+   "java"
+  ],
+  "result": {
+   "text": "import java.time.LocalDate;\nimport java.time.OffsetDateTime;\n\npublic record Customer(\n        long customerId,\n        String givenName,\n        String surname,\n        String mail,\n        LocalDate dob,\n        String tel,\n        long qtyOrders,\n        OffsetDateTime creationDate\n) {\n}\n",
+   "model": "Customer"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "json"
+    },
+    "models": [
+     {
+      "name": "CustomerResponse",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "customer_id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "given_name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "surname",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "mail",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "dob",
+        "type": {
+         "kind": "primitive",
+         "name": "date"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "tel",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "qty_orders",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "creation_date",
+        "type": {
+         "kind": "primitive",
+         "name": "datetime"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "CustomerResponse"
+   },
+   "CustomerResponse",
+   "csharp"
+  ],
+  "result": {
+   "text": "public class Customer\n{\n    public required long CustomerId { get; set; }\n    public required string GivenName { get; set; }\n    public required string Surname { get; set; }\n    public required string Mail { get; set; }\n    public required DateOnly Dob { get; set; }\n    public required string Tel { get; set; }\n    public required long QtyOrders { get; set; }\n    public required DateTime CreationDate { get; set; }\n}\n",
+   "model": "Customer"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "json"
+    },
+    "models": [
+     {
+      "name": "CustomerResponse",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "customer_id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "given_name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "surname",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "mail",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "dob",
+        "type": {
+         "kind": "primitive",
+         "name": "date"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "tel",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "qty_orders",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "creation_date",
+        "type": {
+         "kind": "primitive",
+         "name": "datetime"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "CustomerResponse"
+   },
+   "CustomerResponse",
+   "kotlin"
+  ],
+  "result": {
+   "text": "import java.time.Instant\nimport java.time.LocalDate\n\ndata class Customer(\n    val customerId: Long,\n    val givenName: String,\n    val surname: String,\n    val mail: String,\n    val dob: LocalDate,\n    val tel: String,\n    val qtyOrders: Long,\n    val creationDate: Instant,\n)\n",
+   "model": "Customer"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "json"
+    },
+    "models": [
+     {
+      "name": "CustomerResponse",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "customer_id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "given_name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "surname",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "mail",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "dob",
+        "type": {
+         "kind": "primitive",
+         "name": "date"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "tel",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "qty_orders",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "creation_date",
+        "type": {
+         "kind": "primitive",
+         "name": "datetime"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "CustomerResponse"
+   },
+   "CustomerResponse",
+   "python"
+  ],
+  "result": {
+   "text": "from dataclasses import dataclass\nfrom datetime import date, datetime\n\n\n@dataclass\nclass Customer:\n    customer_id: int\n    given_name: str\n    surname: str\n    mail: str\n    dob: date\n    tel: str\n    qty_orders: int\n    creation_date: datetime\n",
+   "model": "Customer"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "json"
+    },
+    "models": [
+     {
+      "name": "CustomerResponse",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "customer_id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "given_name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "surname",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "mail",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "dob",
+        "type": {
+         "kind": "primitive",
+         "name": "date"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "tel",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "qty_orders",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "creation_date",
+        "type": {
+         "kind": "primitive",
+         "name": "datetime"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "CustomerResponse"
+   },
+   "CustomerResponse",
+   "jsonschema"
+  ],
+  "result": {
+   "text": "{\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"title\": \"Customer\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"customerId\": {\n      \"type\": \"integer\"\n    },\n    \"givenName\": {\n      \"type\": \"string\"\n    },\n    \"surname\": {\n      \"type\": \"string\"\n    },\n    \"mail\": {\n      \"type\": \"string\"\n    },\n    \"dob\": {\n      \"type\": \"string\",\n      \"format\": \"date\"\n    },\n    \"tel\": {\n      \"type\": \"string\"\n    },\n    \"qtyOrders\": {\n      \"type\": \"integer\"\n    },\n    \"creationDate\": {\n      \"type\": \"string\",\n      \"format\": \"date-time\"\n    }\n  },\n  \"required\": [\n    \"customerId\",\n    \"givenName\",\n    \"surname\",\n    \"mail\",\n    \"dob\",\n    \"tel\",\n    \"qtyOrders\",\n    \"creationDate\"\n  ]\n}\n",
+   "model": "Customer"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "json"
+    },
+    "models": [
+     {
+      "name": "CustomerResponse",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "customer_id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "given_name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "surname",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "mail",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "dob",
+        "type": {
+         "kind": "primitive",
+         "name": "date"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "tel",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "qty_orders",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "creation_date",
+        "type": {
+         "kind": "primitive",
+         "name": "datetime"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "CustomerResponse"
+   },
+   "CustomerResponse",
+   "typescript"
+  ],
+  "result": {
+   "text": "export interface Customer {\n  customerId: number\n  givenName: string\n  surname: string\n  mail: string\n  dob: Date\n  tel: string\n  qtyOrders: number\n  creationDate: Date\n}\n",
+   "model": "Customer"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "json"
+    },
+    "models": [
+     {
+      "name": "OrderApi",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "orderId",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "placedAt",
+        "type": {
+         "kind": "primitive",
+         "name": "datetime"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "items",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "model",
+          "name": "Item"
+         }
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "tags",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "primitive",
+          "name": "string"
+         }
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "coupon",
+        "type": {
+         "kind": "primitive",
+         "name": "any"
+        },
+        "nullable": true,
+        "optional": false
+       }
+      ]
+     },
+     {
+      "name": "Item",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "productId",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "title",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "quantity",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "unitPrice",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "OrderApi"
+   },
+   "OrderApi",
+   "java"
+  ],
+  "result": {
+   "text": "import java.time.OffsetDateTime;\nimport java.util.List;\n\npublic record Item(\n        long productId,\n        String title,\n        long quantity,\n        double unitPrice\n) {\n}\n\npublic record Order(\n        String orderId,\n        OffsetDateTime placedAt,\n        List<Item> items,\n        List<String> tags,\n        Object coupon\n) {\n}\n",
+   "model": "Order"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "json"
+    },
+    "models": [
+     {
+      "name": "OrderApi",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "orderId",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "placedAt",
+        "type": {
+         "kind": "primitive",
+         "name": "datetime"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "items",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "model",
+          "name": "Item"
+         }
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "tags",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "primitive",
+          "name": "string"
+         }
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "coupon",
+        "type": {
+         "kind": "primitive",
+         "name": "any"
+        },
+        "nullable": true,
+        "optional": false
+       }
+      ]
+     },
+     {
+      "name": "Item",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "productId",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "title",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "quantity",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "unitPrice",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "OrderApi"
+   },
+   "OrderApi",
+   "csharp"
+  ],
+  "result": {
+   "text": "public class Item\n{\n    public required long ProductId { get; set; }\n    public required string Title { get; set; }\n    public required long Quantity { get; set; }\n    public required double UnitPrice { get; set; }\n}\n\npublic class Order\n{\n    public required string OrderId { get; set; }\n    public required DateTime PlacedAt { get; set; }\n    public required List<Item> Items { get; set; }\n    public required List<string> Tags { get; set; }\n    public object? Coupon { get; set; }\n}\n",
+   "model": "Order"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "json"
+    },
+    "models": [
+     {
+      "name": "OrderApi",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "orderId",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "placedAt",
+        "type": {
+         "kind": "primitive",
+         "name": "datetime"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "items",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "model",
+          "name": "Item"
+         }
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "tags",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "primitive",
+          "name": "string"
+         }
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "coupon",
+        "type": {
+         "kind": "primitive",
+         "name": "any"
+        },
+        "nullable": true,
+        "optional": false
+       }
+      ]
+     },
+     {
+      "name": "Item",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "productId",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "title",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "quantity",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "unitPrice",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "OrderApi"
+   },
+   "OrderApi",
+   "kotlin"
+  ],
+  "result": {
+   "text": "import java.time.Instant\n\ndata class Item(\n    val productId: Long,\n    val title: String,\n    val quantity: Long,\n    val unitPrice: Double,\n)\n\ndata class Order(\n    val orderId: String,\n    val placedAt: Instant,\n    val items: List<Item>,\n    val tags: List<String>,\n    val coupon: Any? = null,\n)\n",
+   "model": "Order"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "json"
+    },
+    "models": [
+     {
+      "name": "OrderApi",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "orderId",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "placedAt",
+        "type": {
+         "kind": "primitive",
+         "name": "datetime"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "items",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "model",
+          "name": "Item"
+         }
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "tags",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "primitive",
+          "name": "string"
+         }
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "coupon",
+        "type": {
+         "kind": "primitive",
+         "name": "any"
+        },
+        "nullable": true,
+        "optional": false
+       }
+      ]
+     },
+     {
+      "name": "Item",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "productId",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "title",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "quantity",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "unitPrice",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "OrderApi"
+   },
+   "OrderApi",
+   "python"
+  ],
+  "result": {
+   "text": "from dataclasses import dataclass\nfrom datetime import datetime\nfrom typing import Any\n\n\n@dataclass\nclass Item:\n    product_id: int\n    title: str\n    quantity: int\n    unit_price: float\n\n\n@dataclass\nclass Order:\n    order_id: str\n    placed_at: datetime\n    items: list[Item]\n    tags: list[str]\n    coupon: Any | None = None\n",
+   "model": "Order"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "json"
+    },
+    "models": [
+     {
+      "name": "OrderApi",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "orderId",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "placedAt",
+        "type": {
+         "kind": "primitive",
+         "name": "datetime"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "items",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "model",
+          "name": "Item"
+         }
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "tags",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "primitive",
+          "name": "string"
+         }
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "coupon",
+        "type": {
+         "kind": "primitive",
+         "name": "any"
+        },
+        "nullable": true,
+        "optional": false
+       }
+      ]
+     },
+     {
+      "name": "Item",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "productId",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "title",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "quantity",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "unitPrice",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "OrderApi"
+   },
+   "OrderApi",
+   "jsonschema"
+  ],
+  "result": {
+   "text": "{\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"title\": \"Order\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"orderId\": {\n      \"type\": \"string\"\n    },\n    \"placedAt\": {\n      \"type\": \"string\",\n      \"format\": \"date-time\"\n    },\n    \"items\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"$ref\": \"#/$defs/Item\"\n      }\n    },\n    \"tags\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      }\n    },\n    \"coupon\": {\n      \"oneOf\": [\n        {},\n        {\n          \"type\": \"null\"\n        }\n      ]\n    }\n  },\n  \"required\": [\n    \"orderId\",\n    \"placedAt\",\n    \"items\",\n    \"tags\",\n    \"coupon\"\n  ],\n  \"$defs\": {\n    \"Item\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"productId\": {\n          \"type\": \"integer\"\n        },\n        \"title\": {\n          \"type\": \"string\"\n        },\n        \"quantity\": {\n          \"type\": \"integer\"\n        },\n        \"unitPrice\": {\n          \"type\": \"number\"\n        }\n      },\n      \"required\": [\n        \"productId\",\n        \"title\",\n        \"quantity\",\n        \"unitPrice\"\n      ]\n    }\n  }\n}\n",
+   "model": "Order"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "json"
+    },
+    "models": [
+     {
+      "name": "OrderApi",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "orderId",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "placedAt",
+        "type": {
+         "kind": "primitive",
+         "name": "datetime"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "items",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "model",
+          "name": "Item"
+         }
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "tags",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "primitive",
+          "name": "string"
+         }
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "coupon",
+        "type": {
+         "kind": "primitive",
+         "name": "any"
+        },
+        "nullable": true,
+        "optional": false
+       }
+      ]
+     },
+     {
+      "name": "Item",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "productId",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "title",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "quantity",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "unitPrice",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "OrderApi"
+   },
+   "OrderApi",
+   "typescript"
+  ],
+  "result": {
+   "text": "export interface Item {\n  productId: number\n  title: string\n  quantity: number\n  unitPrice: number\n}\n\nexport interface Order {\n  orderId: string\n  placedAt: Date\n  items: Item[]\n  tags: string[]\n  coupon: unknown | null\n}\n",
+   "model": "Order"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "ProductResponse",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "sku",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "first_name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "last_name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "price_cents",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "status",
+        "type": {
+         "kind": "enum",
+         "name": "ProductStatus"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "ProductStatus"
+       },
+       {
+        "name": "created",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "stock",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "discount",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": true,
+        "optional": false,
+        "originalType": "number | null"
+       }
+      ]
+     }
+    ],
+    "enums": [
+     {
+      "name": "ProductStatus",
+      "values": [
+       {
+        "name": "Active",
+        "value": "ACTIVE"
+       },
+       {
+        "name": "Discontinued",
+        "value": "DISCONTINUED"
+       },
+       {
+        "name": "Draft",
+        "value": "DRAFT"
+       }
+      ]
+     }
+    ]
+   },
+   "ProductResponse",
+   "java"
+  ],
+  "result": {
+   "text": "public enum ProductStatus {\n    ACTIVE,\n    DISCONTINUED,\n    DRAFT\n}\n\npublic record Product(\n        String sku,\n        String firstName,\n        String lastName,\n        double priceCents,\n        ProductStatus status,\n        double created,\n        String stock,\n        Double discount\n) {\n}\n",
+   "model": "Product"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "ProductResponse",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "sku",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "first_name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "last_name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "price_cents",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "status",
+        "type": {
+         "kind": "enum",
+         "name": "ProductStatus"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "ProductStatus"
+       },
+       {
+        "name": "created",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "stock",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "discount",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": true,
+        "optional": false,
+        "originalType": "number | null"
+       }
+      ]
+     }
+    ],
+    "enums": [
+     {
+      "name": "ProductStatus",
+      "values": [
+       {
+        "name": "Active",
+        "value": "ACTIVE"
+       },
+       {
+        "name": "Discontinued",
+        "value": "DISCONTINUED"
+       },
+       {
+        "name": "Draft",
+        "value": "DRAFT"
+       }
+      ]
+     }
+    ]
+   },
+   "ProductResponse",
+   "csharp"
+  ],
+  "result": {
+   "text": "public enum ProductStatus\n{\n    Active,\n    Discontinued,\n    Draft\n}\n\npublic class Product\n{\n    public required string Sku { get; set; }\n    public required string FirstName { get; set; }\n    public required string LastName { get; set; }\n    public required double PriceCents { get; set; }\n    public required ProductStatus Status { get; set; }\n    public required double Created { get; set; }\n    public required string Stock { get; set; }\n    public double? Discount { get; set; }\n}\n",
+   "model": "Product"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "ProductResponse",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "sku",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "first_name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "last_name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "price_cents",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "status",
+        "type": {
+         "kind": "enum",
+         "name": "ProductStatus"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "ProductStatus"
+       },
+       {
+        "name": "created",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "stock",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "discount",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": true,
+        "optional": false,
+        "originalType": "number | null"
+       }
+      ]
+     }
+    ],
+    "enums": [
+     {
+      "name": "ProductStatus",
+      "values": [
+       {
+        "name": "Active",
+        "value": "ACTIVE"
+       },
+       {
+        "name": "Discontinued",
+        "value": "DISCONTINUED"
+       },
+       {
+        "name": "Draft",
+        "value": "DRAFT"
+       }
+      ]
+     }
+    ]
+   },
+   "ProductResponse",
+   "kotlin"
+  ],
+  "result": {
+   "text": "enum class ProductStatus { ACTIVE, DISCONTINUED, DRAFT }\n\ndata class Product(\n    val sku: String,\n    val firstName: String,\n    val lastName: String,\n    val priceCents: Double,\n    val status: ProductStatus,\n    val created: Double,\n    val stock: String,\n    val discount: Double? = null,\n)\n",
+   "model": "Product"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "ProductResponse",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "sku",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "first_name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "last_name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "price_cents",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "status",
+        "type": {
+         "kind": "enum",
+         "name": "ProductStatus"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "ProductStatus"
+       },
+       {
+        "name": "created",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "stock",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "discount",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": true,
+        "optional": false,
+        "originalType": "number | null"
+       }
+      ]
+     }
+    ],
+    "enums": [
+     {
+      "name": "ProductStatus",
+      "values": [
+       {
+        "name": "Active",
+        "value": "ACTIVE"
+       },
+       {
+        "name": "Discontinued",
+        "value": "DISCONTINUED"
+       },
+       {
+        "name": "Draft",
+        "value": "DRAFT"
+       }
+      ]
+     }
+    ]
+   },
+   "ProductResponse",
+   "python"
+  ],
+  "result": {
+   "text": "from dataclasses import dataclass\nfrom enum import Enum\n\n\nclass ProductStatus(str, Enum):\n    ACTIVE = \"ACTIVE\"\n    DISCONTINUED = \"DISCONTINUED\"\n    DRAFT = \"DRAFT\"\n\n\n@dataclass\nclass Product:\n    sku: str\n    first_name: str\n    last_name: str\n    price_cents: float\n    status: ProductStatus\n    created: float\n    stock: str\n    discount: float | None = None\n",
+   "model": "Product"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "ProductResponse",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "sku",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "first_name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "last_name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "price_cents",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "status",
+        "type": {
+         "kind": "enum",
+         "name": "ProductStatus"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "ProductStatus"
+       },
+       {
+        "name": "created",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "stock",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "discount",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": true,
+        "optional": false,
+        "originalType": "number | null"
+       }
+      ]
+     }
+    ],
+    "enums": [
+     {
+      "name": "ProductStatus",
+      "values": [
+       {
+        "name": "Active",
+        "value": "ACTIVE"
+       },
+       {
+        "name": "Discontinued",
+        "value": "DISCONTINUED"
+       },
+       {
+        "name": "Draft",
+        "value": "DRAFT"
+       }
+      ]
+     }
+    ]
+   },
+   "ProductResponse",
+   "jsonschema"
+  ],
+  "result": {
+   "text": "{\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"title\": \"Product\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"sku\": {\n      \"type\": \"string\"\n    },\n    \"firstName\": {\n      \"type\": \"string\"\n    },\n    \"lastName\": {\n      \"type\": \"string\"\n    },\n    \"priceCents\": {\n      \"type\": \"number\"\n    },\n    \"status\": {\n      \"$ref\": \"#/$defs/ProductStatus\"\n    },\n    \"created\": {\n      \"type\": \"number\"\n    },\n    \"stock\": {\n      \"type\": \"string\"\n    },\n    \"discount\": {\n      \"type\": [\n        \"number\",\n        \"null\"\n      ]\n    }\n  },\n  \"required\": [\n    \"sku\",\n    \"firstName\",\n    \"lastName\",\n    \"priceCents\",\n    \"status\",\n    \"created\",\n    \"stock\",\n    \"discount\"\n  ],\n  \"$defs\": {\n    \"ProductStatus\": {\n      \"enum\": [\n        \"ACTIVE\",\n        \"DISCONTINUED\",\n        \"DRAFT\"\n      ]\n    }\n  }\n}\n",
+   "model": "Product"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "ProductResponse",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "sku",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "first_name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "last_name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "price_cents",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "status",
+        "type": {
+         "kind": "enum",
+         "name": "ProductStatus"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "ProductStatus"
+       },
+       {
+        "name": "created",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "stock",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "discount",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": true,
+        "optional": false,
+        "originalType": "number | null"
+       }
+      ]
+     }
+    ],
+    "enums": [
+     {
+      "name": "ProductStatus",
+      "values": [
+       {
+        "name": "Active",
+        "value": "ACTIVE"
+       },
+       {
+        "name": "Discontinued",
+        "value": "DISCONTINUED"
+       },
+       {
+        "name": "Draft",
+        "value": "DRAFT"
+       }
+      ]
+     }
+    ]
+   },
+   "ProductResponse",
+   "typescript"
+  ],
+  "result": {
+   "text": "export enum ProductStatus {\n  Active = \"ACTIVE\",\n  Discontinued = \"DISCONTINUED\",\n  Draft = \"DRAFT\",\n}\n\nexport interface Product {\n  sku: string\n  firstName: string\n  lastName: string\n  priceCents: number\n  status: ProductStatus\n  created: number\n  stock: string\n  discount: number | null\n}\n",
+   "model": "Product"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "java",
+     "language": "java"
+    },
+    "models": [
+     {
+      "name": "OrderApi",
+      "kind": "class",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer",
+         "bits": 64
+        },
+        "nullable": true,
+        "optional": false,
+        "originalType": "Long"
+       },
+       {
+        "name": "customer",
+        "type": {
+         "kind": "model",
+         "name": "CustomerApi"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "CustomerApi"
+       },
+       {
+        "name": "shipping",
+        "type": {
+         "kind": "model",
+         "name": "AddressApi"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "AddressApi"
+       },
+       {
+        "name": "status",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       }
+      ],
+      "construction": "properties",
+      "metadata": {
+       "accessors": "getters"
+      }
+     },
+     {
+      "name": "CustomerApi",
+      "kind": "class",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer",
+         "bits": 64
+        },
+        "nullable": true,
+        "optional": false,
+        "originalType": "Long"
+       },
+       {
+        "name": "name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "email",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       }
+      ],
+      "construction": "properties",
+      "metadata": {
+       "outer": "OrderApi",
+       "accessors": "getters"
+      }
+     },
+     {
+      "name": "AddressApi",
+      "kind": "class",
+      "fields": [
+       {
+        "name": "street",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "city",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "zipCode",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "country",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       }
+      ],
+      "construction": "properties",
+      "metadata": {
+       "outer": "OrderApi",
+       "accessors": "getters"
+      }
+     }
+    ],
+    "enums": []
+   },
+   "OrderApi",
+   "java"
+  ],
+  "result": {
+   "text": "public record Customer(\n        Long id,\n        String name,\n        String email\n) {\n}\n\npublic record Address(\n        String street,\n        String city,\n        String zipCode,\n        String country\n) {\n}\n\npublic record Order(\n        Long id,\n        Customer customer,\n        Address shipping,\n        String status\n) {\n}\n",
+   "model": "Order"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "java",
+     "language": "java"
+    },
+    "models": [
+     {
+      "name": "OrderApi",
+      "kind": "class",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer",
+         "bits": 64
+        },
+        "nullable": true,
+        "optional": false,
+        "originalType": "Long"
+       },
+       {
+        "name": "customer",
+        "type": {
+         "kind": "model",
+         "name": "CustomerApi"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "CustomerApi"
+       },
+       {
+        "name": "shipping",
+        "type": {
+         "kind": "model",
+         "name": "AddressApi"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "AddressApi"
+       },
+       {
+        "name": "status",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       }
+      ],
+      "construction": "properties",
+      "metadata": {
+       "accessors": "getters"
+      }
+     },
+     {
+      "name": "CustomerApi",
+      "kind": "class",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer",
+         "bits": 64
+        },
+        "nullable": true,
+        "optional": false,
+        "originalType": "Long"
+       },
+       {
+        "name": "name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "email",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       }
+      ],
+      "construction": "properties",
+      "metadata": {
+       "outer": "OrderApi",
+       "accessors": "getters"
+      }
+     },
+     {
+      "name": "AddressApi",
+      "kind": "class",
+      "fields": [
+       {
+        "name": "street",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "city",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "zipCode",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "country",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       }
+      ],
+      "construction": "properties",
+      "metadata": {
+       "outer": "OrderApi",
+       "accessors": "getters"
+      }
+     }
+    ],
+    "enums": []
+   },
+   "OrderApi",
+   "csharp"
+  ],
+  "result": {
+   "text": "public class Customer\n{\n    public long? Id { get; set; }\n    public required string Name { get; set; }\n    public required string Email { get; set; }\n}\n\npublic class Address\n{\n    public required string Street { get; set; }\n    public required string City { get; set; }\n    public required string ZipCode { get; set; }\n    public required string Country { get; set; }\n}\n\npublic class Order\n{\n    public long? Id { get; set; }\n    public required Customer Customer { get; set; }\n    public required Address Shipping { get; set; }\n    public required string Status { get; set; }\n}\n",
+   "model": "Order"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "java",
+     "language": "java"
+    },
+    "models": [
+     {
+      "name": "OrderApi",
+      "kind": "class",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer",
+         "bits": 64
+        },
+        "nullable": true,
+        "optional": false,
+        "originalType": "Long"
+       },
+       {
+        "name": "customer",
+        "type": {
+         "kind": "model",
+         "name": "CustomerApi"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "CustomerApi"
+       },
+       {
+        "name": "shipping",
+        "type": {
+         "kind": "model",
+         "name": "AddressApi"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "AddressApi"
+       },
+       {
+        "name": "status",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       }
+      ],
+      "construction": "properties",
+      "metadata": {
+       "accessors": "getters"
+      }
+     },
+     {
+      "name": "CustomerApi",
+      "kind": "class",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer",
+         "bits": 64
+        },
+        "nullable": true,
+        "optional": false,
+        "originalType": "Long"
+       },
+       {
+        "name": "name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "email",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       }
+      ],
+      "construction": "properties",
+      "metadata": {
+       "outer": "OrderApi",
+       "accessors": "getters"
+      }
+     },
+     {
+      "name": "AddressApi",
+      "kind": "class",
+      "fields": [
+       {
+        "name": "street",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "city",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "zipCode",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "country",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       }
+      ],
+      "construction": "properties",
+      "metadata": {
+       "outer": "OrderApi",
+       "accessors": "getters"
+      }
+     }
+    ],
+    "enums": []
+   },
+   "OrderApi",
+   "kotlin"
+  ],
+  "result": {
+   "text": "data class Customer(\n    val id: Long? = null,\n    val name: String,\n    val email: String,\n)\n\ndata class Address(\n    val street: String,\n    val city: String,\n    val zipCode: String,\n    val country: String,\n)\n\ndata class Order(\n    val id: Long? = null,\n    val customer: Customer,\n    val shipping: Address,\n    val status: String,\n)\n",
+   "model": "Order"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "java",
+     "language": "java"
+    },
+    "models": [
+     {
+      "name": "OrderApi",
+      "kind": "class",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer",
+         "bits": 64
+        },
+        "nullable": true,
+        "optional": false,
+        "originalType": "Long"
+       },
+       {
+        "name": "customer",
+        "type": {
+         "kind": "model",
+         "name": "CustomerApi"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "CustomerApi"
+       },
+       {
+        "name": "shipping",
+        "type": {
+         "kind": "model",
+         "name": "AddressApi"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "AddressApi"
+       },
+       {
+        "name": "status",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       }
+      ],
+      "construction": "properties",
+      "metadata": {
+       "accessors": "getters"
+      }
+     },
+     {
+      "name": "CustomerApi",
+      "kind": "class",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer",
+         "bits": 64
+        },
+        "nullable": true,
+        "optional": false,
+        "originalType": "Long"
+       },
+       {
+        "name": "name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "email",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       }
+      ],
+      "construction": "properties",
+      "metadata": {
+       "outer": "OrderApi",
+       "accessors": "getters"
+      }
+     },
+     {
+      "name": "AddressApi",
+      "kind": "class",
+      "fields": [
+       {
+        "name": "street",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "city",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "zipCode",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "country",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       }
+      ],
+      "construction": "properties",
+      "metadata": {
+       "outer": "OrderApi",
+       "accessors": "getters"
+      }
+     }
+    ],
+    "enums": []
+   },
+   "OrderApi",
+   "python"
+  ],
+  "result": {
+   "text": "from dataclasses import dataclass\n\n\n@dataclass\nclass Customer:\n    name: str\n    email: str\n    id: int | None = None\n\n\n@dataclass\nclass Address:\n    street: str\n    city: str\n    zip_code: str\n    country: str\n\n\n@dataclass\nclass Order:\n    customer: Customer\n    shipping: Address\n    status: str\n    id: int | None = None\n",
+   "model": "Order"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "java",
+     "language": "java"
+    },
+    "models": [
+     {
+      "name": "OrderApi",
+      "kind": "class",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer",
+         "bits": 64
+        },
+        "nullable": true,
+        "optional": false,
+        "originalType": "Long"
+       },
+       {
+        "name": "customer",
+        "type": {
+         "kind": "model",
+         "name": "CustomerApi"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "CustomerApi"
+       },
+       {
+        "name": "shipping",
+        "type": {
+         "kind": "model",
+         "name": "AddressApi"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "AddressApi"
+       },
+       {
+        "name": "status",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       }
+      ],
+      "construction": "properties",
+      "metadata": {
+       "accessors": "getters"
+      }
+     },
+     {
+      "name": "CustomerApi",
+      "kind": "class",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer",
+         "bits": 64
+        },
+        "nullable": true,
+        "optional": false,
+        "originalType": "Long"
+       },
+       {
+        "name": "name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "email",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       }
+      ],
+      "construction": "properties",
+      "metadata": {
+       "outer": "OrderApi",
+       "accessors": "getters"
+      }
+     },
+     {
+      "name": "AddressApi",
+      "kind": "class",
+      "fields": [
+       {
+        "name": "street",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "city",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "zipCode",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "country",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       }
+      ],
+      "construction": "properties",
+      "metadata": {
+       "outer": "OrderApi",
+       "accessors": "getters"
+      }
+     }
+    ],
+    "enums": []
+   },
+   "OrderApi",
+   "jsonschema"
+  ],
+  "result": {
+   "text": "{\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"title\": \"Order\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"id\": {\n      \"type\": [\n        \"integer\",\n        \"null\"\n      ]\n    },\n    \"customer\": {\n      \"$ref\": \"#/$defs/Customer\"\n    },\n    \"shipping\": {\n      \"$ref\": \"#/$defs/Address\"\n    },\n    \"status\": {\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\n    \"id\",\n    \"customer\",\n    \"shipping\",\n    \"status\"\n  ],\n  \"$defs\": {\n    \"Customer\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"id\": {\n          \"type\": [\n            \"integer\",\n            \"null\"\n          ]\n        },\n        \"name\": {\n          \"type\": \"string\"\n        },\n        \"email\": {\n          \"type\": \"string\"\n        }\n      },\n      \"required\": [\n        \"id\",\n        \"name\",\n        \"email\"\n      ]\n    },\n    \"Address\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"street\": {\n          \"type\": \"string\"\n        },\n        \"city\": {\n          \"type\": \"string\"\n        },\n        \"zipCode\": {\n          \"type\": \"string\"\n        },\n        \"country\": {\n          \"type\": \"string\"\n        }\n      },\n      \"required\": [\n        \"street\",\n        \"city\",\n        \"zipCode\",\n        \"country\"\n      ]\n    }\n  }\n}\n",
+   "model": "Order"
+  }
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "java",
+     "language": "java"
+    },
+    "models": [
+     {
+      "name": "OrderApi",
+      "kind": "class",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer",
+         "bits": 64
+        },
+        "nullable": true,
+        "optional": false,
+        "originalType": "Long"
+       },
+       {
+        "name": "customer",
+        "type": {
+         "kind": "model",
+         "name": "CustomerApi"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "CustomerApi"
+       },
+       {
+        "name": "shipping",
+        "type": {
+         "kind": "model",
+         "name": "AddressApi"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "AddressApi"
+       },
+       {
+        "name": "status",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       }
+      ],
+      "construction": "properties",
+      "metadata": {
+       "accessors": "getters"
+      }
+     },
+     {
+      "name": "CustomerApi",
+      "kind": "class",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer",
+         "bits": 64
+        },
+        "nullable": true,
+        "optional": false,
+        "originalType": "Long"
+       },
+       {
+        "name": "name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "email",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       }
+      ],
+      "construction": "properties",
+      "metadata": {
+       "outer": "OrderApi",
+       "accessors": "getters"
+      }
+     },
+     {
+      "name": "AddressApi",
+      "kind": "class",
+      "fields": [
+       {
+        "name": "street",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "city",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "zipCode",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       },
+       {
+        "name": "country",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "String"
+       }
+      ],
+      "construction": "properties",
+      "metadata": {
+       "outer": "OrderApi",
+       "accessors": "getters"
+      }
+     }
+    ],
+    "enums": []
+   },
+   "OrderApi",
+   "typescript"
+  ],
+  "result": {
+   "text": "export interface Customer {\n  id: number | null\n  name: string\n  email: string\n}\n\nexport interface Address {\n  street: string\n  city: string\n  zipCode: string\n  country: string\n}\n\nexport interface Order {\n  id: number | null\n  customer: Customer\n  shipping: Address\n  status: string\n}\n",
+   "model": "Order"
+  }
+ }
+]

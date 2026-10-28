@@ -1,0 +1,12 @@
+{
+ "source": {
+  "format": "java",
+  "text": "public class OrderApi {\n    private Long id;\n    private CustomerApi customer;\n    private AddressApi shipping;\n    private String status;\n\n    public static class CustomerApi {\n        private Long id;\n        private String name;\n        private String email;\n    }\n\n    public static class AddressApi {\n        private String street;\n        private String city;\n        private String zipCode;\n        private String country;\n    }\n}\n",
+  "model": "OrderApi"
+ },
+ "target": {
+  "format": "csharp",
+  "text": "public class Order\n{\n    public long Id { get; set; }\n    public long CustomerId { get; set; }\n    public string CustomerName { get; set; } = \"\";\n    public Address ShippingAddress { get; set; } = new();\n    public string Status { get; set; } = \"\";\n}\n\npublic class Address\n{\n    public string Street { get; set; } = \"\";\n    public string City { get; set; } = \"\";\n    public string PostalCode { get; set; } = \"\";\n    public string Country { get; set; } = \"\";\n}\n",
+  "model": "Order"
+ }
+}

@@ -1,0 +1,555 @@
+[
+ {
+  "args": [
+   {
+    "root": "A->B",
+    "mappings": [
+     {
+      "id": "A->B",
+      "source": "A",
+      "target": "B",
+      "fields": [
+       {
+        "target": "firstName",
+        "sources": [
+         [
+          "fullName"
+         ]
+        ],
+        "transform": {
+         "kind": "split",
+         "separator": " ",
+         "part": 0
+        },
+        "status": "active",
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "split"
+         }
+        ],
+        "candidates": [],
+        "manual": false
+       },
+       {
+        "target": "lastName",
+        "sources": [
+         [
+          "fullName"
+         ]
+        ],
+        "transform": {
+         "kind": "split",
+         "separator": " ",
+         "part": "rest"
+        },
+        "status": "active",
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "split"
+         }
+        ],
+        "candidates": [],
+        "manual": true
+       },
+       {
+        "target": "extra",
+        "sources": [],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "unmapped",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "nestedModel"
+         }
+        ],
+        "candidates": [],
+        "manual": true
+       }
+      ],
+      "ignoredSources": []
+     },
+     {
+      "id": "AExtra->X",
+      "source": "AExtra",
+      "target": "X",
+      "fields": [
+       {
+        "target": "x",
+        "sources": [
+         [
+          "x"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": []
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   }
+  ],
+  "result": {
+   "root": "A->B",
+   "mappings": [
+    {
+     "id": "A->B",
+     "source": "A",
+     "target": "B",
+     "fields": [
+      {
+       "target": "firstName",
+       "sources": [
+        [
+         "fullName"
+        ]
+       ],
+       "transform": {
+        "kind": "split",
+        "separator": " ",
+        "part": 0
+       },
+       "status": "active",
+       "confidence": "review",
+       "reasons": [
+        {
+         "code": "split"
+        }
+       ],
+       "candidates": [],
+       "manual": false
+      },
+      {
+       "target": "lastName",
+       "sources": [
+        [
+         "fullName"
+        ]
+       ],
+       "transform": {
+        "kind": "split",
+        "separator": " ",
+        "part": "rest"
+       },
+       "status": "active",
+       "confidence": "review",
+       "reasons": [
+        {
+         "code": "split"
+        }
+       ],
+       "candidates": [],
+       "manual": true
+      },
+      {
+       "target": "extra",
+       "sources": [],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "unmapped",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "nestedModel"
+        }
+       ],
+       "candidates": [],
+       "manual": true
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "A->B",
+    "mappings": [
+     {
+      "id": "A->B",
+      "source": "A",
+      "target": "B",
+      "fields": [
+       {
+        "target": "firstName",
+        "sources": [
+         [
+          "fullName"
+         ]
+        ],
+        "transform": {
+         "kind": "split",
+         "separator": " ",
+         "part": 0
+        },
+        "status": "active",
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "split"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "fullName"
+           ]
+          ],
+          "transform": {
+           "kind": "split",
+           "separator": " ",
+           "part": 0
+          },
+          "score": 0.6,
+          "confidence": "review",
+          "reasons": [
+           {
+            "code": "split"
+           }
+          ]
+         }
+        ],
+        "manual": false
+       },
+       {
+        "target": "lastName",
+        "sources": [
+         [
+          "fullName"
+         ]
+        ],
+        "transform": {
+         "kind": "split",
+         "separator": " ",
+         "part": "rest"
+        },
+        "status": "active",
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "split"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "fullName"
+           ]
+          ],
+          "transform": {
+           "kind": "split",
+           "separator": " ",
+           "part": "rest"
+          },
+          "score": 0.6,
+          "confidence": "review",
+          "reasons": [
+           {
+            "code": "split"
+           }
+          ]
+         }
+        ],
+        "manual": true
+       },
+       {
+        "target": "extra",
+        "sources": [],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "unmapped",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "nestedModel"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "extra"
+           ]
+          ],
+          "transform": {
+           "kind": "object",
+           "mapping": "AExtra->X"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "nestedModel"
+           }
+          ]
+         }
+        ],
+        "manual": true
+       }
+      ],
+      "ignoredSources": []
+     },
+     {
+      "id": "AExtra->X",
+      "source": "AExtra",
+      "target": "X",
+      "fields": [
+       {
+        "target": "x",
+        "sources": [
+         [
+          "x"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "x"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   }
+  ],
+  "result": {
+   "root": "A->B",
+   "mappings": [
+    {
+     "id": "A->B",
+     "source": "A",
+     "target": "B",
+     "fields": [
+      {
+       "target": "firstName",
+       "sources": [
+        [
+         "fullName"
+        ]
+       ],
+       "transform": {
+        "kind": "split",
+        "separator": " ",
+        "part": 0
+       },
+       "status": "active",
+       "confidence": "review",
+       "reasons": [
+        {
+         "code": "split"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "fullName"
+          ]
+         ],
+         "transform": {
+          "kind": "split",
+          "separator": " ",
+          "part": 0
+         },
+         "score": 0.6,
+         "confidence": "review",
+         "reasons": [
+          {
+           "code": "split"
+          }
+         ]
+        }
+       ],
+       "manual": false
+      },
+      {
+       "target": "lastName",
+       "sources": [
+        [
+         "fullName"
+        ]
+       ],
+       "transform": {
+        "kind": "split",
+        "separator": " ",
+        "part": "rest"
+       },
+       "status": "active",
+       "confidence": "review",
+       "reasons": [
+        {
+         "code": "split"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "fullName"
+          ]
+         ],
+         "transform": {
+          "kind": "split",
+          "separator": " ",
+          "part": "rest"
+         },
+         "score": 0.6,
+         "confidence": "review",
+         "reasons": [
+          {
+           "code": "split"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      },
+      {
+       "target": "extra",
+       "sources": [],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "unmapped",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "nestedModel"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "extra"
+          ]
+         ],
+         "transform": {
+          "kind": "object",
+          "mapping": "AExtra->X"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "nestedModel"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      }
+     ],
+     "ignoredSources": []
+    },
+    {
+     "id": "AExtra->X",
+     "source": "AExtra",
+     "target": "X",
+     "fields": [
+      {
+       "target": "x",
+       "sources": [
+        [
+         "x"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "x"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ }
+]

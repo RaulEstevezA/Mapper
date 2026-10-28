@@ -1,0 +1,161 @@
+[
+ {
+  "args": [
+   {
+    "id": "A->B",
+    "source": "A",
+    "target": "B",
+    "fields": [
+     {
+      "target": "id",
+      "sources": [
+       [
+        "id"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "exact",
+      "reasons": [
+       {
+        "code": "sameName"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 1,
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "createdBy",
+      "sources": [],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "unmapped",
+      "confidence": "none"
+     },
+     {
+      "target": "note",
+      "sources": [],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "unmapped",
+      "confidence": "none"
+     }
+    ],
+    "ignoredSources": []
+   },
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "A",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "legacy",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "B",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "createdBy",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "note",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": true,
+        "originalType": "string"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   }
+  ],
+  "result": {
+   "unusedSources": [
+    "legacy"
+   ],
+   "missingRequired": [
+    "createdBy"
+   ]
+  }
+ }
+]

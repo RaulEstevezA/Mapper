@@ -1,0 +1,1685 @@
+{
+ "source": {
+  "format": "model-schema",
+  "version": 1,
+  "origin": {
+   "format": "python",
+   "language": "python",
+   "framework": "dataclass"
+  },
+  "models": [
+   {
+    "name": "BillingAddress",
+    "kind": "class",
+    "fields": [
+     {
+      "name": "street",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "str"
+     },
+     {
+      "name": "city",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "str"
+     },
+     {
+      "name": "zip_code",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "str"
+     },
+     {
+      "name": "country",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": true,
+      "originalType": "str",
+      "defaultValue": "ES"
+     }
+    ],
+    "framework": "dataclass",
+    "construction": "named",
+    "description": "Address where the invoice is sent.",
+    "annotations": [
+     {
+      "name": "dataclass"
+     }
+    ]
+   },
+   {
+    "name": "Customer",
+    "kind": "class",
+    "fields": [
+     {
+      "name": "customer_id",
+      "type": {
+       "kind": "primitive",
+       "name": "integer"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "int"
+     },
+     {
+      "name": "first_name",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "str"
+     },
+     {
+      "name": "last_name",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "str"
+     },
+     {
+      "name": "email",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "str"
+     },
+     {
+      "name": "phone",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": true,
+      "optional": true,
+      "originalType": "Optional[str]",
+      "defaultValue": null
+     },
+     {
+      "name": "billing_address",
+      "type": {
+       "kind": "model",
+       "name": "BillingAddress"
+      },
+      "nullable": true,
+      "optional": true,
+      "originalType": "Optional[BillingAddress]",
+      "defaultValue": null
+     }
+    ],
+    "framework": "dataclass",
+    "construction": "named",
+    "annotations": [
+     {
+      "name": "dataclass"
+     }
+    ]
+   },
+   {
+    "name": "InvoiceLine",
+    "kind": "class",
+    "fields": [
+     {
+      "name": "sku",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "str"
+     },
+     {
+      "name": "description",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "str"
+     },
+     {
+      "name": "quantity",
+      "type": {
+       "kind": "primitive",
+       "name": "integer"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "int"
+     },
+     {
+      "name": "unit_price",
+      "type": {
+       "kind": "primitive",
+       "name": "decimal"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "Decimal"
+     },
+     {
+      "name": "tax_rate",
+      "type": {
+       "kind": "primitive",
+       "name": "float"
+      },
+      "nullable": false,
+      "optional": true,
+      "originalType": "float",
+      "defaultValue": 0.21
+     }
+    ],
+    "framework": "dataclass",
+    "construction": "named",
+    "annotations": [
+     {
+      "name": "dataclass"
+     }
+    ]
+   },
+   {
+    "name": "InvoiceRecord",
+    "kind": "class",
+    "fields": [
+     {
+      "name": "invoice_number",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "str"
+     },
+     {
+      "name": "issued_at",
+      "type": {
+       "kind": "primitive",
+       "name": "datetime"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "datetime"
+     },
+     {
+      "name": "due_date",
+      "type": {
+       "kind": "primitive",
+       "name": "date"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "date"
+     },
+     {
+      "name": "status",
+      "type": {
+       "kind": "enum",
+       "name": "InvoiceStatus"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "InvoiceStatus"
+     },
+     {
+      "name": "total",
+      "type": {
+       "kind": "primitive",
+       "name": "decimal"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "Decimal"
+     },
+     {
+      "name": "currency",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "str"
+     },
+     {
+      "name": "customer",
+      "type": {
+       "kind": "model",
+       "name": "Customer"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "Customer"
+     },
+     {
+      "name": "lines",
+      "type": {
+       "kind": "array",
+       "items": {
+        "kind": "model",
+        "name": "InvoiceLine"
+       }
+      },
+      "nullable": false,
+      "optional": true,
+      "originalType": "list[InvoiceLine]",
+      "annotations": [
+       {
+        "name": "field",
+        "args": "default_factory=list"
+       }
+      ]
+     },
+     {
+      "name": "notes",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": true,
+      "optional": true,
+      "originalType": "Optional[str]",
+      "defaultValue": null
+     },
+     {
+      "name": "paid",
+      "type": {
+       "kind": "primitive",
+       "name": "boolean"
+      },
+      "nullable": false,
+      "optional": true,
+      "originalType": "bool",
+      "defaultValue": false
+     }
+    ],
+    "framework": "dataclass",
+    "construction": "named",
+    "description": "An invoice as the billing service stores it.",
+    "annotations": [
+     {
+      "name": "dataclass"
+     }
+    ]
+   }
+  ],
+  "enums": [
+   {
+    "name": "InvoiceStatus",
+    "values": [
+     {
+      "name": "DRAFT",
+      "value": "draft"
+     },
+     {
+      "name": "PENDING",
+      "value": "pending"
+     },
+     {
+      "name": "PAID",
+      "value": "paid"
+     },
+     {
+      "name": "CANCELLED",
+      "value": "cancelled"
+     }
+    ]
+   }
+  ]
+ },
+ "target": {
+  "format": "model-schema",
+  "version": 1,
+  "origin": {
+   "format": "kotlin",
+   "language": "kotlin"
+  },
+  "models": [
+   {
+    "name": "Invoice",
+    "kind": "record",
+    "fields": [
+     {
+      "name": "id",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     },
+     {
+      "name": "issuedAt",
+      "type": {
+       "kind": "primitive",
+       "name": "datetime"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "Instant"
+     },
+     {
+      "name": "dueDate",
+      "type": {
+       "kind": "primitive",
+       "name": "date"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "LocalDate"
+     },
+     {
+      "name": "status",
+      "type": {
+       "kind": "enum",
+       "name": "InvoiceStatus"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "InvoiceStatus"
+     },
+     {
+      "name": "total",
+      "type": {
+       "kind": "primitive",
+       "name": "decimal"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "BigDecimal"
+     },
+     {
+      "name": "currency",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     },
+     {
+      "name": "notes",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": true,
+      "optional": true,
+      "originalType": "String?",
+      "defaultValue": null
+     },
+     {
+      "name": "customerId",
+      "type": {
+       "kind": "primitive",
+       "name": "integer",
+       "bits": 64
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "Long"
+     },
+     {
+      "name": "customerName",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     },
+     {
+      "name": "customerEmail",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     },
+     {
+      "name": "billingAddress",
+      "type": {
+       "kind": "model",
+       "name": "Address"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "Address"
+     },
+     {
+      "name": "items",
+      "type": {
+       "kind": "array",
+       "items": {
+        "kind": "model",
+        "name": "InvoiceItem"
+       }
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "List<InvoiceItem>"
+     },
+     {
+      "name": "isPaid",
+      "type": {
+       "kind": "primitive",
+       "name": "boolean"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "Boolean"
+     },
+     {
+      "name": "createdBy",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     }
+    ],
+    "namespace": "com.example.billing",
+    "construction": "named"
+   },
+   {
+    "name": "Address",
+    "kind": "record",
+    "fields": [
+     {
+      "name": "street",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     },
+     {
+      "name": "city",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     },
+     {
+      "name": "postalCode",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     },
+     {
+      "name": "countryCode",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     }
+    ],
+    "namespace": "com.example.billing",
+    "construction": "named"
+   },
+   {
+    "name": "InvoiceItem",
+    "kind": "record",
+    "fields": [
+     {
+      "name": "sku",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     },
+     {
+      "name": "description",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     },
+     {
+      "name": "quantity",
+      "type": {
+       "kind": "primitive",
+       "name": "integer",
+       "bits": 32
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "Int"
+     },
+     {
+      "name": "unitPrice",
+      "type": {
+       "kind": "primitive",
+       "name": "decimal"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "BigDecimal"
+     },
+     {
+      "name": "taxRate",
+      "type": {
+       "kind": "primitive",
+       "name": "float",
+       "bits": 64
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "Double"
+     }
+    ],
+    "namespace": "com.example.billing",
+    "construction": "named"
+   }
+  ],
+  "enums": [
+   {
+    "name": "InvoiceStatus",
+    "values": [
+     {
+      "name": "DRAFT"
+     },
+     {
+      "name": "PENDING"
+     },
+     {
+      "name": "PAID"
+     },
+     {
+      "name": "CANCELLED"
+     }
+    ],
+    "namespace": "com.example.billing"
+   }
+  ]
+ },
+ "set": {
+  "root": "InvoiceRecord->Invoice",
+  "mappings": [
+   {
+    "id": "InvoiceRecord->Invoice",
+    "source": "InvoiceRecord",
+    "target": "Invoice",
+    "fields": [
+     {
+      "target": "id",
+      "sources": [],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "unmapped",
+      "confidence": "none"
+     },
+     {
+      "target": "issuedAt",
+      "sources": [
+       [
+        "issued_at"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "sameWords"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "issued_at"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.97,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "dueDate",
+      "sources": [
+       [
+        "due_date"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "sameWords"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "due_date"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.97,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "status",
+      "sources": [
+       [
+        "status"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "exact",
+      "reasons": [
+       {
+        "code": "sameName"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "status"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 1,
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "total",
+      "sources": [
+       [
+        "total"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "exact",
+      "reasons": [
+       {
+        "code": "sameName"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "total"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 1,
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "currency",
+      "sources": [
+       [
+        "currency"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "exact",
+      "reasons": [
+       {
+        "code": "sameName"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "currency"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 1,
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "notes",
+      "sources": [
+       [
+        "notes"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "exact",
+      "reasons": [
+       {
+        "code": "sameName"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "notes"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 1,
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "customerId",
+      "sources": [
+       [
+        "customer",
+        "customer_id"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "probable",
+      "reasons": [
+       {
+        "code": "sameWords"
+       },
+       {
+        "code": "flattened",
+        "params": {
+         "path": "customer.customer_id"
+        }
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "customer",
+          "customer_id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.7635839999999998,
+        "confidence": "probable",
+        "reasons": [
+         {
+          "code": "sameWords"
+         },
+         {
+          "code": "flattened",
+          "params": {
+           "path": "customer.customer_id"
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "customerName",
+      "sources": [
+       [
+        "customer",
+        "last_name"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "pending",
+      "confidence": "conflict",
+      "reasons": [
+       {
+        "code": "similarName",
+        "params": {
+         "similarity": 85
+        }
+       },
+       {
+        "code": "flattened",
+        "params": {
+         "path": "customer.last_name"
+        }
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "customer",
+          "last_name"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.697,
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "similarName",
+          "params": {
+           "similarity": 85
+          }
+         },
+         {
+          "code": "flattened",
+          "params": {
+           "path": "customer.last_name"
+          }
+         }
+        ]
+       },
+       {
+        "sources": [
+         [
+          "customer",
+          "first_name"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.6968,
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "similarName",
+          "params": {
+           "similarity": 85
+          }
+         },
+         {
+          "code": "flattened",
+          "params": {
+           "path": "customer.first_name"
+          }
+         }
+        ]
+       },
+       {
+        "sources": [
+         [
+          "customer",
+          "customer_id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.576,
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "containsName",
+          "params": {
+           "similarity": 88
+          }
+         },
+         {
+          "code": "flattened",
+          "params": {
+           "path": "customer.customer_id"
+          }
+         },
+         {
+          "code": "typeConversion"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "customerEmail",
+      "sources": [
+       [
+        "customer",
+        "email"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "sameWords"
+       },
+       {
+        "code": "flattened",
+        "params": {
+         "path": "customer.email"
+        }
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "customer",
+          "email"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.9311999999999999,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         },
+         {
+          "code": "flattened",
+          "params": {
+           "path": "customer.email"
+          }
+         }
+        ]
+       },
+       {
+        "sources": [
+         [
+          "customer",
+          "customer_id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.5427692307692308,
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "containsName",
+          "params": {
+           "similarity": 83
+          }
+         },
+         {
+          "code": "flattened",
+          "params": {
+           "path": "customer.customer_id"
+          }
+         },
+         {
+          "code": "typeConversion"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "billingAddress",
+      "sources": [
+       [
+        "customer",
+        "billing_address"
+       ]
+      ],
+      "transform": {
+       "kind": "object",
+       "mapping": "BillingAddress->Address"
+      },
+      "status": "active",
+      "confidence": "review",
+      "reasons": [
+       {
+        "code": "sameWords"
+       },
+       {
+        "code": "flattened",
+        "params": {
+         "path": "customer.billing_address"
+        }
+       },
+       {
+        "code": "nestedModel"
+       },
+       {
+        "code": "nullToRequired"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "customer",
+          "billing_address"
+         ]
+        ],
+        "transform": {
+         "kind": "object",
+         "mapping": "BillingAddress->Address"
+        },
+        "score": 0.6666088319999999,
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "sameWords"
+         },
+         {
+          "code": "flattened",
+          "params": {
+           "path": "customer.billing_address"
+          }
+         },
+         {
+          "code": "nestedModel"
+         },
+         {
+          "code": "nullToRequired"
+         }
+        ]
+       }
+      ],
+      "manual": true
+     },
+     {
+      "target": "items",
+      "sources": [
+       [
+        "lines"
+       ]
+      ],
+      "transform": {
+       "kind": "collection",
+       "mapping": "InvoiceLine->InvoiceItem"
+      },
+      "status": "active",
+      "confidence": "probable",
+      "reasons": [
+       {
+        "code": "synonym"
+       },
+       {
+        "code": "nestedModel"
+       },
+       {
+        "code": "collection"
+       },
+       {
+        "code": "nullToRequired"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "lines"
+         ]
+        ],
+        "transform": {
+         "kind": "collection",
+         "mapping": "InvoiceLine->InvoiceItem"
+        },
+        "score": 0.7178,
+        "confidence": "probable",
+        "reasons": [
+         {
+          "code": "synonym"
+         },
+         {
+          "code": "nestedModel"
+         },
+         {
+          "code": "collection"
+         },
+         {
+          "code": "nullToRequired"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "isPaid",
+      "sources": [
+       [
+        "paid"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "synonym"
+       },
+       {
+        "code": "nullToRequired"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "paid"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.8536,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "synonym"
+         },
+         {
+          "code": "nullToRequired"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "createdBy",
+      "sources": [],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "unmapped",
+      "confidence": "none"
+     }
+    ],
+    "ignoredSources": []
+   },
+   {
+    "id": "BillingAddress->Address",
+    "source": "BillingAddress",
+    "target": "Address",
+    "fields": [
+     {
+      "target": "street",
+      "sources": [
+       [
+        "street"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "exact",
+      "reasons": [
+       {
+        "code": "sameName"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "street"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 1,
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "city",
+      "sources": [
+       [
+        "city"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "exact",
+      "reasons": [
+       {
+        "code": "sameName"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "city"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 1,
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "postalCode",
+      "sources": [
+       [
+        "zip_code"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "probable",
+      "reasons": [
+       {
+        "code": "containsName",
+        "params": {
+         "similarity": 100
+        }
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "zip_code"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.75,
+        "confidence": "probable",
+        "reasons": [
+         {
+          "code": "containsName",
+          "params": {
+           "similarity": 100
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "countryCode",
+      "sources": [
+       [
+        "country"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "review",
+      "reasons": [
+       {
+        "code": "similarName",
+        "params": {
+         "similarity": 79
+        }
+       },
+       {
+        "code": "nullToRequired"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "country"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.657101515151515,
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "similarName",
+          "params": {
+           "similarity": 79
+          }
+         },
+         {
+          "code": "nullToRequired"
+         }
+        ]
+       }
+      ],
+      "manual": true
+     }
+    ],
+    "ignoredSources": []
+   },
+   {
+    "id": "InvoiceLine->InvoiceItem",
+    "source": "InvoiceLine",
+    "target": "InvoiceItem",
+    "fields": [
+     {
+      "target": "sku",
+      "sources": [
+       [
+        "sku"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "exact",
+      "reasons": [
+       {
+        "code": "sameName"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "sku"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 1,
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "description",
+      "sources": [
+       [
+        "description"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "exact",
+      "reasons": [
+       {
+        "code": "sameName"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "description"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 1,
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "quantity",
+      "sources": [
+       [
+        "quantity"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "exact",
+      "reasons": [
+       {
+        "code": "sameName"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "quantity"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 1,
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "unitPrice",
+      "sources": [
+       [
+        "unit_price"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "sameWords"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "unit_price"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.97,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "taxRate",
+      "sources": [
+       [
+        "tax_rate"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "sameWords"
+       },
+       {
+        "code": "nullToRequired"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "tax_rate"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.9409,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         },
+         {
+          "code": "nullToRequired"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "ignoredSources": []
+   }
+  ]
+ }
+}

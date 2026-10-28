@@ -1,0 +1,470 @@
+[
+ {
+  "args": [
+   "Id"
+  ],
+  "result": "id"
+ },
+ {
+  "args": [
+   "id"
+  ],
+  "result": "id"
+ },
+ {
+  "args": [
+   "dob"
+  ],
+  "result": "dob"
+ },
+ {
+  "args": [
+   "sku"
+  ],
+  "result": "sku"
+ },
+ {
+  "args": [
+   "tel"
+  ],
+  "result": "tel"
+ },
+ {
+  "args": [
+   "City"
+  ],
+  "result": "city"
+ },
+ {
+  "args": [
+   "Item"
+  ],
+  "result": "item"
+ },
+ {
+  "args": [
+   "Paid"
+  ],
+  "result": "paid"
+ },
+ {
+  "args": [
+   "Sent"
+  ],
+  "result": "sent"
+ },
+ {
+  "args": [
+   "User"
+  ],
+  "result": "user"
+ },
+ {
+  "args": [
+   "city"
+  ],
+  "result": "city"
+ },
+ {
+  "args": [
+   "mail"
+  ],
+  "result": "mail"
+ },
+ {
+  "args": [
+   "name"
+  ],
+  "result": "name"
+ },
+ {
+  "args": [
+   "tags"
+  ],
+  "result": "tags"
+ },
+ {
+  "args": [
+   "Draft"
+  ],
+  "result": "draft"
+ },
+ {
+  "args": [
+   "Order"
+  ],
+  "result": "order"
+ },
+ {
+  "args": [
+   "email"
+  ],
+  "result": "email"
+ },
+ {
+  "args": [
+   "items"
+  ],
+  "result": "items"
+ },
+ {
+  "args": [
+   "lines"
+  ],
+  "result": "lines"
+ },
+ {
+  "args": [
+   "phone"
+  ],
+  "result": "phone"
+ },
+ {
+  "args": [
+   "price"
+  ],
+  "result": "price"
+ },
+ {
+  "args": [
+   "stock"
+  ],
+  "result": "stock"
+ },
+ {
+  "args": [
+   "title"
+  ],
+  "result": "title"
+ },
+ {
+  "args": [
+   "Active"
+  ],
+  "result": "active"
+ },
+ {
+  "args": [
+   "Status"
+  ],
+  "result": "status"
+ },
+ {
+  "args": [
+   "Street"
+  ],
+  "result": "street"
+ },
+ {
+  "args": [
+   "active"
+  ],
+  "result": "active"
+ },
+ {
+  "args": [
+   "coupon"
+  ],
+  "result": "coupon"
+ },
+ {
+  "args": [
+   "status"
+  ],
+  "result": "status"
+ },
+ {
+  "args": [
+   "street"
+  ],
+  "result": "street"
+ },
+ {
+  "args": [
+   "userId"
+  ],
+  "result": "user_id"
+ },
+ {
+  "args": [
+   "Address"
+  ],
+  "result": "address"
+ },
+ {
+  "args": [
+   "Country"
+  ],
+  "result": "country"
+ },
+ {
+  "args": [
+   "UserDto"
+  ],
+  "result": "user_dto"
+ },
+ {
+  "args": [
+   "country"
+  ],
+  "result": "country"
+ },
+ {
+  "args": [
+   "created"
+  ],
+  "result": "created"
+ },
+ {
+  "args": [
+   "orderId"
+  ],
+  "result": "order_id"
+ },
+ {
+  "args": [
+   "surname"
+  ],
+  "result": "surname"
+ },
+ {
+  "args": [
+   "zipCode"
+  ],
+  "result": "zip_code"
+ },
+ {
+  "args": [
+   "Customer"
+  ],
+  "result": "customer"
+ },
+ {
+  "args": [
+   "OrderApi"
+  ],
+  "result": "order_api"
+ },
+ {
+  "args": [
+   "customer"
+  ],
+  "result": "customer"
+ },
+ {
+  "args": [
+   "discount"
+  ],
+  "result": "discount"
+ },
+ {
+  "args": [
+   "isActive"
+  ],
+  "result": "is_active"
+ },
+ {
+  "args": [
+   "lastName"
+  ],
+  "result": "last_name"
+ },
+ {
+  "args": [
+   "placedAt"
+  ],
+  "result": "placed_at"
+ },
+ {
+  "args": [
+   "quantity"
+  ],
+  "result": "quantity"
+ },
+ {
+  "args": [
+   "shipping"
+  ],
+  "result": "shipping"
+ },
+ {
+  "args": [
+   "OrderLine"
+  ],
+  "result": "order_line"
+ },
+ {
+  "args": [
+   "birthDate"
+  ],
+  "result": "birth_date"
+ },
+ {
+  "args": [
+   "createdAt"
+  ],
+  "result": "created_at"
+ },
+ {
+  "args": [
+   "firstName"
+  ],
+  "result": "first_name"
+ },
+ {
+  "args": [
+   "last_name"
+  ],
+  "result": "last_name"
+ },
+ {
+  "args": [
+   "productId"
+  ],
+  "result": "product_id"
+ },
+ {
+  "args": [
+   "unitPrice"
+  ],
+  "result": "unit_price"
+ },
+ {
+  "args": [
+   "AddressApi"
+  ],
+  "result": "address_api"
+ },
+ {
+  "args": [
+   "CustomerId"
+  ],
+  "result": "customer_id"
+ },
+ {
+  "args": [
+   "PostalCode"
+  ],
+  "result": "postal_code"
+ },
+ {
+  "args": [
+   "created_at"
+  ],
+  "result": "created_at"
+ },
+ {
+  "args": [
+   "customerId"
+  ],
+  "result": "customer_id"
+ },
+ {
+  "args": [
+   "first_name"
+  ],
+  "result": "first_name"
+ },
+ {
+  "args": [
+   "given_name"
+  ],
+  "result": "given_name"
+ },
+ {
+  "args": [
+   "inProgress"
+  ],
+  "result": "in_progress"
+ },
+ {
+  "args": [
+   "qty_orders"
+  ],
+  "result": "qty_orders"
+ },
+ {
+  "args": [
+   "customer_id"
+  ],
+  "result": "customer_id"
+ },
+ {
+  "args": [
+   "price_cents"
+  ],
+  "result": "price_cents"
+ },
+ {
+  "args": [
+   "CustomerName"
+  ],
+  "result": "customer_name"
+ },
+ {
+  "args": [
+   "Discontinued"
+  ],
+  "result": "discontinued"
+ },
+ {
+  "args": [
+   "ProductModel"
+  ],
+  "result": "product_model"
+ },
+ {
+  "args": [
+   "ProductState"
+  ],
+  "result": "product_state"
+ },
+ {
+  "args": [
+   "emailAddress"
+  ],
+  "result": "email_address"
+ },
+ {
+  "args": [
+   "ProductStatus"
+  ],
+  "result": "product_status"
+ },
+ {
+  "args": [
+   "creation_date"
+  ],
+  "result": "creation_date"
+ },
+ {
+  "args": [
+   "orderQuantity"
+  ],
+  "result": "order_quantity"
+ },
+ {
+  "args": [
+   "ProductResponse"
+  ],
+  "result": "product_response"
+ },
+ {
+  "args": [
+   "ShippingAddress"
+  ],
+  "result": "shipping_address"
+ },
+ {
+  "args": [
+   "CustomerResponse"
+  ],
+  "result": "customer_response"
+ },
+ {
+  "args": [
+   "supplier_full_name"
+  ],
+  "result": "supplier_full_name"
+ }
+]

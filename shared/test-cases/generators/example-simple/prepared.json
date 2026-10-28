@@ -1,0 +1,397 @@
+{
+ "source": {
+  "format": "model-schema",
+  "version": 1,
+  "origin": {
+   "format": "typescript",
+   "language": "typescript"
+  },
+  "models": [
+   {
+    "name": "UserDto",
+    "kind": "interface",
+    "fields": [
+     {
+      "name": "userId",
+      "type": {
+       "kind": "primitive",
+       "name": "float"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "number"
+     },
+     {
+      "name": "firstName",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "string"
+     },
+     {
+      "name": "lastName",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "string"
+     },
+     {
+      "name": "emailAddress",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "string"
+     },
+     {
+      "name": "createdAt",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "string"
+     },
+     {
+      "name": "isActive",
+      "type": {
+       "kind": "primitive",
+       "name": "boolean"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "boolean"
+     }
+    ]
+   }
+  ],
+  "enums": []
+ },
+ "target": {
+  "format": "model-schema",
+  "version": 1,
+  "origin": {
+   "format": "typescript",
+   "language": "typescript"
+  },
+  "models": [
+   {
+    "name": "User",
+    "kind": "interface",
+    "fields": [
+     {
+      "name": "id",
+      "type": {
+       "kind": "primitive",
+       "name": "float"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "number"
+     },
+     {
+      "name": "firstName",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "string"
+     },
+     {
+      "name": "lastName",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "string"
+     },
+     {
+      "name": "email",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "string"
+     },
+     {
+      "name": "createdAt",
+      "type": {
+       "kind": "primitive",
+       "name": "datetime"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "Date"
+     },
+     {
+      "name": "active",
+      "type": {
+       "kind": "primitive",
+       "name": "boolean"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "boolean"
+     }
+    ]
+   }
+  ],
+  "enums": []
+ },
+ "set": {
+  "root": "UserDto->User",
+  "mappings": [
+   {
+    "id": "UserDto->User",
+    "source": "UserDto",
+    "target": "User",
+    "fields": [
+     {
+      "target": "id",
+      "sources": [
+       [
+        "userId"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "modelContext"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "userId"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.9,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "modelContext"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "firstName",
+      "sources": [
+       [
+        "firstName"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "exact",
+      "reasons": [
+       {
+        "code": "sameName"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "firstName"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 1,
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "lastName",
+      "sources": [
+       [
+        "lastName"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "exact",
+      "reasons": [
+       {
+        "code": "sameName"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "lastName"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 1,
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "email",
+      "sources": [
+       [
+        "emailAddress"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "abbreviation"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "emailAddress"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.93,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "abbreviation"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "createdAt",
+      "sources": [
+       [
+        "createdAt"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "sameName"
+       },
+       {
+        "code": "typeFallible"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "createdAt"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.88,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "typeFallible"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "active",
+      "sources": [
+       [
+        "isActive"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "synonym"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "isActive"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.88,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "synonym"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "ignoredSources": []
+   }
+  ]
+ }
+}

@@ -1,0 +1,900 @@
+{
+ "typescript-functions": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import type { Address, AddressApi, Order, OrderApi } from './models'\n\nexport function mapOrderApiToOrder(source: OrderApi): Order {\n  return Object.assign(new Order(), {\n    // TODO: the source may be missing, but \"Id\" is required\n    id: source.id!,\n    // TODO: the source may be missing, but \"CustomerId\" is required\n    customerId: source.customer.id!,\n    customerName: source.customer.name,\n    shippingAddress: mapAddressApiToAddress(source.shipping),\n    status: source.status,\n  })\n}\n\nexport function mapAddressApiToAddress(source: AddressApi): Address {\n  return Object.assign(new Address(), {\n    street: source.street,\n    city: source.city,\n    postalCode: source.zipCode,\n    country: source.country,\n  })\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "typescript-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import type { Address, AddressApi, Order, OrderApi } from './models'\n\nexport function mapOrderApiToOrder(source: OrderApi): Order {\n  return Object.assign(new Order(), {\n    // TODO: the source may be missing, but \"Id\" is required\n    Id: source.id!,\n    // TODO: the source may be missing, but \"CustomerId\" is required\n    CustomerId: source.customer.id!,\n    CustomerName: source.customer.name,\n    ShippingAddress: mapAddressApiToAddress(source.shipping),\n    Status: source.status,\n  })\n}\n\nexport function mapAddressApiToAddress(source: AddressApi): Address {\n  return Object.assign(new Address(), {\n    Street: source.street,\n    City: source.city,\n    PostalCode: source.zipCode,\n    Country: source.country,\n  })\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "typescript-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import type { Address, AddressApi, Order, OrderApi } from './models'\n\nexport function mapOrderApiToOrder(source: OrderApi): Order {\n  return Object.assign(new Order(), {\n    // TODO: the source may be missing, but \"Id\" is required\n    id: source.id!,\n    // TODO: the source may be missing, but \"CustomerId\" is required\n    customerId: source.customer.id!,\n    customerName: source.customer.name,\n    shippingAddress: mapAddressApiToAddress(source.shipping),\n    status: source.status,\n  })\n}\n\nexport function mapAddressApiToAddress(source: AddressApi): Address {\n  return Object.assign(new Address(), {\n    street: source.street,\n    city: source.city,\n    postalCode: source.zipCode,\n    country: source.country,\n  })\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "javascript-functions": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {OrderApi} source\n * @returns {Order}\n */\nexport function mapOrderApiToOrder(source) {\n  return Object.assign(new Order(), {\n    // TODO: the source may be missing, but \"Id\" is required\n    id: source.id,\n    // TODO: the source may be missing, but \"CustomerId\" is required\n    customerId: source.customer.id,\n    customerName: source.customer.name,\n    shippingAddress: mapAddressApiToAddress(source.shipping),\n    status: source.status,\n  })\n}\n\n/**\n * @param {AddressApi} source\n * @returns {Address}\n */\nexport function mapAddressApiToAddress(source) {\n  return Object.assign(new Address(), {\n    street: source.street,\n    city: source.city,\n    postalCode: source.zipCode,\n    country: source.country,\n  })\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "javascript-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {OrderApi} source\n * @returns {Order}\n */\nexport function mapOrderApiToOrder(source) {\n  return Object.assign(new Order(), {\n    // TODO: the source may be missing, but \"Id\" is required\n    Id: source.id,\n    // TODO: the source may be missing, but \"CustomerId\" is required\n    CustomerId: source.customer.id,\n    CustomerName: source.customer.name,\n    ShippingAddress: mapAddressApiToAddress(source.shipping),\n    Status: source.status,\n  })\n}\n\n/**\n * @param {AddressApi} source\n * @returns {Address}\n */\nexport function mapAddressApiToAddress(source) {\n  return Object.assign(new Address(), {\n    Street: source.street,\n    City: source.city,\n    PostalCode: source.zipCode,\n    Country: source.country,\n  })\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "javascript-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {OrderApi} source\n * @returns {Order}\n */\nexport function mapOrderApiToOrder(source) {\n  return Object.assign(new Order(), {\n    // TODO: the source may be missing, but \"Id\" is required\n    id: source.id,\n    // TODO: the source may be missing, but \"CustomerId\" is required\n    customerId: source.customer.id,\n    customerName: source.customer.name,\n    shippingAddress: mapAddressApiToAddress(source.shipping),\n    status: source.status,\n  })\n}\n\n/**\n * @param {AddressApi} source\n * @returns {Address}\n */\nexport function mapAddressApiToAddress(source) {\n  return Object.assign(new Address(), {\n    street: source.street,\n    city: source.city,\n    postalCode: source.zipCode,\n    country: source.country,\n  })\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "python-functions": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "\nfrom models import Address, AddressApi, Order, OrderApi\n\n\ndef map_order_api_to_order(source: OrderApi) -> Order:\n    return Order(\n        # TODO: the source may be missing, but \"Id\" is required\n        id=source.id,\n        # TODO: the source may be missing, but \"CustomerId\" is required\n        customer_id=source.customer.id,\n        customer_name=source.customer.name,\n        shipping_address=map_address_api_to_address(source.shipping),\n        status=source.status,\n    )\n\n\ndef map_address_api_to_address(source: AddressApi) -> Address:\n    return Address(\n        street=source.street,\n        city=source.city,\n        postal_code=source.zip_code,\n        country=source.country,\n    )\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "python-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "\nfrom models import Address, AddressApi, Order, OrderApi\n\n\ndef map_order_api_to_order(source: OrderApi) -> Order:\n    return Order(\n        # TODO: the source may be missing, but \"Id\" is required\n        Id=source.id,\n        # TODO: the source may be missing, but \"CustomerId\" is required\n        CustomerId=source.customer.id,\n        CustomerName=source.customer.name,\n        ShippingAddress=map_address_api_to_address(source.shipping),\n        Status=source.status,\n    )\n\n\ndef map_address_api_to_address(source: AddressApi) -> Address:\n    return Address(\n        Street=source.street,\n        City=source.city,\n        PostalCode=source.zipCode,\n        Country=source.country,\n    )\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "python-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "\nfrom models import Address, AddressApi, Order, OrderApi\n\n\ndef map_order_api_to_order(source: OrderApi) -> Order:\n    return Order(\n        # TODO: the source may be missing, but \"Id\" is required\n        id=source.id,\n        # TODO: the source may be missing, but \"CustomerId\" is required\n        customer_id=source.customer.id,\n        customer_name=source.customer.name,\n        shipping_address=map_address_api_to_address(source.shipping),\n        status=source.status,\n    )\n\n\ndef map_address_api_to_address(source: AddressApi) -> Address:\n    return Address(\n        street=source.street,\n        city=source.city,\n        postal_code=source.zip_code,\n        country=source.country,\n    )\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "python-sourceAccess-dict": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from typing import Any\n\nfrom models import Address, Order\n\n\ndef map_order_api_to_order(source: dict[str, Any]) -> Order:\n    return Order(\n        # TODO: the source may be missing, but \"Id\" is required\n        id=source.get(\"id\"),\n        # TODO: the source may be missing, but \"CustomerId\" is required\n        customer_id=source[\"customer\"].get(\"id\"),\n        customer_name=source[\"customer\"][\"name\"],\n        shipping_address=map_address_api_to_address(source[\"shipping\"]),\n        status=source[\"status\"],\n    )\n\n\ndef map_address_api_to_address(source: dict[str, Any]) -> Address:\n    return Address(\n        street=source[\"street\"],\n        city=source[\"city\"],\n        postal_code=source[\"zipCode\"],\n        country=source[\"country\"],\n    )\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "python-targetStyle-dict": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from typing import Any\n\nfrom models import AddressApi, OrderApi\n\n\ndef map_order_api_to_order(source: OrderApi) -> dict[str, Any]:\n    return {\n        # TODO: the source may be missing, but \"Id\" is required\n        \"Id\": source.id,\n        # TODO: the source may be missing, but \"CustomerId\" is required\n        \"CustomerId\": source.customer.id,\n        \"CustomerName\": source.customer.name,\n        \"ShippingAddress\": map_address_api_to_address(source.shipping),\n        \"Status\": source.status,\n    }\n\n\ndef map_address_api_to_address(source: AddressApi) -> dict[str, Any]:\n    return {\n        \"Street\": source.street,\n        \"City\": source.city,\n        \"PostalCode\": source.zip_code,\n        \"Country\": source.country,\n    }\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "java-manual": {
+  "files": [
+   {
+    "name": "OrderApiMapper.java",
+    "code": "import java.util.Objects;\n\npublic final class OrderApiMapper {\n\n    private OrderApiMapper() {\n    }\n\n    public static Order toOrder(OrderApi source) {\n        if (source == null) {\n            return null;\n        }\n        Order target = new Order();\n        // \"Id\" is required: fails if the source is missing\n        target.setId(Objects.requireNonNull(source.getId()));\n        // \"CustomerId\" is required: fails if the source is missing\n        target.setCustomerId(Objects.requireNonNull(source.getCustomer().getId()));\n        target.setCustomerName(source.getCustomer().getName());\n        target.setShippingAddress(toAddress(source.getShipping()));\n        target.setStatus(source.getStatus());\n        return target;\n    }\n\n    public static Address toAddress(OrderApi.AddressApi source) {\n        if (source == null) {\n            return null;\n        }\n        Address target = new Address();\n        target.setStreet(source.getStreet());\n        target.setCity(source.getCity());\n        target.setPostalCode(source.getZipCode());\n        target.setCountry(source.getCountry());\n        return target;\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "java-mapstruct": {
+  "files": [
+   {
+    "name": "OrderApiMapper.java",
+    "code": "import org.mapstruct.Mapper;\nimport org.mapstruct.Mapping;\n\n@Mapper\npublic interface OrderApiMapper {\n\n    @Mapping(target = \"customerId\", source = \"customer.id\")\n    @Mapping(target = \"customerName\", source = \"customer.name\")\n    @Mapping(target = \"shippingAddress\", source = \"shipping\")\n    Order toOrder(OrderApi source);\n\n    @Mapping(target = \"postalCode\", source = \"zipCode\")\n    Address toAddress(OrderApi.AddressApi source);\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "java-naming-keep": {
+  "files": [
+   {
+    "name": "OrderApiMapper.java",
+    "code": "import java.util.Objects;\n\npublic final class OrderApiMapper {\n\n    private OrderApiMapper() {\n    }\n\n    public static Order toOrder(OrderApi source) {\n        if (source == null) {\n            return null;\n        }\n        Order target = new Order();\n        // \"Id\" is required: fails if the source is missing\n        target.setId(Objects.requireNonNull(source.getId()));\n        // \"CustomerId\" is required: fails if the source is missing\n        target.setCustomerId(Objects.requireNonNull(source.getCustomer().getId()));\n        target.setCustomerName(source.getCustomer().getName());\n        target.setShippingAddress(toAddress(source.getShipping()));\n        target.setStatus(source.getStatus());\n        return target;\n    }\n\n    public static Address toAddress(OrderApi.AddressApi source) {\n        if (source == null) {\n            return null;\n        }\n        Address target = new Address();\n        target.setStreet(source.getStreet());\n        target.setCity(source.getCity());\n        target.setPostalCode(source.getZipCode());\n        target.setCountry(source.getCountry());\n        return target;\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "java-naming-convention": {
+  "files": [
+   {
+    "name": "OrderApiMapper.java",
+    "code": "import java.util.Objects;\n\npublic final class OrderApiMapper {\n\n    private OrderApiMapper() {\n    }\n\n    public static Order toOrder(OrderApi source) {\n        if (source == null) {\n            return null;\n        }\n        Order target = new Order();\n        // \"Id\" is required: fails if the source is missing\n        target.setId(Objects.requireNonNull(source.getId()));\n        // \"CustomerId\" is required: fails if the source is missing\n        target.setCustomerId(Objects.requireNonNull(source.getCustomer().getId()));\n        target.setCustomerName(source.getCustomer().getName());\n        target.setShippingAddress(toAddress(source.getShipping()));\n        target.setStatus(source.getStatus());\n        return target;\n    }\n\n    public static Address toAddress(OrderApi.AddressApi source) {\n        if (source == null) {\n            return null;\n        }\n        Address target = new Address();\n        target.setStreet(source.getStreet());\n        target.setCity(source.getCity());\n        target.setPostalCode(source.getZipCode());\n        target.setCountry(source.getCountry());\n        return target;\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "java-componentModel-spring": {
+  "files": [
+   {
+    "name": "OrderApiMapper.java",
+    "code": "import java.util.Objects;\n\npublic final class OrderApiMapper {\n\n    private OrderApiMapper() {\n    }\n\n    public static Order toOrder(OrderApi source) {\n        if (source == null) {\n            return null;\n        }\n        Order target = new Order();\n        // \"Id\" is required: fails if the source is missing\n        target.setId(Objects.requireNonNull(source.getId()));\n        // \"CustomerId\" is required: fails if the source is missing\n        target.setCustomerId(Objects.requireNonNull(source.getCustomer().getId()));\n        target.setCustomerName(source.getCustomer().getName());\n        target.setShippingAddress(toAddress(source.getShipping()));\n        target.setStatus(source.getStatus());\n        return target;\n    }\n\n    public static Address toAddress(OrderApi.AddressApi source) {\n        if (source == null) {\n            return null;\n        }\n        Address target = new Address();\n        target.setStreet(source.getStreet());\n        target.setCity(source.getCity());\n        target.setPostalCode(source.getZipCode());\n        target.setCountry(source.getCountry());\n        return target;\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "java-componentModel-cdi": {
+  "files": [
+   {
+    "name": "OrderApiMapper.java",
+    "code": "import java.util.Objects;\n\npublic final class OrderApiMapper {\n\n    private OrderApiMapper() {\n    }\n\n    public static Order toOrder(OrderApi source) {\n        if (source == null) {\n            return null;\n        }\n        Order target = new Order();\n        // \"Id\" is required: fails if the source is missing\n        target.setId(Objects.requireNonNull(source.getId()));\n        // \"CustomerId\" is required: fails if the source is missing\n        target.setCustomerId(Objects.requireNonNull(source.getCustomer().getId()));\n        target.setCustomerName(source.getCustomer().getName());\n        target.setShippingAddress(toAddress(source.getShipping()));\n        target.setStatus(source.getStatus());\n        return target;\n    }\n\n    public static Address toAddress(OrderApi.AddressApi source) {\n        if (source == null) {\n            return null;\n        }\n        Address target = new Address();\n        target.setStreet(source.getStreet());\n        target.setCity(source.getCity());\n        target.setPostalCode(source.getZipCode());\n        target.setCountry(source.getCountry());\n        return target;\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "java-componentModel-jakarta": {
+  "files": [
+   {
+    "name": "OrderApiMapper.java",
+    "code": "import java.util.Objects;\n\npublic final class OrderApiMapper {\n\n    private OrderApiMapper() {\n    }\n\n    public static Order toOrder(OrderApi source) {\n        if (source == null) {\n            return null;\n        }\n        Order target = new Order();\n        // \"Id\" is required: fails if the source is missing\n        target.setId(Objects.requireNonNull(source.getId()));\n        // \"CustomerId\" is required: fails if the source is missing\n        target.setCustomerId(Objects.requireNonNull(source.getCustomer().getId()));\n        target.setCustomerName(source.getCustomer().getName());\n        target.setShippingAddress(toAddress(source.getShipping()));\n        target.setStatus(source.getStatus());\n        return target;\n    }\n\n    public static Address toAddress(OrderApi.AddressApi source) {\n        if (source == null) {\n            return null;\n        }\n        Address target = new Address();\n        target.setStreet(source.getStreet());\n        target.setCity(source.getCity());\n        target.setPostalCode(source.getZipCode());\n        target.setCountry(source.getCountry());\n        return target;\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "csharp-manual": {
+  "files": [
+   {
+    "name": "OrderApiMappings.cs",
+    "code": "using System;\n\npublic static class OrderApiMappings\n{\n    public static Order ToOrder(this OrderApi source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Order\n        {\n            Id = source.Id ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n            CustomerId = source.Customer.Id ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n            CustomerName = source.Customer.Name,\n            ShippingAddress = source.Shipping.ToAddress(),\n            Status = source.Status,\n        };\n    }\n\n    public static Address ToAddress(this AddressApi source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Address\n        {\n            Street = source.Street,\n            City = source.City,\n            PostalCode = source.ZipCode,\n            Country = source.Country,\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "csharp-automapper": {
+  "files": [
+   {
+    "name": "OrderApiProfile.cs",
+    "code": "using System;\nusing AutoMapper;\n\npublic class OrderApiProfile : Profile\n{\n    public OrderApiProfile()\n    {\n        CreateMap<OrderApi, Order>()\n            .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Customer.Id))\n            .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.Name))\n            .ForMember(dest => dest.ShippingAddress, opt => opt.MapFrom(src => src.Shipping));\n\n        CreateMap<AddressApi, Address>()\n            .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.ZipCode));\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "csharp-naming-keep": {
+  "files": [
+   {
+    "name": "OrderApiMappings.cs",
+    "code": "using System;\n\npublic static class OrderApiMappings\n{\n    public static Order ToOrder(this OrderApi source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Order\n        {\n            Id = source.id ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n            CustomerId = source.customer.id ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n            CustomerName = source.customer.name,\n            ShippingAddress = source.shipping.ToAddress(),\n            Status = source.status,\n        };\n    }\n\n    public static Address ToAddress(this AddressApi source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Address\n        {\n            Street = source.street,\n            City = source.city,\n            PostalCode = source.zipCode,\n            Country = source.country,\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "csharp-naming-convention": {
+  "files": [
+   {
+    "name": "OrderApiMappings.cs",
+    "code": "using System;\n\npublic static class OrderApiMappings\n{\n    public static Order ToOrder(this OrderApi source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Order\n        {\n            Id = source.Id ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n            CustomerId = source.Customer.Id ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n            CustomerName = source.Customer.Name,\n            ShippingAddress = source.Shipping.ToAddress(),\n            Status = source.Status,\n        };\n    }\n\n    public static Address ToAddress(this AddressApi source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Address\n        {\n            Street = source.Street,\n            City = source.City,\n            PostalCode = source.ZipCode,\n            Country = source.Country,\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "kotlin-extensions": {
+  "files": [
+   {
+    "name": "OrderApiMappers.kt",
+    "code": "fun OrderApi.toOrder(): Order {\n    val target = Order()\n    target.id = requireNotNull(id) { \"A required value is missing in the source\" }\n    target.customerId = requireNotNull(customer.id) { \"A required value is missing in the source\" }\n    target.customerName = customer.name\n    target.shippingAddress = shipping.toAddress()\n    target.status = status\n    return target\n}\n\nfun AddressApi.toAddress(): Address {\n    val target = Address()\n    target.street = street\n    target.city = city\n    target.postalCode = zipCode\n    target.country = country\n    return target\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "kotlin-naming-keep": {
+  "files": [
+   {
+    "name": "OrderApiMappers.kt",
+    "code": "fun OrderApi.toOrder(): Order {\n    val target = Order()\n    target.Id = requireNotNull(id) { \"A required value is missing in the source\" }\n    target.CustomerId = requireNotNull(customer.id) { \"A required value is missing in the source\" }\n    target.CustomerName = customer.name\n    target.ShippingAddress = shipping.toAddress()\n    target.Status = status\n    return target\n}\n\nfun AddressApi.toAddress(): Address {\n    val target = Address()\n    target.Street = street\n    target.City = city\n    target.PostalCode = zipCode\n    target.Country = country\n    return target\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "kotlin-naming-convention": {
+  "files": [
+   {
+    "name": "OrderApiMappers.kt",
+    "code": "fun OrderApi.toOrder(): Order {\n    val target = Order()\n    target.id = requireNotNull(id) { \"A required value is missing in the source\" }\n    target.customerId = requireNotNull(customer.id) { \"A required value is missing in the source\" }\n    target.customerName = customer.name\n    target.shippingAddress = shipping.toAddress()\n    target.status = status\n    return target\n}\n\nfun AddressApi.toAddress(): Address {\n    val target = Address()\n    target.street = street\n    target.city = city\n    target.postalCode = zipCode\n    target.country = country\n    return target\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "dart-extensions": {
+  "files": [
+   {
+    "name": "order_api_mapping.dart",
+    "code": "import 'models.dart';\n\nextension OrderApiMapping on OrderApi {\n  Order toOrder() => Order(\n        id: id!,\n        customerId: customer.id!,\n        customerName: customer.name,\n        shippingAddress: shipping.toAddress(),\n        status: status,\n      );\n}\n\nextension AddressApiMapping on AddressApi {\n  Address toAddress() => Address(\n        street: street,\n        city: city,\n        postalCode: zipCode,\n        country: country,\n      );\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "dart-naming-keep": {
+  "files": [
+   {
+    "name": "order_api_mapping.dart",
+    "code": "import 'models.dart';\n\nextension OrderApiMapping on OrderApi {\n  Order toOrder() => Order(\n        Id: id!,\n        CustomerId: customer.id!,\n        CustomerName: customer.name,\n        ShippingAddress: shipping.toAddress(),\n        Status: status,\n      );\n}\n\nextension AddressApiMapping on AddressApi {\n  Address toAddress() => Address(\n        Street: street,\n        City: city,\n        PostalCode: zipCode,\n        Country: country,\n      );\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "dart-naming-convention": {
+  "files": [
+   {
+    "name": "order_api_mapping.dart",
+    "code": "import 'models.dart';\n\nextension OrderApiMapping on OrderApi {\n  Order toOrder() => Order(\n        id: id!,\n        customerId: customer.id!,\n        customerName: customer.name,\n        shippingAddress: shipping.toAddress(),\n        status: status,\n      );\n}\n\nextension AddressApiMapping on AddressApi {\n  Address toAddress() => Address(\n        street: street,\n        city: city,\n        postalCode: zipCode,\n        country: country,\n      );\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "swift-extensions": {
+  "files": [
+   {
+    "name": "OrderApi+Mapping.swift",
+    "code": "import Foundation\n\nextension OrderApi {\n    func toOrder() -> Order {\n        Order(\n            id: id!,\n            customerId: customer.id!,\n            customerName: customer.name,\n            shippingAddress: shipping.toAddress(),\n            status: status\n        )\n    }\n}\n\nextension AddressApi {\n    func toAddress() -> Address {\n        Address(\n            street: street,\n            city: city,\n            postalCode: zipCode,\n            country: country\n        )\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "swift-naming-keep": {
+  "files": [
+   {
+    "name": "OrderApi+Mapping.swift",
+    "code": "import Foundation\n\nextension OrderApi {\n    func toOrder() -> Order {\n        Order(\n            Id: id!,\n            CustomerId: customer.id!,\n            CustomerName: customer.name,\n            ShippingAddress: shipping.toAddress(),\n            Status: status\n        )\n    }\n}\n\nextension AddressApi {\n    func toAddress() -> Address {\n        Address(\n            Street: street,\n            City: city,\n            PostalCode: zipCode,\n            Country: country\n        )\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "swift-naming-convention": {
+  "files": [
+   {
+    "name": "OrderApi+Mapping.swift",
+    "code": "import Foundation\n\nextension OrderApi {\n    func toOrder() -> Order {\n        Order(\n            id: id!,\n            customerId: customer.id!,\n            customerName: customer.name,\n            shippingAddress: shipping.toAddress(),\n            status: status\n        )\n    }\n}\n\nextension AddressApi {\n    func toAddress() -> Address {\n        Address(\n            street: street,\n            city: city,\n            postalCode: zipCode,\n            country: country\n        )\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "go-functions": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\n// MapOrderApiToOrder maps a OrderApi to a Order.\nfunc MapOrderApiToOrder(source OrderApi) Order {\n\treturn mapOrderApiToOrder(source)\n}\n\nfunc mapOrderApiToOrder(source OrderApi) Order {\n\treturn Order{\n\t\t// \"Id\" is required: panics if the source is missing\n\t\tID: *source.ID,\n\t\t// \"CustomerId\" is required: panics if the source is missing\n\t\tCustomerID: *source.Customer.ID,\n\t\tCustomerName: pointerTo(source.Customer.Name),\n\t\tShippingAddress: pointerTo(mapAddressApiToAddress(source.Shipping)),\n\t\tStatus: pointerTo(source.Status),\n\t}\n}\n\nfunc mapAddressApiToAddress(source AddressApi) Address {\n\treturn Address{\n\t\tStreet: pointerTo(source.Street),\n\t\tCity: pointerTo(source.City),\n\t\tPostalCode: pointerTo(source.ZipCode),\n\t\tCountry: pointerTo(source.Country),\n\t}\n}\n\nfunc pointerTo[T any](value T) *T {\n\treturn &value\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "go-naming-keep": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\n// MapOrderApiToOrder maps a OrderApi to a Order.\nfunc MapOrderApiToOrder(source OrderApi) Order {\n\treturn mapOrderApiToOrder(source)\n}\n\nfunc mapOrderApiToOrder(source OrderApi) Order {\n\treturn Order{\n\t\t// \"Id\" is required: panics if the source is missing\n\t\tId: *source.id,\n\t\t// \"CustomerId\" is required: panics if the source is missing\n\t\tCustomerId: *source.customer.id,\n\t\tCustomerName: pointerTo(source.customer.name),\n\t\tShippingAddress: pointerTo(mapAddressApiToAddress(source.shipping)),\n\t\tStatus: pointerTo(source.status),\n\t}\n}\n\nfunc mapAddressApiToAddress(source AddressApi) Address {\n\treturn Address{\n\t\tStreet: pointerTo(source.street),\n\t\tCity: pointerTo(source.city),\n\t\tPostalCode: pointerTo(source.zipCode),\n\t\tCountry: pointerTo(source.country),\n\t}\n}\n\nfunc pointerTo[T any](value T) *T {\n\treturn &value\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "go-naming-convention": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\n// MapOrderApiToOrder maps a OrderApi to a Order.\nfunc MapOrderApiToOrder(source OrderApi) Order {\n\treturn mapOrderApiToOrder(source)\n}\n\nfunc mapOrderApiToOrder(source OrderApi) Order {\n\treturn Order{\n\t\t// \"Id\" is required: panics if the source is missing\n\t\tID: *source.ID,\n\t\t// \"CustomerId\" is required: panics if the source is missing\n\t\tCustomerID: *source.Customer.ID,\n\t\tCustomerName: pointerTo(source.Customer.Name),\n\t\tShippingAddress: pointerTo(mapAddressApiToAddress(source.Shipping)),\n\t\tStatus: pointerTo(source.Status),\n\t}\n}\n\nfunc mapAddressApiToAddress(source AddressApi) Address {\n\treturn Address{\n\t\tStreet: pointerTo(source.Street),\n\t\tCity: pointerTo(source.City),\n\t\tPostalCode: pointerTo(source.ZipCode),\n\t\tCountry: pointerTo(source.Country),\n\t}\n}\n\nfunc pointerTo[T any](value T) *T {\n\treturn &value\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "rust-from": {
+  "files": [
+   {
+    "name": "order_api_mapping.rs",
+    "code": "use crate::models::{Address, AddressApi, Order, OrderApi};\n\nimpl From<&OrderApi> for Order {\n    fn from(source: &OrderApi) -> Self {\n        Self {\n            id: source.id.expect(\"a required value is missing in the source\"),\n            customer_id: source.customer.id.expect(\"a required value is missing in the source\"),\n            customer_name: Some(source.customer.name.clone()),\n            shipping_address: Some(Address::from(&source.shipping)),\n            status: Some(source.status.clone()),\n        }\n    }\n}\n\nimpl From<&AddressApi> for Address {\n    fn from(source: &AddressApi) -> Self {\n        Self {\n            street: Some(source.street.clone()),\n            city: Some(source.city.clone()),\n            postal_code: Some(source.zip_code.clone()),\n            country: Some(source.country.clone()),\n        }\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "rust-naming-keep": {
+  "files": [
+   {
+    "name": "order_api_mapping.rs",
+    "code": "use crate::models::{Address, AddressApi, Order, OrderApi};\n\nimpl From<&OrderApi> for Order {\n    fn from(source: &OrderApi) -> Self {\n        Self {\n            Id: source.id.expect(\"a required value is missing in the source\"),\n            CustomerId: source.customer.id.expect(\"a required value is missing in the source\"),\n            CustomerName: Some(source.customer.name.clone()),\n            ShippingAddress: Some(Address::from(&source.shipping)),\n            Status: Some(source.status.clone()),\n        }\n    }\n}\n\nimpl From<&AddressApi> for Address {\n    fn from(source: &AddressApi) -> Self {\n        Self {\n            Street: Some(source.street.clone()),\n            City: Some(source.city.clone()),\n            PostalCode: Some(source.zipCode.clone()),\n            Country: Some(source.country.clone()),\n        }\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "rust-naming-convention": {
+  "files": [
+   {
+    "name": "order_api_mapping.rs",
+    "code": "use crate::models::{Address, AddressApi, Order, OrderApi};\n\nimpl From<&OrderApi> for Order {\n    fn from(source: &OrderApi) -> Self {\n        Self {\n            id: source.id.expect(\"a required value is missing in the source\"),\n            customer_id: source.customer.id.expect(\"a required value is missing in the source\"),\n            customer_name: Some(source.customer.name.clone()),\n            shipping_address: Some(Address::from(&source.shipping)),\n            status: Some(source.status.clone()),\n        }\n    }\n}\n\nimpl From<&AddressApi> for Address {\n    fn from(source: &AddressApi) -> Self {\n        Self {\n            street: Some(source.street.clone()),\n            city: Some(source.city.clone()),\n            postal_code: Some(source.zip_code.clone()),\n            country: Some(source.country.clone()),\n        }\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "php-static": {
+  "files": [
+   {
+    "name": "OrderApiMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class OrderApiMapper\n{\n    public static function toOrder(OrderApi $source): Order\n    {\n        $target = new Order();\n        $target->id = $source->getId() ?? throw new \\InvalidArgumentException('A required value is missing in the source.');\n        $target->customerId = $source->getCustomer()->getId() ?? throw new \\InvalidArgumentException('A required value is missing in the source.');\n        $target->customerName = $source->getCustomer()->getName();\n        $target->shippingAddress = self::toAddress($source->getShipping());\n        $target->status = $source->getStatus();\n        return $target;\n    }\n\n    public static function toAddress(AddressApi $source): Address\n    {\n        $target = new Address();\n        $target->street = $source->getStreet();\n        $target->city = $source->getCity();\n        $target->postalCode = $source->getZipCode();\n        $target->country = $source->getCountry();\n        return $target;\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "php-naming-keep": {
+  "files": [
+   {
+    "name": "OrderApiMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class OrderApiMapper\n{\n    public static function toOrder(OrderApi $source): Order\n    {\n        $target = new Order();\n        $target->Id = $source->getId() ?? throw new \\InvalidArgumentException('A required value is missing in the source.');\n        $target->CustomerId = $source->getCustomer()->getId() ?? throw new \\InvalidArgumentException('A required value is missing in the source.');\n        $target->CustomerName = $source->getCustomer()->getName();\n        $target->ShippingAddress = self::toAddress($source->getShipping());\n        $target->Status = $source->getStatus();\n        return $target;\n    }\n\n    public static function toAddress(AddressApi $source): Address\n    {\n        $target = new Address();\n        $target->Street = $source->getStreet();\n        $target->City = $source->getCity();\n        $target->PostalCode = $source->getZipCode();\n        $target->Country = $source->getCountry();\n        return $target;\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "php-naming-convention": {
+  "files": [
+   {
+    "name": "OrderApiMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class OrderApiMapper\n{\n    public static function toOrder(OrderApi $source): Order\n    {\n        $target = new Order();\n        $target->id = $source->getId() ?? throw new \\InvalidArgumentException('A required value is missing in the source.');\n        $target->customerId = $source->getCustomer()->getId() ?? throw new \\InvalidArgumentException('A required value is missing in the source.');\n        $target->customerName = $source->getCustomer()->getName();\n        $target->shippingAddress = self::toAddress($source->getShipping());\n        $target->status = $source->getStatus();\n        return $target;\n    }\n\n    public static function toAddress(AddressApi $source): Address\n    {\n        $target = new Address();\n        $target->street = $source->getStreet();\n        $target->city = $source->getCity();\n        $target->postalCode = $source->getZipCode();\n        $target->country = $source->getCountry();\n        return $target;\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "php-sourceAccess-array": {
+  "files": [
+   {
+    "name": "OrderApiMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class OrderApiMapper\n{\n    public static function toOrder(array $source): Order\n    {\n        $target = new Order();\n        $target->id = $source['id'] ?? null ?? throw new \\InvalidArgumentException('A required value is missing in the source.');\n        $target->customerId = $source['customer']['id'] ?? null ?? throw new \\InvalidArgumentException('A required value is missing in the source.');\n        $target->customerName = $source['customer']['name'];\n        $target->shippingAddress = self::toAddress($source['shipping']);\n        $target->status = $source['status'];\n        return $target;\n    }\n\n    public static function toAddress(array $source): Address\n    {\n        $target = new Address();\n        $target->street = $source['street'];\n        $target->city = $source['city'];\n        $target->postalCode = $source['zipCode'];\n        $target->country = $source['country'];\n        return $target;\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ },
+ "php-targetStyle-array": {
+  "files": [
+   {
+    "name": "OrderApiMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class OrderApiMapper\n{\n    public static function toOrder(OrderApi $source): array\n    {\n        return [\n            'Id' => $source->getId() ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n            'CustomerId' => $source->getCustomer()->getId() ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n            'CustomerName' => $source->getCustomer()->getName(),\n            'ShippingAddress' => self::toAddress($source->getShipping()),\n            'Status' => $source->getStatus(),\n        ];\n    }\n\n    public static function toAddress(AddressApi $source): array\n    {\n        return [\n            'Street' => $source->getStreet(),\n            'City' => $source->getCity(),\n            'PostalCode' => $source->getZipCode(),\n            'Country' => $source->getCountry(),\n        ];\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "Id"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "CustomerId"
+    }
+   }
+  ]
+ }
+}

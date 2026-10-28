@@ -1,0 +1,5644 @@
+[
+ {
+  "args": [
+   {
+    "root": "A->B",
+    "mappings": [
+     {
+      "id": "A->B",
+      "source": "A",
+      "target": "B",
+      "fields": [
+       {
+        "target": "firstName",
+        "sources": [
+         [
+          "fullName"
+         ]
+        ],
+        "transform": {
+         "kind": "split",
+         "separator": " ",
+         "part": 0
+        },
+        "status": "pending",
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "split"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "fullName"
+           ]
+          ],
+          "transform": {
+           "kind": "split",
+           "separator": " ",
+           "part": 0
+          },
+          "score": 0.6,
+          "confidence": "review",
+          "reasons": [
+           {
+            "code": "split"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "lastName",
+        "sources": [
+         [
+          "fullName"
+         ]
+        ],
+        "transform": {
+         "kind": "split",
+         "separator": " ",
+         "part": "rest"
+        },
+        "status": "pending",
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "split"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "fullName"
+           ]
+          ],
+          "transform": {
+           "kind": "split",
+           "separator": " ",
+           "part": "rest"
+          },
+          "score": 0.6,
+          "confidence": "review",
+          "reasons": [
+           {
+            "code": "split"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "extra",
+        "sources": [
+         [
+          "extra"
+         ]
+        ],
+        "transform": {
+         "kind": "object",
+         "mapping": "AExtra->X"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "nestedModel"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "extra"
+           ]
+          ],
+          "transform": {
+           "kind": "object",
+           "mapping": "AExtra->X"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "nestedModel"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     },
+     {
+      "id": "AExtra->X",
+      "source": "AExtra",
+      "target": "X",
+      "fields": [
+       {
+        "target": "x",
+        "sources": [
+         [
+          "x"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "x"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "A->B"
+  ],
+  "result": {
+   "root": "A->B",
+   "mappings": [
+    {
+     "id": "A->B",
+     "source": "A",
+     "target": "B",
+     "fields": [
+      {
+       "target": "firstName",
+       "sources": [
+        [
+         "fullName"
+        ]
+       ],
+       "transform": {
+        "kind": "split",
+        "separator": " ",
+        "part": 0
+       },
+       "status": "active",
+       "confidence": "review",
+       "reasons": [
+        {
+         "code": "split"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "fullName"
+          ]
+         ],
+         "transform": {
+          "kind": "split",
+          "separator": " ",
+          "part": 0
+         },
+         "score": 0.6,
+         "confidence": "review",
+         "reasons": [
+          {
+           "code": "split"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      },
+      {
+       "target": "lastName",
+       "sources": [
+        [
+         "fullName"
+        ]
+       ],
+       "transform": {
+        "kind": "split",
+        "separator": " ",
+        "part": "rest"
+       },
+       "status": "active",
+       "confidence": "review",
+       "reasons": [
+        {
+         "code": "split"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "fullName"
+          ]
+         ],
+         "transform": {
+          "kind": "split",
+          "separator": " ",
+          "part": "rest"
+         },
+         "score": 0.6,
+         "confidence": "review",
+         "reasons": [
+          {
+           "code": "split"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      },
+      {
+       "target": "extra",
+       "sources": [
+        [
+         "extra"
+        ]
+       ],
+       "transform": {
+        "kind": "object",
+        "mapping": "AExtra->X"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "nestedModel"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "extra"
+          ]
+         ],
+         "transform": {
+          "kind": "object",
+          "mapping": "AExtra->X"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "nestedModel"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    },
+    {
+     "id": "AExtra->X",
+     "source": "AExtra",
+     "target": "X",
+     "fields": [
+      {
+       "target": "x",
+       "sources": [
+        [
+         "x"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "x"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "UserDto->User",
+    "mappings": [
+     {
+      "id": "UserDto->User",
+      "source": "UserDto",
+      "target": "User",
+      "fields": [
+       {
+        "target": "id",
+        "sources": [
+         [
+          "userId"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "modelContext"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "userId"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.9,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "modelContext"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "firstName",
+        "sources": [
+         [
+          "firstName"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "firstName"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "lastName",
+        "sources": [
+         [
+          "lastName"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "lastName"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "email",
+        "sources": [
+         [
+          "emailAddress"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "abbreviation"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "emailAddress"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.93,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "abbreviation"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "createdAt",
+        "sources": [
+         [
+          "createdAt"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "typeFallible"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "createdAt"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.88,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "typeFallible"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "active",
+        "sources": [
+         [
+          "isActive"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "synonym"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "isActive"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.88,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "synonym"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "UserDto->User"
+  ],
+  "result": {
+   "root": "UserDto->User",
+   "mappings": [
+    {
+     "id": "UserDto->User",
+     "source": "UserDto",
+     "target": "User",
+     "fields": [
+      {
+       "target": "id",
+       "sources": [
+        [
+         "userId"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "modelContext"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "userId"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.9,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "modelContext"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "firstName",
+       "sources": [
+        [
+         "firstName"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "firstName"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "lastName",
+       "sources": [
+        [
+         "lastName"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "lastName"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "email",
+       "sources": [
+        [
+         "emailAddress"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "abbreviation"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "emailAddress"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.93,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "abbreviation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "createdAt",
+       "sources": [
+        [
+         "createdAt"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "typeFallible"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "createdAt"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.88,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "typeFallible"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "active",
+       "sources": [
+        [
+         "isActive"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "synonym"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "isActive"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.88,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "synonym"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "CustomerResponse->Customer",
+    "mappings": [
+     {
+      "id": "CustomerResponse->Customer",
+      "source": "CustomerResponse",
+      "target": "Customer",
+      "fields": [
+       {
+        "target": "customerId",
+        "sources": [
+         [
+          "customer_id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "customer_id"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.97,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameWords"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "firstName",
+        "sources": [
+         [
+          "given_name"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "synonym"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "given_name"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.88,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "synonym"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "lastName",
+        "sources": [
+         [
+          "surname"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "abbreviation"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "surname"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.93,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "abbreviation"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "email",
+        "sources": [
+         [
+          "mail"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "abbreviation"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "mail"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.93,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "abbreviation"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "birthDate",
+        "sources": [
+         [
+          "dob"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "abbreviation"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "dob"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.93,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "abbreviation"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "phone",
+        "sources": [
+         [
+          "tel"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "abbreviation"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "tel"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.93,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "abbreviation"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "orderQuantity",
+        "sources": [
+         [
+          "qty_orders"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "abbreviation"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "qty_orders"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.93,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "abbreviation"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "createdAt",
+        "sources": [
+         [
+          "creation_date"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "synonym"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "creation_date"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.88,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "synonym"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "CustomerResponse->Customer"
+  ],
+  "result": {
+   "root": "CustomerResponse->Customer",
+   "mappings": [
+    {
+     "id": "CustomerResponse->Customer",
+     "source": "CustomerResponse",
+     "target": "Customer",
+     "fields": [
+      {
+       "target": "customerId",
+       "sources": [
+        [
+         "customer_id"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameWords"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "customer_id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.97,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameWords"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "firstName",
+       "sources": [
+        [
+         "given_name"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "synonym"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "given_name"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.88,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "synonym"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "lastName",
+       "sources": [
+        [
+         "surname"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "abbreviation"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "surname"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.93,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "abbreviation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "email",
+       "sources": [
+        [
+         "mail"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "abbreviation"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "mail"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.93,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "abbreviation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "birthDate",
+       "sources": [
+        [
+         "dob"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "abbreviation"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "dob"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.93,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "abbreviation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "phone",
+       "sources": [
+        [
+         "tel"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "abbreviation"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "tel"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.93,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "abbreviation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "orderQuantity",
+       "sources": [
+        [
+         "qty_orders"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "abbreviation"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "qty_orders"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.93,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "abbreviation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "createdAt",
+       "sources": [
+        [
+         "creation_date"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "synonym"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "creation_date"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.88,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "synonym"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "OrderApi->Order",
+    "mappings": [
+     {
+      "id": "OrderApi->Order",
+      "source": "OrderApi",
+      "target": "Order",
+      "fields": [
+       {
+        "target": "id",
+        "sources": [
+         [
+          "orderId"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "modelContext"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "orderId"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.9,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "modelContext"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "placedAt",
+        "sources": [
+         [
+          "placedAt"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "placedAt"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "lines",
+        "sources": [
+         [
+          "items"
+         ]
+        ],
+        "transform": {
+         "kind": "collection",
+         "mapping": "Item->OrderLine"
+        },
+        "status": "pending",
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "synonym"
+         },
+         {
+          "code": "nestedModel"
+         },
+         {
+          "code": "collection"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "items"
+           ]
+          ],
+          "transform": {
+           "kind": "collection",
+           "mapping": "Item->OrderLine"
+          },
+          "score": 0.666,
+          "confidence": "review",
+          "reasons": [
+           {
+            "code": "synonym"
+           },
+           {
+            "code": "nestedModel"
+           },
+           {
+            "code": "collection"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "tags",
+        "sources": [
+         [
+          "tags"
+         ]
+        ],
+        "transform": {
+         "kind": "collection"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "collection"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "tags"
+           ]
+          ],
+          "transform": {
+           "kind": "collection"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "collection"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "coupon",
+        "sources": [
+         [
+          "coupon"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "typeFallible"
+         },
+         {
+          "code": "nullToRequired"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "coupon"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.8536,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "typeFallible"
+           },
+           {
+            "code": "nullToRequired"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     },
+     {
+      "id": "Item->OrderLine",
+      "source": "Item",
+      "target": "OrderLine",
+      "fields": [
+       {
+        "target": "productId",
+        "sources": [
+         [
+          "productId"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "productId"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "name",
+        "sources": [
+         [
+          "title"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "probable",
+        "reasons": [
+         {
+          "code": "synonym"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "title"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.74,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "synonym"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "quantity",
+        "sources": [
+         [
+          "quantity"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "quantity"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "price",
+        "sources": [
+         [
+          "unitPrice"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "pending",
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "containsName",
+          "params": {
+           "similarity": 77
+          }
+         },
+         {
+          "code": "typeConversion"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "unitPrice"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.525,
+          "confidence": "review",
+          "reasons": [
+           {
+            "code": "containsName",
+            "params": {
+             "similarity": 77
+            }
+           },
+           {
+            "code": "typeConversion"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "OrderApi->Order"
+  ],
+  "result": {
+   "root": "OrderApi->Order",
+   "mappings": [
+    {
+     "id": "OrderApi->Order",
+     "source": "OrderApi",
+     "target": "Order",
+     "fields": [
+      {
+       "target": "id",
+       "sources": [
+        [
+         "orderId"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "modelContext"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "orderId"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.9,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "modelContext"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "placedAt",
+       "sources": [
+        [
+         "placedAt"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "placedAt"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "lines",
+       "sources": [
+        [
+         "items"
+        ]
+       ],
+       "transform": {
+        "kind": "collection",
+        "mapping": "Item->OrderLine"
+       },
+       "status": "active",
+       "confidence": "review",
+       "reasons": [
+        {
+         "code": "synonym"
+        },
+        {
+         "code": "nestedModel"
+        },
+        {
+         "code": "collection"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "items"
+          ]
+         ],
+         "transform": {
+          "kind": "collection",
+          "mapping": "Item->OrderLine"
+         },
+         "score": 0.666,
+         "confidence": "review",
+         "reasons": [
+          {
+           "code": "synonym"
+          },
+          {
+           "code": "nestedModel"
+          },
+          {
+           "code": "collection"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      },
+      {
+       "target": "tags",
+       "sources": [
+        [
+         "tags"
+        ]
+       ],
+       "transform": {
+        "kind": "collection"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "collection"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "tags"
+          ]
+         ],
+         "transform": {
+          "kind": "collection"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "collection"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "coupon",
+       "sources": [
+        [
+         "coupon"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "typeFallible"
+        },
+        {
+         "code": "nullToRequired"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "coupon"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.8536,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "typeFallible"
+          },
+          {
+           "code": "nullToRequired"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    },
+    {
+     "id": "Item->OrderLine",
+     "source": "Item",
+     "target": "OrderLine",
+     "fields": [
+      {
+       "target": "productId",
+       "sources": [
+        [
+         "productId"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "productId"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "name",
+       "sources": [
+        [
+         "title"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "probable",
+       "reasons": [
+        {
+         "code": "synonym"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "title"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.74,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "synonym"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "quantity",
+       "sources": [
+        [
+         "quantity"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "quantity"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "price",
+       "sources": [
+        [
+         "unitPrice"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "pending",
+       "confidence": "review",
+       "reasons": [
+        {
+         "code": "containsName",
+         "params": {
+          "similarity": 77
+         }
+        },
+        {
+         "code": "typeConversion"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "unitPrice"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.525,
+         "confidence": "review",
+         "reasons": [
+          {
+           "code": "containsName",
+           "params": {
+            "similarity": 77
+           }
+          },
+          {
+           "code": "typeConversion"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "OrderApi->Order",
+    "mappings": [
+     {
+      "id": "OrderApi->Order",
+      "source": "OrderApi",
+      "target": "Order",
+      "fields": [
+       {
+        "target": "id",
+        "sources": [
+         [
+          "orderId"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "modelContext"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "orderId"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.9,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "modelContext"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "placedAt",
+        "sources": [
+         [
+          "placedAt"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "placedAt"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "lines",
+        "sources": [
+         [
+          "items"
+         ]
+        ],
+        "transform": {
+         "kind": "collection",
+         "mapping": "Item->OrderLine"
+        },
+        "status": "active",
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "synonym"
+         },
+         {
+          "code": "nestedModel"
+         },
+         {
+          "code": "collection"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "items"
+           ]
+          ],
+          "transform": {
+           "kind": "collection",
+           "mapping": "Item->OrderLine"
+          },
+          "score": 0.666,
+          "confidence": "review",
+          "reasons": [
+           {
+            "code": "synonym"
+           },
+           {
+            "code": "nestedModel"
+           },
+           {
+            "code": "collection"
+           }
+          ]
+         }
+        ],
+        "manual": true
+       },
+       {
+        "target": "tags",
+        "sources": [
+         [
+          "tags"
+         ]
+        ],
+        "transform": {
+         "kind": "collection"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "collection"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "tags"
+           ]
+          ],
+          "transform": {
+           "kind": "collection"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "collection"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "coupon",
+        "sources": [
+         [
+          "coupon"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "typeFallible"
+         },
+         {
+          "code": "nullToRequired"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "coupon"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.8536,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "typeFallible"
+           },
+           {
+            "code": "nullToRequired"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     },
+     {
+      "id": "Item->OrderLine",
+      "source": "Item",
+      "target": "OrderLine",
+      "fields": [
+       {
+        "target": "productId",
+        "sources": [
+         [
+          "productId"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "productId"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "name",
+        "sources": [
+         [
+          "title"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "probable",
+        "reasons": [
+         {
+          "code": "synonym"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "title"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.74,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "synonym"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "quantity",
+        "sources": [
+         [
+          "quantity"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "quantity"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "price",
+        "sources": [
+         [
+          "unitPrice"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "pending",
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "containsName",
+          "params": {
+           "similarity": 77
+          }
+         },
+         {
+          "code": "typeConversion"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "unitPrice"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.525,
+          "confidence": "review",
+          "reasons": [
+           {
+            "code": "containsName",
+            "params": {
+             "similarity": 77
+            }
+           },
+           {
+            "code": "typeConversion"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "Item->OrderLine"
+  ],
+  "result": {
+   "root": "OrderApi->Order",
+   "mappings": [
+    {
+     "id": "OrderApi->Order",
+     "source": "OrderApi",
+     "target": "Order",
+     "fields": [
+      {
+       "target": "id",
+       "sources": [
+        [
+         "orderId"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "modelContext"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "orderId"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.9,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "modelContext"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "placedAt",
+       "sources": [
+        [
+         "placedAt"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "placedAt"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "lines",
+       "sources": [
+        [
+         "items"
+        ]
+       ],
+       "transform": {
+        "kind": "collection",
+        "mapping": "Item->OrderLine"
+       },
+       "status": "active",
+       "confidence": "review",
+       "reasons": [
+        {
+         "code": "synonym"
+        },
+        {
+         "code": "nestedModel"
+        },
+        {
+         "code": "collection"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "items"
+          ]
+         ],
+         "transform": {
+          "kind": "collection",
+          "mapping": "Item->OrderLine"
+         },
+         "score": 0.666,
+         "confidence": "review",
+         "reasons": [
+          {
+           "code": "synonym"
+          },
+          {
+           "code": "nestedModel"
+          },
+          {
+           "code": "collection"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      },
+      {
+       "target": "tags",
+       "sources": [
+        [
+         "tags"
+        ]
+       ],
+       "transform": {
+        "kind": "collection"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "collection"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "tags"
+          ]
+         ],
+         "transform": {
+          "kind": "collection"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "collection"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "coupon",
+       "sources": [
+        [
+         "coupon"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "typeFallible"
+        },
+        {
+         "code": "nullToRequired"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "coupon"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.8536,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "typeFallible"
+          },
+          {
+           "code": "nullToRequired"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    },
+    {
+     "id": "Item->OrderLine",
+     "source": "Item",
+     "target": "OrderLine",
+     "fields": [
+      {
+       "target": "productId",
+       "sources": [
+        [
+         "productId"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "productId"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "name",
+       "sources": [
+        [
+         "title"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "probable",
+       "reasons": [
+        {
+         "code": "synonym"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "title"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.74,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "synonym"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "quantity",
+       "sources": [
+        [
+         "quantity"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "quantity"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "price",
+       "sources": [
+        [
+         "unitPrice"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "review",
+       "reasons": [
+        {
+         "code": "containsName",
+         "params": {
+          "similarity": 77
+         }
+        },
+        {
+         "code": "typeConversion"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "unitPrice"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.525,
+         "confidence": "review",
+         "reasons": [
+          {
+           "code": "containsName",
+           "params": {
+            "similarity": 77
+           }
+          },
+          {
+           "code": "typeConversion"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "ProductResponse->ProductModel",
+    "mappings": [
+     {
+      "id": "ProductResponse->ProductModel",
+      "source": "ProductResponse",
+      "target": "ProductModel",
+      "fields": [
+       {
+        "target": "sku",
+        "sources": [
+         [
+          "sku"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "sku"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "supplier_full_name",
+        "sources": [
+         [
+          "first_name"
+         ],
+         [
+          "last_name"
+         ]
+        ],
+        "transform": {
+         "kind": "concat",
+         "separator": " "
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "combined"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "first_name"
+           ],
+           [
+            "last_name"
+           ]
+          ],
+          "transform": {
+           "kind": "concat",
+           "separator": " "
+          },
+          "score": 0.86,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "combined"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "price",
+        "sources": [
+         [
+          "price_cents"
+         ]
+        ],
+        "transform": {
+         "kind": "arithmetic",
+         "operator": "/",
+         "operand": 100
+        },
+        "status": "active",
+        "confidence": "probable",
+        "reasons": [
+         {
+          "code": "cents"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "price_cents"
+           ]
+          ],
+          "transform": {
+           "kind": "arithmetic",
+           "operator": "/",
+           "operand": 100
+          },
+          "score": 0.8,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "cents"
+           }
+          ]
+         },
+         {
+          "sources": [
+           [
+            "price_cents"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.6034999999999999,
+          "confidence": "review",
+          "reasons": [
+           {
+            "code": "similarName",
+            "params": {
+             "similarity": 78
+            }
+           },
+           {
+            "code": "typeConversion"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "status",
+        "sources": [
+         [
+          "status"
+         ]
+        ],
+        "transform": {
+         "kind": "enum",
+         "pairs": [
+          {
+           "from": "Active",
+           "to": "ACTIVE"
+          },
+          {
+           "from": "Discontinued",
+           "to": "DISCONTINUED"
+          }
+         ]
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "typeTransform"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "status"
+           ]
+          ],
+          "transform": {
+           "kind": "enum",
+           "pairs": [
+            {
+             "from": "Active",
+             "to": "ACTIVE"
+            },
+            {
+             "from": "Discontinued",
+             "to": "DISCONTINUED"
+            }
+           ]
+          },
+          "score": 0.8666666666666667,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "typeTransform"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "active",
+        "sources": [
+         [
+          "status"
+         ]
+        ],
+        "transform": {
+         "kind": "boolean",
+         "trueValues": [
+          "Active"
+         ]
+        },
+        "status": "pending",
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "typeTransform"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "status"
+           ]
+          ],
+          "transform": {
+           "kind": "boolean",
+           "trueValues": [
+            "Active"
+           ]
+          },
+          "score": 0.62,
+          "confidence": "review",
+          "reasons": [
+           {
+            "code": "typeTransform"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "created_at",
+        "sources": [
+         [
+          "created"
+         ]
+        ],
+        "transform": {
+         "kind": "epoch",
+         "unit": "seconds"
+        },
+        "status": "pending",
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "synonym"
+         },
+         {
+          "code": "typeTransform"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "created"
+           ]
+          ],
+          "transform": {
+           "kind": "epoch",
+           "unit": "seconds"
+          },
+          "score": 0.528,
+          "confidence": "review",
+          "reasons": [
+           {
+            "code": "synonym"
+           },
+           {
+            "code": "typeTransform"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "stock",
+        "sources": [
+         [
+          "stock"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "typeFallible"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "stock"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.88,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "typeFallible"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "discount",
+        "sources": [
+         [
+          "discount"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "nullToRequired"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "discount"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.97,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "nullToRequired"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "ProductResponse->ProductModel"
+  ],
+  "result": {
+   "root": "ProductResponse->ProductModel",
+   "mappings": [
+    {
+     "id": "ProductResponse->ProductModel",
+     "source": "ProductResponse",
+     "target": "ProductModel",
+     "fields": [
+      {
+       "target": "sku",
+       "sources": [
+        [
+         "sku"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "sku"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "supplier_full_name",
+       "sources": [
+        [
+         "first_name"
+        ],
+        [
+         "last_name"
+        ]
+       ],
+       "transform": {
+        "kind": "concat",
+        "separator": " "
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "combined"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "first_name"
+          ],
+          [
+           "last_name"
+          ]
+         ],
+         "transform": {
+          "kind": "concat",
+          "separator": " "
+         },
+         "score": 0.86,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "combined"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "price",
+       "sources": [
+        [
+         "price_cents"
+        ]
+       ],
+       "transform": {
+        "kind": "arithmetic",
+        "operator": "/",
+        "operand": 100
+       },
+       "status": "active",
+       "confidence": "probable",
+       "reasons": [
+        {
+         "code": "cents"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "price_cents"
+          ]
+         ],
+         "transform": {
+          "kind": "arithmetic",
+          "operator": "/",
+          "operand": 100
+         },
+         "score": 0.8,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "cents"
+          }
+         ]
+        },
+        {
+         "sources": [
+          [
+           "price_cents"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.6034999999999999,
+         "confidence": "review",
+         "reasons": [
+          {
+           "code": "similarName",
+           "params": {
+            "similarity": 78
+           }
+          },
+          {
+           "code": "typeConversion"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "status",
+       "sources": [
+        [
+         "status"
+        ]
+       ],
+       "transform": {
+        "kind": "enum",
+        "pairs": [
+         {
+          "from": "Active",
+          "to": "ACTIVE"
+         },
+         {
+          "from": "Discontinued",
+          "to": "DISCONTINUED"
+         }
+        ]
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "typeTransform"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "status"
+          ]
+         ],
+         "transform": {
+          "kind": "enum",
+          "pairs": [
+           {
+            "from": "Active",
+            "to": "ACTIVE"
+           },
+           {
+            "from": "Discontinued",
+            "to": "DISCONTINUED"
+           }
+          ]
+         },
+         "score": 0.8666666666666667,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "typeTransform"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "active",
+       "sources": [
+        [
+         "status"
+        ]
+       ],
+       "transform": {
+        "kind": "boolean",
+        "trueValues": [
+         "Active"
+        ]
+       },
+       "status": "active",
+       "confidence": "review",
+       "reasons": [
+        {
+         "code": "typeTransform"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "status"
+          ]
+         ],
+         "transform": {
+          "kind": "boolean",
+          "trueValues": [
+           "Active"
+          ]
+         },
+         "score": 0.62,
+         "confidence": "review",
+         "reasons": [
+          {
+           "code": "typeTransform"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      },
+      {
+       "target": "created_at",
+       "sources": [
+        [
+         "created"
+        ]
+       ],
+       "transform": {
+        "kind": "epoch",
+        "unit": "seconds"
+       },
+       "status": "active",
+       "confidence": "review",
+       "reasons": [
+        {
+         "code": "synonym"
+        },
+        {
+         "code": "typeTransform"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "created"
+          ]
+         ],
+         "transform": {
+          "kind": "epoch",
+          "unit": "seconds"
+         },
+         "score": 0.528,
+         "confidence": "review",
+         "reasons": [
+          {
+           "code": "synonym"
+          },
+          {
+           "code": "typeTransform"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      },
+      {
+       "target": "stock",
+       "sources": [
+        [
+         "stock"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "typeFallible"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "stock"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.88,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "typeFallible"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "discount",
+       "sources": [
+        [
+         "discount"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "nullToRequired"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "discount"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.97,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "nullToRequired"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "OrderApi->Order",
+    "mappings": [
+     {
+      "id": "OrderApi->Order",
+      "source": "OrderApi",
+      "target": "Order",
+      "fields": [
+       {
+        "target": "Id",
+        "sources": [
+         [
+          "id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         },
+         {
+          "code": "nullToRequired"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "id"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.9409,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameWords"
+           },
+           {
+            "code": "nullToRequired"
+           }
+          ]
+         },
+         {
+          "sources": [
+           [
+            "customer",
+            "id"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.7406764799999999,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "sameWords"
+           },
+           {
+            "code": "flattened",
+            "params": {
+             "path": "customer.id"
+            }
+           },
+           {
+            "code": "nullToRequired"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "CustomerId",
+        "sources": [
+         [
+          "customer",
+          "id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         },
+         {
+          "code": "flattened",
+          "params": {
+           "path": "customer.id"
+          }
+         },
+         {
+          "code": "nullToRequired"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "customer",
+            "id"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.903264,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameWords"
+           },
+           {
+            "code": "flattened",
+            "params": {
+             "path": "customer.id"
+            }
+           },
+           {
+            "code": "nullToRequired"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "CustomerName",
+        "sources": [
+         [
+          "customer",
+          "name"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         },
+         {
+          "code": "flattened",
+          "params": {
+           "path": "customer.name"
+          }
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "customer",
+            "name"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.9311999999999999,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameWords"
+           },
+           {
+            "code": "flattened",
+            "params": {
+             "path": "customer.name"
+            }
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "ShippingAddress",
+        "sources": [
+         [
+          "shipping"
+         ]
+        ],
+        "transform": {
+         "kind": "object",
+         "mapping": "AddressApi->Address"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "modelContext"
+         },
+         {
+          "code": "nestedModel"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "shipping"
+           ]
+          ],
+          "transform": {
+           "kind": "object",
+           "mapping": "AddressApi->Address"
+          },
+          "score": 0.86,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "modelContext"
+           },
+           {
+            "code": "nestedModel"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "Status",
+        "sources": [
+         [
+          "status"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "status"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.97,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameWords"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     },
+     {
+      "id": "AddressApi->Address",
+      "source": "AddressApi",
+      "target": "Address",
+      "fields": [
+       {
+        "target": "Street",
+        "sources": [
+         [
+          "street"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "street"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.97,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameWords"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "City",
+        "sources": [
+         [
+          "city"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "city"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.97,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameWords"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "PostalCode",
+        "sources": [
+         [
+          "zipCode"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "probable",
+        "reasons": [
+         {
+          "code": "containsName",
+          "params": {
+           "similarity": 100
+          }
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "zipCode"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.75,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "containsName",
+            "params": {
+             "similarity": 100
+            }
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "Country",
+        "sources": [
+         [
+          "country"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "country"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.97,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameWords"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "OrderApi->Order"
+  ],
+  "result": {
+   "root": "OrderApi->Order",
+   "mappings": [
+    {
+     "id": "OrderApi->Order",
+     "source": "OrderApi",
+     "target": "Order",
+     "fields": [
+      {
+       "target": "Id",
+       "sources": [
+        [
+         "id"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameWords"
+        },
+        {
+         "code": "nullToRequired"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.9409,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameWords"
+          },
+          {
+           "code": "nullToRequired"
+          }
+         ]
+        },
+        {
+         "sources": [
+          [
+           "customer",
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.7406764799999999,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "sameWords"
+          },
+          {
+           "code": "flattened",
+           "params": {
+            "path": "customer.id"
+           }
+          },
+          {
+           "code": "nullToRequired"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "CustomerId",
+       "sources": [
+        [
+         "customer",
+         "id"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameWords"
+        },
+        {
+         "code": "flattened",
+         "params": {
+          "path": "customer.id"
+         }
+        },
+        {
+         "code": "nullToRequired"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "customer",
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.903264,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameWords"
+          },
+          {
+           "code": "flattened",
+           "params": {
+            "path": "customer.id"
+           }
+          },
+          {
+           "code": "nullToRequired"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "CustomerName",
+       "sources": [
+        [
+         "customer",
+         "name"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameWords"
+        },
+        {
+         "code": "flattened",
+         "params": {
+          "path": "customer.name"
+         }
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "customer",
+           "name"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.9311999999999999,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameWords"
+          },
+          {
+           "code": "flattened",
+           "params": {
+            "path": "customer.name"
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "ShippingAddress",
+       "sources": [
+        [
+         "shipping"
+        ]
+       ],
+       "transform": {
+        "kind": "object",
+        "mapping": "AddressApi->Address"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "modelContext"
+        },
+        {
+         "code": "nestedModel"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "shipping"
+          ]
+         ],
+         "transform": {
+          "kind": "object",
+          "mapping": "AddressApi->Address"
+         },
+         "score": 0.86,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "modelContext"
+          },
+          {
+           "code": "nestedModel"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "Status",
+       "sources": [
+        [
+         "status"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameWords"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "status"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.97,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameWords"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    },
+    {
+     "id": "AddressApi->Address",
+     "source": "AddressApi",
+     "target": "Address",
+     "fields": [
+      {
+       "target": "Street",
+       "sources": [
+        [
+         "street"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameWords"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "street"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.97,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameWords"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "City",
+       "sources": [
+        [
+         "city"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameWords"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "city"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.97,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameWords"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "PostalCode",
+       "sources": [
+        [
+         "zipCode"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "probable",
+       "reasons": [
+        {
+         "code": "containsName",
+         "params": {
+          "similarity": 100
+         }
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "zipCode"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.75,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "containsName",
+           "params": {
+            "similarity": 100
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "Country",
+       "sources": [
+        [
+         "country"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameWords"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "country"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.97,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameWords"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "OrderApi->Order",
+    "mappings": [
+     {
+      "id": "OrderApi->Order",
+      "source": "OrderApi",
+      "target": "Order",
+      "fields": [
+       {
+        "target": "Id",
+        "sources": [
+         [
+          "id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         },
+         {
+          "code": "nullToRequired"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "id"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.9409,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameWords"
+           },
+           {
+            "code": "nullToRequired"
+           }
+          ]
+         },
+         {
+          "sources": [
+           [
+            "customer",
+            "id"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.7406764799999999,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "sameWords"
+           },
+           {
+            "code": "flattened",
+            "params": {
+             "path": "customer.id"
+            }
+           },
+           {
+            "code": "nullToRequired"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "CustomerId",
+        "sources": [
+         [
+          "customer",
+          "id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         },
+         {
+          "code": "flattened",
+          "params": {
+           "path": "customer.id"
+          }
+         },
+         {
+          "code": "nullToRequired"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "customer",
+            "id"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.903264,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameWords"
+           },
+           {
+            "code": "flattened",
+            "params": {
+             "path": "customer.id"
+            }
+           },
+           {
+            "code": "nullToRequired"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "CustomerName",
+        "sources": [
+         [
+          "customer",
+          "name"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         },
+         {
+          "code": "flattened",
+          "params": {
+           "path": "customer.name"
+          }
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "customer",
+            "name"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.9311999999999999,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameWords"
+           },
+           {
+            "code": "flattened",
+            "params": {
+             "path": "customer.name"
+            }
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "ShippingAddress",
+        "sources": [
+         [
+          "shipping"
+         ]
+        ],
+        "transform": {
+         "kind": "object",
+         "mapping": "AddressApi->Address"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "modelContext"
+         },
+         {
+          "code": "nestedModel"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "shipping"
+           ]
+          ],
+          "transform": {
+           "kind": "object",
+           "mapping": "AddressApi->Address"
+          },
+          "score": 0.86,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "modelContext"
+           },
+           {
+            "code": "nestedModel"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "Status",
+        "sources": [
+         [
+          "status"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "status"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.97,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameWords"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     },
+     {
+      "id": "AddressApi->Address",
+      "source": "AddressApi",
+      "target": "Address",
+      "fields": [
+       {
+        "target": "Street",
+        "sources": [
+         [
+          "street"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "street"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.97,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameWords"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "City",
+        "sources": [
+         [
+          "city"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "city"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.97,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameWords"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "PostalCode",
+        "sources": [
+         [
+          "zipCode"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "probable",
+        "reasons": [
+         {
+          "code": "containsName",
+          "params": {
+           "similarity": 100
+          }
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "zipCode"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.75,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "containsName",
+            "params": {
+             "similarity": 100
+            }
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "Country",
+        "sources": [
+         [
+          "country"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "country"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.97,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameWords"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "AddressApi->Address"
+  ],
+  "result": {
+   "root": "OrderApi->Order",
+   "mappings": [
+    {
+     "id": "OrderApi->Order",
+     "source": "OrderApi",
+     "target": "Order",
+     "fields": [
+      {
+       "target": "Id",
+       "sources": [
+        [
+         "id"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameWords"
+        },
+        {
+         "code": "nullToRequired"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.9409,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameWords"
+          },
+          {
+           "code": "nullToRequired"
+          }
+         ]
+        },
+        {
+         "sources": [
+          [
+           "customer",
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.7406764799999999,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "sameWords"
+          },
+          {
+           "code": "flattened",
+           "params": {
+            "path": "customer.id"
+           }
+          },
+          {
+           "code": "nullToRequired"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "CustomerId",
+       "sources": [
+        [
+         "customer",
+         "id"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameWords"
+        },
+        {
+         "code": "flattened",
+         "params": {
+          "path": "customer.id"
+         }
+        },
+        {
+         "code": "nullToRequired"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "customer",
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.903264,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameWords"
+          },
+          {
+           "code": "flattened",
+           "params": {
+            "path": "customer.id"
+           }
+          },
+          {
+           "code": "nullToRequired"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "CustomerName",
+       "sources": [
+        [
+         "customer",
+         "name"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameWords"
+        },
+        {
+         "code": "flattened",
+         "params": {
+          "path": "customer.name"
+         }
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "customer",
+           "name"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.9311999999999999,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameWords"
+          },
+          {
+           "code": "flattened",
+           "params": {
+            "path": "customer.name"
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "ShippingAddress",
+       "sources": [
+        [
+         "shipping"
+        ]
+       ],
+       "transform": {
+        "kind": "object",
+        "mapping": "AddressApi->Address"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "modelContext"
+        },
+        {
+         "code": "nestedModel"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "shipping"
+          ]
+         ],
+         "transform": {
+          "kind": "object",
+          "mapping": "AddressApi->Address"
+         },
+         "score": 0.86,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "modelContext"
+          },
+          {
+           "code": "nestedModel"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "Status",
+       "sources": [
+        [
+         "status"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameWords"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "status"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.97,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameWords"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    },
+    {
+     "id": "AddressApi->Address",
+     "source": "AddressApi",
+     "target": "Address",
+     "fields": [
+      {
+       "target": "Street",
+       "sources": [
+        [
+         "street"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameWords"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "street"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.97,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameWords"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "City",
+       "sources": [
+        [
+         "city"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameWords"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "city"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.97,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameWords"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "PostalCode",
+       "sources": [
+        [
+         "zipCode"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "probable",
+       "reasons": [
+        {
+         "code": "containsName",
+         "params": {
+          "similarity": 100
+         }
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "zipCode"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.75,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "containsName",
+           "params": {
+            "similarity": 100
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "Country",
+       "sources": [
+        [
+         "country"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameWords"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "country"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.97,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameWords"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ }
+]

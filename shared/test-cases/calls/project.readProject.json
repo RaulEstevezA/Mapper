@@ -1,0 +1,243 @@
+[
+ {
+  "args": [
+   "not json"
+  ],
+  "result": {
+   "ok": false,
+   "error": "notJson"
+  }
+ },
+ {
+  "args": [
+   "{\"format\":\"other\"}"
+  ],
+  "result": {
+   "ok": false,
+   "error": "notProject"
+  }
+ },
+ {
+  "args": [
+   "{\"format\":\"mapper-project\",\"version\":1,\"savedAt\":\"2026-10-28T12:00:00.000Z\",\"source\":{\"format\":\"typescript\",\"text\":\"interface UserDto { id: number; name: string }\",\"model\":\"UserDto\",\"schema\":{\"format\":\"model-schema\",\"version\":1,\"origin\":{\"format\":\"typescript\",\"language\":\"typescript\"},\"models\":[{\"name\":\"UserDto\",\"kind\":\"interface\",\"fields\":[{\"name\":\"id\",\"type\":{\"kind\":\"primitive\",\"name\":\"float\"},\"nullable\":false,\"optional\":false,\"originalType\":\"number\"},{\"name\":\"name\",\"type\":{\"kind\":\"primitive\",\"name\":\"string\"},\"nullable\":false,\"optional\":false,\"originalType\":\"string\"}]}],\"enums\":[]}},\"target\":{\"format\":\"typescript\",\"text\":\"interface User { id: number; name: string }\",\"model\":\"User\",\"schema\":{\"format\":\"model-schema\",\"version\":1,\"origin\":{\"format\":\"typescript\",\"language\":\"typescript\"},\"models\":[{\"name\":\"User\",\"kind\":\"interface\",\"fields\":[{\"name\":\"id\",\"type\":{\"kind\":\"primitive\",\"name\":\"float\"},\"nullable\":false,\"optional\":false,\"originalType\":\"number\"},{\"name\":\"name\",\"type\":{\"kind\":\"primitive\",\"name\":\"string\"},\"nullable\":false,\"optional\":false,\"originalType\":\"string\"}]}],\"enums\":[]}},\"mapping\":{\"root\":\"UserDto->User\",\"mappings\":[{\"id\":\"UserDto->User\",\"source\":\"UserDto\",\"target\":\"User\",\"fields\":[{\"target\":\"id\",\"sources\":[[\"id\"]],\"transform\":{\"kind\":\"direct\"},\"status\":\"active\",\"confidence\":\"exact\",\"reasons\":[{\"code\":\"sameName\"}],\"candidates\":[{\"sources\":[[\"id\"]],\"transform\":{\"kind\":\"direct\"},\"score\":1,\"confidence\":\"exact\",\"reasons\":[{\"code\":\"sameName\"}]}]},{\"target\":\"name\",\"sources\":[[\"name\"]],\"transform\":{\"kind\":\"eval\"},\"status\":\"active\",\"confidence\":\"exact\",\"reasons\":[{\"code\":\"sameName\"}],\"candidates\":[{\"sources\":[[\"name\"]],\"transform\":{\"kind\":\"direct\"},\"score\":1,\"confidence\":\"exact\",\"reasons\":[{\"code\":\"sameName\"}]}]}],\"ignoredSources\":[]}]},\"output\":{\"generator\":\"python\",\"mode\":\"functions\",\"naming\":\"auto\",\"options\":{\"python\":{\"modelsModule\":\"app.models\"}}}}"
+  ],
+  "result": {
+   "ok": false,
+   "error": "invalid",
+   "path": "$.mapping.mappings[0].fields[1].transform"
+  }
+ },
+ {
+  "args": [
+   "{\"format\":\"mapper-project\",\"version\":1,\"savedAt\":\"2026-10-28T12:00:00.000Z\",\"source\":{\"format\":\"typescript\",\"text\":\"interface UserDto { id: number; name: string }\",\"model\":\"UserDto\",\"schema\":{\"format\":\"model-schema\",\"version\":1,\"origin\":{\"format\":\"typescript\",\"language\":\"typescript\"},\"models\":[{\"name\":\"UserDto\",\"kind\":\"interface\",\"fields\":[{\"name\":\"id\",\"type\":{\"kind\":\"primitive\",\"name\":\"float\"},\"nullable\":false,\"optional\":false,\"originalType\":\"number\"},{\"name\":\"name\",\"type\":{\"kind\":\"primitive\",\"name\":\"string\"},\"nullable\":false,\"optional\":false,\"originalType\":\"string\"}]}],\"enums\":[]}},\"target\":{\"format\":\"typescript\",\"text\":\"interface User { id: number; name: string }\",\"model\":\"User\",\"schema\":{\"format\":\"model-schema\",\"version\":1,\"origin\":{\"format\":\"typescript\",\"language\":\"typescript\"},\"models\":[{\"name\":\"User\",\"kind\":\"interface\",\"fields\":[{\"name\":\"id\",\"type\":{\"kind\":\"primitive\",\"name\":\"float\"},\"nullable\":false,\"optional\":false,\"originalType\":\"number\"},{\"name\":\"name\",\"type\":{\"kind\":\"primitive\",\"name\":\"string\"},\"nullable\":false,\"optional\":false,\"originalType\":\"string\"}]}],\"enums\":[]}},\"mapping\":{\"root\":\"UserDto->User\",\"mappings\":[{\"id\":\"UserDto->User\",\"source\":\"UserDto\",\"target\":\"User\",\"fields\":[{\"target\":\"id\",\"sources\":[[\"id\"]],\"transform\":{\"kind\":\"direct\"},\"status\":\"active\",\"confidence\":\"exact\",\"reasons\":[{\"code\":\"sameName\"}],\"candidates\":[{\"sources\":[[\"id\"]],\"transform\":{\"kind\":\"direct\"},\"score\":1,\"confidence\":\"exact\",\"reasons\":[{\"code\":\"sameName\"}]}]},{\"target\":\"name\",\"sources\":[[\"name\"]],\"transform\":{\"kind\":\"direct\"},\"status\":\"active\",\"confidence\":\"exact\",\"reasons\":[{\"code\":\"sameName\"}],\"candidates\":[{\"sources\":[[\"name\"]],\"transform\":{\"kind\":\"direct\"},\"score\":1,\"confidence\":\"exact\",\"reasons\":[{\"code\":\"sameName\"}]}]}],\"ignoredSources\":[]}]},\"output\":{\"generator\":\"python\",\"mode\":\"functions\",\"naming\":\"auto\",\"options\":{\"python\":{\"modelsModule\":\"app.models\"}}}}"
+  ],
+  "result": {
+   "ok": true,
+   "project": {
+    "format": "mapper-project",
+    "version": 1,
+    "savedAt": "2026-10-28T12:00:00.000Z",
+    "source": {
+     "format": "typescript",
+     "text": "interface UserDto { id: number; name: string }",
+     "model": "UserDto",
+     "schema": {
+      "format": "model-schema",
+      "version": 1,
+      "origin": {
+       "format": "typescript",
+       "language": "typescript"
+      },
+      "models": [
+       {
+        "name": "UserDto",
+        "kind": "interface",
+        "fields": [
+         {
+          "name": "id",
+          "type": {
+           "kind": "primitive",
+           "name": "float"
+          },
+          "nullable": false,
+          "optional": false,
+          "originalType": "number"
+         },
+         {
+          "name": "name",
+          "type": {
+           "kind": "primitive",
+           "name": "string"
+          },
+          "nullable": false,
+          "optional": false,
+          "originalType": "string"
+         }
+        ]
+       }
+      ],
+      "enums": []
+     }
+    },
+    "target": {
+     "format": "typescript",
+     "text": "interface User { id: number; name: string }",
+     "model": "User",
+     "schema": {
+      "format": "model-schema",
+      "version": 1,
+      "origin": {
+       "format": "typescript",
+       "language": "typescript"
+      },
+      "models": [
+       {
+        "name": "User",
+        "kind": "interface",
+        "fields": [
+         {
+          "name": "id",
+          "type": {
+           "kind": "primitive",
+           "name": "float"
+          },
+          "nullable": false,
+          "optional": false,
+          "originalType": "number"
+         },
+         {
+          "name": "name",
+          "type": {
+           "kind": "primitive",
+           "name": "string"
+          },
+          "nullable": false,
+          "optional": false,
+          "originalType": "string"
+         }
+        ]
+       }
+      ],
+      "enums": []
+     }
+    },
+    "mapping": {
+     "root": "UserDto->User",
+     "mappings": [
+      {
+       "id": "UserDto->User",
+       "source": "UserDto",
+       "target": "User",
+       "fields": [
+        {
+         "target": "id",
+         "sources": [
+          [
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "status": "active",
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ],
+         "candidates": [
+          {
+           "sources": [
+            [
+             "id"
+            ]
+           ],
+           "transform": {
+            "kind": "direct"
+           },
+           "score": 1,
+           "confidence": "exact",
+           "reasons": [
+            {
+             "code": "sameName"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "target": "name",
+         "sources": [
+          [
+           "name"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "status": "active",
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ],
+         "candidates": [
+          {
+           "sources": [
+            [
+             "name"
+            ]
+           ],
+           "transform": {
+            "kind": "direct"
+           },
+           "score": 1,
+           "confidence": "exact",
+           "reasons": [
+            {
+             "code": "sameName"
+            }
+           ]
+          }
+         ]
+        }
+       ],
+       "ignoredSources": []
+      }
+     ]
+    },
+    "output": {
+     "generator": "python",
+     "mode": "functions",
+     "naming": "auto",
+     "options": {
+      "python": {
+       "modelsModule": "app.models"
+      }
+     }
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "{\"format\":\"mapper-project\",\"version\":1,\"savedAt\":\"2026-10-28T12:00:00.000Z\",\"source\":{\"format\":\"typescript\",\"text\":\"interface UserDto { id: number; name: string }\",\"model\":\"UserDto\",\"schema\":{\"format\":\"model-schema\",\"version\":1,\"origin\":{\"format\":\"typescript\",\"language\":\"typescript\"},\"models\":[{\"name\":\"UserDto\",\"kind\":\"interface\",\"fields\":[{\"name\":\"id\",\"type\":{\"kind\":\"primitive\",\"name\":\"float\"},\"nullable\":false,\"optional\":false,\"originalType\":\"number\"},{\"name\":\"name\",\"type\":{\"kind\":\"primitive\",\"name\":\"string\"},\"nullable\":false,\"optional\":false,\"originalType\":\"string\"}]}],\"enums\":[]}},\"target\":{\"format\":\"typescript\",\"text\":\"interface User { id: number; name: string }\",\"model\":\"User\",\"schema\":{\"format\":\"model-schema\",\"version\":1,\"origin\":{\"format\":\"typescript\",\"language\":\"typescript\"},\"models\":[{\"name\":\"User\",\"kind\":\"interface\",\"fields\":[{\"name\":\"id\",\"type\":{\"kind\":\"primitive\",\"name\":\"money\"},\"nullable\":false,\"optional\":false,\"originalType\":\"number\"},{\"name\":\"name\",\"type\":{\"kind\":\"primitive\",\"name\":\"string\"},\"nullable\":false,\"optional\":false,\"originalType\":\"string\"}]}],\"enums\":[]}},\"mapping\":{\"root\":\"UserDto->User\",\"mappings\":[{\"id\":\"UserDto->User\",\"source\":\"UserDto\",\"target\":\"User\",\"fields\":[{\"target\":\"id\",\"sources\":[[\"id\"]],\"transform\":{\"kind\":\"direct\"},\"status\":\"active\",\"confidence\":\"exact\",\"reasons\":[{\"code\":\"sameName\"}],\"candidates\":[{\"sources\":[[\"id\"]],\"transform\":{\"kind\":\"direct\"},\"score\":1,\"confidence\":\"exact\",\"reasons\":[{\"code\":\"sameName\"}]}]},{\"target\":\"name\",\"sources\":[[\"name\"]],\"transform\":{\"kind\":\"direct\"},\"status\":\"active\",\"confidence\":\"exact\",\"reasons\":[{\"code\":\"sameName\"}],\"candidates\":[{\"sources\":[[\"name\"]],\"transform\":{\"kind\":\"direct\"},\"score\":1,\"confidence\":\"exact\",\"reasons\":[{\"code\":\"sameName\"}]}]}],\"ignoredSources\":[]}]},\"output\":{\"generator\":\"python\",\"mode\":\"functions\",\"naming\":\"auto\",\"options\":{\"python\":{\"modelsModule\":\"app.models\"}}}}"
+  ],
+  "result": {
+   "ok": false,
+   "error": "invalid",
+   "path": "$.target.schema.models[0].fields[0].type"
+  }
+ },
+ {
+  "args": [
+   "{\"format\":\"mapper-project\",\"version\":2,\"savedAt\":\"2026-10-28T12:00:00.000Z\",\"source\":{\"format\":\"typescript\",\"text\":\"interface UserDto { id: number; name: string }\",\"model\":\"UserDto\",\"schema\":{\"format\":\"model-schema\",\"version\":1,\"origin\":{\"format\":\"typescript\",\"language\":\"typescript\"},\"models\":[{\"name\":\"UserDto\",\"kind\":\"interface\",\"fields\":[{\"name\":\"id\",\"type\":{\"kind\":\"primitive\",\"name\":\"float\"},\"nullable\":false,\"optional\":false,\"originalType\":\"number\"},{\"name\":\"name\",\"type\":{\"kind\":\"primitive\",\"name\":\"string\"},\"nullable\":false,\"optional\":false,\"originalType\":\"string\"}]}],\"enums\":[]}},\"target\":{\"format\":\"typescript\",\"text\":\"interface User { id: number; name: string }\",\"model\":\"User\",\"schema\":{\"format\":\"model-schema\",\"version\":1,\"origin\":{\"format\":\"typescript\",\"language\":\"typescript\"},\"models\":[{\"name\":\"User\",\"kind\":\"interface\",\"fields\":[{\"name\":\"id\",\"type\":{\"kind\":\"primitive\",\"name\":\"float\"},\"nullable\":false,\"optional\":false,\"originalType\":\"number\"},{\"name\":\"name\",\"type\":{\"kind\":\"primitive\",\"name\":\"string\"},\"nullable\":false,\"optional\":false,\"originalType\":\"string\"}]}],\"enums\":[]}},\"mapping\":{\"root\":\"UserDto->User\",\"mappings\":[{\"id\":\"UserDto->User\",\"source\":\"UserDto\",\"target\":\"User\",\"fields\":[{\"target\":\"id\",\"sources\":[[\"id\"]],\"transform\":{\"kind\":\"direct\"},\"status\":\"active\",\"confidence\":\"exact\",\"reasons\":[{\"code\":\"sameName\"}],\"candidates\":[{\"sources\":[[\"id\"]],\"transform\":{\"kind\":\"direct\"},\"score\":1,\"confidence\":\"exact\",\"reasons\":[{\"code\":\"sameName\"}]}]},{\"target\":\"name\",\"sources\":[[\"name\"]],\"transform\":{\"kind\":\"direct\"},\"status\":\"active\",\"confidence\":\"exact\",\"reasons\":[{\"code\":\"sameName\"}],\"candidates\":[{\"sources\":[[\"name\"]],\"transform\":{\"kind\":\"direct\"},\"score\":1,\"confidence\":\"exact\",\"reasons\":[{\"code\":\"sameName\"}]}]}],\"ignoredSources\":[]}]},\"output\":{\"generator\":\"python\",\"mode\":\"functions\",\"naming\":\"auto\",\"options\":{\"python\":{\"modelsModule\":\"app.models\"}}}}"
+  ],
+  "result": {
+   "ok": false,
+   "error": "newerVersion"
+  }
+ }
+]

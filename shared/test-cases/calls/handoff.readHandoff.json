@@ -1,0 +1,166 @@
+[
+ {
+  "args": [
+   "{"
+  ],
+  "result": null
+ },
+ {
+  "args": [
+   {
+    "format": "model-handoff",
+    "version": 1,
+    "from": "api2class",
+    "role": "source",
+    "schema": {
+     "format": "model-schema"
+    }
+   }
+  ],
+  "result": null
+ },
+ {
+  "args": [
+   {
+    "format": "model-handoff",
+    "version": 1,
+    "from": "evil",
+    "role": "source",
+    "schema": {
+     "format": "model-schema",
+     "version": 1,
+     "origin": {
+      "format": "json",
+      "tool": "api2class"
+     },
+     "models": [
+      {
+       "name": "Root",
+       "kind": "object",
+       "fields": [
+        {
+         "name": "id",
+         "type": {
+          "kind": "primitive",
+          "name": "integer"
+         },
+         "nullable": false,
+         "optional": false
+        }
+       ]
+      }
+     ],
+     "enums": []
+    }
+   }
+  ],
+  "result": null
+ },
+ {
+  "args": [
+   {
+    "format": "model-handoff",
+    "version": 1,
+    "from": "api2class",
+    "role": "source",
+    "schema": {
+     "format": "model-schema",
+     "version": 1,
+     "origin": {
+      "format": "json",
+      "tool": "api2class"
+     },
+     "models": [
+      {
+       "name": "Root",
+       "kind": "object",
+       "fields": [
+        {
+         "name": "id",
+         "type": {
+          "kind": "primitive",
+          "name": "integer"
+         },
+         "nullable": false,
+         "optional": false
+        }
+       ]
+      }
+     ],
+     "enums": []
+    },
+    "model": "Missing"
+   }
+  ],
+  "result": {
+   "format": "model-handoff",
+   "version": 1,
+   "from": "api2class",
+   "role": "source",
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "json",
+     "tool": "api2class"
+    },
+    "models": [
+     {
+      "name": "Root",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": []
+   }
+  }
+ },
+ {
+  "args": [
+   "{\"format\":\"model-handoff\",\"version\":1,\"from\":\"api2class\",\"role\":\"source\",\"schema\":{\"format\":\"model-schema\",\"version\":1,\"origin\":{\"format\":\"json\",\"tool\":\"api2class\"},\"models\":[{\"name\":\"Root\",\"kind\":\"object\",\"fields\":[{\"name\":\"id\",\"type\":{\"kind\":\"primitive\",\"name\":\"integer\"},\"nullable\":false,\"optional\":false}]}],\"enums\":[]},\"model\":\"Root\"}"
+  ],
+  "result": {
+   "format": "model-handoff",
+   "version": 1,
+   "from": "api2class",
+   "role": "source",
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "json",
+     "tool": "api2class"
+    },
+    "models": [
+     {
+      "name": "Root",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   "model": "Root"
+  }
+ }
+]

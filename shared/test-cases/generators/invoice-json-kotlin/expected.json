@@ -1,0 +1,926 @@
+{
+ "typescript-functions": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import type { Address, BillingAddress, Invoice, InvoiceItem, InvoiceResponse, Line } from './models'\n\nexport function mapInvoiceResponseToInvoice(source: InvoiceResponse): Invoice {\n  return {\n    id: source.invoice_id,\n    issuedAt: new Date(source.issued_at),\n    dueDate: new Date(source.due_date),\n    status: (source.status as InvoiceStatus),\n    total: source.total_cents / 100,\n    currency: source.currency,\n    notes: source.notes == null ? undefined : String(source.notes),\n    customerId: source.customer.customer_id,\n    // TODO: no value for \"customerName\" in the mapping\n    customerName: '',\n    customerEmail: source.customer.email_address,\n    billingAddress: mapBillingAddressToAddress(source.customer.billing_address),\n    items: source.lines.map(mapLineToInvoiceItem),\n    isPaid: source.paid,\n    // TODO: no value for \"createdBy\" in the mapping\n    createdBy: '',\n  }\n}\n\nexport function mapBillingAddressToAddress(source: BillingAddress): Address {\n  return {\n    street: source.street,\n    city: source.city,\n    postalCode: source.zip_code,\n    countryCode: source.country,\n  }\n}\n\nexport function mapLineToInvoiceItem(source: Line): InvoiceItem {\n  return {\n    sku: source.sku,\n    description: source.description,\n    quantity: source.qty,\n    unitPrice: source.unit_price_cents / 100,\n    taxRate: source.tax_rate,\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "typescript-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import type { Address, BillingAddress, Invoice, InvoiceItem, InvoiceResponse, Line } from './models'\n\nexport function mapInvoiceResponseToInvoice(source: InvoiceResponse): Invoice {\n  return {\n    id: source.invoice_id,\n    issuedAt: new Date(source.issued_at),\n    dueDate: new Date(source.due_date),\n    status: (source.status as InvoiceStatus),\n    total: source.total_cents / 100,\n    currency: source.currency,\n    notes: source.notes == null ? undefined : String(source.notes),\n    customerId: source.customer.customer_id,\n    // TODO: no value for \"customerName\" in the mapping\n    customerName: '',\n    customerEmail: source.customer.email_address,\n    billingAddress: mapBillingAddressToAddress(source.customer.billing_address),\n    items: source.lines.map(mapLineToInvoiceItem),\n    isPaid: source.paid,\n    // TODO: no value for \"createdBy\" in the mapping\n    createdBy: '',\n  }\n}\n\nexport function mapBillingAddressToAddress(source: BillingAddress): Address {\n  return {\n    street: source.street,\n    city: source.city,\n    postalCode: source.zip_code,\n    countryCode: source.country,\n  }\n}\n\nexport function mapLineToInvoiceItem(source: Line): InvoiceItem {\n  return {\n    sku: source.sku,\n    description: source.description,\n    quantity: source.qty,\n    unitPrice: source.unit_price_cents / 100,\n    taxRate: source.tax_rate,\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "typescript-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import type { Address, BillingAddress, Invoice, InvoiceItem, InvoiceResponse, Line } from './models'\n\nexport function mapInvoiceResponseToInvoice(source: InvoiceResponse): Invoice {\n  return {\n    id: source.invoiceId,\n    issuedAt: new Date(source.issuedAt),\n    dueDate: new Date(source.dueDate),\n    status: (source.status as InvoiceStatus),\n    total: source.totalCents / 100,\n    currency: source.currency,\n    notes: source.notes == null ? undefined : String(source.notes),\n    customerId: source.customer.customerId,\n    // TODO: no value for \"customerName\" in the mapping\n    customerName: '',\n    customerEmail: source.customer.emailAddress,\n    billingAddress: mapBillingAddressToAddress(source.customer.billingAddress),\n    items: source.lines.map(mapLineToInvoiceItem),\n    isPaid: source.paid,\n    // TODO: no value for \"createdBy\" in the mapping\n    createdBy: '',\n  }\n}\n\nexport function mapBillingAddressToAddress(source: BillingAddress): Address {\n  return {\n    street: source.street,\n    city: source.city,\n    postalCode: source.zipCode,\n    countryCode: source.country,\n  }\n}\n\nexport function mapLineToInvoiceItem(source: Line): InvoiceItem {\n  return {\n    sku: source.sku,\n    description: source.description,\n    quantity: source.qty,\n    unitPrice: source.unitPriceCents / 100,\n    taxRate: source.taxRate,\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "javascript-functions": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {InvoiceResponse} source\n * @returns {Invoice}\n */\nexport function mapInvoiceResponseToInvoice(source) {\n  return {\n    id: source.invoice_id,\n    issuedAt: new Date(source.issued_at),\n    dueDate: new Date(source.due_date),\n    status: source.status,\n    total: source.total_cents / 100,\n    currency: source.currency,\n    notes: source.notes == null ? undefined : String(source.notes),\n    customerId: source.customer.customer_id,\n    // TODO: no value for \"customerName\" in the mapping\n    customerName: '',\n    customerEmail: source.customer.email_address,\n    billingAddress: mapBillingAddressToAddress(source.customer.billing_address),\n    items: source.lines.map(mapLineToInvoiceItem),\n    isPaid: source.paid,\n    // TODO: no value for \"createdBy\" in the mapping\n    createdBy: '',\n  }\n}\n\n/**\n * @param {BillingAddress} source\n * @returns {Address}\n */\nexport function mapBillingAddressToAddress(source) {\n  return {\n    street: source.street,\n    city: source.city,\n    postalCode: source.zip_code,\n    countryCode: source.country,\n  }\n}\n\n/**\n * @param {Line} source\n * @returns {InvoiceItem}\n */\nexport function mapLineToInvoiceItem(source) {\n  return {\n    sku: source.sku,\n    description: source.description,\n    quantity: source.qty,\n    unitPrice: source.unit_price_cents / 100,\n    taxRate: source.tax_rate,\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "javascript-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {InvoiceResponse} source\n * @returns {Invoice}\n */\nexport function mapInvoiceResponseToInvoice(source) {\n  return {\n    id: source.invoice_id,\n    issuedAt: new Date(source.issued_at),\n    dueDate: new Date(source.due_date),\n    status: source.status,\n    total: source.total_cents / 100,\n    currency: source.currency,\n    notes: source.notes == null ? undefined : String(source.notes),\n    customerId: source.customer.customer_id,\n    // TODO: no value for \"customerName\" in the mapping\n    customerName: '',\n    customerEmail: source.customer.email_address,\n    billingAddress: mapBillingAddressToAddress(source.customer.billing_address),\n    items: source.lines.map(mapLineToInvoiceItem),\n    isPaid: source.paid,\n    // TODO: no value for \"createdBy\" in the mapping\n    createdBy: '',\n  }\n}\n\n/**\n * @param {BillingAddress} source\n * @returns {Address}\n */\nexport function mapBillingAddressToAddress(source) {\n  return {\n    street: source.street,\n    city: source.city,\n    postalCode: source.zip_code,\n    countryCode: source.country,\n  }\n}\n\n/**\n * @param {Line} source\n * @returns {InvoiceItem}\n */\nexport function mapLineToInvoiceItem(source) {\n  return {\n    sku: source.sku,\n    description: source.description,\n    quantity: source.qty,\n    unitPrice: source.unit_price_cents / 100,\n    taxRate: source.tax_rate,\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "javascript-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {InvoiceResponse} source\n * @returns {Invoice}\n */\nexport function mapInvoiceResponseToInvoice(source) {\n  return {\n    id: source.invoiceId,\n    issuedAt: new Date(source.issuedAt),\n    dueDate: new Date(source.dueDate),\n    status: source.status,\n    total: source.totalCents / 100,\n    currency: source.currency,\n    notes: source.notes == null ? undefined : String(source.notes),\n    customerId: source.customer.customerId,\n    // TODO: no value for \"customerName\" in the mapping\n    customerName: '',\n    customerEmail: source.customer.emailAddress,\n    billingAddress: mapBillingAddressToAddress(source.customer.billingAddress),\n    items: source.lines.map(mapLineToInvoiceItem),\n    isPaid: source.paid,\n    // TODO: no value for \"createdBy\" in the mapping\n    createdBy: '',\n  }\n}\n\n/**\n * @param {BillingAddress} source\n * @returns {Address}\n */\nexport function mapBillingAddressToAddress(source) {\n  return {\n    street: source.street,\n    city: source.city,\n    postalCode: source.zipCode,\n    countryCode: source.country,\n  }\n}\n\n/**\n * @param {Line} source\n * @returns {InvoiceItem}\n */\nexport function mapLineToInvoiceItem(source) {\n  return {\n    sku: source.sku,\n    description: source.description,\n    quantity: source.qty,\n    unitPrice: source.unitPriceCents / 100,\n    taxRate: source.taxRate,\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "python-functions": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from datetime import date, datetime\nfrom decimal import Decimal\nfrom typing import Any\n\nfrom models import Address, Invoice, InvoiceItem, InvoiceStatus\n\n\ndef map_invoice_response_to_invoice(source: dict[str, Any]) -> Invoice:\n    return Invoice(\n        id=source[\"invoice_id\"],\n        issued_at=datetime.fromisoformat(source[\"issued_at\"]),\n        due_date=date.fromisoformat(source[\"due_date\"]),\n        status=InvoiceStatus(source[\"status\"]),\n        total=Decimal(source[\"total_cents\"]) / 100,\n        currency=source[\"currency\"],\n        notes=str(source.get(\"notes\")) if source.get(\"notes\") is not None else None,\n        customer_id=source[\"customer\"][\"customer_id\"],\n        # TODO: no value for \"customerName\" in the mapping\n        customer_name=\"\",\n        customer_email=source[\"customer\"][\"email_address\"],\n        billing_address=map_billing_address_to_address(source[\"customer\"][\"billing_address\"]),\n        items=[map_line_to_invoice_item(item) for item in source[\"lines\"]],\n        is_paid=source[\"paid\"],\n        # TODO: no value for \"createdBy\" in the mapping\n        created_by=\"\",\n    )\n\n\ndef map_billing_address_to_address(source: dict[str, Any]) -> Address:\n    return Address(\n        street=source[\"street\"],\n        city=source[\"city\"],\n        postal_code=source[\"zip_code\"],\n        country_code=source[\"country\"],\n    )\n\n\ndef map_line_to_invoice_item(source: dict[str, Any]) -> InvoiceItem:\n    return InvoiceItem(\n        sku=source[\"sku\"],\n        description=source[\"description\"],\n        quantity=source[\"qty\"],\n        unit_price=Decimal(source[\"unit_price_cents\"]) / 100,\n        tax_rate=source[\"tax_rate\"],\n    )\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "python-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from datetime import date, datetime\nfrom decimal import Decimal\nfrom typing import Any\n\nfrom models import Address, Invoice, InvoiceItem, InvoiceStatus\n\n\ndef map_invoice_response_to_invoice(source: dict[str, Any]) -> Invoice:\n    return Invoice(\n        id=source[\"invoice_id\"],\n        issuedAt=datetime.fromisoformat(source[\"issued_at\"]),\n        dueDate=date.fromisoformat(source[\"due_date\"]),\n        status=InvoiceStatus(source[\"status\"]),\n        total=Decimal(source[\"total_cents\"]) / 100,\n        currency=source[\"currency\"],\n        notes=str(source.get(\"notes\")) if source.get(\"notes\") is not None else None,\n        customerId=source[\"customer\"][\"customer_id\"],\n        # TODO: no value for \"customerName\" in the mapping\n        customerName=\"\",\n        customerEmail=source[\"customer\"][\"email_address\"],\n        billingAddress=map_billing_address_to_address(source[\"customer\"][\"billing_address\"]),\n        items=[map_line_to_invoice_item(item) for item in source[\"lines\"]],\n        isPaid=source[\"paid\"],\n        # TODO: no value for \"createdBy\" in the mapping\n        createdBy=\"\",\n    )\n\n\ndef map_billing_address_to_address(source: dict[str, Any]) -> Address:\n    return Address(\n        street=source[\"street\"],\n        city=source[\"city\"],\n        postalCode=source[\"zip_code\"],\n        countryCode=source[\"country\"],\n    )\n\n\ndef map_line_to_invoice_item(source: dict[str, Any]) -> InvoiceItem:\n    return InvoiceItem(\n        sku=source[\"sku\"],\n        description=source[\"description\"],\n        quantity=source[\"qty\"],\n        unitPrice=Decimal(source[\"unit_price_cents\"]) / 100,\n        taxRate=source[\"tax_rate\"],\n    )\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "python-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from datetime import date, datetime\nfrom decimal import Decimal\nfrom typing import Any\n\nfrom models import Address, Invoice, InvoiceItem, InvoiceStatus\n\n\ndef map_invoice_response_to_invoice(source: dict[str, Any]) -> Invoice:\n    return Invoice(\n        id=source[\"invoice_id\"],\n        issued_at=datetime.fromisoformat(source[\"issued_at\"]),\n        due_date=date.fromisoformat(source[\"due_date\"]),\n        status=InvoiceStatus(source[\"status\"]),\n        total=Decimal(source[\"total_cents\"]) / 100,\n        currency=source[\"currency\"],\n        notes=str(source.get(\"notes\")) if source.get(\"notes\") is not None else None,\n        customer_id=source[\"customer\"][\"customer_id\"],\n        # TODO: no value for \"customerName\" in the mapping\n        customer_name=\"\",\n        customer_email=source[\"customer\"][\"email_address\"],\n        billing_address=map_billing_address_to_address(source[\"customer\"][\"billing_address\"]),\n        items=[map_line_to_invoice_item(item) for item in source[\"lines\"]],\n        is_paid=source[\"paid\"],\n        # TODO: no value for \"createdBy\" in the mapping\n        created_by=\"\",\n    )\n\n\ndef map_billing_address_to_address(source: dict[str, Any]) -> Address:\n    return Address(\n        street=source[\"street\"],\n        city=source[\"city\"],\n        postal_code=source[\"zip_code\"],\n        country_code=source[\"country\"],\n    )\n\n\ndef map_line_to_invoice_item(source: dict[str, Any]) -> InvoiceItem:\n    return InvoiceItem(\n        sku=source[\"sku\"],\n        description=source[\"description\"],\n        quantity=source[\"qty\"],\n        unit_price=Decimal(source[\"unit_price_cents\"]) / 100,\n        tax_rate=source[\"tax_rate\"],\n    )\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "python-sourceAccess-dict": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from datetime import date, datetime\nfrom decimal import Decimal\nfrom typing import Any\n\nfrom models import Address, Invoice, InvoiceItem, InvoiceStatus\n\n\ndef map_invoice_response_to_invoice(source: dict[str, Any]) -> Invoice:\n    return Invoice(\n        id=source[\"invoice_id\"],\n        issued_at=datetime.fromisoformat(source[\"issued_at\"]),\n        due_date=date.fromisoformat(source[\"due_date\"]),\n        status=InvoiceStatus(source[\"status\"]),\n        total=Decimal(source[\"total_cents\"]) / 100,\n        currency=source[\"currency\"],\n        notes=str(source.get(\"notes\")) if source.get(\"notes\") is not None else None,\n        customer_id=source[\"customer\"][\"customer_id\"],\n        # TODO: no value for \"customerName\" in the mapping\n        customer_name=\"\",\n        customer_email=source[\"customer\"][\"email_address\"],\n        billing_address=map_billing_address_to_address(source[\"customer\"][\"billing_address\"]),\n        items=[map_line_to_invoice_item(item) for item in source[\"lines\"]],\n        is_paid=source[\"paid\"],\n        # TODO: no value for \"createdBy\" in the mapping\n        created_by=\"\",\n    )\n\n\ndef map_billing_address_to_address(source: dict[str, Any]) -> Address:\n    return Address(\n        street=source[\"street\"],\n        city=source[\"city\"],\n        postal_code=source[\"zip_code\"],\n        country_code=source[\"country\"],\n    )\n\n\ndef map_line_to_invoice_item(source: dict[str, Any]) -> InvoiceItem:\n    return InvoiceItem(\n        sku=source[\"sku\"],\n        description=source[\"description\"],\n        quantity=source[\"qty\"],\n        unit_price=Decimal(source[\"unit_price_cents\"]) / 100,\n        tax_rate=source[\"tax_rate\"],\n    )\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "python-targetStyle-dict": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from datetime import date, datetime\nfrom decimal import Decimal\nfrom typing import Any\n\n\ndef map_invoice_response_to_invoice(source: dict[str, Any]) -> dict[str, Any]:\n    return {\n        \"id\": source[\"invoice_id\"],\n        \"issuedAt\": datetime.fromisoformat(source[\"issued_at\"]),\n        \"dueDate\": date.fromisoformat(source[\"due_date\"]),\n        \"status\": source[\"status\"],\n        \"total\": Decimal(source[\"total_cents\"]) / 100,\n        \"currency\": source[\"currency\"],\n        \"notes\": str(source.get(\"notes\")) if source.get(\"notes\") is not None else None,\n        \"customerId\": source[\"customer\"][\"customer_id\"],\n        # TODO: no value for \"customerName\" in the mapping\n        \"customerName\": \"\",\n        \"customerEmail\": source[\"customer\"][\"email_address\"],\n        \"billingAddress\": map_billing_address_to_address(source[\"customer\"][\"billing_address\"]),\n        \"items\": [map_line_to_invoice_item(item) for item in source[\"lines\"]],\n        \"isPaid\": source[\"paid\"],\n        # TODO: no value for \"createdBy\" in the mapping\n        \"createdBy\": \"\",\n    }\n\n\ndef map_billing_address_to_address(source: dict[str, Any]) -> dict[str, Any]:\n    return {\n        \"street\": source[\"street\"],\n        \"city\": source[\"city\"],\n        \"postalCode\": source[\"zip_code\"],\n        \"countryCode\": source[\"country\"],\n    }\n\n\ndef map_line_to_invoice_item(source: dict[str, Any]) -> dict[str, Any]:\n    return {\n        \"sku\": source[\"sku\"],\n        \"description\": source[\"description\"],\n        \"quantity\": source[\"qty\"],\n        \"unitPrice\": Decimal(source[\"unit_price_cents\"]) / 100,\n        \"taxRate\": source[\"tax_rate\"],\n    }\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "java-manual": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.java",
+    "code": "import java.math.BigDecimal;\nimport java.math.MathContext;\n\npublic final class InvoiceResponseMapper {\n\n    private InvoiceResponseMapper() {\n    }\n\n    public static Invoice toInvoice(InvoiceResponse source) {\n        if (source == null) {\n            return null;\n        }\n        return new Invoice(\n                source.getInvoiceId(),\n                source.getIssuedAt(),\n                source.getDueDate(),\n                InvoiceStatus.valueOf(source.getStatus()),\n                BigDecimal.valueOf(source.getTotalCents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128),\n                source.getCurrency(),\n                source.getNotes() != null ? String.valueOf(source.getNotes()) : null,\n                (long) source.getCustomer().getCustomerId(),\n                // TODO: no value for \"customerName\" in the mapping\n                \"\",\n                source.getCustomer().getEmailAddress(),\n                toAddress(source.getCustomer().getBillingAddress()),\n                source.getLines().stream().map(InvoiceResponseMapper::toInvoiceItem).toList(),\n                source.getPaid(),\n                // TODO: no value for \"createdBy\" in the mapping\n                \"\"\n        );\n    }\n\n    public static Address toAddress(BillingAddress source) {\n        if (source == null) {\n            return null;\n        }\n        return new Address(\n                source.getStreet(),\n                source.getCity(),\n                source.getZipCode(),\n                source.getCountry()\n        );\n    }\n\n    public static InvoiceItem toInvoiceItem(Line source) {\n        if (source == null) {\n            return null;\n        }\n        return new InvoiceItem(\n                source.getSku(),\n                source.getDescription(),\n                Math.toIntExact(source.getQty()),\n                BigDecimal.valueOf(source.getUnitPriceCents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128),\n                source.getTaxRate()\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "java-mapstruct": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.java",
+    "code": "import org.mapstruct.Mapper;\nimport org.mapstruct.Mapping;\n\nimport java.math.BigDecimal;\nimport java.math.MathContext;\n\n@Mapper(imports = {BigDecimal.class, MathContext.class})\npublic interface InvoiceResponseMapper {\n\n    @Mapping(target = \"id\", source = \"invoiceId\")\n    @Mapping(target = \"total\", expression = \"java(BigDecimal.valueOf(source.getTotalCents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128))\")\n    @Mapping(target = \"customerId\", source = \"customer.customerId\")\n    // TODO: no value for \"customerName\" in the mapping\n    @Mapping(target = \"customerName\", ignore = true)\n    @Mapping(target = \"customerEmail\", source = \"customer.emailAddress\")\n    @Mapping(target = \"billingAddress\", source = \"customer.billingAddress\")\n    @Mapping(target = \"items\", source = \"lines\")\n    @Mapping(target = \"isPaid\", source = \"paid\")\n    // TODO: no value for \"createdBy\" in the mapping\n    @Mapping(target = \"createdBy\", ignore = true)\n    Invoice toInvoice(InvoiceResponse source);\n\n    @Mapping(target = \"postalCode\", source = \"zipCode\")\n    @Mapping(target = \"countryCode\", source = \"country\")\n    Address toAddress(BillingAddress source);\n\n    @Mapping(target = \"quantity\", source = \"qty\")\n    @Mapping(target = \"unitPrice\", expression = \"java(BigDecimal.valueOf(source.getUnitPriceCents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128))\")\n    InvoiceItem toInvoiceItem(Line source);\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "java-naming-keep": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.java",
+    "code": "import java.math.BigDecimal;\nimport java.math.MathContext;\n\npublic final class InvoiceResponseMapper {\n\n    private InvoiceResponseMapper() {\n    }\n\n    public static Invoice toInvoice(InvoiceResponse source) {\n        if (source == null) {\n            return null;\n        }\n        return new Invoice(\n                source.getInvoice_id(),\n                source.getIssued_at(),\n                source.getDue_date(),\n                InvoiceStatus.valueOf(source.getStatus()),\n                BigDecimal.valueOf(source.getTotal_cents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128),\n                source.getCurrency(),\n                source.getNotes() != null ? String.valueOf(source.getNotes()) : null,\n                (long) source.getCustomer().getCustomer_id(),\n                // TODO: no value for \"customerName\" in the mapping\n                \"\",\n                source.getCustomer().getEmail_address(),\n                toAddress(source.getCustomer().getBilling_address()),\n                source.getLines().stream().map(InvoiceResponseMapper::toInvoiceItem).toList(),\n                source.getPaid(),\n                // TODO: no value for \"createdBy\" in the mapping\n                \"\"\n        );\n    }\n\n    public static Address toAddress(BillingAddress source) {\n        if (source == null) {\n            return null;\n        }\n        return new Address(\n                source.getStreet(),\n                source.getCity(),\n                source.getZip_code(),\n                source.getCountry()\n        );\n    }\n\n    public static InvoiceItem toInvoiceItem(Line source) {\n        if (source == null) {\n            return null;\n        }\n        return new InvoiceItem(\n                source.getSku(),\n                source.getDescription(),\n                Math.toIntExact(source.getQty()),\n                BigDecimal.valueOf(source.getUnit_price_cents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128),\n                source.getTax_rate()\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "java-naming-convention": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.java",
+    "code": "import java.math.BigDecimal;\nimport java.math.MathContext;\n\npublic final class InvoiceResponseMapper {\n\n    private InvoiceResponseMapper() {\n    }\n\n    public static Invoice toInvoice(InvoiceResponse source) {\n        if (source == null) {\n            return null;\n        }\n        return new Invoice(\n                source.getInvoiceId(),\n                source.getIssuedAt(),\n                source.getDueDate(),\n                InvoiceStatus.valueOf(source.getStatus()),\n                BigDecimal.valueOf(source.getTotalCents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128),\n                source.getCurrency(),\n                source.getNotes() != null ? String.valueOf(source.getNotes()) : null,\n                (long) source.getCustomer().getCustomerId(),\n                // TODO: no value for \"customerName\" in the mapping\n                \"\",\n                source.getCustomer().getEmailAddress(),\n                toAddress(source.getCustomer().getBillingAddress()),\n                source.getLines().stream().map(InvoiceResponseMapper::toInvoiceItem).toList(),\n                source.getPaid(),\n                // TODO: no value for \"createdBy\" in the mapping\n                \"\"\n        );\n    }\n\n    public static Address toAddress(BillingAddress source) {\n        if (source == null) {\n            return null;\n        }\n        return new Address(\n                source.getStreet(),\n                source.getCity(),\n                source.getZipCode(),\n                source.getCountry()\n        );\n    }\n\n    public static InvoiceItem toInvoiceItem(Line source) {\n        if (source == null) {\n            return null;\n        }\n        return new InvoiceItem(\n                source.getSku(),\n                source.getDescription(),\n                Math.toIntExact(source.getQty()),\n                BigDecimal.valueOf(source.getUnitPriceCents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128),\n                source.getTaxRate()\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "java-componentModel-spring": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.java",
+    "code": "import java.math.BigDecimal;\nimport java.math.MathContext;\n\npublic final class InvoiceResponseMapper {\n\n    private InvoiceResponseMapper() {\n    }\n\n    public static Invoice toInvoice(InvoiceResponse source) {\n        if (source == null) {\n            return null;\n        }\n        return new Invoice(\n                source.getInvoiceId(),\n                source.getIssuedAt(),\n                source.getDueDate(),\n                InvoiceStatus.valueOf(source.getStatus()),\n                BigDecimal.valueOf(source.getTotalCents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128),\n                source.getCurrency(),\n                source.getNotes() != null ? String.valueOf(source.getNotes()) : null,\n                (long) source.getCustomer().getCustomerId(),\n                // TODO: no value for \"customerName\" in the mapping\n                \"\",\n                source.getCustomer().getEmailAddress(),\n                toAddress(source.getCustomer().getBillingAddress()),\n                source.getLines().stream().map(InvoiceResponseMapper::toInvoiceItem).toList(),\n                source.getPaid(),\n                // TODO: no value for \"createdBy\" in the mapping\n                \"\"\n        );\n    }\n\n    public static Address toAddress(BillingAddress source) {\n        if (source == null) {\n            return null;\n        }\n        return new Address(\n                source.getStreet(),\n                source.getCity(),\n                source.getZipCode(),\n                source.getCountry()\n        );\n    }\n\n    public static InvoiceItem toInvoiceItem(Line source) {\n        if (source == null) {\n            return null;\n        }\n        return new InvoiceItem(\n                source.getSku(),\n                source.getDescription(),\n                Math.toIntExact(source.getQty()),\n                BigDecimal.valueOf(source.getUnitPriceCents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128),\n                source.getTaxRate()\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "java-componentModel-cdi": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.java",
+    "code": "import java.math.BigDecimal;\nimport java.math.MathContext;\n\npublic final class InvoiceResponseMapper {\n\n    private InvoiceResponseMapper() {\n    }\n\n    public static Invoice toInvoice(InvoiceResponse source) {\n        if (source == null) {\n            return null;\n        }\n        return new Invoice(\n                source.getInvoiceId(),\n                source.getIssuedAt(),\n                source.getDueDate(),\n                InvoiceStatus.valueOf(source.getStatus()),\n                BigDecimal.valueOf(source.getTotalCents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128),\n                source.getCurrency(),\n                source.getNotes() != null ? String.valueOf(source.getNotes()) : null,\n                (long) source.getCustomer().getCustomerId(),\n                // TODO: no value for \"customerName\" in the mapping\n                \"\",\n                source.getCustomer().getEmailAddress(),\n                toAddress(source.getCustomer().getBillingAddress()),\n                source.getLines().stream().map(InvoiceResponseMapper::toInvoiceItem).toList(),\n                source.getPaid(),\n                // TODO: no value for \"createdBy\" in the mapping\n                \"\"\n        );\n    }\n\n    public static Address toAddress(BillingAddress source) {\n        if (source == null) {\n            return null;\n        }\n        return new Address(\n                source.getStreet(),\n                source.getCity(),\n                source.getZipCode(),\n                source.getCountry()\n        );\n    }\n\n    public static InvoiceItem toInvoiceItem(Line source) {\n        if (source == null) {\n            return null;\n        }\n        return new InvoiceItem(\n                source.getSku(),\n                source.getDescription(),\n                Math.toIntExact(source.getQty()),\n                BigDecimal.valueOf(source.getUnitPriceCents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128),\n                source.getTaxRate()\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "java-componentModel-jakarta": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.java",
+    "code": "import java.math.BigDecimal;\nimport java.math.MathContext;\n\npublic final class InvoiceResponseMapper {\n\n    private InvoiceResponseMapper() {\n    }\n\n    public static Invoice toInvoice(InvoiceResponse source) {\n        if (source == null) {\n            return null;\n        }\n        return new Invoice(\n                source.getInvoiceId(),\n                source.getIssuedAt(),\n                source.getDueDate(),\n                InvoiceStatus.valueOf(source.getStatus()),\n                BigDecimal.valueOf(source.getTotalCents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128),\n                source.getCurrency(),\n                source.getNotes() != null ? String.valueOf(source.getNotes()) : null,\n                (long) source.getCustomer().getCustomerId(),\n                // TODO: no value for \"customerName\" in the mapping\n                \"\",\n                source.getCustomer().getEmailAddress(),\n                toAddress(source.getCustomer().getBillingAddress()),\n                source.getLines().stream().map(InvoiceResponseMapper::toInvoiceItem).toList(),\n                source.getPaid(),\n                // TODO: no value for \"createdBy\" in the mapping\n                \"\"\n        );\n    }\n\n    public static Address toAddress(BillingAddress source) {\n        if (source == null) {\n            return null;\n        }\n        return new Address(\n                source.getStreet(),\n                source.getCity(),\n                source.getZipCode(),\n                source.getCountry()\n        );\n    }\n\n    public static InvoiceItem toInvoiceItem(Line source) {\n        if (source == null) {\n            return null;\n        }\n        return new InvoiceItem(\n                source.getSku(),\n                source.getDescription(),\n                Math.toIntExact(source.getQty()),\n                BigDecimal.valueOf(source.getUnitPriceCents()).divide(BigDecimal.valueOf(100), MathContext.DECIMAL128),\n                source.getTaxRate()\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "csharp-manual": {
+  "files": [
+   {
+    "name": "InvoiceResponseMappings.cs",
+    "code": "using System;\nusing System.Linq;\n\npublic static class InvoiceResponseMappings\n{\n    public static Invoice ToInvoice(this InvoiceResponse source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Invoice\n        {\n            Id = source.InvoiceId,\n            IssuedAt = source.IssuedAt,\n            DueDate = source.DueDate,\n            Status = Enum.Parse<InvoiceStatus>(source.Status),\n            Total = (decimal)source.TotalCents / 100m,\n            Currency = source.Currency,\n            Notes = source.Notes is { } value ? value.ToString() : null,\n            CustomerId = source.Customer.CustomerId,\n            // TODO: no value for \"customerName\" in the mapping\n            CustomerName = \"\",\n            CustomerEmail = source.Customer.EmailAddress,\n            BillingAddress = source.Customer.BillingAddress.ToAddress(),\n            Items = source.Lines.Select(item => item.ToInvoiceItem()).ToList(),\n            IsPaid = source.Paid,\n            // TODO: no value for \"createdBy\" in the mapping\n            CreatedBy = \"\",\n        };\n    }\n\n    public static Address ToAddress(this BillingAddress source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Address\n        {\n            Street = source.Street,\n            City = source.City,\n            PostalCode = source.ZipCode,\n            CountryCode = source.Country,\n        };\n    }\n\n    public static InvoiceItem ToInvoiceItem(this Line source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new InvoiceItem\n        {\n            Sku = source.Sku,\n            Description = source.Description,\n            Quantity = checked((int)source.Qty),\n            UnitPrice = (decimal)source.UnitPriceCents / 100m,\n            TaxRate = source.TaxRate,\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "csharp-automapper": {
+  "files": [
+   {
+    "name": "InvoiceResponseProfile.cs",
+    "code": "using System;\nusing AutoMapper;\n\npublic class InvoiceResponseProfile : Profile\n{\n    public InvoiceResponseProfile()\n    {\n        CreateMap<InvoiceResponse, Invoice>()\n            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.InvoiceId))\n            .ForMember(dest => dest.Total, opt => opt.MapFrom(src => (decimal)src.TotalCents / 100m))\n            .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Customer.CustomerId))\n            .ForMember(dest => dest.CustomerName, opt => opt.Ignore()) // TODO: no value in the mapping\n            .ForMember(dest => dest.CustomerEmail, opt => opt.MapFrom(src => src.Customer.EmailAddress))\n            .ForMember(dest => dest.BillingAddress, opt => opt.MapFrom(src => src.Customer.BillingAddress))\n            .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Lines))\n            .ForMember(dest => dest.IsPaid, opt => opt.MapFrom(src => src.Paid))\n            .ForMember(dest => dest.CreatedBy, opt => opt.Ignore()) // TODO: no value in the mapping;\n\n        CreateMap<BillingAddress, Address>()\n            .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.ZipCode))\n            .ForMember(dest => dest.CountryCode, opt => opt.MapFrom(src => src.Country));\n\n        CreateMap<Line, InvoiceItem>()\n            .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Qty))\n            .ForMember(dest => dest.UnitPrice, opt => opt.MapFrom(src => (decimal)src.UnitPriceCents / 100m));\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "csharp-naming-keep": {
+  "files": [
+   {
+    "name": "InvoiceResponseMappings.cs",
+    "code": "using System;\nusing System.Linq;\n\npublic static class InvoiceResponseMappings\n{\n    public static Invoice ToInvoice(this InvoiceResponse source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Invoice\n        {\n            id = source.invoice_id,\n            issuedAt = source.issued_at,\n            dueDate = source.due_date,\n            status = Enum.Parse<InvoiceStatus>(source.status),\n            total = (decimal)source.total_cents / 100m,\n            currency = source.currency,\n            notes = source.notes is { } value ? value.ToString() : null,\n            customerId = source.customer.customer_id,\n            // TODO: no value for \"customerName\" in the mapping\n            customerName = \"\",\n            customerEmail = source.customer.email_address,\n            billingAddress = source.customer.billing_address.ToAddress(),\n            items = source.lines.Select(item => item.ToInvoiceItem()).ToList(),\n            isPaid = source.paid,\n            // TODO: no value for \"createdBy\" in the mapping\n            createdBy = \"\",\n        };\n    }\n\n    public static Address ToAddress(this BillingAddress source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Address\n        {\n            street = source.street,\n            city = source.city,\n            postalCode = source.zip_code,\n            countryCode = source.country,\n        };\n    }\n\n    public static InvoiceItem ToInvoiceItem(this Line source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new InvoiceItem\n        {\n            sku = source.sku,\n            description = source.description,\n            quantity = checked((int)source.qty),\n            unitPrice = (decimal)source.unit_price_cents / 100m,\n            taxRate = source.tax_rate,\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "csharp-naming-convention": {
+  "files": [
+   {
+    "name": "InvoiceResponseMappings.cs",
+    "code": "using System;\nusing System.Linq;\n\npublic static class InvoiceResponseMappings\n{\n    public static Invoice ToInvoice(this InvoiceResponse source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Invoice\n        {\n            Id = source.InvoiceId,\n            IssuedAt = source.IssuedAt,\n            DueDate = source.DueDate,\n            Status = Enum.Parse<InvoiceStatus>(source.Status),\n            Total = (decimal)source.TotalCents / 100m,\n            Currency = source.Currency,\n            Notes = source.Notes is { } value ? value.ToString() : null,\n            CustomerId = source.Customer.CustomerId,\n            // TODO: no value for \"customerName\" in the mapping\n            CustomerName = \"\",\n            CustomerEmail = source.Customer.EmailAddress,\n            BillingAddress = source.Customer.BillingAddress.ToAddress(),\n            Items = source.Lines.Select(item => item.ToInvoiceItem()).ToList(),\n            IsPaid = source.Paid,\n            // TODO: no value for \"createdBy\" in the mapping\n            CreatedBy = \"\",\n        };\n    }\n\n    public static Address ToAddress(this BillingAddress source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Address\n        {\n            Street = source.Street,\n            City = source.City,\n            PostalCode = source.ZipCode,\n            CountryCode = source.Country,\n        };\n    }\n\n    public static InvoiceItem ToInvoiceItem(this Line source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new InvoiceItem\n        {\n            Sku = source.Sku,\n            Description = source.Description,\n            Quantity = checked((int)source.Qty),\n            UnitPrice = (decimal)source.UnitPriceCents / 100m,\n            TaxRate = source.TaxRate,\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "kotlin-extensions": {
+  "files": [
+   {
+    "name": "InvoiceResponseMappers.kt",
+    "code": "package com.example.billing\n\nimport java.math.BigDecimal\nimport java.math.MathContext\n\nfun InvoiceResponse.toInvoice(): Invoice = Invoice(\n    id = invoiceId,\n    issuedAt = issuedAt,\n    dueDate = dueDate,\n    status = InvoiceStatus.valueOf(status),\n    total = totalCents.toBigDecimal().divide(BigDecimal.valueOf(100L), MathContext.DECIMAL128),\n    currency = currency,\n    notes = notes?.let { value -> value.toString() },\n    customerId = customer.customerId,\n    customerName = TODO(\"No value for customerName in the mapping\"),\n    customerEmail = customer.emailAddress,\n    billingAddress = customer.billingAddress.toAddress(),\n    items = lines.map { it.toInvoiceItem() },\n    isPaid = paid,\n    createdBy = TODO(\"No value for createdBy in the mapping\"),\n)\n\nfun BillingAddress.toAddress(): Address = Address(\n    street = street,\n    city = city,\n    postalCode = zipCode,\n    countryCode = country,\n)\n\nfun Line.toInvoiceItem(): InvoiceItem = InvoiceItem(\n    sku = sku,\n    description = description,\n    quantity = qty.toInt(),\n    unitPrice = unitPriceCents.toBigDecimal().divide(BigDecimal.valueOf(100L), MathContext.DECIMAL128),\n    taxRate = taxRate.toDouble(),\n)\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "kotlin-naming-keep": {
+  "files": [
+   {
+    "name": "InvoiceResponseMappers.kt",
+    "code": "package com.example.billing\n\nimport java.math.BigDecimal\nimport java.math.MathContext\n\nfun InvoiceResponse.toInvoice(): Invoice = Invoice(\n    id = invoice_id,\n    issuedAt = issued_at,\n    dueDate = due_date,\n    status = InvoiceStatus.valueOf(status),\n    total = total_cents.toBigDecimal().divide(BigDecimal.valueOf(100L), MathContext.DECIMAL128),\n    currency = currency,\n    notes = notes?.let { value -> value.toString() },\n    customerId = customer.customer_id,\n    customerName = TODO(\"No value for customerName in the mapping\"),\n    customerEmail = customer.email_address,\n    billingAddress = customer.billing_address.toAddress(),\n    items = lines.map { it.toInvoiceItem() },\n    isPaid = paid,\n    createdBy = TODO(\"No value for createdBy in the mapping\"),\n)\n\nfun BillingAddress.toAddress(): Address = Address(\n    street = street,\n    city = city,\n    postalCode = zip_code,\n    countryCode = country,\n)\n\nfun Line.toInvoiceItem(): InvoiceItem = InvoiceItem(\n    sku = sku,\n    description = description,\n    quantity = qty.toInt(),\n    unitPrice = unit_price_cents.toBigDecimal().divide(BigDecimal.valueOf(100L), MathContext.DECIMAL128),\n    taxRate = tax_rate.toDouble(),\n)\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "kotlin-naming-convention": {
+  "files": [
+   {
+    "name": "InvoiceResponseMappers.kt",
+    "code": "package com.example.billing\n\nimport java.math.BigDecimal\nimport java.math.MathContext\n\nfun InvoiceResponse.toInvoice(): Invoice = Invoice(\n    id = invoiceId,\n    issuedAt = issuedAt,\n    dueDate = dueDate,\n    status = InvoiceStatus.valueOf(status),\n    total = totalCents.toBigDecimal().divide(BigDecimal.valueOf(100L), MathContext.DECIMAL128),\n    currency = currency,\n    notes = notes?.let { value -> value.toString() },\n    customerId = customer.customerId,\n    customerName = TODO(\"No value for customerName in the mapping\"),\n    customerEmail = customer.emailAddress,\n    billingAddress = customer.billingAddress.toAddress(),\n    items = lines.map { it.toInvoiceItem() },\n    isPaid = paid,\n    createdBy = TODO(\"No value for createdBy in the mapping\"),\n)\n\nfun BillingAddress.toAddress(): Address = Address(\n    street = street,\n    city = city,\n    postalCode = zipCode,\n    countryCode = country,\n)\n\nfun Line.toInvoiceItem(): InvoiceItem = InvoiceItem(\n    sku = sku,\n    description = description,\n    quantity = qty.toInt(),\n    unitPrice = unitPriceCents.toBigDecimal().divide(BigDecimal.valueOf(100L), MathContext.DECIMAL128),\n    taxRate = taxRate.toDouble(),\n)\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "dart-extensions": {
+  "files": [
+   {
+    "name": "invoice_response_mapping.dart",
+    "code": "import 'models.dart';\n\nextension InvoiceResponseMapping on InvoiceResponse {\n  Invoice toInvoice() => Invoice(\n        id: invoiceId,\n        issuedAt: issuedAt,\n        dueDate: dueDate,\n        status: InvoiceStatus.values.byName(status),\n        total: totalCents.toDouble() / 100,\n        currency: currency,\n        notes: notes == null ? null : notes!.toString(),\n        customerId: customer.customerId,\n        customerName: throw UnimplementedError('No value for customerName in the mapping'),\n        customerEmail: customer.emailAddress,\n        billingAddress: customer.billingAddress.toAddress(),\n        items: lines.map((item) => item.toInvoiceItem()).toList(),\n        isPaid: paid,\n        createdBy: throw UnimplementedError('No value for createdBy in the mapping'),\n      );\n}\n\nextension BillingAddressMapping on BillingAddress {\n  Address toAddress() => Address(\n        street: street,\n        city: city,\n        postalCode: zipCode,\n        countryCode: country,\n      );\n}\n\nextension LineMapping on Line {\n  InvoiceItem toInvoiceItem() => InvoiceItem(\n        sku: sku,\n        description: description,\n        quantity: qty,\n        unitPrice: unitPriceCents.toDouble() / 100,\n        taxRate: taxRate,\n      );\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "dart-naming-keep": {
+  "files": [
+   {
+    "name": "invoice_response_mapping.dart",
+    "code": "import 'models.dart';\n\nextension InvoiceResponseMapping on InvoiceResponse {\n  Invoice toInvoice() => Invoice(\n        id: invoice_id,\n        issuedAt: issued_at,\n        dueDate: due_date,\n        status: InvoiceStatus.values.byName(status),\n        total: total_cents.toDouble() / 100,\n        currency: currency,\n        notes: notes == null ? null : notes!.toString(),\n        customerId: customer.customer_id,\n        customerName: throw UnimplementedError('No value for customerName in the mapping'),\n        customerEmail: customer.email_address,\n        billingAddress: customer.billing_address.toAddress(),\n        items: lines.map((item) => item.toInvoiceItem()).toList(),\n        isPaid: paid,\n        createdBy: throw UnimplementedError('No value for createdBy in the mapping'),\n      );\n}\n\nextension BillingAddressMapping on BillingAddress {\n  Address toAddress() => Address(\n        street: street,\n        city: city,\n        postalCode: zip_code,\n        countryCode: country,\n      );\n}\n\nextension LineMapping on Line {\n  InvoiceItem toInvoiceItem() => InvoiceItem(\n        sku: sku,\n        description: description,\n        quantity: qty,\n        unitPrice: unit_price_cents.toDouble() / 100,\n        taxRate: tax_rate,\n      );\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "dart-naming-convention": {
+  "files": [
+   {
+    "name": "invoice_response_mapping.dart",
+    "code": "import 'models.dart';\n\nextension InvoiceResponseMapping on InvoiceResponse {\n  Invoice toInvoice() => Invoice(\n        id: invoiceId,\n        issuedAt: issuedAt,\n        dueDate: dueDate,\n        status: InvoiceStatus.values.byName(status),\n        total: totalCents.toDouble() / 100,\n        currency: currency,\n        notes: notes == null ? null : notes!.toString(),\n        customerId: customer.customerId,\n        customerName: throw UnimplementedError('No value for customerName in the mapping'),\n        customerEmail: customer.emailAddress,\n        billingAddress: customer.billingAddress.toAddress(),\n        items: lines.map((item) => item.toInvoiceItem()).toList(),\n        isPaid: paid,\n        createdBy: throw UnimplementedError('No value for createdBy in the mapping'),\n      );\n}\n\nextension BillingAddressMapping on BillingAddress {\n  Address toAddress() => Address(\n        street: street,\n        city: city,\n        postalCode: zipCode,\n        countryCode: country,\n      );\n}\n\nextension LineMapping on Line {\n  InvoiceItem toInvoiceItem() => InvoiceItem(\n        sku: sku,\n        description: description,\n        quantity: qty,\n        unitPrice: unitPriceCents.toDouble() / 100,\n        taxRate: taxRate,\n      );\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "swift-extensions": {
+  "files": [
+   {
+    "name": "InvoiceResponse+Mapping.swift",
+    "code": "import Foundation\n\nextension InvoiceResponse {\n    func toInvoice() -> Invoice {\n        Invoice(\n            id: invoiceId,\n            issuedAt: issuedAt,\n            dueDate: dueDate,\n            status: InvoiceStatus(rawValue: status)!,\n            total: Decimal(totalCents) / 100,\n            currency: currency,\n            notes: notes.map { value in String(describing: value) },\n            customerId: customer.customerId,\n            customerName: fatalError(\"No value for customerName in the mapping\"),\n            customerEmail: customer.emailAddress,\n            billingAddress: customer.billingAddress.toAddress(),\n            items: lines.map { $0.toInvoiceItem() },\n            isPaid: paid,\n            createdBy: fatalError(\"No value for createdBy in the mapping\")\n        )\n    }\n}\n\nextension BillingAddress {\n    func toAddress() -> Address {\n        Address(\n            street: street,\n            city: city,\n            postalCode: zipCode,\n            countryCode: country\n        )\n    }\n}\n\nextension Line {\n    func toInvoiceItem() -> InvoiceItem {\n        InvoiceItem(\n            sku: sku,\n            description: description,\n            quantity: Int32(qty),\n            unitPrice: Decimal(unitPriceCents) / 100,\n            taxRate: taxRate\n        )\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "swift-naming-keep": {
+  "files": [
+   {
+    "name": "InvoiceResponse+Mapping.swift",
+    "code": "import Foundation\n\nextension InvoiceResponse {\n    func toInvoice() -> Invoice {\n        Invoice(\n            id: invoice_id,\n            issuedAt: issued_at,\n            dueDate: due_date,\n            status: InvoiceStatus(rawValue: status)!,\n            total: Decimal(total_cents) / 100,\n            currency: currency,\n            notes: notes.map { value in String(describing: value) },\n            customerId: customer.customer_id,\n            customerName: fatalError(\"No value for customerName in the mapping\"),\n            customerEmail: customer.email_address,\n            billingAddress: customer.billing_address.toAddress(),\n            items: lines.map { $0.toInvoiceItem() },\n            isPaid: paid,\n            createdBy: fatalError(\"No value for createdBy in the mapping\")\n        )\n    }\n}\n\nextension BillingAddress {\n    func toAddress() -> Address {\n        Address(\n            street: street,\n            city: city,\n            postalCode: zip_code,\n            countryCode: country\n        )\n    }\n}\n\nextension Line {\n    func toInvoiceItem() -> InvoiceItem {\n        InvoiceItem(\n            sku: sku,\n            description: description,\n            quantity: Int32(qty),\n            unitPrice: Decimal(unit_price_cents) / 100,\n            taxRate: tax_rate\n        )\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "swift-naming-convention": {
+  "files": [
+   {
+    "name": "InvoiceResponse+Mapping.swift",
+    "code": "import Foundation\n\nextension InvoiceResponse {\n    func toInvoice() -> Invoice {\n        Invoice(\n            id: invoiceId,\n            issuedAt: issuedAt,\n            dueDate: dueDate,\n            status: InvoiceStatus(rawValue: status)!,\n            total: Decimal(totalCents) / 100,\n            currency: currency,\n            notes: notes.map { value in String(describing: value) },\n            customerId: customer.customerId,\n            customerName: fatalError(\"No value for customerName in the mapping\"),\n            customerEmail: customer.emailAddress,\n            billingAddress: customer.billingAddress.toAddress(),\n            items: lines.map { $0.toInvoiceItem() },\n            isPaid: paid,\n            createdBy: fatalError(\"No value for createdBy in the mapping\")\n        )\n    }\n}\n\nextension BillingAddress {\n    func toAddress() -> Address {\n        Address(\n            street: street,\n            city: city,\n            postalCode: zipCode,\n            countryCode: country\n        )\n    }\n}\n\nextension Line {\n    func toInvoiceItem() -> InvoiceItem {\n        InvoiceItem(\n            sku: sku,\n            description: description,\n            quantity: Int32(qty),\n            unitPrice: Decimal(unitPriceCents) / 100,\n            taxRate: taxRate\n        )\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "go-functions": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\nimport \"fmt\"\n\n// MapInvoiceResponseToInvoice maps a InvoiceResponse to a Invoice.\nfunc MapInvoiceResponseToInvoice(source InvoiceResponse) Invoice {\n\treturn mapInvoiceResponseToInvoice(source)\n}\n\nfunc mapInvoiceResponseToInvoice(source InvoiceResponse) Invoice {\n\treturn Invoice{\n\t\tID: source.InvoiceID,\n\t\tIssuedAt: source.IssuedAt,\n\t\tDueDate: source.DueDate,\n\t\tStatus: InvoiceStatus(source.Status),\n\t\tTotal: float64(source.TotalCents) / 100.0,\n\t\tCurrency: source.Currency,\n\t\tNotes: mapPointer(source.Notes, func(value any) string {\n\t\t\treturn fmt.Sprint(value)\n\t\t}),\n\t\tCustomerID: source.Customer.CustomerID,\n\t\t// TODO: no value for \"customerName\" in the mapping\n\t\tCustomerName: \"\",\n\t\tCustomerEmail: source.Customer.EmailAddress,\n\t\tBillingAddress: mapBillingAddressToAddress(source.Customer.BillingAddress),\n\t\tItems: mapSlice(source.Lines, mapLineToInvoiceItem),\n\t\tIsPaid: source.Paid,\n\t\t// TODO: no value for \"createdBy\" in the mapping\n\t\tCreatedBy: \"\",\n\t}\n}\n\nfunc mapBillingAddressToAddress(source BillingAddress) Address {\n\treturn Address{\n\t\tStreet: source.Street,\n\t\tCity: source.City,\n\t\tPostalCode: source.ZipCode,\n\t\tCountryCode: source.Country,\n\t}\n}\n\nfunc mapLineToInvoiceItem(source Line) InvoiceItem {\n\treturn InvoiceItem{\n\t\tSku: source.Sku,\n\t\tDescription: source.Description,\n\t\tQuantity: int32(source.Qty),\n\t\tUnitPrice: float64(source.UnitPriceCents) / 100.0,\n\t\tTaxRate: source.TaxRate,\n\t}\n}\n\nfunc mapPointer[T, R any](value *T, mapValue func(T) R) *R {\n\tif value == nil {\n\t\treturn nil\n\t}\n\tresult := mapValue(*value)\n\treturn &result\n}\n\nfunc mapSlice[T, R any](items []T, mapItem func(T) R) []R {\n\tif items == nil {\n\t\treturn nil\n\t}\n\tresult := make([]R, len(items))\n\tfor index, item := range items {\n\t\tresult[index] = mapItem(item)\n\t}\n\treturn result\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "go-naming-keep": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\nimport \"fmt\"\n\n// MapInvoiceResponseToInvoice maps a InvoiceResponse to a Invoice.\nfunc MapInvoiceResponseToInvoice(source InvoiceResponse) Invoice {\n\treturn mapInvoiceResponseToInvoice(source)\n}\n\nfunc mapInvoiceResponseToInvoice(source InvoiceResponse) Invoice {\n\treturn Invoice{\n\t\tid: source.invoice_id,\n\t\tissuedAt: source.issued_at,\n\t\tdueDate: source.due_date,\n\t\tstatus: InvoiceStatus(source.status),\n\t\ttotal: float64(source.total_cents) / 100.0,\n\t\tcurrency: source.currency,\n\t\tnotes: mapPointer(source.notes, func(value any) string {\n\t\t\treturn fmt.Sprint(value)\n\t\t}),\n\t\tcustomerId: source.customer.customer_id,\n\t\t// TODO: no value for \"customerName\" in the mapping\n\t\tcustomerName: \"\",\n\t\tcustomerEmail: source.customer.email_address,\n\t\tbillingAddress: mapBillingAddressToAddress(source.customer.billing_address),\n\t\titems: mapSlice(source.lines, mapLineToInvoiceItem),\n\t\tisPaid: source.paid,\n\t\t// TODO: no value for \"createdBy\" in the mapping\n\t\tcreatedBy: \"\",\n\t}\n}\n\nfunc mapBillingAddressToAddress(source BillingAddress) Address {\n\treturn Address{\n\t\tstreet: source.street,\n\t\tcity: source.city,\n\t\tpostalCode: source.zip_code,\n\t\tcountryCode: source.country,\n\t}\n}\n\nfunc mapLineToInvoiceItem(source Line) InvoiceItem {\n\treturn InvoiceItem{\n\t\tsku: source.sku,\n\t\tdescription: source.description,\n\t\tquantity: int32(source.qty),\n\t\tunitPrice: float64(source.unit_price_cents) / 100.0,\n\t\ttaxRate: source.tax_rate,\n\t}\n}\n\nfunc mapPointer[T, R any](value *T, mapValue func(T) R) *R {\n\tif value == nil {\n\t\treturn nil\n\t}\n\tresult := mapValue(*value)\n\treturn &result\n}\n\nfunc mapSlice[T, R any](items []T, mapItem func(T) R) []R {\n\tif items == nil {\n\t\treturn nil\n\t}\n\tresult := make([]R, len(items))\n\tfor index, item := range items {\n\t\tresult[index] = mapItem(item)\n\t}\n\treturn result\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "go-naming-convention": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\nimport \"fmt\"\n\n// MapInvoiceResponseToInvoice maps a InvoiceResponse to a Invoice.\nfunc MapInvoiceResponseToInvoice(source InvoiceResponse) Invoice {\n\treturn mapInvoiceResponseToInvoice(source)\n}\n\nfunc mapInvoiceResponseToInvoice(source InvoiceResponse) Invoice {\n\treturn Invoice{\n\t\tID: source.InvoiceID,\n\t\tIssuedAt: source.IssuedAt,\n\t\tDueDate: source.DueDate,\n\t\tStatus: InvoiceStatus(source.Status),\n\t\tTotal: float64(source.TotalCents) / 100.0,\n\t\tCurrency: source.Currency,\n\t\tNotes: mapPointer(source.Notes, func(value any) string {\n\t\t\treturn fmt.Sprint(value)\n\t\t}),\n\t\tCustomerID: source.Customer.CustomerID,\n\t\t// TODO: no value for \"customerName\" in the mapping\n\t\tCustomerName: \"\",\n\t\tCustomerEmail: source.Customer.EmailAddress,\n\t\tBillingAddress: mapBillingAddressToAddress(source.Customer.BillingAddress),\n\t\tItems: mapSlice(source.Lines, mapLineToInvoiceItem),\n\t\tIsPaid: source.Paid,\n\t\t// TODO: no value for \"createdBy\" in the mapping\n\t\tCreatedBy: \"\",\n\t}\n}\n\nfunc mapBillingAddressToAddress(source BillingAddress) Address {\n\treturn Address{\n\t\tStreet: source.Street,\n\t\tCity: source.City,\n\t\tPostalCode: source.ZipCode,\n\t\tCountryCode: source.Country,\n\t}\n}\n\nfunc mapLineToInvoiceItem(source Line) InvoiceItem {\n\treturn InvoiceItem{\n\t\tSku: source.Sku,\n\t\tDescription: source.Description,\n\t\tQuantity: int32(source.Qty),\n\t\tUnitPrice: float64(source.UnitPriceCents) / 100.0,\n\t\tTaxRate: source.TaxRate,\n\t}\n}\n\nfunc mapPointer[T, R any](value *T, mapValue func(T) R) *R {\n\tif value == nil {\n\t\treturn nil\n\t}\n\tresult := mapValue(*value)\n\treturn &result\n}\n\nfunc mapSlice[T, R any](items []T, mapItem func(T) R) []R {\n\tif items == nil {\n\t\treturn nil\n\t}\n\tresult := make([]R, len(items))\n\tfor index, item := range items {\n\t\tresult[index] = mapItem(item)\n\t}\n\treturn result\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "rust-from": {
+  "files": [
+   {
+    "name": "invoice_response_mapping.rs",
+    "code": "use rust_decimal::Decimal;\nuse crate::models::{Address, BillingAddress, Invoice, InvoiceItem, InvoiceResponse, InvoiceStatus, Line};\n\nimpl From<&InvoiceResponse> for Invoice {\n    fn from(source: &InvoiceResponse) -> Self {\n        Self {\n            id: source.invoice_id.clone(),\n            issued_at: source.issued_at.clone(),\n            due_date: source.due_date.clone(),\n            status: source.status.parse::<InvoiceStatus>().expect(\"value is not valid\"),\n            total: Decimal::from(source.total_cents) / Decimal::from(100),\n            currency: source.currency.clone(),\n            notes: source.notes.as_ref().map(|value| value.to_string()),\n            customer_id: source.customer.customer_id,\n            customer_name: todo!(\"no value for customerName in the mapping\"),\n            customer_email: source.customer.email_address.clone(),\n            billing_address: Address::from(&source.customer.billing_address),\n            items: source.lines.iter().map(InvoiceItem::from).collect(),\n            is_paid: source.paid,\n            created_by: todo!(\"no value for createdBy in the mapping\"),\n        }\n    }\n}\n\nimpl From<&BillingAddress> for Address {\n    fn from(source: &BillingAddress) -> Self {\n        Self {\n            street: source.street.clone(),\n            city: source.city.clone(),\n            postal_code: source.zip_code.clone(),\n            country_code: source.country.clone(),\n        }\n    }\n}\n\nimpl From<&Line> for InvoiceItem {\n    fn from(source: &Line) -> Self {\n        Self {\n            sku: source.sku.clone(),\n            description: source.description.clone(),\n            quantity: source.qty as i32,\n            unit_price: Decimal::from(source.unit_price_cents) / Decimal::from(100),\n            tax_rate: source.tax_rate,\n        }\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "rust-naming-keep": {
+  "files": [
+   {
+    "name": "invoice_response_mapping.rs",
+    "code": "use rust_decimal::Decimal;\nuse crate::models::{Address, BillingAddress, Invoice, InvoiceItem, InvoiceResponse, InvoiceStatus, Line};\n\nimpl From<&InvoiceResponse> for Invoice {\n    fn from(source: &InvoiceResponse) -> Self {\n        Self {\n            id: source.invoice_id.clone(),\n            issuedAt: source.issued_at.clone(),\n            dueDate: source.due_date.clone(),\n            status: source.status.parse::<InvoiceStatus>().expect(\"value is not valid\"),\n            total: Decimal::from(source.total_cents) / Decimal::from(100),\n            currency: source.currency.clone(),\n            notes: source.notes.as_ref().map(|value| value.to_string()),\n            customerId: source.customer.customer_id,\n            customerName: todo!(\"no value for customerName in the mapping\"),\n            customerEmail: source.customer.email_address.clone(),\n            billingAddress: Address::from(&source.customer.billing_address),\n            items: source.lines.iter().map(InvoiceItem::from).collect(),\n            isPaid: source.paid,\n            createdBy: todo!(\"no value for createdBy in the mapping\"),\n        }\n    }\n}\n\nimpl From<&BillingAddress> for Address {\n    fn from(source: &BillingAddress) -> Self {\n        Self {\n            street: source.street.clone(),\n            city: source.city.clone(),\n            postalCode: source.zip_code.clone(),\n            countryCode: source.country.clone(),\n        }\n    }\n}\n\nimpl From<&Line> for InvoiceItem {\n    fn from(source: &Line) -> Self {\n        Self {\n            sku: source.sku.clone(),\n            description: source.description.clone(),\n            quantity: source.qty as i32,\n            unitPrice: Decimal::from(source.unit_price_cents) / Decimal::from(100),\n            taxRate: source.tax_rate,\n        }\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "rust-naming-convention": {
+  "files": [
+   {
+    "name": "invoice_response_mapping.rs",
+    "code": "use rust_decimal::Decimal;\nuse crate::models::{Address, BillingAddress, Invoice, InvoiceItem, InvoiceResponse, InvoiceStatus, Line};\n\nimpl From<&InvoiceResponse> for Invoice {\n    fn from(source: &InvoiceResponse) -> Self {\n        Self {\n            id: source.invoice_id.clone(),\n            issued_at: source.issued_at.clone(),\n            due_date: source.due_date.clone(),\n            status: source.status.parse::<InvoiceStatus>().expect(\"value is not valid\"),\n            total: Decimal::from(source.total_cents) / Decimal::from(100),\n            currency: source.currency.clone(),\n            notes: source.notes.as_ref().map(|value| value.to_string()),\n            customer_id: source.customer.customer_id,\n            customer_name: todo!(\"no value for customerName in the mapping\"),\n            customer_email: source.customer.email_address.clone(),\n            billing_address: Address::from(&source.customer.billing_address),\n            items: source.lines.iter().map(InvoiceItem::from).collect(),\n            is_paid: source.paid,\n            created_by: todo!(\"no value for createdBy in the mapping\"),\n        }\n    }\n}\n\nimpl From<&BillingAddress> for Address {\n    fn from(source: &BillingAddress) -> Self {\n        Self {\n            street: source.street.clone(),\n            city: source.city.clone(),\n            postal_code: source.zip_code.clone(),\n            country_code: source.country.clone(),\n        }\n    }\n}\n\nimpl From<&Line> for InvoiceItem {\n    fn from(source: &Line) -> Self {\n        Self {\n            sku: source.sku.clone(),\n            description: source.description.clone(),\n            quantity: source.qty as i32,\n            unit_price: Decimal::from(source.unit_price_cents) / Decimal::from(100),\n            tax_rate: source.tax_rate,\n        }\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "php-static": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class InvoiceResponseMapper\n{\n    public static function toInvoice(array $source): Invoice\n    {\n        return new Invoice(\n            id: $source['invoice_id'],\n            issuedAt: new \\DateTimeImmutable($source['issued_at']),\n            dueDate: new \\DateTimeImmutable($source['due_date']),\n            status: InvoiceStatus::from($source['status']),\n            total: ((float) $source['total_cents']) / 100,\n            currency: $source['currency'],\n            notes: ($source['notes'] ?? null) === null ? null : (string) ($source['notes'] ?? null),\n            customerId: $source['customer']['customer_id'],\n            customerName: throw new \\LogicException('No value for customerName in the mapping'),\n            customerEmail: $source['customer']['email_address'],\n            billingAddress: self::toAddress($source['customer']['billing_address']),\n            items: array_map(self::toInvoiceItem(...), $source['lines']),\n            isPaid: $source['paid'],\n            createdBy: throw new \\LogicException('No value for createdBy in the mapping'),\n        );\n    }\n\n    public static function toAddress(array $source): Address\n    {\n        return new Address(\n            street: $source['street'],\n            city: $source['city'],\n            postalCode: $source['zip_code'],\n            countryCode: $source['country'],\n        );\n    }\n\n    public static function toInvoiceItem(array $source): InvoiceItem\n    {\n        return new InvoiceItem(\n            sku: $source['sku'],\n            description: $source['description'],\n            quantity: $source['qty'],\n            unitPrice: ((float) $source['unit_price_cents']) / 100,\n            taxRate: $source['tax_rate'],\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "php-naming-keep": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class InvoiceResponseMapper\n{\n    public static function toInvoice(array $source): Invoice\n    {\n        return new Invoice(\n            id: $source['invoice_id'],\n            issuedAt: new \\DateTimeImmutable($source['issued_at']),\n            dueDate: new \\DateTimeImmutable($source['due_date']),\n            status: InvoiceStatus::from($source['status']),\n            total: ((float) $source['total_cents']) / 100,\n            currency: $source['currency'],\n            notes: ($source['notes'] ?? null) === null ? null : (string) ($source['notes'] ?? null),\n            customerId: $source['customer']['customer_id'],\n            customerName: throw new \\LogicException('No value for customerName in the mapping'),\n            customerEmail: $source['customer']['email_address'],\n            billingAddress: self::toAddress($source['customer']['billing_address']),\n            items: array_map(self::toInvoiceItem(...), $source['lines']),\n            isPaid: $source['paid'],\n            createdBy: throw new \\LogicException('No value for createdBy in the mapping'),\n        );\n    }\n\n    public static function toAddress(array $source): Address\n    {\n        return new Address(\n            street: $source['street'],\n            city: $source['city'],\n            postalCode: $source['zip_code'],\n            countryCode: $source['country'],\n        );\n    }\n\n    public static function toInvoiceItem(array $source): InvoiceItem\n    {\n        return new InvoiceItem(\n            sku: $source['sku'],\n            description: $source['description'],\n            quantity: $source['qty'],\n            unitPrice: ((float) $source['unit_price_cents']) / 100,\n            taxRate: $source['tax_rate'],\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "php-naming-convention": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class InvoiceResponseMapper\n{\n    public static function toInvoice(array $source): Invoice\n    {\n        return new Invoice(\n            id: $source['invoice_id'],\n            issuedAt: new \\DateTimeImmutable($source['issued_at']),\n            dueDate: new \\DateTimeImmutable($source['due_date']),\n            status: InvoiceStatus::from($source['status']),\n            total: ((float) $source['total_cents']) / 100,\n            currency: $source['currency'],\n            notes: ($source['notes'] ?? null) === null ? null : (string) ($source['notes'] ?? null),\n            customerId: $source['customer']['customer_id'],\n            customerName: throw new \\LogicException('No value for customerName in the mapping'),\n            customerEmail: $source['customer']['email_address'],\n            billingAddress: self::toAddress($source['customer']['billing_address']),\n            items: array_map(self::toInvoiceItem(...), $source['lines']),\n            isPaid: $source['paid'],\n            createdBy: throw new \\LogicException('No value for createdBy in the mapping'),\n        );\n    }\n\n    public static function toAddress(array $source): Address\n    {\n        return new Address(\n            street: $source['street'],\n            city: $source['city'],\n            postalCode: $source['zip_code'],\n            countryCode: $source['country'],\n        );\n    }\n\n    public static function toInvoiceItem(array $source): InvoiceItem\n    {\n        return new InvoiceItem(\n            sku: $source['sku'],\n            description: $source['description'],\n            quantity: $source['qty'],\n            unitPrice: ((float) $source['unit_price_cents']) / 100,\n            taxRate: $source['tax_rate'],\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "php-sourceAccess-array": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class InvoiceResponseMapper\n{\n    public static function toInvoice(array $source): Invoice\n    {\n        return new Invoice(\n            id: $source['invoice_id'],\n            issuedAt: new \\DateTimeImmutable($source['issued_at']),\n            dueDate: new \\DateTimeImmutable($source['due_date']),\n            status: InvoiceStatus::from($source['status']),\n            total: ((float) $source['total_cents']) / 100,\n            currency: $source['currency'],\n            notes: ($source['notes'] ?? null) === null ? null : (string) ($source['notes'] ?? null),\n            customerId: $source['customer']['customer_id'],\n            customerName: throw new \\LogicException('No value for customerName in the mapping'),\n            customerEmail: $source['customer']['email_address'],\n            billingAddress: self::toAddress($source['customer']['billing_address']),\n            items: array_map(self::toInvoiceItem(...), $source['lines']),\n            isPaid: $source['paid'],\n            createdBy: throw new \\LogicException('No value for createdBy in the mapping'),\n        );\n    }\n\n    public static function toAddress(array $source): Address\n    {\n        return new Address(\n            street: $source['street'],\n            city: $source['city'],\n            postalCode: $source['zip_code'],\n            countryCode: $source['country'],\n        );\n    }\n\n    public static function toInvoiceItem(array $source): InvoiceItem\n    {\n        return new InvoiceItem(\n            sku: $source['sku'],\n            description: $source['description'],\n            quantity: $source['qty'],\n            unitPrice: ((float) $source['unit_price_cents']) / 100,\n            taxRate: $source['tax_rate'],\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "php-targetStyle-array": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class InvoiceResponseMapper\n{\n    public static function toInvoice(array $source): array\n    {\n        return [\n            'id' => $source['invoice_id'],\n            'issuedAt' => new \\DateTimeImmutable($source['issued_at']),\n            'dueDate' => new \\DateTimeImmutable($source['due_date']),\n            'status' => $source['status'],\n            'total' => ((float) $source['total_cents']) / 100,\n            'currency' => $source['currency'],\n            'notes' => ($source['notes'] ?? null) === null ? null : (string) ($source['notes'] ?? null),\n            'customerId' => $source['customer']['customer_id'],\n            'customerName' => throw new \\LogicException('No value for customerName in the mapping'),\n            'customerEmail' => $source['customer']['email_address'],\n            'billingAddress' => self::toAddress($source['customer']['billing_address']),\n            'items' => array_map(self::toInvoiceItem(...), $source['lines']),\n            'isPaid' => $source['paid'],\n            'createdBy' => throw new \\LogicException('No value for createdBy in the mapping'),\n        ];\n    }\n\n    public static function toAddress(array $source): array\n    {\n        return [\n            'street' => $source['street'],\n            'city' => $source['city'],\n            'postalCode' => $source['zip_code'],\n            'countryCode' => $source['country'],\n        ];\n    }\n\n    public static function toInvoiceItem(array $source): array\n    {\n        return [\n            'sku' => $source['sku'],\n            'description' => $source['description'],\n            'quantity' => $source['qty'],\n            'unitPrice' => ((float) $source['unit_price_cents']) / 100,\n            'taxRate' => $source['tax_rate'],\n        ];\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ }
+}

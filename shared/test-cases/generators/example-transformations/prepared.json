@@ -1,0 +1,633 @@
+{
+ "source": {
+  "format": "model-schema",
+  "version": 1,
+  "origin": {
+   "format": "typescript",
+   "language": "typescript"
+  },
+  "models": [
+   {
+    "name": "ProductResponse",
+    "kind": "interface",
+    "fields": [
+     {
+      "name": "sku",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "string"
+     },
+     {
+      "name": "first_name",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "string"
+     },
+     {
+      "name": "last_name",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "string"
+     },
+     {
+      "name": "price_cents",
+      "type": {
+       "kind": "primitive",
+       "name": "float"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "number"
+     },
+     {
+      "name": "status",
+      "type": {
+       "kind": "enum",
+       "name": "ProductStatus"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "ProductStatus"
+     },
+     {
+      "name": "created",
+      "type": {
+       "kind": "primitive",
+       "name": "float"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "number"
+     },
+     {
+      "name": "stock",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "string"
+     },
+     {
+      "name": "discount",
+      "type": {
+       "kind": "primitive",
+       "name": "float"
+      },
+      "nullable": true,
+      "optional": false,
+      "originalType": "number | null"
+     }
+    ]
+   }
+  ],
+  "enums": [
+   {
+    "name": "ProductStatus",
+    "values": [
+     {
+      "name": "Active",
+      "value": "ACTIVE"
+     },
+     {
+      "name": "Discontinued",
+      "value": "DISCONTINUED"
+     },
+     {
+      "name": "Draft",
+      "value": "DRAFT"
+     }
+    ]
+   }
+  ]
+ },
+ "target": {
+  "format": "model-schema",
+  "version": 1,
+  "origin": {
+   "format": "python",
+   "language": "python",
+   "framework": "pydantic"
+  },
+  "models": [
+   {
+    "name": "ProductModel",
+    "kind": "class",
+    "fields": [
+     {
+      "name": "sku",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "str"
+     },
+     {
+      "name": "supplier_full_name",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "str"
+     },
+     {
+      "name": "price",
+      "type": {
+       "kind": "primitive",
+       "name": "decimal"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "Decimal"
+     },
+     {
+      "name": "status",
+      "type": {
+       "kind": "enum",
+       "name": "ProductState"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "ProductState"
+     },
+     {
+      "name": "active",
+      "type": {
+       "kind": "primitive",
+       "name": "boolean"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "bool"
+     },
+     {
+      "name": "created_at",
+      "type": {
+       "kind": "primitive",
+       "name": "datetime"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "datetime"
+     },
+     {
+      "name": "stock",
+      "type": {
+       "kind": "primitive",
+       "name": "integer"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "int"
+     },
+     {
+      "name": "discount",
+      "type": {
+       "kind": "primitive",
+       "name": "float"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "float"
+     }
+    ],
+    "framework": "pydantic",
+    "construction": "named"
+   }
+  ],
+  "enums": [
+   {
+    "name": "ProductState",
+    "values": [
+     {
+      "name": "ACTIVE",
+      "value": "active"
+     },
+     {
+      "name": "DISCONTINUED",
+      "value": "discontinued"
+     },
+     {
+      "name": "HIDDEN",
+      "value": "hidden"
+     }
+    ]
+   }
+  ]
+ },
+ "set": {
+  "root": "ProductResponse->ProductModel",
+  "mappings": [
+   {
+    "id": "ProductResponse->ProductModel",
+    "source": "ProductResponse",
+    "target": "ProductModel",
+    "fields": [
+     {
+      "target": "sku",
+      "sources": [
+       [
+        "sku"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "exact",
+      "reasons": [
+       {
+        "code": "sameName"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "sku"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 1,
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "supplier_full_name",
+      "sources": [
+       [
+        "first_name"
+       ],
+       [
+        "last_name"
+       ]
+      ],
+      "transform": {
+       "kind": "concat",
+       "separator": " "
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "combined"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "first_name"
+         ],
+         [
+          "last_name"
+         ]
+        ],
+        "transform": {
+         "kind": "concat",
+         "separator": " "
+        },
+        "score": 0.86,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "combined"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "price",
+      "sources": [
+       [
+        "price_cents"
+       ]
+      ],
+      "transform": {
+       "kind": "arithmetic",
+       "operator": "/",
+       "operand": 100
+      },
+      "status": "active",
+      "confidence": "probable",
+      "reasons": [
+       {
+        "code": "cents"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "price_cents"
+         ]
+        ],
+        "transform": {
+         "kind": "arithmetic",
+         "operator": "/",
+         "operand": 100
+        },
+        "score": 0.8,
+        "confidence": "probable",
+        "reasons": [
+         {
+          "code": "cents"
+         }
+        ]
+       },
+       {
+        "sources": [
+         [
+          "price_cents"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.6034999999999999,
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "similarName",
+          "params": {
+           "similarity": 78
+          }
+         },
+         {
+          "code": "typeConversion"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "status",
+      "sources": [
+       [
+        "status"
+       ]
+      ],
+      "transform": {
+       "kind": "enum",
+       "pairs": [
+        {
+         "from": "Active",
+         "to": "ACTIVE"
+        },
+        {
+         "from": "Discontinued",
+         "to": "DISCONTINUED"
+        }
+       ]
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "sameName"
+       },
+       {
+        "code": "typeTransform"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "status"
+         ]
+        ],
+        "transform": {
+         "kind": "enum",
+         "pairs": [
+          {
+           "from": "Active",
+           "to": "ACTIVE"
+          },
+          {
+           "from": "Discontinued",
+           "to": "DISCONTINUED"
+          }
+         ]
+        },
+        "score": 0.8666666666666667,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "typeTransform"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "active",
+      "sources": [
+       [
+        "status"
+       ]
+      ],
+      "transform": {
+       "kind": "boolean",
+       "trueValues": [
+        "Active"
+       ]
+      },
+      "status": "active",
+      "confidence": "review",
+      "reasons": [
+       {
+        "code": "typeTransform"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "status"
+         ]
+        ],
+        "transform": {
+         "kind": "boolean",
+         "trueValues": [
+          "Active"
+         ]
+        },
+        "score": 0.62,
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "typeTransform"
+         }
+        ]
+       }
+      ],
+      "manual": true
+     },
+     {
+      "target": "created_at",
+      "sources": [
+       [
+        "created"
+       ]
+      ],
+      "transform": {
+       "kind": "epoch",
+       "unit": "seconds"
+      },
+      "status": "active",
+      "confidence": "review",
+      "reasons": [
+       {
+        "code": "synonym"
+       },
+       {
+        "code": "typeTransform"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "created"
+         ]
+        ],
+        "transform": {
+         "kind": "epoch",
+         "unit": "seconds"
+        },
+        "score": 0.528,
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "synonym"
+         },
+         {
+          "code": "typeTransform"
+         }
+        ]
+       }
+      ],
+      "manual": true
+     },
+     {
+      "target": "stock",
+      "sources": [
+       [
+        "stock"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "sameName"
+       },
+       {
+        "code": "typeFallible"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "stock"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.88,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "typeFallible"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "discount",
+      "sources": [
+       [
+        "discount"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "sameName"
+       },
+       {
+        "code": "nullToRequired"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "discount"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.97,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "nullToRequired"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "ignoredSources": []
+   }
+  ]
+ }
+}

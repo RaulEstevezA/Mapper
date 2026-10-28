@@ -1,0 +1,2378 @@
+{
+ "typescript-functions": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import type { Address, BillingAddress, Invoice, InvoiceItem, InvoiceLine, InvoiceRecord } from './models'\n\nexport function mapInvoiceRecordToInvoice(source: InvoiceRecord): Invoice {\n  return {\n    // TODO: no value for \"id\" in the mapping\n    id: '',\n    issuedAt: source.issuedAt,\n    dueDate: source.dueDate,\n    status: source.status,\n    total: source.total,\n    currency: source.currency,\n    notes: source.notes,\n    customerId: source.customer.customerId,\n    // TODO: no value for \"customerName\" in the mapping\n    customerName: '',\n    customerEmail: source.customer.email,\n    // TODO: the source may be missing, but \"billingAddress\" is required\n    billingAddress: (source.customer.billingAddress == null ? undefined : mapBillingAddressToAddress(source.customer.billingAddress))!,\n    // TODO: the source may be missing, but \"items\" is required\n    items: (source.lines == null ? undefined : source.lines.map(mapInvoiceLineToInvoiceItem))!,\n    // TODO: the source may be missing, but \"isPaid\" is required\n    isPaid: source.paid!,\n    // TODO: no value for \"createdBy\" in the mapping\n    createdBy: '',\n  }\n}\n\nexport function mapBillingAddressToAddress(source: BillingAddress): Address {\n  return {\n    street: source.street,\n    city: source.city,\n    postalCode: source.zipCode,\n    // TODO: the source may be missing, but \"countryCode\" is required\n    countryCode: source.country!,\n  }\n}\n\nexport function mapInvoiceLineToInvoiceItem(source: InvoiceLine): InvoiceItem {\n  return {\n    sku: source.sku,\n    description: source.description,\n    quantity: source.quantity,\n    unitPrice: source.unitPrice,\n    // TODO: the source may be missing, but \"taxRate\" is required\n    taxRate: (source.taxRate == null ? undefined : source.taxRate)!,\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "typescript-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import type { Address, BillingAddress, Invoice, InvoiceItem, InvoiceLine, InvoiceRecord } from './models'\n\nexport function mapInvoiceRecordToInvoice(source: InvoiceRecord): Invoice {\n  return {\n    // TODO: no value for \"id\" in the mapping\n    id: '',\n    issuedAt: source.issued_at,\n    dueDate: source.due_date,\n    status: source.status,\n    total: source.total,\n    currency: source.currency,\n    notes: source.notes,\n    customerId: source.customer.customer_id,\n    // TODO: no value for \"customerName\" in the mapping\n    customerName: '',\n    customerEmail: source.customer.email,\n    // TODO: the source may be missing, but \"billingAddress\" is required\n    billingAddress: (source.customer.billing_address == null ? undefined : mapBillingAddressToAddress(source.customer.billing_address))!,\n    // TODO: the source may be missing, but \"items\" is required\n    items: (source.lines == null ? undefined : source.lines.map(mapInvoiceLineToInvoiceItem))!,\n    // TODO: the source may be missing, but \"isPaid\" is required\n    isPaid: source.paid!,\n    // TODO: no value for \"createdBy\" in the mapping\n    createdBy: '',\n  }\n}\n\nexport function mapBillingAddressToAddress(source: BillingAddress): Address {\n  return {\n    street: source.street,\n    city: source.city,\n    postalCode: source.zip_code,\n    // TODO: the source may be missing, but \"countryCode\" is required\n    countryCode: source.country!,\n  }\n}\n\nexport function mapInvoiceLineToInvoiceItem(source: InvoiceLine): InvoiceItem {\n  return {\n    sku: source.sku,\n    description: source.description,\n    quantity: source.quantity,\n    unitPrice: source.unit_price,\n    // TODO: the source may be missing, but \"taxRate\" is required\n    taxRate: (source.tax_rate == null ? undefined : source.tax_rate)!,\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "typescript-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import type { Address, BillingAddress, Invoice, InvoiceItem, InvoiceLine, InvoiceRecord } from './models'\n\nexport function mapInvoiceRecordToInvoice(source: InvoiceRecord): Invoice {\n  return {\n    // TODO: no value for \"id\" in the mapping\n    id: '',\n    issuedAt: source.issuedAt,\n    dueDate: source.dueDate,\n    status: source.status,\n    total: source.total,\n    currency: source.currency,\n    notes: source.notes,\n    customerId: source.customer.customerId,\n    // TODO: no value for \"customerName\" in the mapping\n    customerName: '',\n    customerEmail: source.customer.email,\n    // TODO: the source may be missing, but \"billingAddress\" is required\n    billingAddress: (source.customer.billingAddress == null ? undefined : mapBillingAddressToAddress(source.customer.billingAddress))!,\n    // TODO: the source may be missing, but \"items\" is required\n    items: (source.lines == null ? undefined : source.lines.map(mapInvoiceLineToInvoiceItem))!,\n    // TODO: the source may be missing, but \"isPaid\" is required\n    isPaid: source.paid!,\n    // TODO: no value for \"createdBy\" in the mapping\n    createdBy: '',\n  }\n}\n\nexport function mapBillingAddressToAddress(source: BillingAddress): Address {\n  return {\n    street: source.street,\n    city: source.city,\n    postalCode: source.zipCode,\n    // TODO: the source may be missing, but \"countryCode\" is required\n    countryCode: source.country!,\n  }\n}\n\nexport function mapInvoiceLineToInvoiceItem(source: InvoiceLine): InvoiceItem {\n  return {\n    sku: source.sku,\n    description: source.description,\n    quantity: source.quantity,\n    unitPrice: source.unitPrice,\n    // TODO: the source may be missing, but \"taxRate\" is required\n    taxRate: (source.taxRate == null ? undefined : source.taxRate)!,\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "javascript-functions": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {InvoiceRecord} source\n * @returns {Invoice}\n */\nexport function mapInvoiceRecordToInvoice(source) {\n  return {\n    // TODO: no value for \"id\" in the mapping\n    id: '',\n    issuedAt: source.issuedAt,\n    dueDate: source.dueDate,\n    status: source.status,\n    total: source.total,\n    currency: source.currency,\n    notes: source.notes,\n    customerId: source.customer.customerId,\n    // TODO: no value for \"customerName\" in the mapping\n    customerName: '',\n    customerEmail: source.customer.email,\n    // TODO: the source may be missing, but \"billingAddress\" is required\n    billingAddress: source.customer.billingAddress == null ? undefined : mapBillingAddressToAddress(source.customer.billingAddress),\n    // TODO: the source may be missing, but \"items\" is required\n    items: source.lines == null ? undefined : source.lines.map(mapInvoiceLineToInvoiceItem),\n    // TODO: the source may be missing, but \"isPaid\" is required\n    isPaid: source.paid,\n    // TODO: no value for \"createdBy\" in the mapping\n    createdBy: '',\n  }\n}\n\n/**\n * @param {BillingAddress} source\n * @returns {Address}\n */\nexport function mapBillingAddressToAddress(source) {\n  return {\n    street: source.street,\n    city: source.city,\n    postalCode: source.zipCode,\n    // TODO: the source may be missing, but \"countryCode\" is required\n    countryCode: source.country,\n  }\n}\n\n/**\n * @param {InvoiceLine} source\n * @returns {InvoiceItem}\n */\nexport function mapInvoiceLineToInvoiceItem(source) {\n  return {\n    sku: source.sku,\n    description: source.description,\n    quantity: source.quantity,\n    unitPrice: source.unitPrice,\n    // TODO: the source may be missing, but \"taxRate\" is required\n    taxRate: source.taxRate == null ? undefined : source.taxRate,\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "javascript-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {InvoiceRecord} source\n * @returns {Invoice}\n */\nexport function mapInvoiceRecordToInvoice(source) {\n  return {\n    // TODO: no value for \"id\" in the mapping\n    id: '',\n    issuedAt: source.issued_at,\n    dueDate: source.due_date,\n    status: source.status,\n    total: source.total,\n    currency: source.currency,\n    notes: source.notes,\n    customerId: source.customer.customer_id,\n    // TODO: no value for \"customerName\" in the mapping\n    customerName: '',\n    customerEmail: source.customer.email,\n    // TODO: the source may be missing, but \"billingAddress\" is required\n    billingAddress: source.customer.billing_address == null ? undefined : mapBillingAddressToAddress(source.customer.billing_address),\n    // TODO: the source may be missing, but \"items\" is required\n    items: source.lines == null ? undefined : source.lines.map(mapInvoiceLineToInvoiceItem),\n    // TODO: the source may be missing, but \"isPaid\" is required\n    isPaid: source.paid,\n    // TODO: no value for \"createdBy\" in the mapping\n    createdBy: '',\n  }\n}\n\n/**\n * @param {BillingAddress} source\n * @returns {Address}\n */\nexport function mapBillingAddressToAddress(source) {\n  return {\n    street: source.street,\n    city: source.city,\n    postalCode: source.zip_code,\n    // TODO: the source may be missing, but \"countryCode\" is required\n    countryCode: source.country,\n  }\n}\n\n/**\n * @param {InvoiceLine} source\n * @returns {InvoiceItem}\n */\nexport function mapInvoiceLineToInvoiceItem(source) {\n  return {\n    sku: source.sku,\n    description: source.description,\n    quantity: source.quantity,\n    unitPrice: source.unit_price,\n    // TODO: the source may be missing, but \"taxRate\" is required\n    taxRate: source.tax_rate == null ? undefined : source.tax_rate,\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "javascript-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {InvoiceRecord} source\n * @returns {Invoice}\n */\nexport function mapInvoiceRecordToInvoice(source) {\n  return {\n    // TODO: no value for \"id\" in the mapping\n    id: '',\n    issuedAt: source.issuedAt,\n    dueDate: source.dueDate,\n    status: source.status,\n    total: source.total,\n    currency: source.currency,\n    notes: source.notes,\n    customerId: source.customer.customerId,\n    // TODO: no value for \"customerName\" in the mapping\n    customerName: '',\n    customerEmail: source.customer.email,\n    // TODO: the source may be missing, but \"billingAddress\" is required\n    billingAddress: source.customer.billingAddress == null ? undefined : mapBillingAddressToAddress(source.customer.billingAddress),\n    // TODO: the source may be missing, but \"items\" is required\n    items: source.lines == null ? undefined : source.lines.map(mapInvoiceLineToInvoiceItem),\n    // TODO: the source may be missing, but \"isPaid\" is required\n    isPaid: source.paid,\n    // TODO: no value for \"createdBy\" in the mapping\n    createdBy: '',\n  }\n}\n\n/**\n * @param {BillingAddress} source\n * @returns {Address}\n */\nexport function mapBillingAddressToAddress(source) {\n  return {\n    street: source.street,\n    city: source.city,\n    postalCode: source.zipCode,\n    // TODO: the source may be missing, but \"countryCode\" is required\n    countryCode: source.country,\n  }\n}\n\n/**\n * @param {InvoiceLine} source\n * @returns {InvoiceItem}\n */\nexport function mapInvoiceLineToInvoiceItem(source) {\n  return {\n    sku: source.sku,\n    description: source.description,\n    quantity: source.quantity,\n    unitPrice: source.unitPrice,\n    // TODO: the source may be missing, but \"taxRate\" is required\n    taxRate: source.taxRate == null ? undefined : source.taxRate,\n  }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "python-functions": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "\nfrom models import Address, BillingAddress, Invoice, InvoiceItem, InvoiceLine, InvoiceRecord\n\n\ndef map_invoice_record_to_invoice(source: InvoiceRecord) -> Invoice:\n    return Invoice(\n        # TODO: no value for \"id\" in the mapping\n        id=\"\",\n        issued_at=source.issued_at,\n        due_date=source.due_date,\n        status=source.status,\n        total=source.total,\n        currency=source.currency,\n        notes=source.notes,\n        customer_id=source.customer.customer_id,\n        # TODO: no value for \"customerName\" in the mapping\n        customer_name=\"\",\n        customer_email=source.customer.email,\n        # TODO: the source may be missing, but \"billingAddress\" is required\n        billing_address=map_billing_address_to_address(source.customer.billing_address) if source.customer.billing_address is not None else None,\n        # TODO: the source may be missing, but \"items\" is required\n        items=[map_invoice_line_to_invoice_item(item) for item in source.lines] if source.lines is not None else None,\n        # TODO: the source may be missing, but \"isPaid\" is required\n        is_paid=source.paid,\n        # TODO: no value for \"createdBy\" in the mapping\n        created_by=\"\",\n    )\n\n\ndef map_billing_address_to_address(source: BillingAddress) -> Address:\n    return Address(\n        street=source.street,\n        city=source.city,\n        postal_code=source.zip_code,\n        # TODO: the source may be missing, but \"countryCode\" is required\n        country_code=source.country,\n    )\n\n\ndef map_invoice_line_to_invoice_item(source: InvoiceLine) -> InvoiceItem:\n    return InvoiceItem(\n        sku=source.sku,\n        description=source.description,\n        quantity=source.quantity,\n        unit_price=source.unit_price,\n        # TODO: the source may be missing, but \"taxRate\" is required\n        tax_rate=source.tax_rate if source.tax_rate is not None else None,\n    )\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "python-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "\nfrom models import Address, BillingAddress, Invoice, InvoiceItem, InvoiceLine, InvoiceRecord\n\n\ndef map_invoice_record_to_invoice(source: InvoiceRecord) -> Invoice:\n    return Invoice(\n        # TODO: no value for \"id\" in the mapping\n        id=\"\",\n        issuedAt=source.issued_at,\n        dueDate=source.due_date,\n        status=source.status,\n        total=source.total,\n        currency=source.currency,\n        notes=source.notes,\n        customerId=source.customer.customer_id,\n        # TODO: no value for \"customerName\" in the mapping\n        customerName=\"\",\n        customerEmail=source.customer.email,\n        # TODO: the source may be missing, but \"billingAddress\" is required\n        billingAddress=map_billing_address_to_address(source.customer.billing_address) if source.customer.billing_address is not None else None,\n        # TODO: the source may be missing, but \"items\" is required\n        items=[map_invoice_line_to_invoice_item(item) for item in source.lines] if source.lines is not None else None,\n        # TODO: the source may be missing, but \"isPaid\" is required\n        isPaid=source.paid,\n        # TODO: no value for \"createdBy\" in the mapping\n        createdBy=\"\",\n    )\n\n\ndef map_billing_address_to_address(source: BillingAddress) -> Address:\n    return Address(\n        street=source.street,\n        city=source.city,\n        postalCode=source.zip_code,\n        # TODO: the source may be missing, but \"countryCode\" is required\n        countryCode=source.country,\n    )\n\n\ndef map_invoice_line_to_invoice_item(source: InvoiceLine) -> InvoiceItem:\n    return InvoiceItem(\n        sku=source.sku,\n        description=source.description,\n        quantity=source.quantity,\n        unitPrice=source.unit_price,\n        # TODO: the source may be missing, but \"taxRate\" is required\n        taxRate=source.tax_rate if source.tax_rate is not None else None,\n    )\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "python-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "\nfrom models import Address, BillingAddress, Invoice, InvoiceItem, InvoiceLine, InvoiceRecord\n\n\ndef map_invoice_record_to_invoice(source: InvoiceRecord) -> Invoice:\n    return Invoice(\n        # TODO: no value for \"id\" in the mapping\n        id=\"\",\n        issued_at=source.issued_at,\n        due_date=source.due_date,\n        status=source.status,\n        total=source.total,\n        currency=source.currency,\n        notes=source.notes,\n        customer_id=source.customer.customer_id,\n        # TODO: no value for \"customerName\" in the mapping\n        customer_name=\"\",\n        customer_email=source.customer.email,\n        # TODO: the source may be missing, but \"billingAddress\" is required\n        billing_address=map_billing_address_to_address(source.customer.billing_address) if source.customer.billing_address is not None else None,\n        # TODO: the source may be missing, but \"items\" is required\n        items=[map_invoice_line_to_invoice_item(item) for item in source.lines] if source.lines is not None else None,\n        # TODO: the source may be missing, but \"isPaid\" is required\n        is_paid=source.paid,\n        # TODO: no value for \"createdBy\" in the mapping\n        created_by=\"\",\n    )\n\n\ndef map_billing_address_to_address(source: BillingAddress) -> Address:\n    return Address(\n        street=source.street,\n        city=source.city,\n        postal_code=source.zip_code,\n        # TODO: the source may be missing, but \"countryCode\" is required\n        country_code=source.country,\n    )\n\n\ndef map_invoice_line_to_invoice_item(source: InvoiceLine) -> InvoiceItem:\n    return InvoiceItem(\n        sku=source.sku,\n        description=source.description,\n        quantity=source.quantity,\n        unit_price=source.unit_price,\n        # TODO: the source may be missing, but \"taxRate\" is required\n        tax_rate=source.tax_rate if source.tax_rate is not None else None,\n    )\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "python-sourceAccess-dict": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from typing import Any\n\nfrom models import Address, Invoice, InvoiceItem\n\n\ndef map_invoice_record_to_invoice(source: dict[str, Any]) -> Invoice:\n    return Invoice(\n        # TODO: no value for \"id\" in the mapping\n        id=\"\",\n        issued_at=source[\"issued_at\"],\n        due_date=source[\"due_date\"],\n        status=source[\"status\"],\n        total=source[\"total\"],\n        currency=source[\"currency\"],\n        notes=source.get(\"notes\"),\n        customer_id=source[\"customer\"][\"customer_id\"],\n        # TODO: no value for \"customerName\" in the mapping\n        customer_name=\"\",\n        customer_email=source[\"customer\"][\"email\"],\n        # TODO: the source may be missing, but \"billingAddress\" is required\n        billing_address=map_billing_address_to_address(source[\"customer\"].get(\"billing_address\")) if source[\"customer\"].get(\"billing_address\") is not None else None,\n        # TODO: the source may be missing, but \"items\" is required\n        items=[map_invoice_line_to_invoice_item(item) for item in source.get(\"lines\")] if source.get(\"lines\") is not None else None,\n        # TODO: the source may be missing, but \"isPaid\" is required\n        is_paid=source.get(\"paid\"),\n        # TODO: no value for \"createdBy\" in the mapping\n        created_by=\"\",\n    )\n\n\ndef map_billing_address_to_address(source: dict[str, Any]) -> Address:\n    return Address(\n        street=source[\"street\"],\n        city=source[\"city\"],\n        postal_code=source[\"zip_code\"],\n        # TODO: the source may be missing, but \"countryCode\" is required\n        country_code=source.get(\"country\"),\n    )\n\n\ndef map_invoice_line_to_invoice_item(source: dict[str, Any]) -> InvoiceItem:\n    return InvoiceItem(\n        sku=source[\"sku\"],\n        description=source[\"description\"],\n        quantity=source[\"quantity\"],\n        unit_price=source[\"unit_price\"],\n        # TODO: the source may be missing, but \"taxRate\" is required\n        tax_rate=source.get(\"tax_rate\") if source.get(\"tax_rate\") is not None else None,\n    )\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "python-targetStyle-dict": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from typing import Any\n\nfrom models import BillingAddress, InvoiceLine, InvoiceRecord\n\n\ndef map_invoice_record_to_invoice(source: InvoiceRecord) -> dict[str, Any]:\n    return {\n        # TODO: no value for \"id\" in the mapping\n        \"id\": \"\",\n        \"issuedAt\": source.issued_at,\n        \"dueDate\": source.due_date,\n        \"status\": source.status,\n        \"total\": source.total,\n        \"currency\": source.currency,\n        \"notes\": source.notes,\n        \"customerId\": source.customer.customer_id,\n        # TODO: no value for \"customerName\" in the mapping\n        \"customerName\": \"\",\n        \"customerEmail\": source.customer.email,\n        # TODO: the source may be missing, but \"billingAddress\" is required\n        \"billingAddress\": map_billing_address_to_address(source.customer.billing_address) if source.customer.billing_address is not None else None,\n        # TODO: the source may be missing, but \"items\" is required\n        \"items\": [map_invoice_line_to_invoice_item(item) for item in source.lines] if source.lines is not None else None,\n        # TODO: the source may be missing, but \"isPaid\" is required\n        \"isPaid\": source.paid,\n        # TODO: no value for \"createdBy\" in the mapping\n        \"createdBy\": \"\",\n    }\n\n\ndef map_billing_address_to_address(source: BillingAddress) -> dict[str, Any]:\n    return {\n        \"street\": source.street,\n        \"city\": source.city,\n        \"postalCode\": source.zip_code,\n        # TODO: the source may be missing, but \"countryCode\" is required\n        \"countryCode\": source.country,\n    }\n\n\ndef map_invoice_line_to_invoice_item(source: InvoiceLine) -> dict[str, Any]:\n    return {\n        \"sku\": source.sku,\n        \"description\": source.description,\n        \"quantity\": source.quantity,\n        \"unitPrice\": source.unit_price,\n        # TODO: the source may be missing, but \"taxRate\" is required\n        \"taxRate\": source.tax_rate if source.tax_rate is not None else None,\n    }\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "java-manual": {
+  "files": [
+   {
+    "name": "InvoiceRecordMapper.java",
+    "code": "import java.util.Objects;\n\npublic final class InvoiceRecordMapper {\n\n    private InvoiceRecordMapper() {\n    }\n\n    public static Invoice toInvoice(InvoiceRecord source) {\n        if (source == null) {\n            return null;\n        }\n        return new Invoice(\n                // TODO: no value for \"id\" in the mapping\n                \"\",\n                source.getIssuedAt(),\n                source.getDueDate(),\n                source.getStatus(),\n                source.getTotal(),\n                source.getCurrency(),\n                source.getNotes(),\n                (long) source.getCustomer().getCustomerId(),\n                // TODO: no value for \"customerName\" in the mapping\n                \"\",\n                source.getCustomer().getEmail(),\n                // \"billingAddress\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getCustomer().getBillingAddress() != null ? toAddress(source.getCustomer().getBillingAddress()) : null),\n                // \"items\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getLines() != null ? source.getLines().stream().map(InvoiceRecordMapper::toInvoiceItem).toList() : null),\n                // \"isPaid\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getPaid()),\n                // TODO: no value for \"createdBy\" in the mapping\n                \"\"\n        );\n    }\n\n    public static Address toAddress(BillingAddress source) {\n        if (source == null) {\n            return null;\n        }\n        return new Address(\n                source.getStreet(),\n                source.getCity(),\n                source.getZipCode(),\n                // \"countryCode\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getCountry())\n        );\n    }\n\n    public static InvoiceItem toInvoiceItem(InvoiceLine source) {\n        if (source == null) {\n            return null;\n        }\n        return new InvoiceItem(\n                source.getSku(),\n                source.getDescription(),\n                Math.toIntExact(source.getQuantity()),\n                source.getUnitPrice(),\n                // \"taxRate\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getTaxRate() != null ? source.getTaxRate() : null)\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "java-mapstruct": {
+  "files": [
+   {
+    "name": "InvoiceRecordMapper.java",
+    "code": "import org.mapstruct.Mapper;\nimport org.mapstruct.Mapping;\n\n@Mapper\npublic interface InvoiceRecordMapper {\n\n    // TODO: no value for \"id\" in the mapping\n    @Mapping(target = \"id\", ignore = true)\n    @Mapping(target = \"customerId\", source = \"customer.customerId\")\n    // TODO: no value for \"customerName\" in the mapping\n    @Mapping(target = \"customerName\", ignore = true)\n    @Mapping(target = \"customerEmail\", source = \"customer.email\")\n    @Mapping(target = \"billingAddress\", source = \"customer.billingAddress\")\n    @Mapping(target = \"items\", source = \"lines\")\n    @Mapping(target = \"isPaid\", source = \"paid\")\n    // TODO: no value for \"createdBy\" in the mapping\n    @Mapping(target = \"createdBy\", ignore = true)\n    Invoice toInvoice(InvoiceRecord source);\n\n    @Mapping(target = \"postalCode\", source = \"zipCode\")\n    @Mapping(target = \"countryCode\", source = \"country\")\n    Address toAddress(BillingAddress source);\n\n    InvoiceItem toInvoiceItem(InvoiceLine source);\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "java-naming-keep": {
+  "files": [
+   {
+    "name": "InvoiceRecordMapper.java",
+    "code": "import java.util.Objects;\n\npublic final class InvoiceRecordMapper {\n\n    private InvoiceRecordMapper() {\n    }\n\n    public static Invoice toInvoice(InvoiceRecord source) {\n        if (source == null) {\n            return null;\n        }\n        return new Invoice(\n                // TODO: no value for \"id\" in the mapping\n                \"\",\n                source.getIssued_at(),\n                source.getDue_date(),\n                source.getStatus(),\n                source.getTotal(),\n                source.getCurrency(),\n                source.getNotes(),\n                (long) source.getCustomer().getCustomer_id(),\n                // TODO: no value for \"customerName\" in the mapping\n                \"\",\n                source.getCustomer().getEmail(),\n                // \"billingAddress\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getCustomer().getBilling_address() != null ? toAddress(source.getCustomer().getBilling_address()) : null),\n                // \"items\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getLines() != null ? source.getLines().stream().map(InvoiceRecordMapper::toInvoiceItem).toList() : null),\n                // \"isPaid\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getPaid()),\n                // TODO: no value for \"createdBy\" in the mapping\n                \"\"\n        );\n    }\n\n    public static Address toAddress(BillingAddress source) {\n        if (source == null) {\n            return null;\n        }\n        return new Address(\n                source.getStreet(),\n                source.getCity(),\n                source.getZip_code(),\n                // \"countryCode\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getCountry())\n        );\n    }\n\n    public static InvoiceItem toInvoiceItem(InvoiceLine source) {\n        if (source == null) {\n            return null;\n        }\n        return new InvoiceItem(\n                source.getSku(),\n                source.getDescription(),\n                Math.toIntExact(source.getQuantity()),\n                source.getUnit_price(),\n                // \"taxRate\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getTax_rate() != null ? source.getTax_rate() : null)\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "java-naming-convention": {
+  "files": [
+   {
+    "name": "InvoiceRecordMapper.java",
+    "code": "import java.util.Objects;\n\npublic final class InvoiceRecordMapper {\n\n    private InvoiceRecordMapper() {\n    }\n\n    public static Invoice toInvoice(InvoiceRecord source) {\n        if (source == null) {\n            return null;\n        }\n        return new Invoice(\n                // TODO: no value for \"id\" in the mapping\n                \"\",\n                source.getIssuedAt(),\n                source.getDueDate(),\n                source.getStatus(),\n                source.getTotal(),\n                source.getCurrency(),\n                source.getNotes(),\n                (long) source.getCustomer().getCustomerId(),\n                // TODO: no value for \"customerName\" in the mapping\n                \"\",\n                source.getCustomer().getEmail(),\n                // \"billingAddress\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getCustomer().getBillingAddress() != null ? toAddress(source.getCustomer().getBillingAddress()) : null),\n                // \"items\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getLines() != null ? source.getLines().stream().map(InvoiceRecordMapper::toInvoiceItem).toList() : null),\n                // \"isPaid\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getPaid()),\n                // TODO: no value for \"createdBy\" in the mapping\n                \"\"\n        );\n    }\n\n    public static Address toAddress(BillingAddress source) {\n        if (source == null) {\n            return null;\n        }\n        return new Address(\n                source.getStreet(),\n                source.getCity(),\n                source.getZipCode(),\n                // \"countryCode\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getCountry())\n        );\n    }\n\n    public static InvoiceItem toInvoiceItem(InvoiceLine source) {\n        if (source == null) {\n            return null;\n        }\n        return new InvoiceItem(\n                source.getSku(),\n                source.getDescription(),\n                Math.toIntExact(source.getQuantity()),\n                source.getUnitPrice(),\n                // \"taxRate\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getTaxRate() != null ? source.getTaxRate() : null)\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "java-componentModel-spring": {
+  "files": [
+   {
+    "name": "InvoiceRecordMapper.java",
+    "code": "import java.util.Objects;\n\npublic final class InvoiceRecordMapper {\n\n    private InvoiceRecordMapper() {\n    }\n\n    public static Invoice toInvoice(InvoiceRecord source) {\n        if (source == null) {\n            return null;\n        }\n        return new Invoice(\n                // TODO: no value for \"id\" in the mapping\n                \"\",\n                source.getIssuedAt(),\n                source.getDueDate(),\n                source.getStatus(),\n                source.getTotal(),\n                source.getCurrency(),\n                source.getNotes(),\n                (long) source.getCustomer().getCustomerId(),\n                // TODO: no value for \"customerName\" in the mapping\n                \"\",\n                source.getCustomer().getEmail(),\n                // \"billingAddress\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getCustomer().getBillingAddress() != null ? toAddress(source.getCustomer().getBillingAddress()) : null),\n                // \"items\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getLines() != null ? source.getLines().stream().map(InvoiceRecordMapper::toInvoiceItem).toList() : null),\n                // \"isPaid\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getPaid()),\n                // TODO: no value for \"createdBy\" in the mapping\n                \"\"\n        );\n    }\n\n    public static Address toAddress(BillingAddress source) {\n        if (source == null) {\n            return null;\n        }\n        return new Address(\n                source.getStreet(),\n                source.getCity(),\n                source.getZipCode(),\n                // \"countryCode\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getCountry())\n        );\n    }\n\n    public static InvoiceItem toInvoiceItem(InvoiceLine source) {\n        if (source == null) {\n            return null;\n        }\n        return new InvoiceItem(\n                source.getSku(),\n                source.getDescription(),\n                Math.toIntExact(source.getQuantity()),\n                source.getUnitPrice(),\n                // \"taxRate\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getTaxRate() != null ? source.getTaxRate() : null)\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "java-componentModel-cdi": {
+  "files": [
+   {
+    "name": "InvoiceRecordMapper.java",
+    "code": "import java.util.Objects;\n\npublic final class InvoiceRecordMapper {\n\n    private InvoiceRecordMapper() {\n    }\n\n    public static Invoice toInvoice(InvoiceRecord source) {\n        if (source == null) {\n            return null;\n        }\n        return new Invoice(\n                // TODO: no value for \"id\" in the mapping\n                \"\",\n                source.getIssuedAt(),\n                source.getDueDate(),\n                source.getStatus(),\n                source.getTotal(),\n                source.getCurrency(),\n                source.getNotes(),\n                (long) source.getCustomer().getCustomerId(),\n                // TODO: no value for \"customerName\" in the mapping\n                \"\",\n                source.getCustomer().getEmail(),\n                // \"billingAddress\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getCustomer().getBillingAddress() != null ? toAddress(source.getCustomer().getBillingAddress()) : null),\n                // \"items\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getLines() != null ? source.getLines().stream().map(InvoiceRecordMapper::toInvoiceItem).toList() : null),\n                // \"isPaid\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getPaid()),\n                // TODO: no value for \"createdBy\" in the mapping\n                \"\"\n        );\n    }\n\n    public static Address toAddress(BillingAddress source) {\n        if (source == null) {\n            return null;\n        }\n        return new Address(\n                source.getStreet(),\n                source.getCity(),\n                source.getZipCode(),\n                // \"countryCode\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getCountry())\n        );\n    }\n\n    public static InvoiceItem toInvoiceItem(InvoiceLine source) {\n        if (source == null) {\n            return null;\n        }\n        return new InvoiceItem(\n                source.getSku(),\n                source.getDescription(),\n                Math.toIntExact(source.getQuantity()),\n                source.getUnitPrice(),\n                // \"taxRate\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getTaxRate() != null ? source.getTaxRate() : null)\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "java-componentModel-jakarta": {
+  "files": [
+   {
+    "name": "InvoiceRecordMapper.java",
+    "code": "import java.util.Objects;\n\npublic final class InvoiceRecordMapper {\n\n    private InvoiceRecordMapper() {\n    }\n\n    public static Invoice toInvoice(InvoiceRecord source) {\n        if (source == null) {\n            return null;\n        }\n        return new Invoice(\n                // TODO: no value for \"id\" in the mapping\n                \"\",\n                source.getIssuedAt(),\n                source.getDueDate(),\n                source.getStatus(),\n                source.getTotal(),\n                source.getCurrency(),\n                source.getNotes(),\n                (long) source.getCustomer().getCustomerId(),\n                // TODO: no value for \"customerName\" in the mapping\n                \"\",\n                source.getCustomer().getEmail(),\n                // \"billingAddress\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getCustomer().getBillingAddress() != null ? toAddress(source.getCustomer().getBillingAddress()) : null),\n                // \"items\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getLines() != null ? source.getLines().stream().map(InvoiceRecordMapper::toInvoiceItem).toList() : null),\n                // \"isPaid\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getPaid()),\n                // TODO: no value for \"createdBy\" in the mapping\n                \"\"\n        );\n    }\n\n    public static Address toAddress(BillingAddress source) {\n        if (source == null) {\n            return null;\n        }\n        return new Address(\n                source.getStreet(),\n                source.getCity(),\n                source.getZipCode(),\n                // \"countryCode\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getCountry())\n        );\n    }\n\n    public static InvoiceItem toInvoiceItem(InvoiceLine source) {\n        if (source == null) {\n            return null;\n        }\n        return new InvoiceItem(\n                source.getSku(),\n                source.getDescription(),\n                Math.toIntExact(source.getQuantity()),\n                source.getUnitPrice(),\n                // \"taxRate\" is required: fails if the source is missing\n                Objects.requireNonNull(source.getTaxRate() != null ? source.getTaxRate() : null)\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "csharp-manual": {
+  "files": [
+   {
+    "name": "InvoiceRecordMappings.cs",
+    "code": "using System;\nusing System.Linq;\n\npublic static class InvoiceRecordMappings\n{\n    public static Invoice ToInvoice(this InvoiceRecord source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Invoice\n        {\n            // TODO: no value for \"id\" in the mapping\n            Id = \"\",\n            IssuedAt = source.IssuedAt,\n            DueDate = source.DueDate,\n            Status = source.Status,\n            Total = source.Total,\n            Currency = source.Currency,\n            Notes = source.Notes,\n            CustomerId = source.Customer.CustomerId,\n            // TODO: no value for \"customerName\" in the mapping\n            CustomerName = \"\",\n            CustomerEmail = source.Customer.Email,\n            BillingAddress = source.Customer.BillingAddress is { } value ? value.ToAddress() : null ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n            Items = source.Lines is { } value2 ? value2.Select(item => item.ToInvoiceItem()).ToList() : null ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n            IsPaid = source.Paid ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n            // TODO: no value for \"createdBy\" in the mapping\n            CreatedBy = \"\",\n        };\n    }\n\n    public static Address ToAddress(this BillingAddress source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Address\n        {\n            Street = source.Street,\n            City = source.City,\n            PostalCode = source.ZipCode,\n            CountryCode = source.Country ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n        };\n    }\n\n    public static InvoiceItem ToInvoiceItem(this InvoiceLine source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new InvoiceItem\n        {\n            Sku = source.Sku,\n            Description = source.Description,\n            Quantity = checked((int)source.Quantity),\n            UnitPrice = source.UnitPrice,\n            TaxRate = source.TaxRate is { } value ? value : null ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "csharp-automapper": {
+  "files": [
+   {
+    "name": "InvoiceRecordProfile.cs",
+    "code": "using System;\nusing AutoMapper;\n\npublic class InvoiceRecordProfile : Profile\n{\n    public InvoiceRecordProfile()\n    {\n        CreateMap<InvoiceRecord, Invoice>()\n            .ForMember(dest => dest.Id, opt => opt.Ignore()) // TODO: no value in the mapping\n            .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Customer.CustomerId))\n            .ForMember(dest => dest.CustomerName, opt => opt.Ignore()) // TODO: no value in the mapping\n            .ForMember(dest => dest.CustomerEmail, opt => opt.MapFrom(src => src.Customer.Email))\n            .ForMember(dest => dest.BillingAddress, opt => opt.MapFrom(src => src.Customer.BillingAddress))\n            .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Lines))\n            .ForMember(dest => dest.IsPaid, opt => opt.MapFrom(src => src.Paid))\n            .ForMember(dest => dest.CreatedBy, opt => opt.Ignore()) // TODO: no value in the mapping;\n\n        CreateMap<BillingAddress, Address>()\n            .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.ZipCode))\n            .ForMember(dest => dest.CountryCode, opt => opt.MapFrom(src => src.Country));\n\n        CreateMap<InvoiceLine, InvoiceItem>();\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   }
+  ]
+ },
+ "csharp-naming-keep": {
+  "files": [
+   {
+    "name": "InvoiceRecordMappings.cs",
+    "code": "using System;\nusing System.Linq;\n\npublic static class InvoiceRecordMappings\n{\n    public static Invoice ToInvoice(this InvoiceRecord source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Invoice\n        {\n            // TODO: no value for \"id\" in the mapping\n            id = \"\",\n            issuedAt = source.issued_at,\n            dueDate = source.due_date,\n            status = source.status,\n            total = source.total,\n            currency = source.currency,\n            notes = source.notes,\n            customerId = source.customer.customer_id,\n            // TODO: no value for \"customerName\" in the mapping\n            customerName = \"\",\n            customerEmail = source.customer.email,\n            billingAddress = source.customer.billing_address is { } value ? value.ToAddress() : null ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n            items = source.lines is { } value2 ? value2.Select(item => item.ToInvoiceItem()).ToList() : null ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n            isPaid = source.paid ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n            // TODO: no value for \"createdBy\" in the mapping\n            createdBy = \"\",\n        };\n    }\n\n    public static Address ToAddress(this BillingAddress source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Address\n        {\n            street = source.street,\n            city = source.city,\n            postalCode = source.zip_code,\n            countryCode = source.country ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n        };\n    }\n\n    public static InvoiceItem ToInvoiceItem(this InvoiceLine source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new InvoiceItem\n        {\n            sku = source.sku,\n            description = source.description,\n            quantity = checked((int)source.quantity),\n            unitPrice = source.unit_price,\n            taxRate = source.tax_rate is { } value ? value : null ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "csharp-naming-convention": {
+  "files": [
+   {
+    "name": "InvoiceRecordMappings.cs",
+    "code": "using System;\nusing System.Linq;\n\npublic static class InvoiceRecordMappings\n{\n    public static Invoice ToInvoice(this InvoiceRecord source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Invoice\n        {\n            // TODO: no value for \"id\" in the mapping\n            Id = \"\",\n            IssuedAt = source.IssuedAt,\n            DueDate = source.DueDate,\n            Status = source.Status,\n            Total = source.Total,\n            Currency = source.Currency,\n            Notes = source.Notes,\n            CustomerId = source.Customer.CustomerId,\n            // TODO: no value for \"customerName\" in the mapping\n            CustomerName = \"\",\n            CustomerEmail = source.Customer.Email,\n            BillingAddress = source.Customer.BillingAddress is { } value ? value.ToAddress() : null ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n            Items = source.Lines is { } value2 ? value2.Select(item => item.ToInvoiceItem()).ToList() : null ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n            IsPaid = source.Paid ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n            // TODO: no value for \"createdBy\" in the mapping\n            CreatedBy = \"\",\n        };\n    }\n\n    public static Address ToAddress(this BillingAddress source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Address\n        {\n            Street = source.Street,\n            City = source.City,\n            PostalCode = source.ZipCode,\n            CountryCode = source.Country ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n        };\n    }\n\n    public static InvoiceItem ToInvoiceItem(this InvoiceLine source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new InvoiceItem\n        {\n            Sku = source.Sku,\n            Description = source.Description,\n            Quantity = checked((int)source.Quantity),\n            UnitPrice = source.UnitPrice,\n            TaxRate = source.TaxRate is { } value ? value : null ?? throw new InvalidOperationException(\"A required value is missing in the source.\"),\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "kotlin-extensions": {
+  "files": [
+   {
+    "name": "InvoiceRecordMappers.kt",
+    "code": "package com.example.billing\n\nfun InvoiceRecord.toInvoice(): Invoice = Invoice(\n    id = TODO(\"No value for id in the mapping\"),\n    issuedAt = issuedAt,\n    dueDate = dueDate,\n    status = status,\n    total = total,\n    currency = currency,\n    notes = notes,\n    customerId = customer.customerId,\n    customerName = TODO(\"No value for customerName in the mapping\"),\n    customerEmail = customer.email,\n    billingAddress = requireNotNull(customer.billingAddress?.let { value -> value.toAddress() }) { \"A required value is missing in the source\" },\n    items = requireNotNull(lines?.let { value2 -> value2.map { it.toInvoiceItem() } }) { \"A required value is missing in the source\" },\n    isPaid = requireNotNull(paid) { \"A required value is missing in the source\" },\n    createdBy = TODO(\"No value for createdBy in the mapping\"),\n)\n\nfun BillingAddress.toAddress(): Address = Address(\n    street = street,\n    city = city,\n    postalCode = zipCode,\n    countryCode = requireNotNull(country) { \"A required value is missing in the source\" },\n)\n\nfun InvoiceLine.toInvoiceItem(): InvoiceItem = InvoiceItem(\n    sku = sku,\n    description = description,\n    quantity = quantity.toInt(),\n    unitPrice = unitPrice,\n    taxRate = requireNotNull(taxRate?.let { value -> value.toDouble() }) { \"A required value is missing in the source\" },\n)\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "kotlin-naming-keep": {
+  "files": [
+   {
+    "name": "InvoiceRecordMappers.kt",
+    "code": "package com.example.billing\n\nfun InvoiceRecord.toInvoice(): Invoice = Invoice(\n    id = TODO(\"No value for id in the mapping\"),\n    issuedAt = issued_at,\n    dueDate = due_date,\n    status = status,\n    total = total,\n    currency = currency,\n    notes = notes,\n    customerId = customer.customer_id,\n    customerName = TODO(\"No value for customerName in the mapping\"),\n    customerEmail = customer.email,\n    billingAddress = requireNotNull(customer.billing_address?.let { value -> value.toAddress() }) { \"A required value is missing in the source\" },\n    items = requireNotNull(lines?.let { value2 -> value2.map { it.toInvoiceItem() } }) { \"A required value is missing in the source\" },\n    isPaid = requireNotNull(paid) { \"A required value is missing in the source\" },\n    createdBy = TODO(\"No value for createdBy in the mapping\"),\n)\n\nfun BillingAddress.toAddress(): Address = Address(\n    street = street,\n    city = city,\n    postalCode = zip_code,\n    countryCode = requireNotNull(country) { \"A required value is missing in the source\" },\n)\n\nfun InvoiceLine.toInvoiceItem(): InvoiceItem = InvoiceItem(\n    sku = sku,\n    description = description,\n    quantity = quantity.toInt(),\n    unitPrice = unit_price,\n    taxRate = requireNotNull(tax_rate?.let { value -> value.toDouble() }) { \"A required value is missing in the source\" },\n)\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "kotlin-naming-convention": {
+  "files": [
+   {
+    "name": "InvoiceRecordMappers.kt",
+    "code": "package com.example.billing\n\nfun InvoiceRecord.toInvoice(): Invoice = Invoice(\n    id = TODO(\"No value for id in the mapping\"),\n    issuedAt = issuedAt,\n    dueDate = dueDate,\n    status = status,\n    total = total,\n    currency = currency,\n    notes = notes,\n    customerId = customer.customerId,\n    customerName = TODO(\"No value for customerName in the mapping\"),\n    customerEmail = customer.email,\n    billingAddress = requireNotNull(customer.billingAddress?.let { value -> value.toAddress() }) { \"A required value is missing in the source\" },\n    items = requireNotNull(lines?.let { value2 -> value2.map { it.toInvoiceItem() } }) { \"A required value is missing in the source\" },\n    isPaid = requireNotNull(paid) { \"A required value is missing in the source\" },\n    createdBy = TODO(\"No value for createdBy in the mapping\"),\n)\n\nfun BillingAddress.toAddress(): Address = Address(\n    street = street,\n    city = city,\n    postalCode = zipCode,\n    countryCode = requireNotNull(country) { \"A required value is missing in the source\" },\n)\n\nfun InvoiceLine.toInvoiceItem(): InvoiceItem = InvoiceItem(\n    sku = sku,\n    description = description,\n    quantity = quantity.toInt(),\n    unitPrice = unitPrice,\n    taxRate = requireNotNull(taxRate?.let { value -> value.toDouble() }) { \"A required value is missing in the source\" },\n)\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "dart-extensions": {
+  "files": [
+   {
+    "name": "invoice_record_mapping.dart",
+    "code": "import 'models.dart';\n\nextension InvoiceRecordMapping on InvoiceRecord {\n  Invoice toInvoice() => Invoice(\n        id: throw UnimplementedError('No value for id in the mapping'),\n        issuedAt: issuedAt,\n        dueDate: dueDate,\n        status: status,\n        total: total,\n        currency: currency,\n        notes: notes,\n        customerId: customer.customerId,\n        customerName: throw UnimplementedError('No value for customerName in the mapping'),\n        customerEmail: customer.email,\n        billingAddress: (customer.billingAddress == null ? null : customer.billingAddress!.toAddress())!,\n        items: (lines == null ? null : lines!.map((item) => item.toInvoiceItem()).toList())!,\n        isPaid: paid!,\n        createdBy: throw UnimplementedError('No value for createdBy in the mapping'),\n      );\n}\n\nextension BillingAddressMapping on BillingAddress {\n  Address toAddress() => Address(\n        street: street,\n        city: city,\n        postalCode: zipCode,\n        countryCode: country!,\n      );\n}\n\nextension InvoiceLineMapping on InvoiceLine {\n  InvoiceItem toInvoiceItem() => InvoiceItem(\n        sku: sku,\n        description: description,\n        quantity: quantity,\n        unitPrice: unitPrice,\n        taxRate: (taxRate == null ? null : taxRate!)!,\n      );\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "dart-naming-keep": {
+  "files": [
+   {
+    "name": "invoice_record_mapping.dart",
+    "code": "import 'models.dart';\n\nextension InvoiceRecordMapping on InvoiceRecord {\n  Invoice toInvoice() => Invoice(\n        id: throw UnimplementedError('No value for id in the mapping'),\n        issuedAt: issued_at,\n        dueDate: due_date,\n        status: status,\n        total: total,\n        currency: currency,\n        notes: notes,\n        customerId: customer.customer_id,\n        customerName: throw UnimplementedError('No value for customerName in the mapping'),\n        customerEmail: customer.email,\n        billingAddress: (customer.billing_address == null ? null : customer.billing_address!.toAddress())!,\n        items: (lines == null ? null : lines!.map((item) => item.toInvoiceItem()).toList())!,\n        isPaid: paid!,\n        createdBy: throw UnimplementedError('No value for createdBy in the mapping'),\n      );\n}\n\nextension BillingAddressMapping on BillingAddress {\n  Address toAddress() => Address(\n        street: street,\n        city: city,\n        postalCode: zip_code,\n        countryCode: country!,\n      );\n}\n\nextension InvoiceLineMapping on InvoiceLine {\n  InvoiceItem toInvoiceItem() => InvoiceItem(\n        sku: sku,\n        description: description,\n        quantity: quantity,\n        unitPrice: unit_price,\n        taxRate: (tax_rate == null ? null : tax_rate!)!,\n      );\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "dart-naming-convention": {
+  "files": [
+   {
+    "name": "invoice_record_mapping.dart",
+    "code": "import 'models.dart';\n\nextension InvoiceRecordMapping on InvoiceRecord {\n  Invoice toInvoice() => Invoice(\n        id: throw UnimplementedError('No value for id in the mapping'),\n        issuedAt: issuedAt,\n        dueDate: dueDate,\n        status: status,\n        total: total,\n        currency: currency,\n        notes: notes,\n        customerId: customer.customerId,\n        customerName: throw UnimplementedError('No value for customerName in the mapping'),\n        customerEmail: customer.email,\n        billingAddress: (customer.billingAddress == null ? null : customer.billingAddress!.toAddress())!,\n        items: (lines == null ? null : lines!.map((item) => item.toInvoiceItem()).toList())!,\n        isPaid: paid!,\n        createdBy: throw UnimplementedError('No value for createdBy in the mapping'),\n      );\n}\n\nextension BillingAddressMapping on BillingAddress {\n  Address toAddress() => Address(\n        street: street,\n        city: city,\n        postalCode: zipCode,\n        countryCode: country!,\n      );\n}\n\nextension InvoiceLineMapping on InvoiceLine {\n  InvoiceItem toInvoiceItem() => InvoiceItem(\n        sku: sku,\n        description: description,\n        quantity: quantity,\n        unitPrice: unitPrice,\n        taxRate: (taxRate == null ? null : taxRate!)!,\n      );\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "swift-extensions": {
+  "files": [
+   {
+    "name": "InvoiceRecord+Mapping.swift",
+    "code": "import Foundation\n\nextension InvoiceRecord {\n    func toInvoice() -> Invoice {\n        Invoice(\n            id: fatalError(\"No value for id in the mapping\"),\n            issuedAt: issuedAt,\n            dueDate: dueDate,\n            status: status,\n            total: total,\n            currency: currency,\n            notes: notes,\n            customerId: customer.customerId,\n            customerName: fatalError(\"No value for customerName in the mapping\"),\n            customerEmail: customer.email,\n            billingAddress: (customer.billingAddress.map { value in value.toAddress() })!,\n            items: (lines.map { value2 in value2.map { $0.toInvoiceItem() } })!,\n            isPaid: paid!,\n            createdBy: fatalError(\"No value for createdBy in the mapping\")\n        )\n    }\n}\n\nextension BillingAddress {\n    func toAddress() -> Address {\n        Address(\n            street: street,\n            city: city,\n            postalCode: zipCode,\n            countryCode: country!\n        )\n    }\n}\n\nextension InvoiceLine {\n    func toInvoiceItem() -> InvoiceItem {\n        InvoiceItem(\n            sku: sku,\n            description: description,\n            quantity: Int32(quantity),\n            unitPrice: unitPrice,\n            taxRate: (taxRate.map { value in value })!\n        )\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "swift-naming-keep": {
+  "files": [
+   {
+    "name": "InvoiceRecord+Mapping.swift",
+    "code": "import Foundation\n\nextension InvoiceRecord {\n    func toInvoice() -> Invoice {\n        Invoice(\n            id: fatalError(\"No value for id in the mapping\"),\n            issuedAt: issued_at,\n            dueDate: due_date,\n            status: status,\n            total: total,\n            currency: currency,\n            notes: notes,\n            customerId: customer.customer_id,\n            customerName: fatalError(\"No value for customerName in the mapping\"),\n            customerEmail: customer.email,\n            billingAddress: (customer.billing_address.map { value in value.toAddress() })!,\n            items: (lines.map { value2 in value2.map { $0.toInvoiceItem() } })!,\n            isPaid: paid!,\n            createdBy: fatalError(\"No value for createdBy in the mapping\")\n        )\n    }\n}\n\nextension BillingAddress {\n    func toAddress() -> Address {\n        Address(\n            street: street,\n            city: city,\n            postalCode: zip_code,\n            countryCode: country!\n        )\n    }\n}\n\nextension InvoiceLine {\n    func toInvoiceItem() -> InvoiceItem {\n        InvoiceItem(\n            sku: sku,\n            description: description,\n            quantity: Int32(quantity),\n            unitPrice: unit_price,\n            taxRate: (tax_rate.map { value in value })!\n        )\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "swift-naming-convention": {
+  "files": [
+   {
+    "name": "InvoiceRecord+Mapping.swift",
+    "code": "import Foundation\n\nextension InvoiceRecord {\n    func toInvoice() -> Invoice {\n        Invoice(\n            id: fatalError(\"No value for id in the mapping\"),\n            issuedAt: issuedAt,\n            dueDate: dueDate,\n            status: status,\n            total: total,\n            currency: currency,\n            notes: notes,\n            customerId: customer.customerId,\n            customerName: fatalError(\"No value for customerName in the mapping\"),\n            customerEmail: customer.email,\n            billingAddress: (customer.billingAddress.map { value in value.toAddress() })!,\n            items: (lines.map { value2 in value2.map { $0.toInvoiceItem() } })!,\n            isPaid: paid!,\n            createdBy: fatalError(\"No value for createdBy in the mapping\")\n        )\n    }\n}\n\nextension BillingAddress {\n    func toAddress() -> Address {\n        Address(\n            street: street,\n            city: city,\n            postalCode: zipCode,\n            countryCode: country!\n        )\n    }\n}\n\nextension InvoiceLine {\n    func toInvoiceItem() -> InvoiceItem {\n        InvoiceItem(\n            sku: sku,\n            description: description,\n            quantity: Int32(quantity),\n            unitPrice: unitPrice,\n            taxRate: (taxRate.map { value in value })!\n        )\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "go-functions": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\n// MapInvoiceRecordToInvoice maps a InvoiceRecord to a Invoice.\nfunc MapInvoiceRecordToInvoice(source InvoiceRecord) Invoice {\n\treturn mapInvoiceRecordToInvoice(source)\n}\n\nfunc mapInvoiceRecordToInvoice(source InvoiceRecord) Invoice {\n\treturn Invoice{\n\t\t// TODO: no value for \"id\" in the mapping\n\t\tID: \"\",\n\t\tIssuedAt: source.IssuedAt,\n\t\tDueDate: source.DueDate,\n\t\tStatus: source.Status,\n\t\tTotal: source.Total,\n\t\tCurrency: source.Currency,\n\t\tNotes: source.Notes,\n\t\tCustomerID: source.Customer.CustomerID,\n\t\t// TODO: no value for \"customerName\" in the mapping\n\t\tCustomerName: \"\",\n\t\tCustomerEmail: source.Customer.Email,\n\t\t// \"billingAddress\" is required: panics if the source is missing\n\t\tBillingAddress: *mapPointer(source.Customer.BillingAddress, func(value BillingAddress) Address {\n\t\t\treturn mapBillingAddressToAddress(value)\n\t\t}),\n\t\t// \"items\" is required: panics if the source is missing\n\t\tItems: *mapPointer(source.Lines, func(value2 []InvoiceLine) []InvoiceItem {\n\t\t\treturn mapSlice(value2, mapInvoiceLineToInvoiceItem)\n\t\t}),\n\t\t// \"isPaid\" is required: panics if the source is missing\n\t\tIsPaid: *source.Paid,\n\t\t// TODO: no value for \"createdBy\" in the mapping\n\t\tCreatedBy: \"\",\n\t}\n}\n\nfunc mapBillingAddressToAddress(source BillingAddress) Address {\n\treturn Address{\n\t\tStreet: source.Street,\n\t\tCity: source.City,\n\t\tPostalCode: source.ZipCode,\n\t\t// \"countryCode\" is required: panics if the source is missing\n\t\tCountryCode: *source.Country,\n\t}\n}\n\nfunc mapInvoiceLineToInvoiceItem(source InvoiceLine) InvoiceItem {\n\treturn InvoiceItem{\n\t\tSku: source.Sku,\n\t\tDescription: source.Description,\n\t\tQuantity: int32(source.Quantity),\n\t\tUnitPrice: source.UnitPrice,\n\t\t// \"taxRate\" is required: panics if the source is missing\n\t\tTaxRate: *mapPointer(source.TaxRate, func(value float64) float64 {\n\t\t\treturn value\n\t\t}),\n\t}\n}\n\nfunc mapPointer[T, R any](value *T, mapValue func(T) R) *R {\n\tif value == nil {\n\t\treturn nil\n\t}\n\tresult := mapValue(*value)\n\treturn &result\n}\n\nfunc mapSlice[T, R any](items []T, mapItem func(T) R) []R {\n\tif items == nil {\n\t\treturn nil\n\t}\n\tresult := make([]R, len(items))\n\tfor index, item := range items {\n\t\tresult[index] = mapItem(item)\n\t}\n\treturn result\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "go-naming-keep": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\n// MapInvoiceRecordToInvoice maps a InvoiceRecord to a Invoice.\nfunc MapInvoiceRecordToInvoice(source InvoiceRecord) Invoice {\n\treturn mapInvoiceRecordToInvoice(source)\n}\n\nfunc mapInvoiceRecordToInvoice(source InvoiceRecord) Invoice {\n\treturn Invoice{\n\t\t// TODO: no value for \"id\" in the mapping\n\t\tid: \"\",\n\t\tissuedAt: source.issued_at,\n\t\tdueDate: source.due_date,\n\t\tstatus: source.status,\n\t\ttotal: source.total,\n\t\tcurrency: source.currency,\n\t\tnotes: source.notes,\n\t\tcustomerId: source.customer.customer_id,\n\t\t// TODO: no value for \"customerName\" in the mapping\n\t\tcustomerName: \"\",\n\t\tcustomerEmail: source.customer.email,\n\t\t// \"billingAddress\" is required: panics if the source is missing\n\t\tbillingAddress: *mapPointer(source.customer.billing_address, func(value BillingAddress) Address {\n\t\t\treturn mapBillingAddressToAddress(value)\n\t\t}),\n\t\t// \"items\" is required: panics if the source is missing\n\t\titems: *mapPointer(source.lines, func(value2 []InvoiceLine) []InvoiceItem {\n\t\t\treturn mapSlice(value2, mapInvoiceLineToInvoiceItem)\n\t\t}),\n\t\t// \"isPaid\" is required: panics if the source is missing\n\t\tisPaid: *source.paid,\n\t\t// TODO: no value for \"createdBy\" in the mapping\n\t\tcreatedBy: \"\",\n\t}\n}\n\nfunc mapBillingAddressToAddress(source BillingAddress) Address {\n\treturn Address{\n\t\tstreet: source.street,\n\t\tcity: source.city,\n\t\tpostalCode: source.zip_code,\n\t\t// \"countryCode\" is required: panics if the source is missing\n\t\tcountryCode: *source.country,\n\t}\n}\n\nfunc mapInvoiceLineToInvoiceItem(source InvoiceLine) InvoiceItem {\n\treturn InvoiceItem{\n\t\tsku: source.sku,\n\t\tdescription: source.description,\n\t\tquantity: int32(source.quantity),\n\t\tunitPrice: source.unit_price,\n\t\t// \"taxRate\" is required: panics if the source is missing\n\t\ttaxRate: *mapPointer(source.tax_rate, func(value float64) float64 {\n\t\t\treturn value\n\t\t}),\n\t}\n}\n\nfunc mapPointer[T, R any](value *T, mapValue func(T) R) *R {\n\tif value == nil {\n\t\treturn nil\n\t}\n\tresult := mapValue(*value)\n\treturn &result\n}\n\nfunc mapSlice[T, R any](items []T, mapItem func(T) R) []R {\n\tif items == nil {\n\t\treturn nil\n\t}\n\tresult := make([]R, len(items))\n\tfor index, item := range items {\n\t\tresult[index] = mapItem(item)\n\t}\n\treturn result\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "go-naming-convention": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\n// MapInvoiceRecordToInvoice maps a InvoiceRecord to a Invoice.\nfunc MapInvoiceRecordToInvoice(source InvoiceRecord) Invoice {\n\treturn mapInvoiceRecordToInvoice(source)\n}\n\nfunc mapInvoiceRecordToInvoice(source InvoiceRecord) Invoice {\n\treturn Invoice{\n\t\t// TODO: no value for \"id\" in the mapping\n\t\tID: \"\",\n\t\tIssuedAt: source.IssuedAt,\n\t\tDueDate: source.DueDate,\n\t\tStatus: source.Status,\n\t\tTotal: source.Total,\n\t\tCurrency: source.Currency,\n\t\tNotes: source.Notes,\n\t\tCustomerID: source.Customer.CustomerID,\n\t\t// TODO: no value for \"customerName\" in the mapping\n\t\tCustomerName: \"\",\n\t\tCustomerEmail: source.Customer.Email,\n\t\t// \"billingAddress\" is required: panics if the source is missing\n\t\tBillingAddress: *mapPointer(source.Customer.BillingAddress, func(value BillingAddress) Address {\n\t\t\treturn mapBillingAddressToAddress(value)\n\t\t}),\n\t\t// \"items\" is required: panics if the source is missing\n\t\tItems: *mapPointer(source.Lines, func(value2 []InvoiceLine) []InvoiceItem {\n\t\t\treturn mapSlice(value2, mapInvoiceLineToInvoiceItem)\n\t\t}),\n\t\t// \"isPaid\" is required: panics if the source is missing\n\t\tIsPaid: *source.Paid,\n\t\t// TODO: no value for \"createdBy\" in the mapping\n\t\tCreatedBy: \"\",\n\t}\n}\n\nfunc mapBillingAddressToAddress(source BillingAddress) Address {\n\treturn Address{\n\t\tStreet: source.Street,\n\t\tCity: source.City,\n\t\tPostalCode: source.ZipCode,\n\t\t// \"countryCode\" is required: panics if the source is missing\n\t\tCountryCode: *source.Country,\n\t}\n}\n\nfunc mapInvoiceLineToInvoiceItem(source InvoiceLine) InvoiceItem {\n\treturn InvoiceItem{\n\t\tSku: source.Sku,\n\t\tDescription: source.Description,\n\t\tQuantity: int32(source.Quantity),\n\t\tUnitPrice: source.UnitPrice,\n\t\t// \"taxRate\" is required: panics if the source is missing\n\t\tTaxRate: *mapPointer(source.TaxRate, func(value float64) float64 {\n\t\t\treturn value\n\t\t}),\n\t}\n}\n\nfunc mapPointer[T, R any](value *T, mapValue func(T) R) *R {\n\tif value == nil {\n\t\treturn nil\n\t}\n\tresult := mapValue(*value)\n\treturn &result\n}\n\nfunc mapSlice[T, R any](items []T, mapItem func(T) R) []R {\n\tif items == nil {\n\t\treturn nil\n\t}\n\tresult := make([]R, len(items))\n\tfor index, item := range items {\n\t\tresult[index] = mapItem(item)\n\t}\n\treturn result\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "rust-from": {
+  "files": [
+   {
+    "name": "invoice_record_mapping.rs",
+    "code": "use crate::models::{Address, BillingAddress, Invoice, InvoiceItem, InvoiceLine, InvoiceRecord, InvoiceStatus};\n\nimpl From<&InvoiceRecord> for Invoice {\n    fn from(source: &InvoiceRecord) -> Self {\n        Self {\n            id: todo!(\"no value for id in the mapping\"),\n            issued_at: source.issued_at.clone(),\n            due_date: source.due_date.clone(),\n            status: source.status.clone(),\n            total: source.total.clone(),\n            currency: source.currency.clone(),\n            notes: source.notes.clone(),\n            customer_id: source.customer.customer_id,\n            customer_name: todo!(\"no value for customerName in the mapping\"),\n            customer_email: source.customer.email.clone(),\n            billing_address: source.customer.billing_address.as_ref().map(|value| Address::from(value)).expect(\"a required value is missing in the source\"),\n            items: source.lines.as_ref().map(|value2| value2.iter().map(InvoiceItem::from).collect()).expect(\"a required value is missing in the source\"),\n            is_paid: source.paid.expect(\"a required value is missing in the source\"),\n            created_by: todo!(\"no value for createdBy in the mapping\"),\n        }\n    }\n}\n\nimpl From<&BillingAddress> for Address {\n    fn from(source: &BillingAddress) -> Self {\n        Self {\n            street: source.street.clone(),\n            city: source.city.clone(),\n            postal_code: source.zip_code.clone(),\n            country_code: source.country.clone().expect(\"a required value is missing in the source\"),\n        }\n    }\n}\n\nimpl From<&InvoiceLine> for InvoiceItem {\n    fn from(source: &InvoiceLine) -> Self {\n        Self {\n            sku: source.sku.clone(),\n            description: source.description.clone(),\n            quantity: source.quantity as i32,\n            unit_price: source.unit_price.clone(),\n            tax_rate: source.tax_rate.as_ref().map(|value| value).expect(\"a required value is missing in the source\"),\n        }\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "rust-naming-keep": {
+  "files": [
+   {
+    "name": "invoice_record_mapping.rs",
+    "code": "use crate::models::{Address, BillingAddress, Invoice, InvoiceItem, InvoiceLine, InvoiceRecord, InvoiceStatus};\n\nimpl From<&InvoiceRecord> for Invoice {\n    fn from(source: &InvoiceRecord) -> Self {\n        Self {\n            id: todo!(\"no value for id in the mapping\"),\n            issuedAt: source.issued_at.clone(),\n            dueDate: source.due_date.clone(),\n            status: source.status.clone(),\n            total: source.total.clone(),\n            currency: source.currency.clone(),\n            notes: source.notes.clone(),\n            customerId: source.customer.customer_id,\n            customerName: todo!(\"no value for customerName in the mapping\"),\n            customerEmail: source.customer.email.clone(),\n            billingAddress: source.customer.billing_address.as_ref().map(|value| Address::from(value)).expect(\"a required value is missing in the source\"),\n            items: source.lines.as_ref().map(|value2| value2.iter().map(InvoiceItem::from).collect()).expect(\"a required value is missing in the source\"),\n            isPaid: source.paid.expect(\"a required value is missing in the source\"),\n            createdBy: todo!(\"no value for createdBy in the mapping\"),\n        }\n    }\n}\n\nimpl From<&BillingAddress> for Address {\n    fn from(source: &BillingAddress) -> Self {\n        Self {\n            street: source.street.clone(),\n            city: source.city.clone(),\n            postalCode: source.zip_code.clone(),\n            countryCode: source.country.clone().expect(\"a required value is missing in the source\"),\n        }\n    }\n}\n\nimpl From<&InvoiceLine> for InvoiceItem {\n    fn from(source: &InvoiceLine) -> Self {\n        Self {\n            sku: source.sku.clone(),\n            description: source.description.clone(),\n            quantity: source.quantity as i32,\n            unitPrice: source.unit_price.clone(),\n            taxRate: source.tax_rate.as_ref().map(|value| value).expect(\"a required value is missing in the source\"),\n        }\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "rust-naming-convention": {
+  "files": [
+   {
+    "name": "invoice_record_mapping.rs",
+    "code": "use crate::models::{Address, BillingAddress, Invoice, InvoiceItem, InvoiceLine, InvoiceRecord, InvoiceStatus};\n\nimpl From<&InvoiceRecord> for Invoice {\n    fn from(source: &InvoiceRecord) -> Self {\n        Self {\n            id: todo!(\"no value for id in the mapping\"),\n            issued_at: source.issued_at.clone(),\n            due_date: source.due_date.clone(),\n            status: source.status.clone(),\n            total: source.total.clone(),\n            currency: source.currency.clone(),\n            notes: source.notes.clone(),\n            customer_id: source.customer.customer_id,\n            customer_name: todo!(\"no value for customerName in the mapping\"),\n            customer_email: source.customer.email.clone(),\n            billing_address: source.customer.billing_address.as_ref().map(|value| Address::from(value)).expect(\"a required value is missing in the source\"),\n            items: source.lines.as_ref().map(|value2| value2.iter().map(InvoiceItem::from).collect()).expect(\"a required value is missing in the source\"),\n            is_paid: source.paid.expect(\"a required value is missing in the source\"),\n            created_by: todo!(\"no value for createdBy in the mapping\"),\n        }\n    }\n}\n\nimpl From<&BillingAddress> for Address {\n    fn from(source: &BillingAddress) -> Self {\n        Self {\n            street: source.street.clone(),\n            city: source.city.clone(),\n            postal_code: source.zip_code.clone(),\n            country_code: source.country.clone().expect(\"a required value is missing in the source\"),\n        }\n    }\n}\n\nimpl From<&InvoiceLine> for InvoiceItem {\n    fn from(source: &InvoiceLine) -> Self {\n        Self {\n            sku: source.sku.clone(),\n            description: source.description.clone(),\n            quantity: source.quantity as i32,\n            unit_price: source.unit_price.clone(),\n            tax_rate: source.tax_rate.as_ref().map(|value| value).expect(\"a required value is missing in the source\"),\n        }\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "php-static": {
+  "files": [
+   {
+    "name": "InvoiceRecordMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class InvoiceRecordMapper\n{\n    public static function toInvoice(InvoiceRecord $source): Invoice\n    {\n        return new Invoice(\n            id: throw new \\LogicException('No value for id in the mapping'),\n            issuedAt: $source->issuedAt,\n            dueDate: $source->dueDate,\n            status: $source->status,\n            total: $source->total,\n            currency: $source->currency,\n            notes: $source->notes,\n            customerId: $source->customer->customerId,\n            customerName: throw new \\LogicException('No value for customerName in the mapping'),\n            customerEmail: $source->customer->email,\n            billingAddress: $source->customer->billingAddress === null ? null : self::toAddress($source->customer->billingAddress) ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n            items: $source->lines === null ? null : array_map(self::toInvoiceItem(...), $source->lines) ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n            isPaid: $source->paid ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n            createdBy: throw new \\LogicException('No value for createdBy in the mapping'),\n        );\n    }\n\n    public static function toAddress(BillingAddress $source): Address\n    {\n        return new Address(\n            street: $source->street,\n            city: $source->city,\n            postalCode: $source->zipCode,\n            countryCode: $source->country ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n        );\n    }\n\n    public static function toInvoiceItem(InvoiceLine $source): InvoiceItem\n    {\n        return new InvoiceItem(\n            sku: $source->sku,\n            description: $source->description,\n            quantity: $source->quantity,\n            unitPrice: $source->unitPrice,\n            taxRate: $source->taxRate === null ? null : $source->taxRate ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "php-naming-keep": {
+  "files": [
+   {
+    "name": "InvoiceRecordMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class InvoiceRecordMapper\n{\n    public static function toInvoice(InvoiceRecord $source): Invoice\n    {\n        return new Invoice(\n            id: throw new \\LogicException('No value for id in the mapping'),\n            issuedAt: $source->issued_at,\n            dueDate: $source->due_date,\n            status: $source->status,\n            total: $source->total,\n            currency: $source->currency,\n            notes: $source->notes,\n            customerId: $source->customer->customer_id,\n            customerName: throw new \\LogicException('No value for customerName in the mapping'),\n            customerEmail: $source->customer->email,\n            billingAddress: $source->customer->billing_address === null ? null : self::toAddress($source->customer->billing_address) ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n            items: $source->lines === null ? null : array_map(self::toInvoiceItem(...), $source->lines) ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n            isPaid: $source->paid ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n            createdBy: throw new \\LogicException('No value for createdBy in the mapping'),\n        );\n    }\n\n    public static function toAddress(BillingAddress $source): Address\n    {\n        return new Address(\n            street: $source->street,\n            city: $source->city,\n            postalCode: $source->zip_code,\n            countryCode: $source->country ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n        );\n    }\n\n    public static function toInvoiceItem(InvoiceLine $source): InvoiceItem\n    {\n        return new InvoiceItem(\n            sku: $source->sku,\n            description: $source->description,\n            quantity: $source->quantity,\n            unitPrice: $source->unit_price,\n            taxRate: $source->tax_rate === null ? null : $source->tax_rate ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "php-naming-convention": {
+  "files": [
+   {
+    "name": "InvoiceRecordMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class InvoiceRecordMapper\n{\n    public static function toInvoice(InvoiceRecord $source): Invoice\n    {\n        return new Invoice(\n            id: throw new \\LogicException('No value for id in the mapping'),\n            issuedAt: $source->issuedAt,\n            dueDate: $source->dueDate,\n            status: $source->status,\n            total: $source->total,\n            currency: $source->currency,\n            notes: $source->notes,\n            customerId: $source->customer->customerId,\n            customerName: throw new \\LogicException('No value for customerName in the mapping'),\n            customerEmail: $source->customer->email,\n            billingAddress: $source->customer->billingAddress === null ? null : self::toAddress($source->customer->billingAddress) ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n            items: $source->lines === null ? null : array_map(self::toInvoiceItem(...), $source->lines) ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n            isPaid: $source->paid ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n            createdBy: throw new \\LogicException('No value for createdBy in the mapping'),\n        );\n    }\n\n    public static function toAddress(BillingAddress $source): Address\n    {\n        return new Address(\n            street: $source->street,\n            city: $source->city,\n            postalCode: $source->zipCode,\n            countryCode: $source->country ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n        );\n    }\n\n    public static function toInvoiceItem(InvoiceLine $source): InvoiceItem\n    {\n        return new InvoiceItem(\n            sku: $source->sku,\n            description: $source->description,\n            quantity: $source->quantity,\n            unitPrice: $source->unitPrice,\n            taxRate: $source->taxRate === null ? null : $source->taxRate ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "php-sourceAccess-array": {
+  "files": [
+   {
+    "name": "InvoiceRecordMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class InvoiceRecordMapper\n{\n    public static function toInvoice(array $source): Invoice\n    {\n        return new Invoice(\n            id: throw new \\LogicException('No value for id in the mapping'),\n            issuedAt: $source['issued_at'],\n            dueDate: $source['due_date'],\n            status: $source['status'],\n            total: $source['total'],\n            currency: $source['currency'],\n            notes: $source['notes'] ?? null,\n            customerId: $source['customer']['customer_id'],\n            customerName: throw new \\LogicException('No value for customerName in the mapping'),\n            customerEmail: $source['customer']['email'],\n            billingAddress: ($source['customer']['billing_address'] ?? null) === null ? null : self::toAddress($source['customer']['billing_address'] ?? null) ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n            items: ($source['lines'] ?? null) === null ? null : array_map(self::toInvoiceItem(...), $source['lines'] ?? null) ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n            isPaid: $source['paid'] ?? null ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n            createdBy: throw new \\LogicException('No value for createdBy in the mapping'),\n        );\n    }\n\n    public static function toAddress(array $source): Address\n    {\n        return new Address(\n            street: $source['street'],\n            city: $source['city'],\n            postalCode: $source['zip_code'],\n            countryCode: $source['country'] ?? null ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n        );\n    }\n\n    public static function toInvoiceItem(array $source): InvoiceItem\n    {\n        return new InvoiceItem(\n            sku: $source['sku'],\n            description: $source['description'],\n            quantity: $source['quantity'],\n            unitPrice: $source['unit_price'],\n            taxRate: ($source['tax_rate'] ?? null) === null ? null : $source['tax_rate'] ?? null ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ },
+ "php-targetStyle-array": {
+  "files": [
+   {
+    "name": "InvoiceRecordMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class InvoiceRecordMapper\n{\n    public static function toInvoice(InvoiceRecord $source): array\n    {\n        return [\n            'id' => throw new \\LogicException('No value for id in the mapping'),\n            'issuedAt' => $source->issuedAt,\n            'dueDate' => $source->dueDate,\n            'status' => $source->status,\n            'total' => $source->total,\n            'currency' => $source->currency,\n            'notes' => $source->notes,\n            'customerId' => $source->customer->customerId,\n            'customerName' => throw new \\LogicException('No value for customerName in the mapping'),\n            'customerEmail' => $source->customer->email,\n            'billingAddress' => $source->customer->billingAddress === null ? null : self::toAddress($source->customer->billingAddress) ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n            'items' => $source->lines === null ? null : array_map(self::toInvoiceItem(...), $source->lines) ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n            'isPaid' => $source->paid ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n            'createdBy' => throw new \\LogicException('No value for createdBy in the mapping'),\n        ];\n    }\n\n    public static function toAddress(BillingAddress $source): array\n    {\n        return [\n            'street' => $source->street,\n            'city' => $source->city,\n            'postalCode' => $source->zipCode,\n            'countryCode' => $source->country ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n        ];\n    }\n\n    public static function toInvoiceItem(InvoiceLine $source): array\n    {\n        return [\n            'sku' => $source->sku,\n            'description' => $source->description,\n            'quantity' => $source->quantity,\n            'unitPrice' => $source->unitPrice,\n            'taxRate' => $source->taxRate === null ? null : $source->taxRate ?? throw new \\InvalidArgumentException('A required value is missing in the source.'),\n        ];\n    }\n}\n"
+   }
+  ],
+  "notes": [
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "id"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "customerName"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "billingAddress"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "items"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "isPaid"
+    }
+   },
+   {
+    "code": "missingValue",
+    "params": {
+     "field": "createdBy"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "countryCode"
+    }
+   },
+   {
+    "code": "unsafeNull",
+    "params": {
+     "field": "taxRate"
+    }
+   }
+  ]
+ }
+}

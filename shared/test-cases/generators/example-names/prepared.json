@@ -1,0 +1,500 @@
+{
+ "source": {
+  "format": "model-schema",
+  "version": 1,
+  "origin": {
+   "format": "json"
+  },
+  "models": [
+   {
+    "name": "CustomerResponse",
+    "kind": "object",
+    "fields": [
+     {
+      "name": "customer_id",
+      "type": {
+       "kind": "primitive",
+       "name": "integer"
+      },
+      "nullable": false,
+      "optional": false
+     },
+     {
+      "name": "given_name",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false
+     },
+     {
+      "name": "surname",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false
+     },
+     {
+      "name": "mail",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false
+     },
+     {
+      "name": "dob",
+      "type": {
+       "kind": "primitive",
+       "name": "date"
+      },
+      "nullable": false,
+      "optional": false
+     },
+     {
+      "name": "tel",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false
+     },
+     {
+      "name": "qty_orders",
+      "type": {
+       "kind": "primitive",
+       "name": "integer"
+      },
+      "nullable": false,
+      "optional": false
+     },
+     {
+      "name": "creation_date",
+      "type": {
+       "kind": "primitive",
+       "name": "datetime"
+      },
+      "nullable": false,
+      "optional": false
+     }
+    ]
+   }
+  ],
+  "enums": [],
+  "root": "CustomerResponse"
+ },
+ "target": {
+  "format": "model-schema",
+  "version": 1,
+  "origin": {
+   "format": "kotlin",
+   "language": "kotlin"
+  },
+  "models": [
+   {
+    "name": "Customer",
+    "kind": "record",
+    "fields": [
+     {
+      "name": "customerId",
+      "type": {
+       "kind": "primitive",
+       "name": "integer",
+       "bits": 64
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "Long"
+     },
+     {
+      "name": "firstName",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     },
+     {
+      "name": "lastName",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     },
+     {
+      "name": "email",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     },
+     {
+      "name": "birthDate",
+      "type": {
+       "kind": "primitive",
+       "name": "date"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "LocalDate"
+     },
+     {
+      "name": "phone",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": true,
+      "optional": false,
+      "originalType": "String?"
+     },
+     {
+      "name": "orderQuantity",
+      "type": {
+       "kind": "primitive",
+       "name": "integer",
+       "bits": 32
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "Int"
+     },
+     {
+      "name": "createdAt",
+      "type": {
+       "kind": "primitive",
+       "name": "datetime"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "Instant"
+     }
+    ],
+    "construction": "named"
+   }
+  ],
+  "enums": []
+ },
+ "set": {
+  "root": "CustomerResponse->Customer",
+  "mappings": [
+   {
+    "id": "CustomerResponse->Customer",
+    "source": "CustomerResponse",
+    "target": "Customer",
+    "fields": [
+     {
+      "target": "customerId",
+      "sources": [
+       [
+        "customer_id"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "sameWords"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "customer_id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.97,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "firstName",
+      "sources": [
+       [
+        "given_name"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "synonym"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "given_name"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.88,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "synonym"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "lastName",
+      "sources": [
+       [
+        "surname"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "abbreviation"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "surname"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.93,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "abbreviation"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "email",
+      "sources": [
+       [
+        "mail"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "abbreviation"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "mail"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.93,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "abbreviation"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "birthDate",
+      "sources": [
+       [
+        "dob"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "abbreviation"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "dob"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.93,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "abbreviation"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "phone",
+      "sources": [
+       [
+        "tel"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "abbreviation"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "tel"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.93,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "abbreviation"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "orderQuantity",
+      "sources": [
+       [
+        "qty_orders"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "abbreviation"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "qty_orders"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.93,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "abbreviation"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "createdAt",
+      "sources": [
+       [
+        "creation_date"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "synonym"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "creation_date"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.88,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "synonym"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "ignoredSources": []
+   }
+  ]
+ }
+}

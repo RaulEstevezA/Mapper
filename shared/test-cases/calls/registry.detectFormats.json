@@ -1,0 +1,329 @@
+[
+ {
+  "args": [
+   "{\"a\": 1}"
+  ],
+  "result": [
+   {
+    "id": "json",
+    "score": 0.8
+   }
+  ]
+ },
+ {
+  "args": [
+   "anything",
+   "user.ts"
+  ],
+  "result": [
+   {
+    "id": "typescript",
+    "score": 0.93
+   }
+  ]
+ },
+ {
+  "args": [
+   "a: 1\nb: two\n"
+  ],
+  "result": [
+   {
+    "id": "yaml",
+    "score": 0.5
+   }
+  ]
+ },
+ {
+  "args": [
+   "anything",
+   "data.yml"
+  ],
+  "result": [
+   {
+    "id": "yaml",
+    "score": 0.9400000000000001
+   }
+  ]
+ },
+ {
+  "args": [
+   "a,b,c\n1,2,3\n4,5,6"
+  ],
+  "result": [
+   {
+    "id": "csv",
+    "score": 0.6
+   }
+  ]
+ },
+ {
+  "args": [
+   "<root><a>1</a></root>"
+  ],
+  "result": [
+   {
+    "id": "xml",
+    "score": 0.8
+   }
+  ]
+ },
+ {
+  "args": [
+   "type User {\n  id: ID!\n}"
+  ],
+  "result": [
+   {
+    "id": "graphql",
+    "score": 0.9
+   },
+   {
+    "id": "typescript",
+    "score": 0.9
+   }
+  ]
+ },
+ {
+  "args": [
+   "/** @typedef {Object} A */"
+  ],
+  "result": [
+   {
+    "id": "javascript",
+    "score": 0.8
+   }
+  ]
+ },
+ {
+  "args": [
+   "data class A(val b: String)"
+  ],
+  "result": [
+   {
+    "id": "kotlin",
+    "score": 0.95
+   }
+  ]
+ },
+ {
+  "args": [
+   "class User:\n    name: str\n"
+  ],
+  "result": [
+   {
+    "id": "python",
+    "score": 0.95
+   },
+   {
+    "id": "yaml",
+    "score": 0.5
+   }
+  ]
+ },
+ {
+  "args": [
+   "package a.b;\npublic class A {}"
+  ],
+  "result": [
+   {
+    "id": "java",
+    "score": 0.95
+   }
+  ]
+ },
+ {
+  "args": [
+   "<?php class A { public string $b; }"
+  ],
+  "result": [
+   {
+    "id": "php",
+    "score": 0.99
+   }
+  ]
+ },
+ {
+  "args": [
+   "export interface A {\n  b: string\n}"
+  ],
+  "result": [
+   {
+    "id": "typescript",
+    "score": 0.95
+   }
+  ]
+ },
+ {
+  "args": [
+   "type User struct {\n\tName string\n}"
+  ],
+  "result": [
+   {
+    "id": "go",
+    "score": 0.95
+   },
+   {
+    "id": "typescript",
+    "score": 0.9
+   }
+  ]
+ },
+ {
+  "args": [
+   "struct User: Codable {\n  let id: Int\n}"
+  ],
+  "result": [
+   {
+    "id": "swift",
+    "score": 0.95
+   }
+  ]
+ },
+ {
+  "args": [
+   "public class A { public int B { get; set; } }"
+  ],
+  "result": [
+   {
+    "id": "csharp",
+    "score": 0.95
+   }
+  ]
+ },
+ {
+  "args": [
+   "public class User {\n  private String name;\n}"
+  ],
+  "result": [
+   {
+    "id": "java",
+    "score": 0.85
+   }
+  ]
+ },
+ {
+  "args": [
+   "#[derive(Debug)]\npub struct A { pub b: String }"
+  ],
+  "result": [
+   {
+    "id": "rust",
+    "score": 0.95
+   }
+  ]
+ },
+ {
+  "args": [
+   "public class A { public string B { get; set; } }"
+  ],
+  "result": [
+   {
+    "id": "csharp",
+    "score": 0.95
+   }
+  ]
+ },
+ {
+  "args": [
+   "syntax = \"proto3\";\nmessage A { string b = 1; }"
+  ],
+  "result": [
+   {
+    "id": "protobuf",
+    "score": 0.99
+   }
+  ]
+ },
+ {
+  "args": [
+   "import 'package:flutter/material.dart';\nclass A { final String b; A(this.b); }"
+  ],
+  "result": [
+   {
+    "id": "dart",
+    "score": 0.95
+   }
+  ]
+ },
+ {
+  "args": [
+   "{\"format\":\"model-schema\",\"version\":1,\"origin\":{\"format\":\"json\",\"tool\":\"api2class\"},\"models\":[{\"name\":\"User\",\"kind\":\"object\",\"fields\":[{\"name\":\"id\",\"type\":{\"kind\":\"primitive\",\"name\":\"integer\"},\"nullable\":false,\"optional\":false}]}],\"enums\":[]}"
+  ],
+  "result": [
+   {
+    "id": "modelschema",
+    "score": 1
+   },
+   {
+    "id": "json",
+    "score": 0.8
+   }
+  ]
+ },
+ {
+  "args": [
+   "package shop\n\nimport java.time.{LocalDate, OffsetDateTime}\nimport io.circe.{Decoder, Encoder, Json}\n\nfinal case class Root(\n  invoice_id: String,\n  issued_at: OffsetDateTime,\n  due_date: LocalDate,\n  total_cents: Long,\n  notes: Json,\n  coupon: Option[String] = None,\n  lines: List[Line],\n  status: Status\n) derives Decoder, Encoder.AsObject\n\nfinal case class Line(sku: String, qty: Int, price: BigDecimal)\n\nenum Status:\n  case Pending, Paid\n\nsealed trait Channel\ncase object Web extends Channel\ncase object Store extends Channel\n"
+  ],
+  "result": [
+   {
+    "id": "scala",
+    "score": 0.95
+   },
+   {
+    "id": "go",
+    "score": 0.4
+   }
+  ]
+ },
+ {
+  "args": [
+   "$version: \"2\"\n\nnamespace example.api\n\n/// An invoice\nstructure Root {\n    @required\n    @jsonName(\"invoice_id\")\n    invoiceId: String\n\n    @required\n    @timestampFormat(\"date-time\")\n    issuedAt: Timestamp\n\n    notes: Document\n\n    @required\n    lines: LineList\n\n    scores: ScoreMap\n\n    status: Status = \"PENDING\"\n}\n\nstructure Line {\n    @required\n    qty: Integer\n}\n\nlist LineList {\n    member: Line\n}\n\nmap ScoreMap {\n    key: String\n    value: Double\n}\n\nenum Status {\n    PENDING = \"pending\"\n    PAID = \"paid\"\n}\n"
+  ],
+  "result": [
+   {
+    "id": "smithy",
+    "score": 0.99
+   },
+   {
+    "id": "typescript",
+    "score": 0.6
+   }
+  ]
+ },
+ {
+  "args": [
+   "openapi: 3.0.3\ninfo: { title: Shop, version: '1' }\npaths: {}\ncomponents:\n  schemas:\n    Pet:\n      type: object\n      required: [id, name]\n      properties:\n        id: { type: integer, format: int64 }\n        name: { type: string }\n        tag: { type: string, nullable: true }\n        owner: { $ref: '#/components/schemas/Owner' }\n    Owner:\n      type: object\n      properties:\n        id: { type: string, format: uuid }\n    Dog:\n      allOf:\n        - $ref: '#/components/schemas/Pet'\n        - type: object\n          properties:\n            breed: { type: string }\n"
+  ],
+  "result": [
+   {
+    "id": "openapi",
+    "score": 0.99
+   }
+  ]
+ },
+ {
+  "args": [
+   "import { z } from 'zod';\n\nexport const AddressSchema = z.object({\n  city: z.string(),\n  zip_code: z.string().nullable(),\n});\nexport type Address = z.infer<typeof AddressSchema>;\n\nexport const RootSchema = z.object({\n  id: z.number().int(),\n  price: z.number(),\n  issued_at: z.iso.datetime({ offset: true }),\n  notes: z.null(),\n  status: z.enum(['active', 'blocked']),\n  tags: z.array(z.string()),\n  address: AddressSchema,\n  extra: z.string().optional(),\n  meta: z.record(z.string(), z.number()),\n  paid: z.boolean().default(false),\n});\nexport type Root = z.infer<typeof RootSchema>;\n"
+  ],
+  "result": [
+   {
+    "id": "typescript",
+    "score": 0.9
+   }
+  ]
+ },
+ {
+  "args": [
+   "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"title\":\"Customer\",\"type\":\"object\",\"required\":[\"id\",\"email\"],\"properties\":{\"id\":{\"type\":\"integer\",\"format\":\"int64\"},\"email\":{\"type\":\"string\",\"description\":\"Contact address\"},\"nickname\":{\"type\":[\"string\",\"null\"]},\"status\":{\"enum\":[\"active\",\"blocked\"]},\"address\":{\"$ref\":\"#/$defs/Address\"},\"tags\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"scores\":{\"type\":\"object\",\"additionalProperties\":{\"type\":\"number\"}},\"createdAt\":{\"type\":\"string\",\"format\":\"date-time\",\"readOnly\":true}},\"$defs\":{\"Address\":{\"type\":\"object\",\"required\":[\"city\"],\"properties\":{\"city\":{\"type\":\"string\"},\"country\":{\"type\":\"string\",\"default\":\"ES\"}}}}}"
+  ],
+  "result": [
+   {
+    "id": "jsonschema",
+    "score": 0.98
+   },
+   {
+    "id": "json",
+    "score": 0.8
+   }
+  ]
+ }
+]

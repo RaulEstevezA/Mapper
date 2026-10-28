@@ -1,0 +1,715 @@
+{
+ "source": {
+  "format": "model-schema",
+  "version": 1,
+  "origin": {
+   "format": "java",
+   "language": "java"
+  },
+  "models": [
+   {
+    "name": "OrderApi",
+    "kind": "class",
+    "fields": [
+     {
+      "name": "id",
+      "type": {
+       "kind": "primitive",
+       "name": "integer",
+       "bits": 64
+      },
+      "nullable": true,
+      "optional": false,
+      "originalType": "Long"
+     },
+     {
+      "name": "customer",
+      "type": {
+       "kind": "model",
+       "name": "CustomerApi"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "CustomerApi"
+     },
+     {
+      "name": "shipping",
+      "type": {
+       "kind": "model",
+       "name": "AddressApi"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "AddressApi"
+     },
+     {
+      "name": "status",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     }
+    ],
+    "construction": "properties",
+    "metadata": {
+     "accessors": "getters"
+    }
+   },
+   {
+    "name": "CustomerApi",
+    "kind": "class",
+    "fields": [
+     {
+      "name": "id",
+      "type": {
+       "kind": "primitive",
+       "name": "integer",
+       "bits": 64
+      },
+      "nullable": true,
+      "optional": false,
+      "originalType": "Long"
+     },
+     {
+      "name": "name",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     },
+     {
+      "name": "email",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     }
+    ],
+    "construction": "properties",
+    "metadata": {
+     "outer": "OrderApi",
+     "accessors": "getters"
+    }
+   },
+   {
+    "name": "AddressApi",
+    "kind": "class",
+    "fields": [
+     {
+      "name": "street",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     },
+     {
+      "name": "city",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     },
+     {
+      "name": "zipCode",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     },
+     {
+      "name": "country",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "String"
+     }
+    ],
+    "construction": "properties",
+    "metadata": {
+     "outer": "OrderApi",
+     "accessors": "getters"
+    }
+   }
+  ],
+  "enums": []
+ },
+ "target": {
+  "format": "model-schema",
+  "version": 1,
+  "origin": {
+   "format": "csharp",
+   "language": "csharp"
+  },
+  "models": [
+   {
+    "name": "Order",
+    "kind": "class",
+    "fields": [
+     {
+      "name": "Id",
+      "type": {
+       "kind": "primitive",
+       "name": "integer",
+       "bits": 64
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "long"
+     },
+     {
+      "name": "CustomerId",
+      "type": {
+       "kind": "primitive",
+       "name": "integer",
+       "bits": 64
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "long"
+     },
+     {
+      "name": "CustomerName",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": true,
+      "originalType": "string",
+      "defaultValue": ""
+     },
+     {
+      "name": "ShippingAddress",
+      "type": {
+       "kind": "model",
+       "name": "Address"
+      },
+      "nullable": false,
+      "optional": true,
+      "originalType": "Address"
+     },
+     {
+      "name": "Status",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": true,
+      "originalType": "string",
+      "defaultValue": ""
+     }
+    ],
+    "construction": "properties"
+   },
+   {
+    "name": "Address",
+    "kind": "class",
+    "fields": [
+     {
+      "name": "Street",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": true,
+      "originalType": "string",
+      "defaultValue": ""
+     },
+     {
+      "name": "City",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": true,
+      "originalType": "string",
+      "defaultValue": ""
+     },
+     {
+      "name": "PostalCode",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": true,
+      "originalType": "string",
+      "defaultValue": ""
+     },
+     {
+      "name": "Country",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": true,
+      "originalType": "string",
+      "defaultValue": ""
+     }
+    ],
+    "construction": "properties"
+   }
+  ],
+  "enums": []
+ },
+ "set": {
+  "root": "OrderApi->Order",
+  "mappings": [
+   {
+    "id": "OrderApi->Order",
+    "source": "OrderApi",
+    "target": "Order",
+    "fields": [
+     {
+      "target": "Id",
+      "sources": [
+       [
+        "id"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "sameWords"
+       },
+       {
+        "code": "nullToRequired"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.9409,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         },
+         {
+          "code": "nullToRequired"
+         }
+        ]
+       },
+       {
+        "sources": [
+         [
+          "customer",
+          "id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.7406764799999999,
+        "confidence": "probable",
+        "reasons": [
+         {
+          "code": "sameWords"
+         },
+         {
+          "code": "flattened",
+          "params": {
+           "path": "customer.id"
+          }
+         },
+         {
+          "code": "nullToRequired"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "CustomerId",
+      "sources": [
+       [
+        "customer",
+        "id"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "sameWords"
+       },
+       {
+        "code": "flattened",
+        "params": {
+         "path": "customer.id"
+        }
+       },
+       {
+        "code": "nullToRequired"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "customer",
+          "id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.903264,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         },
+         {
+          "code": "flattened",
+          "params": {
+           "path": "customer.id"
+          }
+         },
+         {
+          "code": "nullToRequired"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "CustomerName",
+      "sources": [
+       [
+        "customer",
+        "name"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "sameWords"
+       },
+       {
+        "code": "flattened",
+        "params": {
+         "path": "customer.name"
+        }
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "customer",
+          "name"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.9311999999999999,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         },
+         {
+          "code": "flattened",
+          "params": {
+           "path": "customer.name"
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "ShippingAddress",
+      "sources": [
+       [
+        "shipping"
+       ]
+      ],
+      "transform": {
+       "kind": "object",
+       "mapping": "AddressApi->Address"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "modelContext"
+       },
+       {
+        "code": "nestedModel"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "shipping"
+         ]
+        ],
+        "transform": {
+         "kind": "object",
+         "mapping": "AddressApi->Address"
+        },
+        "score": 0.86,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "modelContext"
+         },
+         {
+          "code": "nestedModel"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "Status",
+      "sources": [
+       [
+        "status"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "sameWords"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "status"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.97,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "ignoredSources": []
+   },
+   {
+    "id": "AddressApi->Address",
+    "source": "AddressApi",
+    "target": "Address",
+    "fields": [
+     {
+      "target": "Street",
+      "sources": [
+       [
+        "street"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "sameWords"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "street"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.97,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "City",
+      "sources": [
+       [
+        "city"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "sameWords"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "city"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.97,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "PostalCode",
+      "sources": [
+       [
+        "zipCode"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "probable",
+      "reasons": [
+       {
+        "code": "containsName",
+        "params": {
+         "similarity": 100
+        }
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "zipCode"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.75,
+        "confidence": "probable",
+        "reasons": [
+         {
+          "code": "containsName",
+          "params": {
+           "similarity": 100
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "target": "Country",
+      "sources": [
+       [
+        "country"
+       ]
+      ],
+      "transform": {
+       "kind": "direct"
+      },
+      "status": "active",
+      "confidence": "high",
+      "reasons": [
+       {
+        "code": "sameWords"
+       }
+      ],
+      "candidates": [
+       {
+        "sources": [
+         [
+          "country"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "score": 0.97,
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "ignoredSources": []
+   }
+  ]
+ }
+}

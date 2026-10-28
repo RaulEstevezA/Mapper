@@ -1,0 +1,553 @@
+[
+ {
+  "args": [
+   ""
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "empty",
+    "column": 1
+   }
+  }
+ },
+ {
+  "args": [
+   "[1]"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "unexpectedToken",
+    "column": 1,
+    "params": {
+     "found": "["
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "`x`"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "unexpectedToken",
+    "column": 1,
+    "params": {
+     "found": "`"
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "a = 1"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "unexpectedToken",
+    "column": 3,
+    "params": {
+     "found": "="
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "-price"
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "unary",
+    "operator": "-",
+    "operand": {
+     "kind": "field",
+     "path": [
+      "price"
+     ]
+    }
+   },
+   "fields": [
+    [
+     "price"
+    ]
+   ]
+  }
+ },
+ {
+  "args": [
+   "\"open"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "unterminatedString",
+    "column": 1
+   }
+  }
+ },
+ {
+  "args": [
+   "x => x"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "unexpectedToken",
+    "column": 3,
+    "params": {
+     "found": "="
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "eval(x)"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "unknownFunction",
+    "column": 1,
+    "params": {
+     "name": "eval"
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "price +"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "unexpectedToken",
+    "column": 8,
+    "params": {
+     "found": "end"
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "upper()"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "argumentCount",
+    "column": 1,
+    "params": {
+     "name": "upper",
+     "count": 1
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "missing + 1"
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "binary",
+    "operator": "+",
+    "left": {
+     "kind": "field",
+     "path": [
+      "missing"
+     ]
+    },
+    "right": {
+     "kind": "literal",
+     "value": 1
+    }
+   },
+   "fields": [
+    [
+     "missing"
+    ]
+   ]
+  }
+ },
+ {
+  "args": [
+   "price ; drop"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "unexpectedToken",
+    "column": 7,
+    "params": {
+     "found": ";"
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "window.alert(1)"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "unexpectedToken",
+    "column": 13,
+    "params": {
+     "found": "("
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "price * 1.21 + 2"
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "binary",
+    "operator": "+",
+    "left": {
+     "kind": "binary",
+     "operator": "*",
+     "left": {
+      "kind": "field",
+      "path": [
+       "price"
+      ]
+     },
+     "right": {
+      "kind": "literal",
+      "value": 1.21
+     }
+    },
+    "right": {
+     "kind": "literal",
+     "value": 2
+    }
+   },
+   "fields": [
+    [
+     "price"
+    ]
+   ]
+  }
+ },
+ {
+  "args": [
+   "price + firstName"
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "binary",
+    "operator": "+",
+    "left": {
+     "kind": "field",
+     "path": [
+      "price"
+     ]
+    },
+    "right": {
+     "kind": "field",
+     "path": [
+      "firstName"
+     ]
+    }
+   },
+   "fields": [
+    [
+     "price"
+    ],
+    [
+     "firstName"
+    ]
+   ]
+  }
+ },
+ {
+  "args": [
+   "round(price / 100)"
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "call",
+    "name": "round",
+    "args": [
+     {
+      "kind": "binary",
+      "operator": "/",
+      "left": {
+       "kind": "field",
+       "path": [
+        "price"
+       ]
+      },
+      "right": {
+       "kind": "literal",
+       "value": 100
+      }
+     }
+    ]
+   },
+   "fields": [
+    [
+     "price"
+    ]
+   ]
+  }
+ },
+ {
+  "args": [
+   "active && price >= 0"
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "binary",
+    "operator": "&&",
+    "left": {
+     "kind": "field",
+     "path": [
+      "active"
+     ]
+    },
+    "right": {
+     "kind": "binary",
+     "operator": ">=",
+     "left": {
+      "kind": "field",
+      "path": [
+       "price"
+      ]
+     },
+     "right": {
+      "kind": "literal",
+      "value": 0
+     }
+    }
+   },
+   "fields": [
+    [
+     "active"
+    ],
+    [
+     "price"
+    ]
+   ]
+  }
+ },
+ {
+  "args": [
+   "address.city ?? \"Unknown\""
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "binary",
+    "operator": "??",
+    "left": {
+     "kind": "field",
+     "path": [
+      "address",
+      "city"
+     ]
+    },
+    "right": {
+     "kind": "literal",
+     "value": "Unknown"
+    }
+   },
+   "fields": [
+    [
+     "address",
+     "city"
+    ]
+   ]
+  }
+ },
+ {
+  "args": [
+   "constructor.constructor(\"x\")()"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "unexpectedToken",
+    "column": 24,
+    "params": {
+     "found": "("
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "price > 100 ? \"big\" : \"small\""
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "conditional",
+    "condition": {
+     "kind": "binary",
+     "operator": ">",
+     "left": {
+      "kind": "field",
+      "path": [
+       "price"
+      ]
+     },
+     "right": {
+      "kind": "literal",
+      "value": 100
+     }
+    },
+    "then": {
+     "kind": "literal",
+     "value": "big"
+    },
+    "otherwise": {
+     "kind": "literal",
+     "value": "small"
+    }
+   },
+   "fields": [
+    [
+     "price"
+    ]
+   ]
+  }
+ },
+ {
+  "args": [
+   "upper(trim(firstName)) + \" \" + lastName"
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "binary",
+    "operator": "+",
+    "left": {
+     "kind": "binary",
+     "operator": "+",
+     "left": {
+      "kind": "call",
+      "name": "upper",
+      "args": [
+       {
+        "kind": "call",
+        "name": "trim",
+        "args": [
+         {
+          "kind": "field",
+          "path": [
+           "firstName"
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     "right": {
+      "kind": "literal",
+      "value": " "
+     }
+    },
+    "right": {
+     "kind": "field",
+     "path": [
+      "lastName"
+     ]
+    }
+   },
+   "fields": [
+    [
+     "firstName"
+    ],
+    [
+     "lastName"
+    ]
+   ]
+  }
+ },
+ {
+  "args": [
+   "concat(firstName, \" \", source.lastName, address.city, firstName)"
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "call",
+    "name": "concat",
+    "args": [
+     {
+      "kind": "field",
+      "path": [
+       "firstName"
+      ]
+     },
+     {
+      "kind": "literal",
+      "value": " "
+     },
+     {
+      "kind": "field",
+      "path": [
+       "lastName"
+      ]
+     },
+     {
+      "kind": "field",
+      "path": [
+       "address",
+       "city"
+      ]
+     },
+     {
+      "kind": "field",
+      "path": [
+       "firstName"
+      ]
+     }
+    ]
+   },
+   "fields": [
+    [
+     "firstName"
+    ],
+    [
+     "lastName"
+    ],
+    [
+     "address",
+     "city"
+    ]
+   ]
+  }
+ },
+ {
+  "args": [
+   "((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((1))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "tooComplex",
+    "column": 41
+   }
+  }
+ }
+]

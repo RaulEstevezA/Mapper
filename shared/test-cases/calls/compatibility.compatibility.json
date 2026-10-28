@@ -1,0 +1,301 @@
+[
+ {
+  "args": [
+   {
+    "kind": "enum",
+    "name": "A"
+   },
+   {
+    "kind": "enum",
+    "name": "B"
+   }
+  ],
+  "result": {
+   "level": "transform"
+  }
+ },
+ {
+  "args": [
+   {
+    "kind": "model",
+    "name": "A"
+   },
+   {
+    "kind": "model",
+    "name": "B"
+   }
+  ],
+  "result": {
+   "level": "nested"
+  }
+ },
+ {
+  "args": [
+   {
+    "kind": "model",
+    "name": "A"
+   },
+   {
+    "kind": "primitive",
+    "name": "integer"
+   }
+  ],
+  "result": {
+   "level": "incompatible"
+  }
+ },
+ {
+  "args": [
+   {
+    "kind": "enum",
+    "name": "Status"
+   },
+   {
+    "kind": "primitive",
+    "name": "string"
+   }
+  ],
+  "result": {
+   "level": "conversion"
+  }
+ },
+ {
+  "args": [
+   {
+    "kind": "primitive",
+    "name": "string"
+   },
+   {
+    "kind": "enum",
+    "name": "Status"
+   }
+  ],
+  "result": {
+   "level": "conversion",
+   "fallible": true
+  }
+ },
+ {
+  "args": [
+   {
+    "kind": "primitive",
+    "name": "date"
+   },
+   {
+    "kind": "primitive",
+    "name": "datetime"
+   }
+  ],
+  "result": {
+   "level": "widening"
+  }
+ },
+ {
+  "args": [
+   {
+    "kind": "primitive",
+    "name": "float"
+   },
+   {
+    "kind": "primitive",
+    "name": "integer"
+   }
+  ],
+  "result": {
+   "level": "conversion",
+   "lossy": true
+  }
+ },
+ {
+  "args": [
+   {
+    "kind": "primitive",
+    "name": "integer"
+   },
+   {
+    "kind": "primitive",
+    "name": "float"
+   }
+  ],
+  "result": {
+   "level": "widening"
+  }
+ },
+ {
+  "args": [
+   {
+    "kind": "primitive",
+    "name": "string"
+   },
+   {
+    "kind": "primitive",
+    "name": "string"
+   }
+  ],
+  "result": {
+   "level": "same"
+  }
+ },
+ {
+  "args": [
+   {
+    "kind": "primitive",
+    "name": "integer"
+   },
+   {
+    "kind": "primitive",
+    "name": "string"
+   }
+  ],
+  "result": {
+   "level": "conversion"
+  }
+ },
+ {
+  "args": [
+   {
+    "kind": "primitive",
+    "name": "string"
+   },
+   {
+    "kind": "primitive",
+    "name": "boolean"
+   }
+  ],
+  "result": {
+   "level": "transform"
+  }
+ },
+ {
+  "args": [
+   {
+    "kind": "primitive",
+    "name": "string"
+   },
+   {
+    "kind": "primitive",
+    "name": "integer"
+   }
+  ],
+  "result": {
+   "level": "conversion",
+   "fallible": true
+  }
+ },
+ {
+  "args": [
+   {
+    "kind": "primitive",
+    "name": "integer"
+   },
+   {
+    "kind": "primitive",
+    "name": "datetime"
+   }
+  ],
+  "result": {
+   "level": "transform"
+  }
+ },
+ {
+  "args": [
+   {
+    "kind": "primitive",
+    "name": "integer",
+    "bits": 32
+   },
+   {
+    "kind": "primitive",
+    "name": "integer",
+    "bits": 64
+   }
+  ],
+  "result": {
+   "level": "widening"
+  }
+ },
+ {
+  "args": [
+   {
+    "kind": "primitive",
+    "name": "integer",
+    "bits": 64
+   },
+   {
+    "kind": "primitive",
+    "name": "integer",
+    "bits": 32
+   }
+  ],
+  "result": {
+   "level": "conversion",
+   "lossy": true
+  }
+ },
+ {
+  "args": [
+   {
+    "kind": "array",
+    "items": {
+     "kind": "primitive",
+     "name": "string"
+    }
+   },
+   {
+    "kind": "primitive",
+    "name": "string"
+   }
+  ],
+  "result": {
+   "level": "incompatible"
+  }
+ },
+ {
+  "args": [
+   {
+    "kind": "array",
+    "items": {
+     "kind": "model",
+     "name": "A"
+    }
+   },
+   {
+    "kind": "array",
+    "items": {
+     "kind": "model",
+     "name": "B"
+    }
+   }
+  ],
+  "result": {
+   "level": "collection",
+   "items": {
+    "level": "nested"
+   }
+  }
+ },
+ {
+  "args": [
+   {
+    "kind": "array",
+    "items": {
+     "kind": "primitive",
+     "name": "string"
+    }
+   },
+   {
+    "kind": "array",
+    "items": {
+     "kind": "primitive",
+     "name": "boolean"
+    }
+   }
+  ],
+  "result": {
+   "level": "collection",
+   "items": {
+    "level": "transform"
+   }
+  }
+ }
+]

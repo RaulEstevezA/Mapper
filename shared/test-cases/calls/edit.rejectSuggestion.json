@@ -1,0 +1,1050 @@
+[
+ {
+  "args": [
+   {
+    "root": "A->B",
+    "mappings": [
+     {
+      "id": "A->B",
+      "source": "A",
+      "target": "B",
+      "fields": [
+       {
+        "target": "firstName",
+        "sources": [
+         [
+          "fullName"
+         ]
+        ],
+        "transform": {
+         "kind": "split",
+         "separator": " ",
+         "part": 0
+        },
+        "status": "active",
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "split"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "fullName"
+           ]
+          ],
+          "transform": {
+           "kind": "split",
+           "separator": " ",
+           "part": 0
+          },
+          "score": 0.6,
+          "confidence": "review",
+          "reasons": [
+           {
+            "code": "split"
+           }
+          ]
+         }
+        ],
+        "manual": false
+       },
+       {
+        "target": "lastName",
+        "sources": [
+         [
+          "fullName"
+         ]
+        ],
+        "transform": {
+         "kind": "split",
+         "separator": " ",
+         "part": "rest"
+        },
+        "status": "active",
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "split"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "fullName"
+           ]
+          ],
+          "transform": {
+           "kind": "split",
+           "separator": " ",
+           "part": "rest"
+          },
+          "score": 0.6,
+          "confidence": "review",
+          "reasons": [
+           {
+            "code": "split"
+           }
+          ]
+         }
+        ],
+        "manual": true
+       },
+       {
+        "target": "extra",
+        "sources": [
+         [
+          "extra"
+         ]
+        ],
+        "transform": {
+         "kind": "object",
+         "mapping": "AExtra->X"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "nestedModel"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "extra"
+           ]
+          ],
+          "transform": {
+           "kind": "object",
+           "mapping": "AExtra->X"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "nestedModel"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     },
+     {
+      "id": "AExtra->X",
+      "source": "AExtra",
+      "target": "X",
+      "fields": [
+       {
+        "target": "x",
+        "sources": [
+         [
+          "x"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "x"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "A->B",
+   "extra"
+  ],
+  "result": {
+   "root": "A->B",
+   "mappings": [
+    {
+     "id": "A->B",
+     "source": "A",
+     "target": "B",
+     "fields": [
+      {
+       "target": "firstName",
+       "sources": [
+        [
+         "fullName"
+        ]
+       ],
+       "transform": {
+        "kind": "split",
+        "separator": " ",
+        "part": 0
+       },
+       "status": "active",
+       "confidence": "review",
+       "reasons": [
+        {
+         "code": "split"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "fullName"
+          ]
+         ],
+         "transform": {
+          "kind": "split",
+          "separator": " ",
+          "part": 0
+         },
+         "score": 0.6,
+         "confidence": "review",
+         "reasons": [
+          {
+           "code": "split"
+          }
+         ]
+        }
+       ],
+       "manual": false
+      },
+      {
+       "target": "lastName",
+       "sources": [
+        [
+         "fullName"
+        ]
+       ],
+       "transform": {
+        "kind": "split",
+        "separator": " ",
+        "part": "rest"
+       },
+       "status": "active",
+       "confidence": "review",
+       "reasons": [
+        {
+         "code": "split"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "fullName"
+          ]
+         ],
+         "transform": {
+          "kind": "split",
+          "separator": " ",
+          "part": "rest"
+         },
+         "score": 0.6,
+         "confidence": "review",
+         "reasons": [
+          {
+           "code": "split"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      },
+      {
+       "target": "extra",
+       "sources": [],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "unmapped",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "nestedModel"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "extra"
+          ]
+         ],
+         "transform": {
+          "kind": "object",
+          "mapping": "AExtra->X"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "nestedModel"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      }
+     ],
+     "ignoredSources": []
+    },
+    {
+     "id": "AExtra->X",
+     "source": "AExtra",
+     "target": "X",
+     "fields": [
+      {
+       "target": "x",
+       "sources": [
+        [
+         "x"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "x"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "UserDto->User",
+    "mappings": [
+     {
+      "id": "UserDto->User",
+      "source": "UserDto",
+      "target": "User",
+      "fields": [
+       {
+        "target": "id",
+        "sources": [
+         [
+          "id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "id"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "fullName",
+        "sources": [
+         [
+          "firstName"
+         ],
+         [
+          "lastName"
+         ]
+        ],
+        "transform": {
+         "kind": "concat",
+         "separator": " "
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "combined"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "firstName"
+           ],
+           [
+            "lastName"
+           ]
+          ],
+          "transform": {
+           "kind": "concat",
+           "separator": " "
+          },
+          "score": 0.86,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "combined"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "nickname",
+        "sources": [
+         [
+          "nickname"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "nullToRequired"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "nickname"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.97,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "nullToRequired"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "state",
+        "sources": [],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "unmapped",
+        "confidence": "none"
+       },
+       {
+        "target": "age",
+        "sources": [
+         [
+          "age"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "typeFallible"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "age"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.88,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "typeFallible"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "address",
+        "sources": [
+         [
+          "address"
+         ]
+        ],
+        "transform": {
+         "kind": "object",
+         "mapping": "AddressDto->Address"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "nestedModel"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "address"
+           ]
+          ],
+          "transform": {
+           "kind": "object",
+           "mapping": "AddressDto->Address"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "nestedModel"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "createdBy",
+        "sources": [],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "unmapped",
+        "confidence": "none"
+       },
+       {
+        "target": "note",
+        "sources": [],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "unmapped",
+        "confidence": "none"
+       }
+      ],
+      "ignoredSources": []
+     },
+     {
+      "id": "AddressDto->Address",
+      "source": "AddressDto",
+      "target": "Address",
+      "fields": [
+       {
+        "target": "street",
+        "sources": [
+         [
+          "street"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "street"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "city",
+        "sources": [
+         [
+          "city"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "city"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "UserDto->User",
+   "address"
+  ],
+  "result": {
+   "root": "UserDto->User",
+   "mappings": [
+    {
+     "id": "UserDto->User",
+     "source": "UserDto",
+     "target": "User",
+     "fields": [
+      {
+       "target": "id",
+       "sources": [
+        [
+         "id"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "fullName",
+       "sources": [
+        [
+         "firstName"
+        ],
+        [
+         "lastName"
+        ]
+       ],
+       "transform": {
+        "kind": "concat",
+        "separator": " "
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "combined"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "firstName"
+          ],
+          [
+           "lastName"
+          ]
+         ],
+         "transform": {
+          "kind": "concat",
+          "separator": " "
+         },
+         "score": 0.86,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "combined"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "nickname",
+       "sources": [
+        [
+         "nickname"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "nullToRequired"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "nickname"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.97,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "nullToRequired"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "state",
+       "sources": [],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "unmapped",
+       "confidence": "none"
+      },
+      {
+       "target": "age",
+       "sources": [
+        [
+         "age"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "typeFallible"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "age"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.88,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "typeFallible"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "address",
+       "sources": [],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "unmapped",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "nestedModel"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "address"
+          ]
+         ],
+         "transform": {
+          "kind": "object",
+          "mapping": "AddressDto->Address"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "nestedModel"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      },
+      {
+       "target": "createdBy",
+       "sources": [],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "unmapped",
+       "confidence": "none"
+      },
+      {
+       "target": "note",
+       "sources": [],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "unmapped",
+       "confidence": "none"
+      }
+     ],
+     "ignoredSources": []
+    },
+    {
+     "id": "AddressDto->Address",
+     "source": "AddressDto",
+     "target": "Address",
+     "fields": [
+      {
+       "target": "street",
+       "sources": [
+        [
+         "street"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "street"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "city",
+       "sources": [
+        [
+         "city"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "city"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ }
+]

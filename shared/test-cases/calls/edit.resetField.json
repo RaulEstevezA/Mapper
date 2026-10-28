@@ -1,0 +1,957 @@
+[
+ {
+  "args": [
+   {
+    "root": "UserDto->User",
+    "mappings": [
+     {
+      "id": "UserDto->User",
+      "source": "UserDto",
+      "target": "User",
+      "fields": [
+       {
+        "target": "id",
+        "sources": [
+         [
+          "id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "id"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "fullName",
+        "sources": [
+         [
+          "firstName"
+         ],
+         [
+          "lastName"
+         ]
+        ],
+        "transform": {
+         "kind": "concat",
+         "separator": " "
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "combined"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "firstName"
+           ],
+           [
+            "lastName"
+           ]
+          ],
+          "transform": {
+           "kind": "concat",
+           "separator": " "
+          },
+          "score": 0.86,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "combined"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "nickname",
+        "sources": [
+         [
+          "nickname"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "nullToRequired"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "nickname"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.97,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "nullToRequired"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "state",
+        "sources": [],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "unmapped",
+        "confidence": "none"
+       },
+       {
+        "target": "age",
+        "sources": [
+         [
+          "age"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "typeFallible"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "age"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.88,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "typeFallible"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "address",
+        "sources": [
+         [
+          "address"
+         ]
+        ],
+        "transform": {
+         "kind": "object",
+         "mapping": "AddressDto->Address"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "nestedModel"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "address"
+           ]
+          ],
+          "transform": {
+           "kind": "object",
+           "mapping": "AddressDto->Address"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "nestedModel"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "createdBy",
+        "sources": [],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "ignored",
+        "confidence": "none",
+        "manual": true
+       },
+       {
+        "target": "note",
+        "sources": [],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "unmapped",
+        "confidence": "none"
+       }
+      ],
+      "ignoredSources": []
+     },
+     {
+      "id": "AddressDto->Address",
+      "source": "AddressDto",
+      "target": "Address",
+      "fields": [
+       {
+        "target": "street",
+        "sources": [
+         [
+          "street"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "street"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "city",
+        "sources": [
+         [
+          "city"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "city"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "UserDto",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "firstName",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "lastName",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "nickname",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": true,
+        "optional": false,
+        "originalType": "string | null"
+       },
+       {
+        "name": "status",
+        "type": {
+         "kind": "enum",
+         "name": "Status"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "Status"
+       },
+       {
+        "name": "age",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "address",
+        "type": {
+         "kind": "model",
+         "name": "AddressDto"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "AddressDto"
+       },
+       {
+        "name": "legacyCode",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       }
+      ]
+     },
+     {
+      "name": "AddressDto",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "street",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "city",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       }
+      ]
+     }
+    ],
+    "enums": [
+     {
+      "name": "Status",
+      "values": [
+       {
+        "name": "ACTIVE",
+        "value": "active"
+       },
+       {
+        "name": "BLOCKED",
+        "value": "blocked"
+       },
+       {
+        "name": "PENDING",
+        "value": "pending"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "User",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "fullName",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "nickname",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "state",
+        "type": {
+         "kind": "enum",
+         "name": "State"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "State"
+       },
+       {
+        "name": "age",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "address",
+        "type": {
+         "kind": "model",
+         "name": "Address"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "Address"
+       },
+       {
+        "name": "createdBy",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "note",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": true,
+        "originalType": "string"
+       }
+      ]
+     },
+     {
+      "name": "Address",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "street",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "city",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       }
+      ]
+     }
+    ],
+    "enums": [
+     {
+      "name": "State",
+      "values": [
+       {
+        "name": "Active",
+        "value": 0
+       },
+       {
+        "name": "Blocked",
+        "value": 1
+       }
+      ]
+     }
+    ]
+   },
+   "UserDto->User",
+   "createdBy"
+  ],
+  "result": {
+   "root": "UserDto->User",
+   "mappings": [
+    {
+     "id": "UserDto->User",
+     "source": "UserDto",
+     "target": "User",
+     "fields": [
+      {
+       "target": "id",
+       "sources": [
+        [
+         "id"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "fullName",
+       "sources": [
+        [
+         "firstName"
+        ],
+        [
+         "lastName"
+        ]
+       ],
+       "transform": {
+        "kind": "concat",
+        "separator": " "
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "combined"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "firstName"
+          ],
+          [
+           "lastName"
+          ]
+         ],
+         "transform": {
+          "kind": "concat",
+          "separator": " "
+         },
+         "score": 0.86,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "combined"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "nickname",
+       "sources": [
+        [
+         "nickname"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "nullToRequired"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "nickname"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.97,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "nullToRequired"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "state",
+       "sources": [],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "unmapped",
+       "confidence": "none"
+      },
+      {
+       "target": "age",
+       "sources": [
+        [
+         "age"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "typeFallible"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "age"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.88,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "typeFallible"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "address",
+       "sources": [
+        [
+         "address"
+        ]
+       ],
+       "transform": {
+        "kind": "object",
+        "mapping": "AddressDto->Address"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "nestedModel"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "address"
+          ]
+         ],
+         "transform": {
+          "kind": "object",
+          "mapping": "AddressDto->Address"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "nestedModel"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "createdBy",
+       "sources": [],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "unmapped",
+       "confidence": "none"
+      },
+      {
+       "target": "note",
+       "sources": [],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "unmapped",
+       "confidence": "none"
+      }
+     ],
+     "ignoredSources": []
+    },
+    {
+     "id": "AddressDto->Address",
+     "source": "AddressDto",
+     "target": "Address",
+     "fields": [
+      {
+       "target": "street",
+       "sources": [
+        [
+         "street"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "street"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "city",
+       "sources": [
+        [
+         "city"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "city"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ }
+]

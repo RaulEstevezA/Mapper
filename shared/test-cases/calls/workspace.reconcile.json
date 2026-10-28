@@ -1,0 +1,995 @@
+[
+ {
+  "args": [
+   null,
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "A",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "label",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "extra",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   "A",
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "B",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "title",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "note",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": true,
+        "originalType": "string"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   "B"
+  ],
+  "result": {
+   "root": "A->B",
+   "mappings": [
+    {
+     "id": "A->B",
+     "source": "A",
+     "target": "B",
+     "fields": [
+      {
+       "target": "id",
+       "sources": [
+        [
+         "id"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "title",
+       "sources": [
+        [
+         "label"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "probable",
+       "reasons": [
+        {
+         "code": "synonym"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "label"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.74,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "synonym"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "note",
+       "sources": [],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "unmapped",
+       "confidence": "none"
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   null,
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "A",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "title",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   "A",
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "B",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "label",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "created",
+        "type": {
+         "kind": "primitive",
+         "name": "datetime"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "Date"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   "B"
+  ],
+  "result": {
+   "root": "A->B",
+   "mappings": [
+    {
+     "id": "A->B",
+     "source": "A",
+     "target": "B",
+     "fields": [
+      {
+       "target": "id",
+       "sources": [
+        [
+         "id"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "label",
+       "sources": [
+        [
+         "name"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "pending",
+       "confidence": "conflict",
+       "reasons": [
+        {
+         "code": "synonym"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "name"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.74,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "synonym"
+          }
+         ]
+        },
+        {
+         "sources": [
+          [
+           "title"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.74,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "synonym"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "created",
+       "sources": [],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "unmapped",
+       "confidence": "none"
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "A->B",
+    "mappings": [
+     {
+      "id": "A->B",
+      "source": "A",
+      "target": "B",
+      "fields": [
+       {
+        "target": "id",
+        "sources": [
+         [
+          "id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "id"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "title",
+        "sources": [
+         [
+          "label"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "probable",
+        "reasons": [
+         {
+          "code": "synonym"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "label"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.74,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "synonym"
+           }
+          ]
+         }
+        ],
+        "manual": true
+       },
+       {
+        "target": "note",
+        "sources": [],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "ignored",
+        "confidence": "none",
+        "manual": true
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "A",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "extra",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   "A",
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "B",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "title",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "note",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": true,
+        "originalType": "string"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   "B"
+  ],
+  "result": {
+   "root": "A->B",
+   "mappings": [
+    {
+     "id": "A->B",
+     "source": "A",
+     "target": "B",
+     "fields": [
+      {
+       "target": "id",
+       "sources": [
+        [
+         "id"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "title",
+       "sources": [],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "unmapped",
+       "confidence": "none"
+      },
+      {
+       "target": "note",
+       "sources": [],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "ignored",
+       "confidence": "none",
+       "manual": true
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "A->B",
+    "mappings": [
+     {
+      "id": "A->B",
+      "source": "A",
+      "target": "B",
+      "fields": [
+       {
+        "target": "id",
+        "sources": [
+         [
+          "id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "id"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "title",
+        "sources": [
+         [
+          "label"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "probable",
+        "reasons": [
+         {
+          "code": "synonym"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "label"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.74,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "synonym"
+           }
+          ]
+         }
+        ],
+        "manual": true
+       },
+       {
+        "target": "note",
+        "sources": [],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "ignored",
+        "confidence": "none",
+        "manual": true
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "A",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "label",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "extra",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "note",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   "A",
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "B",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "title",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "note",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": true,
+        "originalType": "string"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   "B"
+  ],
+  "result": {
+   "root": "A->B",
+   "mappings": [
+    {
+     "id": "A->B",
+     "source": "A",
+     "target": "B",
+     "fields": [
+      {
+       "target": "id",
+       "sources": [
+        [
+         "id"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "title",
+       "sources": [
+        [
+         "label"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "probable",
+       "reasons": [
+        {
+         "code": "synonym"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "label"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.74,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "synonym"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      },
+      {
+       "target": "note",
+       "sources": [],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "ignored",
+       "confidence": "none",
+       "manual": true,
+       "candidates": [
+        {
+         "sources": [
+          [
+           "note"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ }
+]
