@@ -8,6 +8,8 @@ import type { MappingSet } from './core/mapping/types.ts'
 import { validateMapping } from './core/mapping/validate.ts'
 import { MODEL_SCHEMA_FORMAT } from './core/model/schema.ts'
 import { isTrustedOrigin, readHandoff, takeIncoming, type Handoff } from './core/project/handoff.ts'
+import { findParser } from './core/parsers/registry.ts'
+import type { InputFormatId } from './core/parsers/types.ts'
 import { createProject, projectFileName, readProject, type MapperProject } from './core/project/project.ts'
 import { findExample, type ExampleId } from './examples/index.ts'
 import { AppFooter } from './components/AppFooter.tsx'
@@ -44,7 +46,12 @@ function loadSaved(): MapperProject | null {
 /** A model sent by another tool, as the input of its side. */
 function inputFromHandoff(handoff: Handoff): InputState {
   return handoff.text
-    ? { text: handoff.text.content, format: null, model: handoff.model ?? null, receivedFrom: TOOL_NAMES[handoff.from] }
+    ? {
+        text: handoff.text.content,
+        format: findParser(handoff.text.format as InputFormatId)?.id ?? null,
+        model: handoff.model ?? null,
+        receivedFrom: TOOL_NAMES[handoff.from],
+      }
     : {
         text: JSON.stringify(handoff.schema, null, 2),
         format: 'modelschema',
