@@ -140,6 +140,7 @@ function convertType(schema: Json, nameHint: string, context: Context, named = f
       if (named) context.usedNames.add(name)
       const enumDef: EnumDef = {
         name,
+        kind: 'literals',
         values: values.map((value) => ({ name: String(value), ...(typeof value === 'number' ? { value } : {}) })),
       }
       if (typeof schema.description === 'string') enumDef.description = schema.description

@@ -103,6 +103,9 @@ export interface EnumDef {
   name: string
   namespace?: string
   values: EnumValue[]
+  /** `literals`: a set of allowed values without an enum type of its own (`'a' | 'b'` in TypeScript,
+   * `Literal[...]` in Python, `enum` in JSON Schema). Code writes them as plain values. */
+  kind?: 'enum' | 'literals'
   description?: string
 }
 

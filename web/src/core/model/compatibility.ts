@@ -33,8 +33,10 @@ function primitiveCompatibility(
   if (from === 'any') return { level: 'conversion', fallible: true }
   if (from === to) {
     if (from === 'integer' || from === 'float') {
-      const sourceBits = source.bits ?? 64
-      const targetBits = target.bits ?? 64
+      // A number without a size (JSON, TypeScript, Python) fits any size the other side chose
+      if (source.bits === undefined || target.bits === undefined) return { level: 'same' }
+      const sourceBits = source.bits
+      const targetBits = target.bits
       if (sourceBits === targetBits) return { level: 'same' }
       return sourceBits < targetBits ? { level: 'widening' } : { level: 'conversion', lossy: true }
     }

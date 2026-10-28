@@ -503,7 +503,7 @@ class Reader {
     const used = new Set([...this.declarations.enums.map((item) => item.name), ...this.declarations.models.map((item) => item.name)])
     let name = toPascalCase(fieldName) || 'Value'
     for (let n = 2; used.has(name); n++) name = `${name}${n}`
-    this.declarations.enums.push({ name, values: literals.map((arg) => ({ name: JSON.parse(arg.name) as string })) })
+    this.declarations.enums.push({ name, kind: 'literals', values: literals.map((arg) => ({ name: JSON.parse(arg.name) as string })) })
     const enumType: RawType = { name, args: [] }
     return others.length > 0 ? { name: '|', args: [enumType, ...others] } : enumType
   }

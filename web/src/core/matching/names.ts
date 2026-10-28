@@ -106,6 +106,7 @@ const WEAK_SYNONYMS: string[][] = [
   ['avatar', 'image'],
   ['customer', 'client'],
   ['product', 'item', 'article'],
+  ['item', 'line', 'entry'],
   ['order', 'purchase'],
 ]
 

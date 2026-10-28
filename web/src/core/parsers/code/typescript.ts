@@ -211,7 +211,7 @@ class Reader {
       literals.length > 0 &&
       literals.length === options.filter((option) => option.name !== 'null' && option.name !== 'undefined').length
     ) {
-      const enumDef: RawEnum = { name, values: literals.map((option) => ({ name: String(literalValue(option.name)) })) }
+      const enumDef: RawEnum = { name, kind: 'literals', values: literals.map((option) => ({ name: String(literalValue(option.name)) })) }
       if (doc) enumDef.description = doc
       this.declarations.enums.push(enumDef)
       return
@@ -334,7 +334,11 @@ class Reader {
     const others = type.args.filter((option) => !isLiteralName(option.name))
     if (literals.length < 2 || others.some((option) => option.name !== 'null' && option.name !== 'undefined')) return type
     const name = uniqueName(toPascalCase(fieldName) || `${owner}Value`, this.usedNames)
-    this.declarations.enums.push({ name, values: literals.map((option) => ({ name: String(literalValue(option.name)) })) })
+    this.declarations.enums.push({
+      name,
+      kind: 'literals',
+      values: literals.map((option) => ({ name: String(literalValue(option.name)) })),
+    })
     const enumType: RawType = { name, args: [] }
     return others.length > 0 ? { name: '|', args: [enumType, ...others] } : enumType
   }

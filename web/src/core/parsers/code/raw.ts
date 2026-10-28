@@ -58,6 +58,7 @@ export interface RawModel {
 
 export interface RawEnum {
   name: string
+  kind?: 'enum' | 'literals'
   values: { name: string; value?: string | number; description?: string }[]
   namespace?: string
   description?: string
@@ -282,6 +283,7 @@ export function buildSchema(
 
   const enums: EnumDef[] = declarations.enums.map((raw) => {
     const item: EnumDef = { name: raw.name, values: raw.values }
+    if (raw.kind) item.kind = raw.kind
     if (raw.namespace) item.namespace = raw.namespace
     if (raw.description) item.description = raw.description
     return item

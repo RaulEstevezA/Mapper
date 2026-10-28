@@ -159,6 +159,26 @@ function scoreOption(option: SourceOption, target: FieldDef, names: NameContext,
     null
   let serialized = false
   let match = nameMatch
+  // The name of the field's type completes the name: `shipping: AddressApi` and `shippingAddress: Address`
+  if (!match || match.score < HIGH) {
+    const typeWords = (type: TypeRef) => (type.kind === 'model' || type.kind === 'enum' ? modelWords(type.name) : [])
+    const strip = (words: string[], type: TypeRef) => {
+      const extra = typeWords(type)
+      return extra.length > 0 &&
+        words.length > extra.length &&
+        extra.every((word, index) => words[words.length - extra.length + index] === word)
+        ? words.slice(0, -extra.length)
+        : words
+    }
+    const sourceWords = strip(option.words, option.field.type)
+    const targetWords = strip(nameWords(target.name), target.type)
+    if (
+      (sourceWords !== option.words || targetWords.length !== nameWords(target.name).length) &&
+      sourceWords.join(' ') === targetWords.join(' ')
+    ) {
+      match = { score: 0.86, reason: 'modelContext' }
+    }
+  }
   if (option.field.serializedName && target.serializedName && option.field.serializedName === target.serializedName) {
     if (!match || match.score < 0.95) {
       match = { score: 0.95, reason: 'serializedName' }
@@ -167,7 +187,13 @@ function scoreOption(option: SourceOption, target: FieldDef, names: NameContext,
   }
   if (!match) return null
   const result = compatibility(option.field.type, target.type)
-  const factor = typeFactor(result, option.field.type, target.type, context)
+  let factor = typeFactor(result, option.field.type, target.type, context)
+  // Two enums are as compatible as the share of values that pair up by name
+  if (option.field.type.kind === 'enum' && target.type.kind === 'enum' && option.field.type.name !== target.type.name) {
+    const total = findEnum(context.source, option.field.type.name)?.values.length ?? 0
+    const paired = suggestEnumPairs(context.source, option.field.type.name, context.target, target.type.name).length
+    factor = total > 0 ? 0.6 + 0.4 * (paired / total) : 0.6
+  }
   if (factor === 0) return null
   const nullable = option.field.nullable || option.field.optional || option.nullablePath
   const nullFactor = nullable && !target.nullable && !target.optional && target.defaultValue === undefined ? 0.97 : 1
@@ -326,8 +352,9 @@ function assign(
   for (const { target, candidate } of pairs) {
     if (decided.has(target)) continue
     const sourceKeys = candidate.sources.map(pathKey)
-    // A split takes one part of its source: several targets can share it (first name, last name)
-    const shares = candidate.transform.kind === 'split'
+    // Derived values (a part of a text, a flag computed from a status) do not use their source up:
+    // other targets can still take it (first name and last name; status and active)
+    const shares = candidate.transform.kind === 'split' || candidate.transform.kind === 'boolean'
     if (!shares && sourceKeys.some((sourceKey) => usedSources.has(sourceKey))) continue
     if (candidate.confidence !== 'exact' && !shares) {
       // Another source almost as good for this target
@@ -343,6 +370,8 @@ function assign(
       const rivalTargets = pairs.filter(
         (other) =>
           other.target !== target &&
+          other.candidate.transform.kind !== 'split' &&
+          other.candidate.transform.kind !== 'boolean' &&
           !decided.has(other.target) &&
           other.candidate.sources.some((path) => sourceKeys.includes(pathKey(path))) &&
           candidate.score - other.candidate.score < MARGIN &&
