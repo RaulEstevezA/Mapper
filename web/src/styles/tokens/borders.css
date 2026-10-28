@@ -1,0 +1,18 @@
+/* =====================================================
+   BORDES Y RADIOS
+   Un solo grosor (1px) y un solo color (--border).
+   Origen: web principal y herramientas.
+===================================================== */
+
+:root {
+  --border-width: 1px;
+  --border-line:  1px solid var(--border);
+
+  /* ---------- Radios ---------- */
+  --radius-xs:   4px;   /* selector de idioma, checkboxes, botones pequeños dentro de filas */
+  --radius-sm:   6px;   /* inputs, selects, miniaturas, pestañas */
+  --radius:      8px;   /* botones, panes, paneles, avisos, filas de proyecto */
+  --radius-md:   10px;  /* cards dentro de una ventana, zona de importación, callouts */
+  --radius-lg:   14px;  /* ventanas y modales */
+  --radius-pill: 999px; /* tags, chips y badges */
+}

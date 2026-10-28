@@ -218,3 +218,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Node / Vite (web/)
+node_modules/
+web/dist/
+*.tsbuildinfo

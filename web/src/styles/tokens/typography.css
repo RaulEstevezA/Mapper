@@ -1,0 +1,44 @@
+/* =====================================================
+   TIPOGRAFÍA
+   Fuentes del sistema, sin fuentes web descargadas.
+   Origen: web principal y herramientas.
+===================================================== */
+
+:root {
+  /* ---------- Familias ---------- */
+  --sans: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'SF Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+
+  /* ---------- Tamaños ---------- */
+  --font-h1:        2.4rem;    /* título de página o de herramienta */
+  --font-h1-md:     1.75rem;   /* h1 a partir de 768px (web) / 600px (herramientas) */
+  --font-h1-sm:     1.5rem;    /* h1 a partir de 480px (web) */
+  --font-h2:        1.35rem;   /* subtítulo de página en la web (peso 400, --muted) */
+  --font-subtitle:  1.15rem;   /* subtítulo bajo el nombre de una herramienta */
+  --font-title-sm:  1.125rem;  /* título de pane, de panel o de zona de importación */
+  --font-h3:        1.1rem;    /* título de card o de modal */
+  --font-body:      1rem;      /* texto normal (16px) */
+  --font-control:   0.9rem;    /* botones, selector de idioma, callouts */
+  --font-small:     0.875rem;  /* inputs, selects, avisos, texto secundario */
+  --font-note:      0.85rem;   /* notas bajo un bloque de acciones */
+  --font-label:     0.8125rem; /* labels de formulario, tablas, footer, pies de pane */
+  --font-tag:       0.8rem;    /* tags de tecnología */
+  --font-caption:   0.75rem;   /* badges, labels en mayúsculas, pestañas de archivo */
+  --font-code:      13px;      /* editores y bloques de código */
+
+  /* ---------- Pesos ---------- */
+  --weight-regular:  400;
+  --weight-medium:   500; /* botones, labels de navegación, tags */
+  --weight-semibold: 600; /* títulos de pane, logo, cabeceras de tabla, badges */
+  --weight-bold:     700; /* idioma activo; títulos h1/h2 heredan el bold del navegador */
+
+  /* ---------- Interlineado ---------- */
+  --leading-tight: 1.15; /* h1 de herramienta */
+  --leading-base:  1.5;  /* texto general */
+  --leading-code:  1.6;  /* código y listas */
+  --leading-prose: 1.65; /* párrafos descriptivos (intro, descripción de card) */
+
+  /* ---------- Espaciado entre letras ---------- */
+  --tracking-stack:     0.02em; /* línea de stack de la portada */
+  --tracking-uppercase: 0.04em; /* labels y proveedores en mayúsculas */
+}

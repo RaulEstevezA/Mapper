@@ -1,0 +1,70 @@
+/* =====================================================
+   COLORES
+   Paleta oscura basada en la de GitHub (modo oscuro).
+   Origen: web principal (css/styles.css) y herramientas
+   (Api2Class y DataCleanr, web/src/index.css).
+   El ecosistema solo tiene tema oscuro.
+===================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* ---------- Fondos ---------- */
+  --page-bg:        #0d1117; /* fondo de página; también fondo de inputs, editores y cards dentro de una ventana */
+  --surface:        #161b22; /* ventanas, paneles y panes (en la web: --window-bg) */
+  --surface-raised: #21262d; /* botones, cabeceras de tabla, elementos seleccionados (en la web: --btn-bg) */
+
+  /* ---------- Bordes ---------- */
+  --border:         #30363d; /* borde único del sistema; también hover de botón */
+
+  /* ---------- Texto ---------- */
+  --text:           #e6edf3; /* texto principal y títulos */
+  --btn-text:       #c9d1d9; /* texto de botones secundarios */
+  --muted:          #8b949e; /* subtítulos, descripciones, labels, metadatos; borde hover de botón */
+
+  /* ---------- Acento ---------- */
+  --accent:         #58a6ff; /* botón primario, enlaces, focus, selección activa */
+  --accent-text:    #79c0ff; /* hover del primario; texto sobre --accent-soft (en la web: --tag-text) */
+  --accent-soft:    #1a2740; /* fondo de tags, chips y celdas seleccionadas (en la web: --tag-bg) */
+  --on-accent:      #0d1117; /* texto sobre --accent */
+
+  /* ---------- Estados ---------- */
+  --success:        #3fb950;
+  --success-soft:   #12261e;
+  --warning:        #d29922;
+  --warning-soft:   #2b2111;
+  --danger:         #f85149;
+
+  /* ---------- Capas e interacción ---------- */
+  --hover:          rgba(110, 118, 129, 0.1);  /* hover de filas y elementos de lista */
+  --overlay:        rgba(13, 17, 23, 0.85);    /* capa sobre una zona (drag and drop) */
+  --backdrop:       rgba(0, 0, 0, 0.85);       /* fondo detrás de un modal */
+  --text-selection: rgba(88, 166, 255, 0.25);  /* ::selection en páginas (valor de la web principal) */
+  --selection:      rgba(56, 139, 253, 0.35);  /* selección dentro de editores de código (Api2Class) */
+
+  /* ---------- Colores semánticos de enlaces (solo web principal y tarjetas) ---------- */
+  /* Identifican el tipo de destino de un botón de proyecto. No usar como colores de estado. */
+  --link-web:           #56d364; /* abrir demo, herramienta o web en vivo */
+  --link-web-border:    #3fb950;
+  --link-web-bg:        rgba(63, 185, 80, 0.1);
+  --link-web-bg-hover:  rgba(63, 185, 80, 0.2);
+  --link-video:         #ff6b6b; /* ver vídeo de demostración */
+  --link-video-border:  #ff4444;
+  --link-video-bg:      rgba(255, 68, 68, 0.1);
+  --link-video-bg-hover: rgba(255, 68, 68, 0.2);
+  --link-download:          #d2a8ff; /* descargar aplicación */
+  --link-download-border:   #a371f7;
+  --link-download-bg:       rgba(163, 113, 247, 0.12);
+  --link-download-bg-hover: rgba(163, 113, 247, 0.22);
+
+  /* ---------- Resaltado de sintaxis (GitHub oscuro) ---------- */
+  --syntax-keyword:  #ff7b72;
+  --syntax-string:   #a5d6ff;
+  --syntax-constant: #79c0ff;
+  --syntax-property: #7ee787;
+  --syntax-type:     #ffa657;
+  --syntax-function: #d2a8ff;
+  --syntax-comment:  #8b949e;
+  --bracket:         rgba(63, 185, 80, 0.25);
+  --error-line:      rgba(248, 81, 73, 0.15);
+}
