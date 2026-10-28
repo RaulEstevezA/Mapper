@@ -2,6 +2,7 @@ import { csvParser } from './data/csv.ts'
 import { jsonParser } from './data/json.ts'
 import { xmlParser } from './data/xml.ts'
 import { yamlParser } from './data/yaml.ts'
+import { pythonParser } from './code/python.ts'
 import { javaScriptParser, typeScriptParser } from './code/typescript.ts'
 import { jsonSchemaParser } from './schema/jsonSchema.ts'
 import { openApiParser } from './schema/openapi.ts'
@@ -17,6 +18,7 @@ export const parsers: readonly InputParser[] = [
   csvParser,
   typeScriptParser,
   javaScriptParser,
+  pythonParser,
 ]
 
 export function findParser(id: InputFormatId): InputParser | undefined {
