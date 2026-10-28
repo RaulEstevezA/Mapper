@@ -62,7 +62,7 @@ def comparable(result):
     """Errors that come from a library (the YAML and XML parsers) keep only their code: each version reads
     those formats with a different library, so messages and positions differ (shared/README.md)."""
     error = result.get("error") if isinstance(result, dict) and result.get("ok") is False else None
-    if error and error.get("code") == "syntax" and "message" in error.get("params", {}):
+    if isinstance(error, dict) and error.get("code") == "syntax" and "message" in error.get("params", {}):
         return {"ok": False, "error": {"code": "syntax", "library": True}}
     return result
 

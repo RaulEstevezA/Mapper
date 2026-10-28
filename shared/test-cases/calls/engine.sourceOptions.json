@@ -1,0 +1,873 @@
+[
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "A",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "fullName",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "extra",
+        "type": {
+         "kind": "model",
+         "name": "AExtra"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "{ x: string }"
+       }
+      ]
+     },
+     {
+      "name": "AExtra",
+      "kind": "type",
+      "fields": [
+       {
+        "name": "x",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   {
+    "name": "A",
+    "kind": "interface",
+    "fields": [
+     {
+      "name": "fullName",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "string"
+     },
+     {
+      "name": "extra",
+      "type": {
+       "kind": "model",
+       "name": "AExtra"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "{ x: string }"
+     }
+    ]
+   }
+  ],
+  "result": [
+   {
+    "path": [
+     "fullName"
+    ],
+    "field": {
+     "name": "fullName",
+     "type": {
+      "kind": "primitive",
+      "name": "string"
+     },
+     "nullable": false,
+     "optional": false,
+     "originalType": "string"
+    },
+    "words": [
+     "full",
+     "name"
+    ],
+    "nullablePath": false
+   },
+   {
+    "path": [
+     "extra"
+    ],
+    "field": {
+     "name": "extra",
+     "type": {
+      "kind": "model",
+      "name": "AExtra"
+     },
+     "nullable": false,
+     "optional": false,
+     "originalType": "{ x: string }"
+    },
+    "words": [
+     "extra"
+    ],
+    "nullablePath": false
+   },
+   {
+    "path": [
+     "extra",
+     "x"
+    ],
+    "field": {
+     "name": "x",
+     "type": {
+      "kind": "primitive",
+      "name": "string"
+     },
+     "nullable": false,
+     "optional": false,
+     "originalType": "string"
+    },
+    "words": [
+     "extra",
+     "x"
+    ],
+    "nullablePath": false
+   }
+  ]
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "Flat",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "street",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "city",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "zip",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   {
+    "name": "Flat",
+    "kind": "interface",
+    "fields": [
+     {
+      "name": "name",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "string"
+     },
+     {
+      "name": "street",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "string"
+     },
+     {
+      "name": "city",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "string"
+     },
+     {
+      "name": "zip",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "string"
+     }
+    ]
+   }
+  ],
+  "result": [
+   {
+    "path": [
+     "name"
+    ],
+    "field": {
+     "name": "name",
+     "type": {
+      "kind": "primitive",
+      "name": "string"
+     },
+     "nullable": false,
+     "optional": false,
+     "originalType": "string"
+    },
+    "words": [
+     "name"
+    ],
+    "nullablePath": false
+   },
+   {
+    "path": [
+     "street"
+    ],
+    "field": {
+     "name": "street",
+     "type": {
+      "kind": "primitive",
+      "name": "string"
+     },
+     "nullable": false,
+     "optional": false,
+     "originalType": "string"
+    },
+    "words": [
+     "street"
+    ],
+    "nullablePath": false
+   },
+   {
+    "path": [
+     "city"
+    ],
+    "field": {
+     "name": "city",
+     "type": {
+      "kind": "primitive",
+      "name": "string"
+     },
+     "nullable": false,
+     "optional": false,
+     "originalType": "string"
+    },
+    "words": [
+     "city"
+    ],
+    "nullablePath": false
+   },
+   {
+    "path": [
+     "zip"
+    ],
+    "field": {
+     "name": "zip",
+     "type": {
+      "kind": "primitive",
+      "name": "string"
+     },
+     "nullable": false,
+     "optional": false,
+     "originalType": "string"
+    },
+    "words": [
+     "zip"
+    ],
+    "nullablePath": false
+   }
+  ]
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "Cart",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "items",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "model",
+          "name": "CartItem"
+         }
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "CartItem[]"
+       },
+       {
+        "name": "tags",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "primitive",
+          "name": "string"
+         }
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string[]"
+       }
+      ]
+     },
+     {
+      "name": "CartItem",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "sku",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "qty",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   {
+    "name": "Cart",
+    "kind": "interface",
+    "fields": [
+     {
+      "name": "items",
+      "type": {
+       "kind": "array",
+       "items": {
+        "kind": "model",
+        "name": "CartItem"
+       }
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "CartItem[]"
+     },
+     {
+      "name": "tags",
+      "type": {
+       "kind": "array",
+       "items": {
+        "kind": "primitive",
+        "name": "string"
+       }
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "string[]"
+     }
+    ]
+   }
+  ],
+  "result": [
+   {
+    "path": [
+     "items"
+    ],
+    "field": {
+     "name": "items",
+     "type": {
+      "kind": "array",
+      "items": {
+       "kind": "model",
+       "name": "CartItem"
+      }
+     },
+     "nullable": false,
+     "optional": false,
+     "originalType": "CartItem[]"
+    },
+    "words": [
+     "items"
+    ],
+    "nullablePath": false
+   },
+   {
+    "path": [
+     "tags"
+    ],
+    "field": {
+     "name": "tags",
+     "type": {
+      "kind": "array",
+      "items": {
+       "kind": "primitive",
+       "name": "string"
+      }
+     },
+     "nullable": false,
+     "optional": false,
+     "originalType": "string[]"
+    },
+    "words": [
+     "tags"
+    ],
+    "nullablePath": false
+   }
+  ]
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "OrderApi",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "customer",
+        "type": {
+         "kind": "model",
+         "name": "CustomerApi"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "CustomerApi"
+       },
+       {
+        "name": "shipping",
+        "type": {
+         "kind": "model",
+         "name": "OrderApiShipping"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "{ city: string; country: string }"
+       }
+      ]
+     },
+     {
+      "name": "OrderApiShipping",
+      "kind": "type",
+      "fields": [
+       {
+        "name": "city",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "country",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       }
+      ]
+     },
+     {
+      "name": "CustomerApi",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "number"
+       },
+       {
+        "name": "fullName",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   {
+    "name": "OrderApi",
+    "kind": "interface",
+    "fields": [
+     {
+      "name": "id",
+      "type": {
+       "kind": "primitive",
+       "name": "float"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "number"
+     },
+     {
+      "name": "customer",
+      "type": {
+       "kind": "model",
+       "name": "CustomerApi"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "CustomerApi"
+     },
+     {
+      "name": "shipping",
+      "type": {
+       "kind": "model",
+       "name": "OrderApiShipping"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "{ city: string; country: string }"
+     }
+    ]
+   }
+  ],
+  "result": [
+   {
+    "path": [
+     "id"
+    ],
+    "field": {
+     "name": "id",
+     "type": {
+      "kind": "primitive",
+      "name": "float"
+     },
+     "nullable": false,
+     "optional": false,
+     "originalType": "number"
+    },
+    "words": [
+     "id"
+    ],
+    "nullablePath": false
+   },
+   {
+    "path": [
+     "customer"
+    ],
+    "field": {
+     "name": "customer",
+     "type": {
+      "kind": "model",
+      "name": "CustomerApi"
+     },
+     "nullable": false,
+     "optional": false,
+     "originalType": "CustomerApi"
+    },
+    "words": [
+     "customer"
+    ],
+    "nullablePath": false
+   },
+   {
+    "path": [
+     "customer",
+     "id"
+    ],
+    "field": {
+     "name": "id",
+     "type": {
+      "kind": "primitive",
+      "name": "float"
+     },
+     "nullable": false,
+     "optional": false,
+     "originalType": "number"
+    },
+    "words": [
+     "customer",
+     "id"
+    ],
+    "nullablePath": false
+   },
+   {
+    "path": [
+     "customer",
+     "fullName"
+    ],
+    "field": {
+     "name": "fullName",
+     "type": {
+      "kind": "primitive",
+      "name": "string"
+     },
+     "nullable": false,
+     "optional": false,
+     "originalType": "string"
+    },
+    "words": [
+     "customer",
+     "full",
+     "name"
+    ],
+    "nullablePath": false
+   },
+   {
+    "path": [
+     "shipping"
+    ],
+    "field": {
+     "name": "shipping",
+     "type": {
+      "kind": "model",
+      "name": "OrderApiShipping"
+     },
+     "nullable": false,
+     "optional": false,
+     "originalType": "{ city: string; country: string }"
+    },
+    "words": [
+     "shipping"
+    ],
+    "nullablePath": false
+   },
+   {
+    "path": [
+     "shipping",
+     "city"
+    ],
+    "field": {
+     "name": "city",
+     "type": {
+      "kind": "primitive",
+      "name": "string"
+     },
+     "nullable": false,
+     "optional": false,
+     "originalType": "string"
+    },
+    "words": [
+     "shipping",
+     "city"
+    ],
+    "nullablePath": false
+   },
+   {
+    "path": [
+     "shipping",
+     "country"
+    ],
+    "field": {
+     "name": "country",
+     "type": {
+      "kind": "primitive",
+      "name": "string"
+     },
+     "nullable": false,
+     "optional": false,
+     "originalType": "string"
+    },
+    "words": [
+     "shipping",
+     "country"
+    ],
+    "nullablePath": false
+   }
+  ]
+ },
+ {
+  "args": [
+   {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "typescript",
+     "language": "typescript"
+    },
+    "models": [
+     {
+      "name": "A",
+      "kind": "interface",
+      "fields": [
+       {
+        "name": "name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       },
+       {
+        "name": "title",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false,
+        "originalType": "string"
+       }
+      ]
+     }
+    ],
+    "enums": []
+   },
+   {
+    "name": "A",
+    "kind": "interface",
+    "fields": [
+     {
+      "name": "name",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "string"
+     },
+     {
+      "name": "title",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "string"
+     }
+    ]
+   }
+  ],
+  "result": [
+   {
+    "path": [
+     "name"
+    ],
+    "field": {
+     "name": "name",
+     "type": {
+      "kind": "primitive",
+      "name": "string"
+     },
+     "nullable": false,
+     "optional": false,
+     "originalType": "string"
+    },
+    "words": [
+     "name"
+    ],
+    "nullablePath": false
+   },
+   {
+    "path": [
+     "title"
+    ],
+    "field": {
+     "name": "title",
+     "type": {
+      "kind": "primitive",
+      "name": "string"
+     },
+     "nullable": false,
+     "optional": false,
+     "originalType": "string"
+    },
+    "words": [
+     "title"
+    ],
+    "nullablePath": false
+   }
+  ]
+ }
+]

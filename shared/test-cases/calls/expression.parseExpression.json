@@ -549,5 +549,422 @@
     "column": 41
    }
   }
+ },
+ {
+  "args": [
+   "a + b * 2"
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "binary",
+    "operator": "+",
+    "left": {
+     "kind": "field",
+     "path": [
+      "a"
+     ]
+    },
+    "right": {
+     "kind": "binary",
+     "operator": "*",
+     "left": {
+      "kind": "field",
+      "path": [
+       "b"
+      ]
+     },
+     "right": {
+      "kind": "literal",
+      "value": 2
+     }
+    }
+   },
+   "fields": [
+    [
+     "a"
+    ],
+    [
+     "b"
+    ]
+   ]
+  }
+ },
+ {
+  "args": [
+   "(a + b) * 2"
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "binary",
+    "operator": "*",
+    "left": {
+     "kind": "binary",
+     "operator": "+",
+     "left": {
+      "kind": "field",
+      "path": [
+       "a"
+      ]
+     },
+     "right": {
+      "kind": "field",
+      "path": [
+       "b"
+      ]
+     }
+    },
+    "right": {
+     "kind": "literal",
+     "value": 2
+    }
+   },
+   "fields": [
+    [
+     "a"
+    ],
+    [
+     "b"
+    ]
+   ]
+  }
+ },
+ {
+  "args": [
+   "x ? \"y\" : null"
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "conditional",
+    "condition": {
+     "kind": "field",
+     "path": [
+      "x"
+     ]
+    },
+    "then": {
+     "kind": "literal",
+     "value": "y"
+    },
+    "otherwise": {
+     "kind": "literal",
+     "value": null
+    }
+   },
+   "fields": [
+    [
+     "x"
+    ]
+   ]
+  }
+ },
+ {
+  "args": [
+   "concat(a, \" \", b.c)"
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "call",
+    "name": "concat",
+    "args": [
+     {
+      "kind": "field",
+      "path": [
+       "a"
+      ]
+     },
+     {
+      "kind": "literal",
+      "value": " "
+     },
+     {
+      "kind": "field",
+      "path": [
+       "b",
+       "c"
+      ]
+     }
+    ]
+   },
+   "fields": [
+    [
+     "a"
+    ],
+    [
+     "b",
+     "c"
+    ]
+   ]
+  }
+ },
+ {
+  "args": [
+   "substring(name, 1)"
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "call",
+    "name": "substring",
+    "args": [
+     {
+      "kind": "field",
+      "path": [
+       "name"
+      ]
+     },
+     {
+      "kind": "literal",
+      "value": 1
+     }
+    ]
+   },
+   "fields": [
+    [
+     "name"
+    ]
+   ]
+  }
+ },
+ {
+  "args": [
+   "substring(name, 1, 2, 3)"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "argumentCount",
+    "column": 1,
+    "params": {
+     "name": "substring",
+     "count": 2
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "unknown(x)"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "unknownFunction",
+    "column": 1,
+    "params": {
+     "name": "unknown"
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "-5"
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "literal",
+    "value": -5
+   },
+   "fields": []
+  }
+ },
+ {
+  "args": [
+   "!flag && other || x == 1"
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "binary",
+    "operator": "||",
+    "left": {
+     "kind": "binary",
+     "operator": "&&",
+     "left": {
+      "kind": "unary",
+      "operator": "!",
+      "operand": {
+       "kind": "field",
+       "path": [
+        "flag"
+       ]
+      }
+     },
+     "right": {
+      "kind": "field",
+      "path": [
+       "other"
+      ]
+     }
+    },
+    "right": {
+     "kind": "binary",
+     "operator": "==",
+     "left": {
+      "kind": "field",
+      "path": [
+       "x"
+      ]
+     },
+     "right": {
+      "kind": "literal",
+      "value": 1
+     }
+    }
+   },
+   "fields": [
+    [
+     "flag"
+    ],
+    [
+     "other"
+    ],
+    [
+     "x"
+    ]
+   ]
+  }
+ },
+ {
+  "args": [
+   "a ?? b ?? c"
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "binary",
+    "operator": "??",
+    "left": {
+     "kind": "binary",
+     "operator": "??",
+     "left": {
+      "kind": "field",
+      "path": [
+       "a"
+      ]
+     },
+     "right": {
+      "kind": "field",
+      "path": [
+       "b"
+      ]
+     }
+    },
+    "right": {
+     "kind": "field",
+     "path": [
+      "c"
+     ]
+    }
+   },
+   "fields": [
+    [
+     "a"
+    ],
+    [
+     "b"
+    ],
+    [
+     "c"
+    ]
+   ]
+  }
+ },
+ {
+  "args": [
+   "source.address.city"
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "field",
+    "path": [
+     "address",
+     "city"
+    ]
+   },
+   "fields": [
+    [
+     "address",
+     "city"
+    ]
+   ]
+  }
+ },
+ {
+  "args": [
+   "min(1)"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "argumentCount",
+    "column": 1,
+    "params": {
+     "name": "min",
+     "count": 2
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "toNumber(\" 12 \")"
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "call",
+    "name": "toNumber",
+    "args": [
+     {
+      "kind": "literal",
+      "value": " 12 "
+     }
+    ]
+   },
+   "fields": []
+  }
+ },
+ {
+  "args": [
+   "1.5e3 / 3"
+  ],
+  "result": {
+   "ok": true,
+   "expr": {
+    "kind": "binary",
+    "operator": "/",
+    "left": {
+     "kind": "literal",
+     "value": 1500
+    },
+    "right": {
+     "kind": "literal",
+     "value": 3
+    }
+   },
+   "fields": []
+  }
+ },
+ {
+  "args": [
+   "a."
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "unexpectedToken",
+    "column": 3,
+    "params": {
+     "found": "end"
+    }
+   }
+  }
  }
 ]

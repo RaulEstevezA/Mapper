@@ -1,0 +1,4575 @@
+[
+ {
+  "args": [
+   {
+    "root": "A->B",
+    "mappings": [
+     {
+      "id": "A->B",
+      "source": "A",
+      "target": "B",
+      "fields": [
+       {
+        "target": "firstName",
+        "sources": [
+         [
+          "fullName"
+         ]
+        ],
+        "transform": {
+         "kind": "split",
+         "separator": " ",
+         "part": 0
+        },
+        "status": "pending",
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "split"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "fullName"
+           ]
+          ],
+          "transform": {
+           "kind": "split",
+           "separator": " ",
+           "part": 0
+          },
+          "score": 0.6,
+          "confidence": "review",
+          "reasons": [
+           {
+            "code": "split"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "lastName",
+        "sources": [
+         [
+          "fullName"
+         ]
+        ],
+        "transform": {
+         "kind": "split",
+         "separator": " ",
+         "part": "rest"
+        },
+        "status": "pending",
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "split"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "fullName"
+           ]
+          ],
+          "transform": {
+           "kind": "split",
+           "separator": " ",
+           "part": "rest"
+          },
+          "score": 0.6,
+          "confidence": "review",
+          "reasons": [
+           {
+            "code": "split"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "extra",
+        "sources": [
+         [
+          "extra"
+         ]
+        ],
+        "transform": {
+         "kind": "object",
+         "mapping": "AExtra->X"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "nestedModel"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "extra"
+           ]
+          ],
+          "transform": {
+           "kind": "object",
+           "mapping": "AExtra->X"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "nestedModel"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     },
+     {
+      "id": "AExtra->X",
+      "source": "AExtra",
+      "target": "X",
+      "fields": [
+       {
+        "target": "x",
+        "sources": [
+         [
+          "x"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "x"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "A->B",
+   "firstName",
+   "upper(trim(fullName)) ?? 'x'"
+  ],
+  "result": {
+   "root": "A->B",
+   "mappings": [
+    {
+     "id": "A->B",
+     "source": "A",
+     "target": "B",
+     "fields": [
+      {
+       "target": "firstName",
+       "sources": [
+        [
+         "fullName"
+        ]
+       ],
+       "transform": {
+        "kind": "expression",
+        "expression": "upper(trim(fullName)) ?? 'x'"
+       },
+       "status": "active",
+       "confidence": "review",
+       "reasons": [
+        {
+         "code": "split"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "fullName"
+          ]
+         ],
+         "transform": {
+          "kind": "split",
+          "separator": " ",
+          "part": 0
+         },
+         "score": 0.6,
+         "confidence": "review",
+         "reasons": [
+          {
+           "code": "split"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      },
+      {
+       "target": "lastName",
+       "sources": [
+        [
+         "fullName"
+        ]
+       ],
+       "transform": {
+        "kind": "split",
+        "separator": " ",
+        "part": "rest"
+       },
+       "status": "pending",
+       "confidence": "review",
+       "reasons": [
+        {
+         "code": "split"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "fullName"
+          ]
+         ],
+         "transform": {
+          "kind": "split",
+          "separator": " ",
+          "part": "rest"
+         },
+         "score": 0.6,
+         "confidence": "review",
+         "reasons": [
+          {
+           "code": "split"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "extra",
+       "sources": [
+        [
+         "extra"
+        ]
+       ],
+       "transform": {
+        "kind": "object",
+        "mapping": "AExtra->X"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "nestedModel"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "extra"
+          ]
+         ],
+         "transform": {
+          "kind": "object",
+          "mapping": "AExtra->X"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "nestedModel"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    },
+    {
+     "id": "AExtra->X",
+     "source": "AExtra",
+     "target": "X",
+     "fields": [
+      {
+       "target": "x",
+       "sources": [
+        [
+         "x"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "x"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "A->B",
+    "mappings": [
+     {
+      "id": "A->B",
+      "source": "A",
+      "target": "B",
+      "fields": [
+       {
+        "target": "firstName",
+        "sources": [
+         [
+          "fullName"
+         ]
+        ],
+        "transform": {
+         "kind": "split",
+         "separator": " ",
+         "part": 0
+        },
+        "status": "pending",
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "split"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "fullName"
+           ]
+          ],
+          "transform": {
+           "kind": "split",
+           "separator": " ",
+           "part": 0
+          },
+          "score": 0.6,
+          "confidence": "review",
+          "reasons": [
+           {
+            "code": "split"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "lastName",
+        "sources": [
+         [
+          "fullName"
+         ]
+        ],
+        "transform": {
+         "kind": "split",
+         "separator": " ",
+         "part": "rest"
+        },
+        "status": "pending",
+        "confidence": "review",
+        "reasons": [
+         {
+          "code": "split"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "fullName"
+           ]
+          ],
+          "transform": {
+           "kind": "split",
+           "separator": " ",
+           "part": "rest"
+          },
+          "score": 0.6,
+          "confidence": "review",
+          "reasons": [
+           {
+            "code": "split"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "extra",
+        "sources": [
+         [
+          "extra"
+         ]
+        ],
+        "transform": {
+         "kind": "object",
+         "mapping": "AExtra->X"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "nestedModel"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "extra"
+           ]
+          ],
+          "transform": {
+           "kind": "object",
+           "mapping": "AExtra->X"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "nestedModel"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     },
+     {
+      "id": "AExtra->X",
+      "source": "AExtra",
+      "target": "X",
+      "fields": [
+       {
+        "target": "x",
+        "sources": [
+         [
+          "x"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "x"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "A->B",
+   "extra",
+   "1 +"
+  ],
+  "result": {
+   "root": "A->B",
+   "mappings": [
+    {
+     "id": "A->B",
+     "source": "A",
+     "target": "B",
+     "fields": [
+      {
+       "target": "firstName",
+       "sources": [
+        [
+         "fullName"
+        ]
+       ],
+       "transform": {
+        "kind": "split",
+        "separator": " ",
+        "part": 0
+       },
+       "status": "pending",
+       "confidence": "review",
+       "reasons": [
+        {
+         "code": "split"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "fullName"
+          ]
+         ],
+         "transform": {
+          "kind": "split",
+          "separator": " ",
+          "part": 0
+         },
+         "score": 0.6,
+         "confidence": "review",
+         "reasons": [
+          {
+           "code": "split"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "lastName",
+       "sources": [
+        [
+         "fullName"
+        ]
+       ],
+       "transform": {
+        "kind": "split",
+        "separator": " ",
+        "part": "rest"
+       },
+       "status": "pending",
+       "confidence": "review",
+       "reasons": [
+        {
+         "code": "split"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "fullName"
+          ]
+         ],
+         "transform": {
+          "kind": "split",
+          "separator": " ",
+          "part": "rest"
+         },
+         "score": 0.6,
+         "confidence": "review",
+         "reasons": [
+          {
+           "code": "split"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "extra",
+       "sources": [
+        [
+         "extra"
+        ]
+       ],
+       "transform": {
+        "kind": "expression",
+        "expression": "1 +"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "nestedModel"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "extra"
+          ]
+         ],
+         "transform": {
+          "kind": "object",
+          "mapping": "AExtra->X"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "nestedModel"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      }
+     ],
+     "ignoredSources": []
+    },
+    {
+     "id": "AExtra->X",
+     "source": "AExtra",
+     "target": "X",
+     "fields": [
+      {
+       "target": "x",
+       "sources": [
+        [
+         "x"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "x"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "Flat->Person",
+    "mappings": [
+     {
+      "id": "Flat->Person",
+      "source": "Flat",
+      "target": "Person",
+      "fields": [
+       {
+        "target": "name",
+        "sources": [
+         [
+          "name"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "name"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "address",
+        "sources": [
+         []
+        ],
+        "transform": {
+         "kind": "object",
+         "mapping": "Flat->Address"
+        },
+        "status": "active",
+        "confidence": "probable",
+        "reasons": [
+         {
+          "code": "builtFromRoot"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           []
+          ],
+          "transform": {
+           "kind": "object",
+           "mapping": "Flat->Address"
+          },
+          "score": 0.78,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "builtFromRoot"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     },
+     {
+      "id": "Flat->Address",
+      "source": "Flat",
+      "target": "Address",
+      "fields": [
+       {
+        "target": "street",
+        "sources": [
+         [
+          "street"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "street"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "city",
+        "sources": [
+         [
+          "city"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "city"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "postalCode",
+        "sources": [
+         [
+          "zip"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "abbreviation"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "zip"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.93,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "abbreviation"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "Flat->Person",
+   "name",
+   "upper(trim(name)) ?? 'x'"
+  ],
+  "result": {
+   "root": "Flat->Person",
+   "mappings": [
+    {
+     "id": "Flat->Person",
+     "source": "Flat",
+     "target": "Person",
+     "fields": [
+      {
+       "target": "name",
+       "sources": [
+        [
+         "name"
+        ]
+       ],
+       "transform": {
+        "kind": "expression",
+        "expression": "upper(trim(name)) ?? 'x'"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "name"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      },
+      {
+       "target": "address",
+       "sources": [
+        []
+       ],
+       "transform": {
+        "kind": "object",
+        "mapping": "Flat->Address"
+       },
+       "status": "active",
+       "confidence": "probable",
+       "reasons": [
+        {
+         "code": "builtFromRoot"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          []
+         ],
+         "transform": {
+          "kind": "object",
+          "mapping": "Flat->Address"
+         },
+         "score": 0.78,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "builtFromRoot"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    },
+    {
+     "id": "Flat->Address",
+     "source": "Flat",
+     "target": "Address",
+     "fields": [
+      {
+       "target": "street",
+       "sources": [
+        [
+         "street"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "street"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "city",
+       "sources": [
+        [
+         "city"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "city"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "postalCode",
+       "sources": [
+        [
+         "zip"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "abbreviation"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "zip"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.93,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "abbreviation"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "Flat->Person",
+    "mappings": [
+     {
+      "id": "Flat->Person",
+      "source": "Flat",
+      "target": "Person",
+      "fields": [
+       {
+        "target": "name",
+        "sources": [
+         [
+          "name"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "name"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "address",
+        "sources": [
+         []
+        ],
+        "transform": {
+         "kind": "object",
+         "mapping": "Flat->Address"
+        },
+        "status": "active",
+        "confidence": "probable",
+        "reasons": [
+         {
+          "code": "builtFromRoot"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           []
+          ],
+          "transform": {
+           "kind": "object",
+           "mapping": "Flat->Address"
+          },
+          "score": 0.78,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "builtFromRoot"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     },
+     {
+      "id": "Flat->Address",
+      "source": "Flat",
+      "target": "Address",
+      "fields": [
+       {
+        "target": "street",
+        "sources": [
+         [
+          "street"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "street"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "city",
+        "sources": [
+         [
+          "city"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "city"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "postalCode",
+        "sources": [
+         [
+          "zip"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "abbreviation"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "zip"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.93,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "abbreviation"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "Flat->Person",
+   "address",
+   "1 +"
+  ],
+  "result": {
+   "root": "Flat->Person",
+   "mappings": [
+    {
+     "id": "Flat->Person",
+     "source": "Flat",
+     "target": "Person",
+     "fields": [
+      {
+       "target": "name",
+       "sources": [
+        [
+         "name"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "name"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "address",
+       "sources": [
+        []
+       ],
+       "transform": {
+        "kind": "expression",
+        "expression": "1 +"
+       },
+       "status": "active",
+       "confidence": "probable",
+       "reasons": [
+        {
+         "code": "builtFromRoot"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          []
+         ],
+         "transform": {
+          "kind": "object",
+          "mapping": "Flat->Address"
+         },
+         "score": 0.78,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "builtFromRoot"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      }
+     ],
+     "ignoredSources": []
+    },
+    {
+     "id": "Flat->Address",
+     "source": "Flat",
+     "target": "Address",
+     "fields": [
+      {
+       "target": "street",
+       "sources": [
+        [
+         "street"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "street"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "city",
+       "sources": [
+        [
+         "city"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "city"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "postalCode",
+       "sources": [
+        [
+         "zip"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "abbreviation"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "zip"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.93,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "abbreviation"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "Cart->Basket",
+    "mappings": [
+     {
+      "id": "Cart->Basket",
+      "source": "Cart",
+      "target": "Basket",
+      "fields": [
+       {
+        "target": "products",
+        "sources": [
+         [
+          "items"
+         ]
+        ],
+        "transform": {
+         "kind": "collection",
+         "mapping": "CartItem->Product"
+        },
+        "status": "active",
+        "confidence": "probable",
+        "reasons": [
+         {
+          "code": "synonym"
+         },
+         {
+          "code": "nestedModel"
+         },
+         {
+          "code": "collection"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "items"
+           ]
+          ],
+          "transform": {
+           "kind": "collection",
+           "mapping": "CartItem->Product"
+          },
+          "score": 0.74,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "synonym"
+           },
+           {
+            "code": "nestedModel"
+           },
+           {
+            "code": "collection"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "tags",
+        "sources": [
+         [
+          "tags"
+         ]
+        ],
+        "transform": {
+         "kind": "collection"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "collection"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "tags"
+           ]
+          ],
+          "transform": {
+           "kind": "collection"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "collection"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     },
+     {
+      "id": "CartItem->Product",
+      "source": "CartItem",
+      "target": "Product",
+      "fields": [
+       {
+        "target": "sku",
+        "sources": [
+         [
+          "sku"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "sku"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "quantity",
+        "sources": [
+         [
+          "qty"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "abbreviation"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "qty"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.93,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "abbreviation"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "Cart->Basket",
+   "products",
+   "upper(trim(items)) ?? 'x'"
+  ],
+  "result": {
+   "root": "Cart->Basket",
+   "mappings": [
+    {
+     "id": "Cart->Basket",
+     "source": "Cart",
+     "target": "Basket",
+     "fields": [
+      {
+       "target": "products",
+       "sources": [
+        [
+         "items"
+        ]
+       ],
+       "transform": {
+        "kind": "expression",
+        "expression": "upper(trim(items)) ?? 'x'"
+       },
+       "status": "active",
+       "confidence": "probable",
+       "reasons": [
+        {
+         "code": "synonym"
+        },
+        {
+         "code": "nestedModel"
+        },
+        {
+         "code": "collection"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "items"
+          ]
+         ],
+         "transform": {
+          "kind": "collection",
+          "mapping": "CartItem->Product"
+         },
+         "score": 0.74,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "synonym"
+          },
+          {
+           "code": "nestedModel"
+          },
+          {
+           "code": "collection"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      },
+      {
+       "target": "tags",
+       "sources": [
+        [
+         "tags"
+        ]
+       ],
+       "transform": {
+        "kind": "collection"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "collection"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "tags"
+          ]
+         ],
+         "transform": {
+          "kind": "collection"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "collection"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    },
+    {
+     "id": "CartItem->Product",
+     "source": "CartItem",
+     "target": "Product",
+     "fields": [
+      {
+       "target": "sku",
+       "sources": [
+        [
+         "sku"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "sku"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "quantity",
+       "sources": [
+        [
+         "qty"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "abbreviation"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "qty"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.93,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "abbreviation"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "Cart->Basket",
+    "mappings": [
+     {
+      "id": "Cart->Basket",
+      "source": "Cart",
+      "target": "Basket",
+      "fields": [
+       {
+        "target": "products",
+        "sources": [
+         [
+          "items"
+         ]
+        ],
+        "transform": {
+         "kind": "collection",
+         "mapping": "CartItem->Product"
+        },
+        "status": "active",
+        "confidence": "probable",
+        "reasons": [
+         {
+          "code": "synonym"
+         },
+         {
+          "code": "nestedModel"
+         },
+         {
+          "code": "collection"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "items"
+           ]
+          ],
+          "transform": {
+           "kind": "collection",
+           "mapping": "CartItem->Product"
+          },
+          "score": 0.74,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "synonym"
+           },
+           {
+            "code": "nestedModel"
+           },
+           {
+            "code": "collection"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "tags",
+        "sources": [
+         [
+          "tags"
+         ]
+        ],
+        "transform": {
+         "kind": "collection"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "collection"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "tags"
+           ]
+          ],
+          "transform": {
+           "kind": "collection"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "collection"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     },
+     {
+      "id": "CartItem->Product",
+      "source": "CartItem",
+      "target": "Product",
+      "fields": [
+       {
+        "target": "sku",
+        "sources": [
+         [
+          "sku"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "sku"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "quantity",
+        "sources": [
+         [
+          "qty"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "abbreviation"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "qty"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.93,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "abbreviation"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "Cart->Basket",
+   "tags",
+   "1 +"
+  ],
+  "result": {
+   "root": "Cart->Basket",
+   "mappings": [
+    {
+     "id": "Cart->Basket",
+     "source": "Cart",
+     "target": "Basket",
+     "fields": [
+      {
+       "target": "products",
+       "sources": [
+        [
+         "items"
+        ]
+       ],
+       "transform": {
+        "kind": "collection",
+        "mapping": "CartItem->Product"
+       },
+       "status": "active",
+       "confidence": "probable",
+       "reasons": [
+        {
+         "code": "synonym"
+        },
+        {
+         "code": "nestedModel"
+        },
+        {
+         "code": "collection"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "items"
+          ]
+         ],
+         "transform": {
+          "kind": "collection",
+          "mapping": "CartItem->Product"
+         },
+         "score": 0.74,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "synonym"
+          },
+          {
+           "code": "nestedModel"
+          },
+          {
+           "code": "collection"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "tags",
+       "sources": [
+        [
+         "tags"
+        ]
+       ],
+       "transform": {
+        "kind": "expression",
+        "expression": "1 +"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "collection"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "tags"
+          ]
+         ],
+         "transform": {
+          "kind": "collection"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "collection"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      }
+     ],
+     "ignoredSources": []
+    },
+    {
+     "id": "CartItem->Product",
+     "source": "CartItem",
+     "target": "Product",
+     "fields": [
+      {
+       "target": "sku",
+       "sources": [
+        [
+         "sku"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "sku"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "quantity",
+       "sources": [
+        [
+         "qty"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "abbreviation"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "qty"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.93,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "abbreviation"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "OrderApi->Order",
+    "mappings": [
+     {
+      "id": "OrderApi->Order",
+      "source": "OrderApi",
+      "target": "Order",
+      "fields": [
+       {
+        "target": "id",
+        "sources": [
+         [
+          "id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "id"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         },
+         {
+          "sources": [
+           [
+            "customer",
+            "id"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.7871999999999999,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "flattened",
+            "params": {
+             "path": "customer.id"
+            }
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "customer",
+        "sources": [
+         [
+          "customer"
+         ]
+        ],
+        "transform": {
+         "kind": "object",
+         "mapping": "CustomerApi->Customer"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "nestedModel"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "customer"
+           ]
+          ],
+          "transform": {
+           "kind": "object",
+           "mapping": "CustomerApi->Customer"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "nestedModel"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "customer_id",
+        "sources": [
+         [
+          "customer",
+          "id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         },
+         {
+          "code": "flattened",
+          "params": {
+           "path": "customer.id"
+          }
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "customer",
+            "id"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.9311999999999999,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameWords"
+           },
+           {
+            "code": "flattened",
+            "params": {
+             "path": "customer.id"
+            }
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "city",
+        "sources": [
+         [
+          "shipping",
+          "city"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "probable",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "flattened",
+          "params": {
+           "path": "shipping.city"
+          }
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "shipping",
+            "city"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.7871999999999999,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "flattened",
+            "params": {
+             "path": "shipping.city"
+            }
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     },
+     {
+      "id": "CustomerApi->Customer",
+      "source": "CustomerApi",
+      "target": "Customer",
+      "fields": [
+       {
+        "target": "id",
+        "sources": [
+         [
+          "id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "id"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "full_name",
+        "sources": [
+         [
+          "fullName"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "fullName"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.97,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameWords"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "OrderApi->Order",
+   "id",
+   "upper(trim(id)) ?? 'x'"
+  ],
+  "result": {
+   "root": "OrderApi->Order",
+   "mappings": [
+    {
+     "id": "OrderApi->Order",
+     "source": "OrderApi",
+     "target": "Order",
+     "fields": [
+      {
+       "target": "id",
+       "sources": [
+        [
+         "id"
+        ]
+       ],
+       "transform": {
+        "kind": "expression",
+        "expression": "upper(trim(id)) ?? 'x'"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        },
+        {
+         "sources": [
+          [
+           "customer",
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.7871999999999999,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "flattened",
+           "params": {
+            "path": "customer.id"
+           }
+          }
+         ]
+        }
+       ],
+       "manual": true
+      },
+      {
+       "target": "customer",
+       "sources": [
+        [
+         "customer"
+        ]
+       ],
+       "transform": {
+        "kind": "object",
+        "mapping": "CustomerApi->Customer"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "nestedModel"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "customer"
+          ]
+         ],
+         "transform": {
+          "kind": "object",
+          "mapping": "CustomerApi->Customer"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "nestedModel"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "customer_id",
+       "sources": [
+        [
+         "customer",
+         "id"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameWords"
+        },
+        {
+         "code": "flattened",
+         "params": {
+          "path": "customer.id"
+         }
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "customer",
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.9311999999999999,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameWords"
+          },
+          {
+           "code": "flattened",
+           "params": {
+            "path": "customer.id"
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "city",
+       "sources": [
+        [
+         "shipping",
+         "city"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "probable",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "flattened",
+         "params": {
+          "path": "shipping.city"
+         }
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "shipping",
+           "city"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.7871999999999999,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "flattened",
+           "params": {
+            "path": "shipping.city"
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    },
+    {
+     "id": "CustomerApi->Customer",
+     "source": "CustomerApi",
+     "target": "Customer",
+     "fields": [
+      {
+       "target": "id",
+       "sources": [
+        [
+         "id"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "full_name",
+       "sources": [
+        [
+         "fullName"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameWords"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "fullName"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.97,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameWords"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "OrderApi->Order",
+    "mappings": [
+     {
+      "id": "OrderApi->Order",
+      "source": "OrderApi",
+      "target": "Order",
+      "fields": [
+       {
+        "target": "id",
+        "sources": [
+         [
+          "id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "id"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         },
+         {
+          "sources": [
+           [
+            "customer",
+            "id"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.7871999999999999,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "flattened",
+            "params": {
+             "path": "customer.id"
+            }
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "customer",
+        "sources": [
+         [
+          "customer"
+         ]
+        ],
+        "transform": {
+         "kind": "object",
+         "mapping": "CustomerApi->Customer"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "nestedModel"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "customer"
+           ]
+          ],
+          "transform": {
+           "kind": "object",
+           "mapping": "CustomerApi->Customer"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "nestedModel"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "customer_id",
+        "sources": [
+         [
+          "customer",
+          "id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         },
+         {
+          "code": "flattened",
+          "params": {
+           "path": "customer.id"
+          }
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "customer",
+            "id"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.9311999999999999,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameWords"
+           },
+           {
+            "code": "flattened",
+            "params": {
+             "path": "customer.id"
+            }
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "city",
+        "sources": [
+         [
+          "shipping",
+          "city"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "probable",
+        "reasons": [
+         {
+          "code": "sameName"
+         },
+         {
+          "code": "flattened",
+          "params": {
+           "path": "shipping.city"
+          }
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "shipping",
+            "city"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.7871999999999999,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "sameName"
+           },
+           {
+            "code": "flattened",
+            "params": {
+             "path": "shipping.city"
+            }
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     },
+     {
+      "id": "CustomerApi->Customer",
+      "source": "CustomerApi",
+      "target": "Customer",
+      "fields": [
+       {
+        "target": "id",
+        "sources": [
+         [
+          "id"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "exact",
+        "reasons": [
+         {
+          "code": "sameName"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "id"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 1,
+          "confidence": "exact",
+          "reasons": [
+           {
+            "code": "sameName"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "full_name",
+        "sources": [
+         [
+          "fullName"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "sameWords"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "fullName"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.97,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "sameWords"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "OrderApi->Order",
+   "city",
+   "1 +"
+  ],
+  "result": {
+   "root": "OrderApi->Order",
+   "mappings": [
+    {
+     "id": "OrderApi->Order",
+     "source": "OrderApi",
+     "target": "Order",
+     "fields": [
+      {
+       "target": "id",
+       "sources": [
+        [
+         "id"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        },
+        {
+         "sources": [
+          [
+           "customer",
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.7871999999999999,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "flattened",
+           "params": {
+            "path": "customer.id"
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "customer",
+       "sources": [
+        [
+         "customer"
+        ]
+       ],
+       "transform": {
+        "kind": "object",
+        "mapping": "CustomerApi->Customer"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "nestedModel"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "customer"
+          ]
+         ],
+         "transform": {
+          "kind": "object",
+          "mapping": "CustomerApi->Customer"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "nestedModel"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "customer_id",
+       "sources": [
+        [
+         "customer",
+         "id"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameWords"
+        },
+        {
+         "code": "flattened",
+         "params": {
+          "path": "customer.id"
+         }
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "customer",
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.9311999999999999,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameWords"
+          },
+          {
+           "code": "flattened",
+           "params": {
+            "path": "customer.id"
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "city",
+       "sources": [
+        [
+         "shipping",
+         "city"
+        ]
+       ],
+       "transform": {
+        "kind": "expression",
+        "expression": "1 +"
+       },
+       "status": "active",
+       "confidence": "probable",
+       "reasons": [
+        {
+         "code": "sameName"
+        },
+        {
+         "code": "flattened",
+         "params": {
+          "path": "shipping.city"
+         }
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "shipping",
+           "city"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.7871999999999999,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "sameName"
+          },
+          {
+           "code": "flattened",
+           "params": {
+            "path": "shipping.city"
+           }
+          }
+         ]
+        }
+       ],
+       "manual": true
+      }
+     ],
+     "ignoredSources": []
+    },
+    {
+     "id": "CustomerApi->Customer",
+     "source": "CustomerApi",
+     "target": "Customer",
+     "fields": [
+      {
+       "target": "id",
+       "sources": [
+        [
+         "id"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "exact",
+       "reasons": [
+        {
+         "code": "sameName"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "id"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 1,
+         "confidence": "exact",
+         "reasons": [
+          {
+           "code": "sameName"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "full_name",
+       "sources": [
+        [
+         "fullName"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "sameWords"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "fullName"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.97,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "sameWords"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "A->B",
+    "mappings": [
+     {
+      "id": "A->B",
+      "source": "A",
+      "target": "B",
+      "fields": [
+       {
+        "target": "label",
+        "sources": [
+         [
+          "name"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "pending",
+        "confidence": "conflict",
+        "reasons": [
+         {
+          "code": "synonym"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "name"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.74,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "synonym"
+           }
+          ]
+         },
+         {
+          "sources": [
+           [
+            "title"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.74,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "synonym"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "A->B",
+   "label",
+   "upper(trim(name)) ?? 'x'"
+  ],
+  "result": {
+   "root": "A->B",
+   "mappings": [
+    {
+     "id": "A->B",
+     "source": "A",
+     "target": "B",
+     "fields": [
+      {
+       "target": "label",
+       "sources": [
+        [
+         "name"
+        ]
+       ],
+       "transform": {
+        "kind": "expression",
+        "expression": "upper(trim(name)) ?? 'x'"
+       },
+       "status": "active",
+       "confidence": "conflict",
+       "reasons": [
+        {
+         "code": "synonym"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "name"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.74,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "synonym"
+          }
+         ]
+        },
+        {
+         "sources": [
+          [
+           "title"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.74,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "synonym"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "A->B",
+    "mappings": [
+     {
+      "id": "A->B",
+      "source": "A",
+      "target": "B",
+      "fields": [
+       {
+        "target": "label",
+        "sources": [
+         [
+          "name"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "pending",
+        "confidence": "conflict",
+        "reasons": [
+         {
+          "code": "synonym"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "name"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.74,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "synonym"
+           }
+          ]
+         },
+         {
+          "sources": [
+           [
+            "title"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.74,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "synonym"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "A->B",
+   "label",
+   "1 +"
+  ],
+  "result": {
+   "root": "A->B",
+   "mappings": [
+    {
+     "id": "A->B",
+     "source": "A",
+     "target": "B",
+     "fields": [
+      {
+       "target": "label",
+       "sources": [
+        [
+         "name"
+        ]
+       ],
+       "transform": {
+        "kind": "expression",
+        "expression": "1 +"
+       },
+       "status": "active",
+       "confidence": "conflict",
+       "reasons": [
+        {
+         "code": "synonym"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "name"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.74,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "synonym"
+          }
+         ]
+        },
+        {
+         "sources": [
+          [
+           "title"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.74,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "synonym"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "A->B",
+    "mappings": [
+     {
+      "id": "A->B",
+      "source": "A",
+      "target": "B",
+      "fields": [
+       {
+        "target": "title",
+        "sources": [
+         [
+          "name"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "pending",
+        "confidence": "conflict",
+        "reasons": [
+         {
+          "code": "synonym"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "name"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.74,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "synonym"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "label",
+        "sources": [
+         [
+          "name"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "pending",
+        "confidence": "conflict",
+        "reasons": [
+         {
+          "code": "synonym"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "name"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.74,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "synonym"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "A->B",
+   "title",
+   "upper(trim(name)) ?? 'x'"
+  ],
+  "result": {
+   "root": "A->B",
+   "mappings": [
+    {
+     "id": "A->B",
+     "source": "A",
+     "target": "B",
+     "fields": [
+      {
+       "target": "title",
+       "sources": [
+        [
+         "name"
+        ]
+       ],
+       "transform": {
+        "kind": "expression",
+        "expression": "upper(trim(name)) ?? 'x'"
+       },
+       "status": "active",
+       "confidence": "conflict",
+       "reasons": [
+        {
+         "code": "synonym"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "name"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.74,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "synonym"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      },
+      {
+       "target": "label",
+       "sources": [
+        [
+         "name"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "pending",
+       "confidence": "conflict",
+       "reasons": [
+        {
+         "code": "synonym"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "name"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.74,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "synonym"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "A->B",
+    "mappings": [
+     {
+      "id": "A->B",
+      "source": "A",
+      "target": "B",
+      "fields": [
+       {
+        "target": "title",
+        "sources": [
+         [
+          "name"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "pending",
+        "confidence": "conflict",
+        "reasons": [
+         {
+          "code": "synonym"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "name"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.74,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "synonym"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "label",
+        "sources": [
+         [
+          "name"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "pending",
+        "confidence": "conflict",
+        "reasons": [
+         {
+          "code": "synonym"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "name"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.74,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "synonym"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "A->B",
+   "label",
+   "1 +"
+  ],
+  "result": {
+   "root": "A->B",
+   "mappings": [
+    {
+     "id": "A->B",
+     "source": "A",
+     "target": "B",
+     "fields": [
+      {
+       "target": "title",
+       "sources": [
+        [
+         "name"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "pending",
+       "confidence": "conflict",
+       "reasons": [
+        {
+         "code": "synonym"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "name"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.74,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "synonym"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "label",
+       "sources": [
+        [
+         "name"
+        ]
+       ],
+       "transform": {
+        "kind": "expression",
+        "expression": "1 +"
+       },
+       "status": "active",
+       "confidence": "conflict",
+       "reasons": [
+        {
+         "code": "synonym"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "name"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.74,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "synonym"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "A->B",
+    "mappings": [
+     {
+      "id": "A->B",
+      "source": "A",
+      "target": "B",
+      "fields": [
+       {
+        "target": "user_name",
+        "sources": [
+         [
+          "username"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "abbreviation"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "username"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.93,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "abbreviation"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "login",
+        "sources": [],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "unmapped",
+        "confidence": "none",
+        "candidates": [
+         {
+          "sources": [
+           [
+            "username"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.74,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "synonym"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "A->B",
+   "user_name",
+   "upper(trim(username)) ?? 'x'"
+  ],
+  "result": {
+   "root": "A->B",
+   "mappings": [
+    {
+     "id": "A->B",
+     "source": "A",
+     "target": "B",
+     "fields": [
+      {
+       "target": "user_name",
+       "sources": [
+        [
+         "username"
+        ]
+       ],
+       "transform": {
+        "kind": "expression",
+        "expression": "upper(trim(username)) ?? 'x'"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "abbreviation"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "username"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.93,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "abbreviation"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      },
+      {
+       "target": "login",
+       "sources": [],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "unmapped",
+       "confidence": "none",
+       "candidates": [
+        {
+         "sources": [
+          [
+           "username"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.74,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "synonym"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   {
+    "root": "A->B",
+    "mappings": [
+     {
+      "id": "A->B",
+      "source": "A",
+      "target": "B",
+      "fields": [
+       {
+        "target": "user_name",
+        "sources": [
+         [
+          "username"
+         ]
+        ],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "active",
+        "confidence": "high",
+        "reasons": [
+         {
+          "code": "abbreviation"
+         }
+        ],
+        "candidates": [
+         {
+          "sources": [
+           [
+            "username"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.93,
+          "confidence": "high",
+          "reasons": [
+           {
+            "code": "abbreviation"
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "target": "login",
+        "sources": [],
+        "transform": {
+         "kind": "direct"
+        },
+        "status": "unmapped",
+        "confidence": "none",
+        "candidates": [
+         {
+          "sources": [
+           [
+            "username"
+           ]
+          ],
+          "transform": {
+           "kind": "direct"
+          },
+          "score": 0.74,
+          "confidence": "probable",
+          "reasons": [
+           {
+            "code": "synonym"
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "ignoredSources": []
+     }
+    ]
+   },
+   "A->B",
+   "login",
+   "1 +"
+  ],
+  "result": {
+   "root": "A->B",
+   "mappings": [
+    {
+     "id": "A->B",
+     "source": "A",
+     "target": "B",
+     "fields": [
+      {
+       "target": "user_name",
+       "sources": [
+        [
+         "username"
+        ]
+       ],
+       "transform": {
+        "kind": "direct"
+       },
+       "status": "active",
+       "confidence": "high",
+       "reasons": [
+        {
+         "code": "abbreviation"
+        }
+       ],
+       "candidates": [
+        {
+         "sources": [
+          [
+           "username"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.93,
+         "confidence": "high",
+         "reasons": [
+          {
+           "code": "abbreviation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "target": "login",
+       "sources": [],
+       "transform": {
+        "kind": "expression",
+        "expression": "1 +"
+       },
+       "status": "active",
+       "confidence": "none",
+       "candidates": [
+        {
+         "sources": [
+          [
+           "username"
+          ]
+         ],
+         "transform": {
+          "kind": "direct"
+         },
+         "score": 0.74,
+         "confidence": "probable",
+         "reasons": [
+          {
+           "code": "synonym"
+          }
+         ]
+        }
+       ],
+       "manual": true
+      }
+     ],
+     "ignoredSources": []
+    }
+   ]
+  }
+ }
+]
