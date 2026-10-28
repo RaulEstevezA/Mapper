@@ -1,0 +1,321 @@
+.mapping {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  min-width: 0;
+}
+
+.mapping__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+.mapping__title {
+  font-size: var(--font-title-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.mapping__summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-16);
+  color: var(--text);
+  font-size: var(--font-small);
+}
+
+.mapping__count {
+  color: var(--muted);
+}
+
+.mapping__count--success {
+  color: var(--success);
+}
+
+.mapping__count--warning {
+  color: var(--warning);
+}
+
+.mapping__count--danger {
+  color: var(--danger);
+}
+
+.mapping__filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.mapping__filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.mapping__search {
+  width: min(280px, 100%);
+}
+
+.mapping__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-top: var(--space-16);
+  border-top: var(--border-line);
+}
+
+.mapping__model {
+  margin: 0 0 var(--space-4);
+  font-family: var(--mono);
+  font-size: var(--font-small);
+  font-weight: var(--weight-semibold);
+}
+
+/* Source → transformation → target, status, actions */
+.mapping__columns,
+.mapping__line {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr) minmax(0, 1.1fr) 9.5rem 9rem;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.mapping__columns {
+  padding: 0 var(--space-12);
+  color: var(--muted);
+  font-size: var(--font-caption);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-uppercase);
+  text-transform: uppercase;
+}
+
+.mapping__rows {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mapping__row {
+  padding: var(--space-8) var(--space-12);
+  border-top: var(--border-line);
+}
+
+.mapping__row:first-child {
+  border-top: none;
+}
+
+.mapping__row:hover {
+  background: var(--hover);
+}
+
+.mapping__row--open,
+.mapping__row--open:hover {
+  background: none;
+}
+
+.mapping__row--ignored .mapping__target-name {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.mapping__source,
+.mapping__target {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-6);
+  min-width: 0;
+  font-size: var(--font-small);
+  overflow-wrap: anywhere;
+}
+
+.mapping__path,
+.mapping__target-name {
+  color: var(--text);
+}
+
+/* A suggestion not applied yet: shown, but marked as proposed */
+.mapping__source--proposed .mapping__path {
+  border-bottom: 1px dashed var(--warning);
+}
+
+.mapping__plus,
+.mapping__none,
+.mapping__type {
+  color: var(--muted);
+}
+
+.mapping__none {
+  font-style: italic;
+}
+
+.mapping__type {
+  font-family: var(--mono);
+  font-size: var(--font-label);
+}
+
+.mapping__constant {
+  color: var(--syntax-string);
+}
+
+.mapping__arrow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-6);
+  min-width: 0;
+  color: var(--muted);
+}
+
+.mapping__transform {
+  overflow: hidden;
+  color: var(--accent-text);
+  font-size: var(--font-label);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mapping__status {
+  min-width: 0;
+}
+
+.mapping__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-4);
+}
+
+.mapping__issues {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--font-label);
+}
+
+.mapping__issue--error {
+  color: var(--danger);
+}
+
+.mapping__issue--warning {
+  color: var(--warning);
+}
+
+.mapping__issue--info {
+  color: var(--muted);
+}
+
+.mapping__issue-model {
+  color: var(--muted);
+  font-family: var(--mono);
+}
+
+.mapping__no-results {
+  padding: var(--space-12);
+  color: var(--muted);
+  font-size: var(--font-small);
+}
+
+.mapping__unused,
+.mapping__diagnostics {
+  font-size: var(--font-small);
+}
+
+.mapping__unused summary,
+.mapping__diagnostics summary {
+  padding: var(--space-6) 0;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.mapping__unused-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8) var(--space-16);
+  margin: var(--space-8) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mapping__unused-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.mapping__ignored {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.mapping__diagnostics {
+  padding-top: var(--space-12);
+  border-top: var(--border-line);
+}
+
+/* Controls shown on hover elsewhere are always visible here, so touch screens need nothing special */
+@media (max-width: 1100px) {
+  .mapping__columns {
+    display: none;
+  }
+
+  .mapping__line {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      'source target'
+      'arrow arrow'
+      'status actions';
+    gap: var(--space-6) var(--space-12);
+  }
+
+  .mapping__source {
+    grid-area: source;
+  }
+
+  .mapping__target {
+    grid-area: target;
+  }
+
+  .mapping__arrow {
+    grid-area: arrow;
+  }
+
+  .mapping__status {
+    grid-area: status;
+  }
+
+  .mapping__actions {
+    grid-area: actions;
+  }
+}
+
+@media (max-width: 600px) {
+  .mapping__line {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      'target target'
+      'source source'
+      'arrow arrow'
+      'status actions';
+  }
+
+  /* An arrow alone says nothing on a narrow screen: the source is already under the target */
+  .mapping__arrow--plain {
+    display: none;
+  }
+
+  .mapping__transform {
+    white-space: normal;
+  }
+
+  .mapping__search {
+    width: 100%;
+  }
+}

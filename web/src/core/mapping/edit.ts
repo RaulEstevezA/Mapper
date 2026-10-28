@@ -1,5 +1,6 @@
 import { defaultTransform, resuggestMapping } from '../matching/engine.ts'
 import type { Literal, ModelSchema } from '../model/schema.ts'
+import { parseExpression } from '../transform/expression.ts'
 import { findMapping, pathKey, type Candidate, type FieldMapping, type MappingSet, type SourcePath, type Transform } from './types.ts'
 
 /** Every change the user can make to a mapping, as pure functions: they return a new set and never
@@ -143,4 +144,17 @@ export function pruneMappings(set: MappingSet): MappingSet {
     }
   }
   return { root: set.root, mappings: set.mappings.filter((mapping) => reachable.has(mapping.id)) }
+}
+
+/** A custom expression: the fields it reads become the sources of the relation, so unused source fields
+ * are still found. An expression that does not parse keeps the previous sources until it does. */
+export function setExpression(set: MappingSet, id: string, targetField: string, expression: string): MappingSet {
+  const parsed = parseExpression(expression)
+  return updateField(set, id, targetField, (field) => ({
+    ...field,
+    transform: { kind: 'expression', expression },
+    sources: parsed.ok ? parsed.fields : field.sources,
+    status: 'active',
+    manual: true,
+  }))
 }

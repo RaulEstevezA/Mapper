@@ -1,0 +1,137 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app__main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--content-width-wide);
+  margin: 0 auto;
+  padding: var(--page-padding);
+}
+
+.workspace {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-cards);
+  margin-top: var(--space-16);
+}
+
+/* Source and target side by side; each editor scrolls inside its pane */
+.workspace__inputs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap-cards);
+  height: clamp(380px, 52vh, 560px);
+}
+
+.workspace__code {
+  display: flex;
+  height: max(480px, calc(100vh - 160px));
+}
+
+.workspace__code > .pane {
+  flex: 1;
+}
+
+.workspace__tabs {
+  display: none;
+}
+
+/* Narrow screens: one part at a time, chosen with tabs (RESPONSIVE_GUIDE.md: Origen, Destino, Relaciones) */
+@media (max-width: 1100px) {
+  .workspace__tabs {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    gap: var(--space-4);
+    margin-top: var(--space-16);
+    padding: var(--space-4);
+    border: var(--border-line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    overflow-x: auto;
+  }
+
+  .workspace__tab {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-6);
+    padding: var(--space-6) var(--space-8);
+    border: none;
+    border-radius: var(--radius-sm);
+    background: none;
+    color: var(--muted);
+    font: inherit;
+    font-size: var(--font-small);
+    font-weight: var(--weight-medium);
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .workspace__tab[aria-selected='true'] {
+    background: var(--surface-raised);
+    color: var(--text);
+  }
+
+  .workspace__tab-badge {
+    min-width: 18px;
+    padding: 0 5px;
+    border-radius: var(--radius-pill);
+    background: var(--warning-soft);
+    color: var(--warning);
+    font-size: var(--font-caption);
+  }
+
+  .workspace__tab-badge--error {
+    background: var(--page-bg);
+    color: var(--danger);
+  }
+
+  .workspace {
+    margin-top: var(--space-8);
+  }
+
+  .workspace[data-tab] > * {
+    display: none;
+  }
+
+  .workspace__inputs {
+    grid-template-columns: minmax(0, 1fr);
+    height: max(440px, calc(100dvh - 140px));
+  }
+
+  .workspace[data-tab='source'] > .workspace__inputs,
+  .workspace[data-tab='target'] > .workspace__inputs {
+    display: grid;
+  }
+
+  .workspace[data-tab='source'] > .workspace__inputs > :nth-child(2),
+  .workspace[data-tab='target'] > .workspace__inputs > :nth-child(1) {
+    display: none;
+  }
+
+  .workspace[data-tab='mapping'] > .mapping {
+    display: flex;
+  }
+
+  .workspace[data-tab='code'] > .workspace__code {
+    display: flex;
+    height: max(440px, calc(100dvh - 140px));
+  }
+}
+
+@media (max-width: 600px) {
+  .app__main {
+    padding: var(--page-padding-mobile);
+  }
+
+  .mapping.panel {
+    padding: var(--space-16);
+  }
+}

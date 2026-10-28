@@ -1,0 +1,115 @@
+.field-editor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  margin: var(--space-4) 0 var(--space-8);
+  padding: var(--space-16);
+  border: var(--border-line);
+  border-radius: var(--radius-md);
+  background: var(--page-bg);
+}
+
+.field-editor__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.field-editor__title {
+  margin: 0;
+  font-size: var(--font-body);
+  font-weight: var(--weight-semibold);
+}
+
+.field-editor__type,
+.field-editor__muted {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: var(--font-label);
+  font-weight: var(--weight-regular);
+}
+
+.field-editor__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.field-editor__label {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--font-label);
+  font-weight: var(--weight-regular);
+}
+
+.field-editor__candidates {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.field-editor__candidate {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: var(--font-small);
+}
+
+.field-editor__reasons {
+  flex: 1;
+  min-width: 160px;
+  font-family: var(--sans);
+}
+
+.field-editor__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-12) var(--space-16);
+  align-items: start;
+}
+
+.field-editor__wide {
+  grid-column: 1 / -1;
+}
+
+.field-editor__sources {
+  gap: var(--space-6);
+}
+
+.field-editor__source {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.field-editor__source .select {
+  flex: 1;
+}
+
+.field-editor__pairs {
+  width: 100%;
+  max-width: 520px;
+  border-collapse: collapse;
+  font-size: var(--font-label);
+}
+
+.field-editor__pairs th {
+  padding: var(--space-4) var(--space-8);
+  color: var(--muted);
+  font-weight: var(--weight-semibold);
+  text-align: left;
+}
+
+.field-editor__pairs td {
+  padding: var(--space-4) var(--space-8);
+  border-top: var(--border-line);
+}
+
+.field-editor__pairs .select {
+  width: 100%;
+}
