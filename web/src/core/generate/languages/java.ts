@@ -273,7 +273,7 @@ class JavaWriter {
       split: (expr, separator, part) => {
         const sep = quote(separator)
         if (part === 0)
-          return `${operand(expr)}.split(${/^[\w ,;:\-]$/.test(separator) ? sep : `java.util.regex.Pattern.quote(${sep})`}, -1)[0]`
+          return `${operand(expr)}.split(${/^[\w ,;:-]$/.test(separator) ? sep : `java.util.regex.Pattern.quote(${sep})`}, -1)[0]`
         if (part === 'last') return `${operand(expr)}.substring(${operand(expr)}.lastIndexOf(${sep}) + ${separator.length})`
         if (part === 'rest')
           return `${operand(expr)}.contains(${sep}) ? ${operand(expr)}.substring(${operand(expr)}.indexOf(${sep}) + ${separator.length}) : ""`
