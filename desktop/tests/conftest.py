@@ -34,6 +34,11 @@ def window(tmp_path):
     main_window.show()
     yield main_window
     main_window.close()
+    # Deleted now, not when the process ends, so pending deletions never meet a window already gone
+    from PySide6.QtCore import QEvent
+
+    main_window.deleteLater()
+    app.sendPostedEvents(None, QEvent.Type.DeferredDelete)
     app.processEvents()
 
 
