@@ -2,6 +2,7 @@
 version gives for them (web/src/core/shared.test.ts writes and checks the same files)."""
 
 import importlib
+import json
 
 import pytest
 
@@ -57,6 +58,15 @@ def resolve(name: str):
         return None
 
 
+def comparable(result):
+    """Errors that come from a library (the YAML and XML parsers) keep only their code: each version reads
+    those formats with a different library, so messages and positions differ (shared/README.md)."""
+    error = result.get("error") if isinstance(result, dict) and result.get("ok") is False else None
+    if error and error.get("code") == "syntax" and "message" in error.get("params", {}):
+        return {"ok": False, "error": {"code": "syntax", "library": True}}
+    return result
+
+
 def test_every_file_has_a_function():
     assert {path.stem for path in FILES} <= set(FUNCTIONS)
 
@@ -66,7 +76,6 @@ def test_calls(path):
     function = resolve(path.stem)
     if function is None:
         pytest.skip(f"{FUNCTIONS[path.stem]} is not ported yet")
-    import json
-
     for index, case in enumerate(json.loads(path.read_text(encoding="utf-8"))):
-        assert as_json(function(*case["args"])) == case["result"], f"{path.stem} #{index}: {case['args']!r:.300}"
+        expected = comparable(case["result"])
+        assert comparable(as_json(function(*case["args"]))) == expected, f"{path.stem} #{index}: {case['args']!r:.300}"

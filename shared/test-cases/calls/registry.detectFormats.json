@@ -325,5 +325,291 @@
     "score": 0.8
    }
   ]
+ },
+ {
+  "args": [
+   "using System.Collections.Generic;\nusing System.Text.Json.Serialization;\n\n#nullable enable\n\npublic class Root\n{\n    [JsonPropertyName(\"id\")]\n    public required long Id { get; set; }\n\n    [JsonPropertyName(\"name\")]\n    public required string Name { get; set; }\n\n    [JsonPropertyName(\"active\")]\n    public required bool Active { get; set; }\n\n    [JsonPropertyName(\"address\")]\n    public required Address Address { get; set; }\n\n    [JsonPropertyName(\"orders\")]\n    public required List<Order> Orders { get; set; }\n}\n\npublic class Address\n{\n    [JsonPropertyName(\"city\")]\n    public required string City { get; set; }\n\n    [JsonPropertyName(\"postal_code\")]\n    public required string PostalCode { get; set; }\n}\n\npublic class Order\n{\n    [JsonPropertyName(\"id\")]\n    public required long Id { get; set; }\n\n    [JsonPropertyName(\"total\")]\n    public required double Total { get; set; }\n}\n"
+  ],
+  "result": [
+   {
+    "id": "csharp",
+    "score": 0.95
+   }
+  ]
+ },
+ {
+  "args": [
+   "using System.Collections.Generic;\nusing System.Text.Json.Serialization;\n\n#nullable enable\n\npublic record Root(\n    [property: JsonPropertyName(\"id\")] long Id,\n    [property: JsonPropertyName(\"name\")] string Name,\n    [property: JsonPropertyName(\"active\")] bool Active,\n    [property: JsonPropertyName(\"address\")] Address Address,\n    [property: JsonPropertyName(\"orders\")] List<Order> Orders\n);\n\npublic record Address(\n    [property: JsonPropertyName(\"city\")] string City,\n    [property: JsonPropertyName(\"postal_code\")] string PostalCode\n);\n\npublic record Order(\n    [property: JsonPropertyName(\"id\")] long Id,\n    [property: JsonPropertyName(\"total\")] double Total\n);\n"
+  ],
+  "result": [
+   {
+    "id": "csharp",
+    "score": 0.9
+   },
+   {
+    "id": "java",
+    "score": 0.8
+   }
+  ]
+ },
+ {
+  "args": [
+   "class Root {\n  final int id;\n  final String name;\n  final bool active;\n  final Address address;\n  final List<Order> orders;\n\n  const Root({\n    required this.id,\n    required this.name,\n    required this.active,\n    required this.address,\n    required this.orders,\n  });\n\n  factory Root.fromJson(Map<String, dynamic> json) => Root(\n      id: json['id'] as int,\n      name: json['name'] as String,\n      active: json['active'] as bool,\n      address: Address.fromJson(json['address'] as Map<String, dynamic>),\n      orders: (json['orders'] as List<dynamic>).map((e) => Order.fromJson(e as Map<String, dynamic>)).toList(),\n    );\n\n  Map<String, dynamic> toJson() => {\n      'id': id,\n      'name': name,\n      'active': active,\n      'address': address.toJson(),\n      'orders': orders.map((e) => e.toJson()).toList(),\n    };\n}\n\nclass Address {\n  final String city;\n  final String postalCode;\n\n  const Address({\n    required this.city,\n    required this.postalCode,\n  });\n\n  factory Address.fromJson(Map<String, dynamic> json) => Address(\n      city: json['city'] as String,\n      postalCode: json['postal_code'] as String,\n    );\n\n  Map<String, dynamic> toJson() => {\n      'city': city,\n      'postal_code': postalCode,\n    };\n}\n\nclass Order {\n  final int id;\n  final double total;\n\n  const Order({\n    required this.id,\n    required this.total,\n  });\n\n  factory Order.fromJson(Map<String, dynamic> json) => Order(\n      id: json['id'] as int,\n      total: (json['total'] as num).toDouble(),\n    );\n\n  Map<String, dynamic> toJson() => {\n      'id': id,\n      'total': total,\n    };\n}\n"
+  ],
+  "result": [
+   {
+    "id": "dart",
+    "score": 0.9
+   }
+  ]
+ },
+ {
+  "args": [
+   "import 'package:freezed_annotation/freezed_annotation.dart';\n\npart 'root.freezed.dart';\npart 'root.g.dart';\n\n@freezed\nabstract class Root with _$Root {\n  const factory Root({\n    required int id,\n    required String name,\n    required bool active,\n    required Address address,\n    required List<Order> orders,\n  }) = _Root;\n\n  factory Root.fromJson(Map<String, dynamic> json) => _$RootFromJson(json);\n}\n\n@freezed\nabstract class Address with _$Address {\n  const factory Address({\n    required String city,\n    @JsonKey(name: 'postal_code') required String postalCode,\n  }) = _Address;\n\n  factory Address.fromJson(Map<String, dynamic> json) => _$AddressFromJson(json);\n}\n\n@freezed\nabstract class Order with _$Order {\n  const factory Order({\n    required int id,\n    required double total,\n  }) = _Order;\n\n  factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);\n}\n"
+  ],
+  "result": [
+   {
+    "id": "dart",
+    "score": 0.95
+   }
+  ]
+ },
+ {
+  "args": [
+   "import 'package:json_annotation/json_annotation.dart';\n\npart 'root.g.dart';\n\n@JsonSerializable(explicitToJson: true)\nclass Root {\n  final int id;\n  final String name;\n  final bool active;\n  final Address address;\n  final List<Order> orders;\n\n  const Root({\n    required this.id,\n    required this.name,\n    required this.active,\n    required this.address,\n    required this.orders,\n  });\n\n  factory Root.fromJson(Map<String, dynamic> json) => _$RootFromJson(json);\n\n  Map<String, dynamic> toJson() => _$RootToJson(this);\n}\n\n@JsonSerializable(explicitToJson: true)\nclass Address {\n  final String city;\n  @JsonKey(name: 'postal_code')\n  final String postalCode;\n\n  const Address({\n    required this.city,\n    required this.postalCode,\n  });\n\n  factory Address.fromJson(Map<String, dynamic> json) => _$AddressFromJson(json);\n\n  Map<String, dynamic> toJson() => _$AddressToJson(this);\n}\n\n@JsonSerializable(explicitToJson: true)\nclass Order {\n  final int id;\n  final double total;\n\n  const Order({\n    required this.id,\n    required this.total,\n  });\n\n  factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);\n\n  Map<String, dynamic> toJson() => _$OrderToJson(this);\n}\n"
+  ],
+  "result": [
+   {
+    "id": "dart",
+    "score": 0.95
+   }
+  ]
+ },
+ {
+  "args": [
+   "package models\n\ntype Root struct {\n\tID      int64   `json:\"id\"`\n\tName    string  `json:\"name\"`\n\tActive  bool    `json:\"active\"`\n\tAddress Address `json:\"address\"`\n\tOrders  []Order `json:\"orders\"`\n}\n\ntype Address struct {\n\tCity       string `json:\"city\"`\n\tPostalCode string `json:\"postal_code\"`\n}\n\ntype Order struct {\n\tID    int64   `json:\"id\"`\n\tTotal float64 `json:\"total\"`\n}\n"
+  ],
+  "result": [
+   {
+    "id": "go",
+    "score": 0.95
+   },
+   {
+    "id": "typescript",
+    "score": 0.9
+   }
+  ]
+ },
+ {
+  "args": [
+   "import com.fasterxml.jackson.annotation.JsonProperty;\nimport java.util.List;\nimport lombok.Data;\n\n@Data\npublic class Root {\n    private Long id;\n    private String name;\n    private Boolean active;\n    private Address address;\n    private List<Order> orders;\n}\n\n@Data\nclass Address {\n    private String city;\n    @JsonProperty(\"postal_code\")\n    private String postalCode;\n}\n\n@Data\nclass Order {\n    private Long id;\n    private Double total;\n}\n"
+  ],
+  "result": [
+   {
+    "id": "java",
+    "score": 0.85
+   }
+  ]
+ },
+ {
+  "args": [
+   "import com.fasterxml.jackson.annotation.JsonProperty;\nimport java.util.List;\n\npublic class Root {\n    private Long id;\n    private String name;\n    private Boolean active;\n    private Address address;\n    private List<Order> orders;\n\n    public Long getId() {\n        return id;\n    }\n\n    public void setId(Long id) {\n        this.id = id;\n    }\n\n    public String getName() {\n        return name;\n    }\n\n    public void setName(String name) {\n        this.name = name;\n    }\n\n    public Boolean getActive() {\n        return active;\n    }\n\n    public void setActive(Boolean active) {\n        this.active = active;\n    }\n\n    public Address getAddress() {\n        return address;\n    }\n\n    public void setAddress(Address address) {\n        this.address = address;\n    }\n\n    public List<Order> getOrders() {\n        return orders;\n    }\n\n    public void setOrders(List<Order> orders) {\n        this.orders = orders;\n    }\n}\n\nclass Address {\n    private String city;\n    @JsonProperty(\"postal_code\")\n    private String postalCode;\n\n    public String getCity() {\n        return city;\n    }\n\n    public void setCity(String city) {\n        this.city = city;\n    }\n\n    public String getPostalCode() {\n        return postalCode;\n    }\n\n    public void setPostalCode(String postalCode) {\n        this.postalCode = postalCode;\n    }\n}\n\nclass Order {\n    private Long id;\n    private Double total;\n\n    public Long getId() {\n        return id;\n    }\n\n    public void setId(Long id) {\n        this.id = id;\n    }\n\n    public Double getTotal() {\n        return total;\n    }\n\n    public void setTotal(Double total) {\n        this.total = total;\n    }\n}\n"
+  ],
+  "result": [
+   {
+    "id": "java",
+    "score": 0.85
+   },
+   {
+    "id": "javascript",
+    "score": 0.7
+   }
+  ]
+ },
+ {
+  "args": [
+   "import com.fasterxml.jackson.annotation.JsonProperty;\nimport java.util.List;\n\npublic record Root(\n    Long id,\n    String name,\n    Boolean active,\n    Address address,\n    List<Order> orders\n) {}\n\nrecord Address(\n    String city,\n    @JsonProperty(\"postal_code\") String postalCode\n) {}\n\nrecord Order(\n    Long id,\n    Double total\n) {}\n"
+  ],
+  "result": [
+   {
+    "id": "java",
+    "score": 0.8
+   }
+  ]
+ },
+ {
+  "args": [
+   "{\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"title\": \"Root\",\n  \"$ref\": \"#/$defs/Root\",\n  \"$defs\": {\n    \"Root\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"id\": {\n          \"type\": \"integer\"\n        },\n        \"name\": {\n          \"type\": \"string\"\n        },\n        \"active\": {\n          \"type\": \"boolean\"\n        },\n        \"address\": {\n          \"$ref\": \"#/$defs/Address\"\n        },\n        \"orders\": {\n          \"type\": \"array\",\n          \"items\": {\n            \"$ref\": \"#/$defs/Order\"\n          }\n        }\n      },\n      \"required\": [\n        \"id\",\n        \"name\",\n        \"active\",\n        \"address\",\n        \"orders\"\n      ]\n    },\n    \"Address\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"city\": {\n          \"type\": \"string\"\n        },\n        \"postal_code\": {\n          \"type\": \"string\"\n        }\n      },\n      \"required\": [\n        \"city\",\n        \"postal_code\"\n      ]\n    },\n    \"Order\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"id\": {\n          \"type\": \"integer\"\n        },\n        \"total\": {\n          \"type\": \"number\"\n        }\n      },\n      \"required\": [\n        \"id\",\n        \"total\"\n      ]\n    }\n  }\n}\n"
+  ],
+  "result": [
+   {
+    "id": "jsonschema",
+    "score": 0.98
+   },
+   {
+    "id": "json",
+    "score": 0.8
+   }
+  ]
+ },
+ {
+  "args": [
+   "import kotlinx.serialization.SerialName\nimport kotlinx.serialization.Serializable\n\n@Serializable\ndata class Root(\n    val id: Long,\n    val name: String,\n    val active: Boolean,\n    val address: Address,\n    val orders: List<Order>,\n)\n\n@Serializable\ndata class Address(\n    val city: String,\n    @SerialName(\"postal_code\")\n    val postalCode: String,\n)\n\n@Serializable\ndata class Order(\n    val id: Long,\n    val total: Double,\n)\n"
+  ],
+  "result": [
+   {
+    "id": "kotlin",
+    "score": 0.95
+   },
+   {
+    "id": "yaml",
+    "score": 0.5
+   }
+  ]
+ },
+ {
+  "args": [
+   "<?php\n\ndeclare(strict_types=1);\n\nfinal class Root\n{\n    /**\n     * @param list<Order> $orders\n     */\n    public function __construct(\n        public readonly int $id,\n        public readonly string $name,\n        public readonly bool $active,\n        public readonly Address $address,\n        public readonly array $orders,\n    ) {\n    }\n\n    /** @param array<string, mixed> $data */\n    public static function fromArray(array $data): self\n    {\n        return new self(\n            id: $data['id'],\n            name: $data['name'],\n            active: $data['active'],\n            address: Address::fromArray($data['address']),\n            orders: array_map(static fn ($item) => Order::fromArray($item), $data['orders']),\n        );\n    }\n\n    /** @return array<string, mixed> */\n    public function toArray(): array\n    {\n        return [\n            'id' => $this->id,\n            'name' => $this->name,\n            'active' => $this->active,\n            'address' => $this->address->toArray(),\n            'orders' => array_map(static fn ($item) => $item->toArray(), $this->orders),\n        ];\n    }\n}\n\nfinal class Address\n{\n    public function __construct(\n        public readonly string $city,\n        public readonly string $postalCode,\n    ) {\n    }\n\n    /** @param array<string, mixed> $data */\n    public static function fromArray(array $data): self\n    {\n        return new self(\n            city: $data['city'],\n            postalCode: $data['postal_code'],\n        );\n    }\n\n    /** @return array<string, mixed> */\n    public function toArray(): array\n    {\n        return [\n            'city' => $this->city,\n            'postal_code' => $this->postalCode,\n        ];\n    }\n}\n\nfinal class Order\n{\n    public function __construct(\n        public readonly int $id,\n        public readonly float $total,\n    ) {\n    }\n\n    /** @param array<string, mixed> $data */\n    public static function fromArray(array $data): self\n    {\n        return new self(\n            id: $data['id'],\n            total: (float) $data['total'],\n        );\n    }\n\n    /** @return array<string, mixed> */\n    public function toArray(): array\n    {\n        return [\n            'id' => $this->id,\n            'total' => $this->total,\n        ];\n    }\n}\n"
+  ],
+  "result": [
+   {
+    "id": "php",
+    "score": 0.99
+   }
+  ]
+ },
+ {
+  "args": [
+   "from __future__ import annotations\n\nfrom typing import Any\n\n\nclass Root:\n    def __init__(\n        self,\n        id: int,\n        name: str,\n        active: bool,\n        address: Address,\n        orders: list[Order],\n    ) -> None:\n        self.id = id\n        self.name = name\n        self.active = active\n        self.address = address\n        self.orders = orders\n\n    @classmethod\n    def from_dict(cls, data: dict[str, Any]) -> Root:\n        return cls(\n            id=data[\"id\"],\n            name=data[\"name\"],\n            active=data[\"active\"],\n            address=Address.from_dict(data[\"address\"]),\n            orders=[Order.from_dict(item) for item in data[\"orders\"]],\n        )\n\n    def to_dict(self) -> dict[str, Any]:\n        return {\n            \"id\": self.id,\n            \"name\": self.name,\n            \"active\": self.active,\n            \"address\": self.address.to_dict(),\n            \"orders\": [item.to_dict() for item in self.orders],\n        }\n\n\nclass Address:\n    def __init__(\n        self,\n        city: str,\n        postal_code: str,\n    ) -> None:\n        self.city = city\n        self.postal_code = postal_code\n\n    @classmethod\n    def from_dict(cls, data: dict[str, Any]) -> Address:\n        return cls(\n            city=data[\"city\"],\n            postal_code=data[\"postal_code\"],\n        )\n\n    def to_dict(self) -> dict[str, Any]:\n        return {\n            \"city\": self.city,\n            \"postal_code\": self.postal_code,\n        }\n\n\nclass Order:\n    def __init__(\n        self,\n        id: int,\n        total: float,\n    ) -> None:\n        self.id = id\n        self.total = total\n\n    @classmethod\n    def from_dict(cls, data: dict[str, Any]) -> Order:\n        return cls(\n            id=data[\"id\"],\n            total=float(data[\"total\"]),\n        )\n\n    def to_dict(self) -> dict[str, Any]:\n        return {\n            \"id\": self.id,\n            \"total\": self.total,\n        }\n"
+  ],
+  "result": [
+   {
+    "id": "python",
+    "score": 0.95
+   },
+   {
+    "id": "javascript",
+    "score": 0.5
+   }
+  ]
+ },
+ {
+  "args": [
+   "from __future__ import annotations\n\nfrom dataclasses import dataclass\nfrom typing import Any\n\n\n@dataclass\nclass Root:\n    id: int\n    name: str\n    active: bool\n    address: Address\n    orders: list[Order]\n\n    @classmethod\n    def from_dict(cls, data: dict[str, Any]) -> Root:\n        return cls(\n            id=data[\"id\"],\n            name=data[\"name\"],\n            active=data[\"active\"],\n            address=Address.from_dict(data[\"address\"]),\n            orders=[Order.from_dict(item) for item in data[\"orders\"]],\n        )\n\n    def to_dict(self) -> dict[str, Any]:\n        return {\n            \"id\": self.id,\n            \"name\": self.name,\n            \"active\": self.active,\n            \"address\": self.address.to_dict(),\n            \"orders\": [item.to_dict() for item in self.orders],\n        }\n\n\n@dataclass\nclass Address:\n    city: str\n    postal_code: str\n\n    @classmethod\n    def from_dict(cls, data: dict[str, Any]) -> Address:\n        return cls(\n            city=data[\"city\"],\n            postal_code=data[\"postal_code\"],\n        )\n\n    def to_dict(self) -> dict[str, Any]:\n        return {\n            \"city\": self.city,\n            \"postal_code\": self.postal_code,\n        }\n\n\n@dataclass\nclass Order:\n    id: int\n    total: float\n\n    @classmethod\n    def from_dict(cls, data: dict[str, Any]) -> Order:\n        return cls(\n            id=data[\"id\"],\n            total=float(data[\"total\"]),\n        )\n\n    def to_dict(self) -> dict[str, Any]:\n        return {\n            \"id\": self.id,\n            \"total\": self.total,\n        }\n"
+  ],
+  "result": [
+   {
+    "id": "python",
+    "score": 0.95
+   },
+   {
+    "id": "typescript",
+    "score": 0.85
+   },
+   {
+    "id": "javascript",
+    "score": 0.5
+   }
+  ]
+ },
+ {
+  "args": [
+   "from __future__ import annotations\n\nfrom pydantic import BaseModel\n\n\nclass Root(BaseModel):\n    id: int\n    name: str\n    active: bool\n    address: Address\n    orders: list[Order]\n\n\nclass Address(BaseModel):\n    city: str\n    postal_code: str\n\n\nclass Order(BaseModel):\n    id: int\n    total: float\n"
+  ],
+  "result": [
+   {
+    "id": "python",
+    "score": 0.95
+   },
+   {
+    "id": "typescript",
+    "score": 0.85
+   },
+   {
+    "id": "yaml",
+    "score": 0.5
+   }
+  ]
+ },
+ {
+  "args": [
+   "use serde::{Deserialize, Serialize};\n\n#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]\npub struct Root {\n    pub id: i64,\n    pub name: String,\n    pub active: bool,\n    pub address: Address,\n    pub orders: Vec<Order>,\n}\n\n#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]\npub struct Address {\n    pub city: String,\n    pub postal_code: String,\n}\n\n#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]\npub struct Order {\n    pub id: i64,\n    pub total: f64,\n}\n"
+  ],
+  "result": [
+   {
+    "id": "rust",
+    "score": 0.95
+   }
+  ]
+ },
+ {
+  "args": [
+   "import io.circe.{Decoder, Encoder}\n\nfinal case class Root(\n  id: Long,\n  name: String,\n  active: Boolean,\n  address: Address,\n  orders: List[Order]\n) derives Decoder, Encoder.AsObject\n\nfinal case class Address(\n  city: String,\n  postal_code: String\n) derives Decoder, Encoder.AsObject\n\nfinal case class Order(\n  id: Long,\n  total: Double\n) derives Decoder, Encoder.AsObject\n"
+  ],
+  "result": [
+   {
+    "id": "scala",
+    "score": 0.95
+   }
+  ]
+ },
+ {
+  "args": [
+   "$version: \"2\"\n\nnamespace example.api\n\nstructure Root {\n    @required\n    id: Long\n\n    @required\n    name: String\n\n    @required\n    active: Boolean\n\n    @required\n    address: Address\n\n    @required\n    orders: OrderList\n}\n\nstructure Address {\n    @required\n    city: String\n\n    @required\n    @jsonName(\"postal_code\")\n    postalCode: String\n}\n\nstructure Order {\n    @required\n    id: Long\n\n    @required\n    total: Double\n}\n\nlist OrderList {\n    member: Order\n}\n"
+  ],
+  "result": [
+   {
+    "id": "smithy",
+    "score": 0.99
+   }
+  ]
+ },
+ {
+  "args": [
+   "import Foundation\n\nstruct Root: Codable {\n    let id: Int\n    let name: String\n    let active: Bool\n    let address: Address\n    let orders: [Order]\n}\n\nstruct Address: Codable {\n    let city: String\n    let postalCode: String\n\n    enum CodingKeys: String, CodingKey {\n        case city\n        case postalCode = \"postal_code\"\n    }\n}\n\nstruct Order: Codable {\n    let id: Int\n    let total: Double\n}\n"
+  ],
+  "result": [
+   {
+    "id": "swift",
+    "score": 0.95
+   },
+   {
+    "id": "scala",
+    "score": 0.8
+   }
+  ]
+ },
+ {
+  "args": [
+   "export interface Root {\n  id: number;\n  name: string;\n  active: boolean;\n  address: Address;\n  orders: Order[];\n}\n\nexport interface Address {\n  city: string;\n  postal_code: string;\n}\n\nexport interface Order {\n  id: number;\n  total: number;\n}\n"
+  ],
+  "result": [
+   {
+    "id": "typescript",
+    "score": 0.95
+   }
+  ]
+ },
+ {
+  "args": [
+   "export type Root = {\n  id: number;\n  name: string;\n  active: boolean;\n  address: Address;\n  orders: Order[];\n};\n\nexport type Address = {\n  city: string;\n  postal_code: string;\n};\n\nexport type Order = {\n  id: number;\n  total: number;\n};\n"
+  ],
+  "result": [
+   {
+    "id": "typescript",
+    "score": 0.95
+   }
+  ]
+ },
+ {
+  "args": [
+   "import { z } from 'zod';\n\nexport const AddressSchema = z.object({\n  city: z.string(),\n  postal_code: z.string(),\n});\nexport type Address = z.infer<typeof AddressSchema>;\n\nexport const OrderSchema = z.object({\n  id: z.number().int(),\n  total: z.number(),\n});\nexport type Order = z.infer<typeof OrderSchema>;\n\nexport const RootSchema = z.object({\n  id: z.number().int(),\n  name: z.string(),\n  active: z.boolean(),\n  address: AddressSchema,\n  orders: z.array(OrderSchema),\n});\nexport type Root = z.infer<typeof RootSchema>;\n"
+  ],
+  "result": [
+   {
+    "id": "typescript",
+    "score": 0.9
+   }
+  ]
  }
 ]

@@ -7,9 +7,12 @@ from .code.dart import dart_parser
 from .code.go import go_parser
 from .code.java import java_parser
 from .code.kotlin import kotlin_parser
+from .code.php import php_parser
 from .code.python import python_parser
 from .code.rust import rust_parser
+from .code.scala import scala_parser
 from .code.swift import swift_parser
+from .code.typescript import javascript_parser, typescript_parser
 from .data.csv import csv_parser
 from .data.json import json_parser
 from .data.xml import xml_parser
@@ -35,6 +38,8 @@ PARSERS: tuple[InputParser, ...] = (
     protobuf_parser,
     prisma_parser,
     model_schema_parser,
+    typescript_parser,
+    javascript_parser,
     python_parser,
     java_parser,
     csharp_parser,
@@ -43,6 +48,8 @@ PARSERS: tuple[InputParser, ...] = (
     swift_parser,
     go_parser,
     rust_parser,
+    php_parser,
+    scala_parser,
     smithy_parser,
 )
 

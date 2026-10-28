@@ -32,6 +32,14 @@ class Token:
     def __repr__(self) -> str:
         return f"Token({self.kind}, {self.value!r}, line {self.line})"
 
+    def copy(self, **changes) -> "Token":
+        """A new token with some attributes changed ({ ...token, value } in the web version)."""
+        token = Token(self.kind, self.value, self.start, self.end, self.line, self.column, self.line_start)
+        token.doc, token.doc_raw = self.doc, self.doc_raw
+        for name, value in changes.items():
+            setattr(token, name, value)
+        return token
+
 
 @dataclass(frozen=True)
 class StringRule:
