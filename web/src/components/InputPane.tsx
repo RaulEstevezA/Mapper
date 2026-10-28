@@ -5,7 +5,9 @@ import type { InputFormatId } from '../core/parsers/types.ts'
 import type { InputState, ReadInput } from '../app/workspace.ts'
 import { useI18n } from '../i18n/useI18n.ts'
 import { editorLanguage } from '../utils/editorLanguages.ts'
+import type { DraftFormat } from '../core/generate/models.ts'
 import { CodeEditor } from './CodeEditor.tsx'
+import { CreateTarget } from './CreateTarget.tsx'
 import { Pane } from './Pane.tsx'
 import './InputPane.css'
 
@@ -17,13 +19,16 @@ interface InputPaneProps {
   input: InputState
   read: ReadInput
   onChange: (input: InputState) => void
+  /** Target only: writing a new model from the source (null while the source cannot be read) */
+  create?: { sourceModel: string | null; onCreate: (format: DraftFormat) => void }
 }
 
-export function InputPane({ role, input, read, onChange }: InputPaneProps) {
+export function InputPane({ role, input, read, onChange, create }: InputPaneProps) {
   const { t } = useI18n()
   const fileInput = useRef<HTMLInputElement>(null)
   const [dragging, setDragging] = useState(false)
   const [fileError, setFileError] = useState<string | null>(null)
+  const [creating, setCreating] = useState(false)
   const [language, setLanguage] = useState<LanguageSupport | null>(null)
   const format = read.format
   const parser = format ? findParser(format) : undefined
@@ -140,6 +145,18 @@ export function InputPane({ role, input, read, onChange }: InputPaneProps) {
             >
               {t.clear}
             </button>
+            {create && (
+              <button
+                type="button"
+                className="button"
+                aria-expanded={creating}
+                disabled={!create.sourceModel}
+                title={create.sourceModel ? undefined : t.createUnavailable}
+                onClick={() => setCreating(!creating)}
+              >
+                {t.create}
+              </button>
+            )}
             <input
               ref={fileInput}
               type="file"
@@ -155,6 +172,17 @@ export function InputPane({ role, input, read, onChange }: InputPaneProps) {
         }
         footer={status}
       >
+        {create && creating && create.sourceModel && (
+          <CreateTarget
+            sourceModel={create.sourceModel}
+            replaces={input.text.trim() !== ''}
+            onCreate={(format) => {
+              create.onCreate(format)
+              setCreating(false)
+            }}
+            onCancel={() => setCreating(false)}
+          />
+        )}
         <div className="input-pane__settings">
           <label className="field">
             <span>{t.formatLabel}</span>

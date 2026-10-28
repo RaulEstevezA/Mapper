@@ -134,8 +134,9 @@ button {
   background: var(--accent-text);
 }
 
-/* Option of a group (transformations, modes), selected with aria-pressed */
-.button[aria-pressed='true'] {
+/* Option of a group (transformations, modes), selected with aria-pressed; a button whose form is open */
+.button[aria-pressed='true'],
+.button[aria-expanded='true'] {
   border-color: var(--accent);
   background: var(--accent-soft);
   color: var(--accent-text);

@@ -51,3 +51,18 @@ Compiler checks run when the tool is installed; on other machines the snapshot t
 ## Names
 
 `naming.ts` decides how field names are written: as in the input when it is the same language (or a document read as plain objects), in the language's convention otherwise (camelCase, snake_case, PascalCase with Go initialisms). The interface lets the user force either. Reserved words are escaped per language.
+
+## Target drafts
+
+`models.ts` writes model declarations, not mappers: "Create" in the Target panel uses it to start a new target from the source model. It collects the source's root model with every nested model and enum it uses, names them without role suffixes (`UserDto` → `User`, `OrderApi.CustomerApi` → `Customer`, a document's `Source` → `Target`), converts the field names to the convention of the chosen format and writes:
+
+| Format | Declarations |
+|---|---|
+| TypeScript | `export interface`, `?` for optional, `| null` for nullable, `export enum` |
+| Python | `@dataclass` classes (fields with a default last), `str` enums, only the imports used |
+| Kotlin | `data class` with `? = null` for values that may be missing, `enum class` |
+| Java | `record`s, boxed types for values that may be missing, `enum` |
+| C# | classes with `required` properties and nullable types, `enum` |
+| JSON Schema | draft 2020-12 with `$defs`, `required`, formats and `null` in the types |
+
+The text is then read back like any other input. The tests check, for every built-in example and every format, that the draft parses without warnings and that every one of its fields finds its source by itself.

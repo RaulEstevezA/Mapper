@@ -92,6 +92,26 @@ describe('Mapper', () => {
     await waitFor(() => expect(codeText()).toContain('sku="SKU-0"'))
   })
 
+  it('creates the target model from the source', async () => {
+    await renderApp()
+    const create = () => screen.getByRole('button', { name: 'Create', expanded: false })
+    // Without a source there is nothing to start from
+    expect((create() as HTMLButtonElement).disabled).toBe(true)
+    fireEvent.click(screen.getByRole('button', { name: 'Simple mapping' }))
+    await screen.findByRole('region', { name: 'UserDto → User' })
+    fireEvent.click(screen.getAllByRole('button', { name: 'Clear' })[1])
+    await waitFor(() => expect((create() as HTMLButtonElement).disabled).toBe(false))
+    fireEvent.click(create())
+    const form = screen.getByRole('region', { name: 'Create the target model' })
+    fireEvent.change(within(form).getByLabelText('Format of the new model'), { target: { value: 'python' } })
+    fireEvent.click(within(form).getByRole('button', { name: 'Create' }))
+    expect(await screen.findByText(/Target model “User” created from “UserDto”/)).toBeTruthy()
+    const relations = await screen.findByRole('region', { name: 'UserDto → User' })
+    expect(relations.querySelectorAll('.mapping__row--mapped')).toHaveLength(6)
+    // The output language stays the one chosen: the model's format and the mapper's language are separate
+    await waitFor(() => expect(codeText()).toContain('export function mapUserDtoToUser(source: UserDto): User'))
+  })
+
   it('filters the fields to review and searches', async () => {
     await renderApp()
     fireEvent.click(screen.getByRole('button', { name: 'Transformations' }))

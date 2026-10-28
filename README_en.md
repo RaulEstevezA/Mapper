@@ -8,7 +8,7 @@ Paste the source and the target  →  Review the suggested relations  →  Adjus
 
 ## What it does
 
-1. **Reads both models** in any supported format, detecting the format and the framework (Pydantic, JPA, Entity Framework, TypeORM, Django, SQLAlchemy, serde, Codable, freezed…). Inputs with several models let you choose which one to map; nested models are followed.
+1. **Reads both models** in any supported format — or **creates the target** from the source: "Create" in the Target panel writes a model with the same fields in TypeScript, Python, Kotlin, Java, C# or JSON Schema, ready to edit as text. It detects the format and the framework (Pydantic, JPA, Entity Framework, TypeORM, Django, SQLAlchemy, serde, Codable, freezed…). Inputs with several models let you choose which one to map; nested models are followed.
 2. **Suggests a source for every target field**, with a confidence: exact, high, likely, review, conflict or no match. It recognizes:
    - naming conventions (`userId`, `user_id`) and names on the wire (`@JsonProperty`);
    - abbreviations (`qty`), compound words (`surname`) and synonyms (`creationDate` → `created_at`);

@@ -1,6 +1,7 @@
 import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react'
 import { EMPTY_INPUT, readInput, reconcile, summarize, type InputState } from './app/workspace.ts'
 import { findGenerator } from './core/generate/generators.ts'
+import { draftTarget, type DraftFormat } from './core/generate/models.ts'
 import { buildPlan } from './core/generate/plan.ts'
 import type { GenerateSettings, NamingMode } from './core/generate/types.ts'
 import type { MappingSet } from './core/mapping/types.ts'
@@ -286,6 +287,16 @@ function App() {
     downloadBlob(new Blob([JSON.stringify(schema, null, 2)], { type: 'application/json' }), `${targetRead.model ?? 'target'}.model.json`)
   }
 
+  /** A new target model written from the source, to edit as text. */
+  function createTarget(format: DraftFormat) {
+    if (!sourceSchema || !sourceRead.model) return
+    const draft = draftTarget(sourceSchema, sourceRead.model, format)
+    if (!draft) return
+    setTarget({ text: draft.text, format, model: draft.model })
+    setMessage({ text: t.created(draft.model, sourceRead.model), kind: 'ok' })
+    setTab('target')
+  }
+
   function clearSaved() {
     try {
       localStorage.removeItem(WORKSPACE_KEY)
@@ -332,7 +343,13 @@ function App() {
         <div className="workspace" data-tab={tab}>
           <div className="workspace__inputs">
             <InputPane role="source" input={source} read={sourceRead} onChange={setSource} />
-            <InputPane role="target" input={target} read={targetRead} onChange={setTarget} />
+            <InputPane
+              role="target"
+              input={target}
+              read={targetRead}
+              onChange={setTarget}
+              create={{ sourceModel: sourceSchema ? sourceRead.model : null, onCreate: createTarget }}
+            />
           </div>
           <MappingPanel
             set={set}

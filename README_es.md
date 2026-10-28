@@ -8,7 +8,7 @@ Pegar el origen y el destino  →  Revisar las relaciones sugeridas  →  Ajusta
 
 ## Qué hace
 
-1. **Lee los dos modelos** en cualquiera de los formatos admitidos, detectando el formato y el framework (Pydantic, JPA, Entity Framework, TypeORM, Django, SQLAlchemy, serde, Codable, freezed…). Si una entrada tiene varios modelos, eliges cuál relacionar; los modelos anidados se siguen.
+1. **Lee los dos modelos** en cualquiera de los formatos admitidos, o **crea el destino** a partir del origen: «Crear» en el panel Destino escribe un modelo con los mismos campos en TypeScript, Python, Kotlin, Java, C# o JSON Schema, listo para editar como texto. Los lee detectando el formato y el framework (Pydantic, JPA, Entity Framework, TypeORM, Django, SQLAlchemy, serde, Codable, freezed…). Si una entrada tiene varios modelos, eliges cuál relacionar; los modelos anidados se siguen.
 2. **Sugiere un origen para cada campo de destino**, con un nivel de confianza: exacta, alta, probable, revisar, conflicto o sin coincidencia. Reconoce:
    - convenciones de nombres (`userId`, `user_id`) y nombres en el formato de intercambio (`@JsonProperty`);
    - abreviaturas (`qty`), palabras compuestas (`surname`) y sinónimos (`creationDate` → `created_at`);
