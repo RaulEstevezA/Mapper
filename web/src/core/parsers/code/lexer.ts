@@ -277,10 +277,18 @@ export class Cursor {
     return this.tokens[this.index + offset]?.kind === 'ident'
   }
 
+  /** The current token, moving past it. At the end of the input it returns an empty token, so a parser
+   * reading a truncated declaration never fails on a missing token. */
   next(): Token {
-    const token = this.tokens[this.index]
-    this.index++
+    const token = this.tokens[this.index] ?? this.endToken()
+    this.index = Math.min(this.index + 1, this.tokens.length)
     return token
+  }
+
+  private endToken(): Token {
+    const last = this.tokens.at(-1)
+    const end = last?.end ?? 0
+    return { kind: 'punct', value: '', start: end, end, line: last?.line ?? 1, column: (last?.column ?? 0) + 1, lineStart: false }
   }
 
   eat(value: string): boolean {
