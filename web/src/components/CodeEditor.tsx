@@ -60,6 +60,8 @@ export function CodeEditor({ value, onChange, language, readOnly = false, label,
   const container = useRef<HTMLDivElement>(null)
   const view = useRef<EditorView | null>(null)
   const onChangeRef = useRef(onChange)
+  // The text set from outside: replacing the document with it is not a change made by the user
+  const valueRef = useRef(value)
   const compartments = useRef({
     language: new Compartment(),
     readOnly: new Compartment(),
@@ -92,7 +94,9 @@ export function CodeEditor({ value, onChange, language, readOnly = false, label,
           slots.errorLine.of([]),
           slots.texts.of([]),
           EditorView.updateListener.of((update) => {
-            if (update.docChanged) onChangeRef.current?.(update.state.doc.toString())
+            if (!update.docChanged) return
+            const text = update.state.doc.toString()
+            if (text !== valueRef.current) onChangeRef.current?.(text)
           }),
         ],
       }),
@@ -125,6 +129,7 @@ export function CodeEditor({ value, onChange, language, readOnly = false, label,
   // Only replaces the text when it comes from outside (an example, the generated code), not while typing
   useEffect(() => {
     const editor = view.current
+    valueRef.current = value
     if (editor && editor.state.doc.toString() !== value) {
       editor.dispatch({ changes: { from: 0, to: editor.state.doc.length, insert: value } })
     }
