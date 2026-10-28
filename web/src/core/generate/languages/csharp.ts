@@ -429,7 +429,7 @@ function generateAutoMapper(plan: Plan, settings: GenerateSettings): GeneratedCo
         value.k === 'coalesce' && value.fallback.k === 'literal'
           ? writer.emitter.value(value.fallback, { source: 'src', item: 'item', depth: 0, lists: 0 })
           : null
-      const base = inner.k === 'convert' || inner.k === 'mapper' || inner.k === 'list' ? inner.value : inner
+      const base = inner.k === 'convert' || inner.k === 'mapper' || inner.k === 'list' || inner.k === 'enumMap' ? inner.value : inner
       // Same name: AutoMapper finds it, converts it and maps nested objects, lists and enums (by their own maps)
       const conventional =
         base.k === 'path' &&
