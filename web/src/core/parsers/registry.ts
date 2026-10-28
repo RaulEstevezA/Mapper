@@ -2,12 +2,22 @@ import { csvParser } from './data/csv.ts'
 import { jsonParser } from './data/json.ts'
 import { xmlParser } from './data/xml.ts'
 import { yamlParser } from './data/yaml.ts'
+import { javaScriptParser, typeScriptParser } from './code/typescript.ts'
 import { jsonSchemaParser } from './schema/jsonSchema.ts'
 import { openApiParser } from './schema/openapi.ts'
 import type { InputFormatId, InputParser, ParseOptions, ParseOutcome } from './types.ts'
 
 /** Every parser, in the order the format selector shows them. Adding a format means adding it here. */
-export const parsers: readonly InputParser[] = [jsonParser, jsonSchemaParser, openApiParser, yamlParser, xmlParser, csvParser]
+export const parsers: readonly InputParser[] = [
+  jsonParser,
+  jsonSchemaParser,
+  openApiParser,
+  yamlParser,
+  xmlParser,
+  csvParser,
+  typeScriptParser,
+  javaScriptParser,
+]
 
 export function findParser(id: InputFormatId): InputParser | undefined {
   return parsers.find((parser) => parser.id === id)
