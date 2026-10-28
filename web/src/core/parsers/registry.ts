@@ -10,6 +10,7 @@ import { kotlinParser } from './code/kotlin.ts'
 import { phpParser } from './code/php.ts'
 import { pythonParser } from './code/python.ts'
 import { rustParser } from './code/rust.ts'
+import { scalaParser } from './code/scala.ts'
 import { swiftParser } from './code/swift.ts'
 import { javaScriptParser, typeScriptParser } from './code/typescript.ts'
 import { graphQlParser } from './schema/graphql.ts'
@@ -18,6 +19,7 @@ import { modelSchemaParser } from './schema/modelSchema.ts'
 import { openApiParser } from './schema/openapi.ts'
 import { prismaParser } from './schema/prisma.ts'
 import { protobufParser } from './schema/protobuf.ts'
+import { smithyParser } from './schema/smithy.ts'
 import type { InputFormatId, InputParser, ParseOptions, ParseOutcome } from './types.ts'
 
 /** Every parser, in the order the format selector shows them. Adding a format means adding it here. */
@@ -43,6 +45,8 @@ export const parsers: readonly InputParser[] = [
   goParser,
   rustParser,
   phpParser,
+  scalaParser,
+  smithyParser,
 ]
 
 export function findParser(id: InputFormatId): InputParser | undefined {

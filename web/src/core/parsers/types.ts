@@ -24,6 +24,8 @@ export type InputFormatId =
   | 'go'
   | 'rust'
   | 'php'
+  | 'scala'
+  | 'smithy'
 
 export type InputKind = 'data' | 'schema' | 'code'
 

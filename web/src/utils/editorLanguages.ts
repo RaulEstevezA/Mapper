@@ -17,6 +17,7 @@ const LOADERS: Record<string, () => Promise<LanguageSupport>> = {
   csharp: async () => legacy((await import('@codemirror/legacy-modes/mode/clike')).csharp),
   kotlin: async () => legacy((await import('@codemirror/legacy-modes/mode/clike')).kotlin),
   dart: async () => legacy((await import('@codemirror/legacy-modes/mode/clike')).dart),
+  scala: async () => legacy((await import('@codemirror/legacy-modes/mode/clike')).scala),
   swift: async () => legacy((await import('@codemirror/legacy-modes/mode/swift')).swift),
   protobuf: async () => legacy((await import('@codemirror/legacy-modes/mode/protobuf')).protobuf),
   // GraphQL and Prisma read close enough to Kotlin for highlighting

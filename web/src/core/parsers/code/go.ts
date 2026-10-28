@@ -300,8 +300,9 @@ export const goParser: InputParser = {
   extensions: ['.go'],
   editorLanguage: 'go',
   detect(text) {
-    if (/^\s*package\s+\w+\s*$/m.test(text)) return 0.95
     if (/\btype\s+\w+\s+struct\s*\{/.test(text)) return 0.95
+    // `package x` alone is also Scala, Java without `;`, Kotlin: Go needs one of its own signs too
+    if (/^\s*package\s+\w+\s*$/m.test(text)) return /^\s*(func\s|import\s+(\(|"))/m.test(text) ? 0.9 : 0.4
     return 0
   },
   parse(text) {

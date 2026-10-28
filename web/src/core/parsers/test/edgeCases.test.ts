@@ -29,6 +29,8 @@ const SAMPLES: Record<string, string> = {
   graphql: 'type A { b: String! }',
   protobuf: 'syntax = "proto3"; message A { string b = 1; }',
   prisma: 'model A { id Int @id\n b String }',
+  scala: 'final case class A(b: String, c: Option[Int] = None)',
+  smithy: '$version: "2"\nnamespace a\nstructure A { @required b: String }',
 }
 
 describe('every parser', () => {

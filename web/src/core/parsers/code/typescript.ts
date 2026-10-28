@@ -14,6 +14,7 @@ import {
   type TypeTable,
 } from './raw.ts'
 import { readType, type TypeSyntax } from './typeSyntax.ts'
+import { ZodReader } from './zod.ts'
 
 const LEXER: LexerConfig = {
   ...C_LIKE,
@@ -27,6 +28,8 @@ export const TYPESCRIPT_TYPES: TypeTable = {
     String: primitive('string'),
     number: primitive('float'),
     Number: primitive('float'),
+    // Zod's `.int()`: TypeScript has no integer type of its own
+    integer: primitive('integer'),
     bigint: primitive('integer', 64),
     boolean: primitive('boolean'),
     Boolean: primitive('boolean'),
@@ -65,7 +68,7 @@ class Reader {
   readonly source: string
   readonly javascript: boolean
   readonly declarations: RawDeclarations = { models: [], enums: [], aliases: new Map(), warnings: [] }
-  private readonly usedNames = new Set<string>()
+  readonly usedNames = new Set<string>()
   /** Models created for inline object types, merged into their alias when it is an intersection */
   private readonly inlineModels = new Set<string>()
   /** Name for the next inline object type (`address: { city: string }` → `UserAddress`) */
@@ -587,6 +590,7 @@ function parseScript(text: string, javascript: boolean): ParseOutcome {
   }
   const reader = new Reader(text, tokens, javascript)
   reader.run()
+  if (ZodReader.uses(tokens)) new ZodReader(new Cursor(tokens), text, reader.declarations, reader.usedNames).run()
   const declarations = reader.declarations
   if (declarations.models.length === 0) return failure('noModels')
   const language = javascript ? 'javascript' : 'typescript'
@@ -609,6 +613,7 @@ export const typeScriptParser: InputParser = {
     )
       return 0.85
     if (/^\s*(export\s+)?(const\s+)?enum\s+\w+\s*\{/m.test(text)) return 0.6
+    if (/\bz\.object\(/.test(text)) return 0.9
     return 0
   },
   parse: (text) => parseScript(text, false),
