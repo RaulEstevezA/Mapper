@@ -1,0 +1,37 @@
+.project-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12) var(--space-16);
+  margin-top: var(--space-16);
+  padding: var(--space-12) var(--space-16);
+}
+
+.project-bar__storage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-8) var(--space-16);
+}
+
+.project-bar__remember {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  font-size: var(--font-small);
+  cursor: pointer;
+}
+
+.project-bar__message {
+  flex-basis: 100%;
+  font-size: var(--font-small);
+}
+
+.project-bar__message--ok {
+  color: var(--success);
+}
+
+.project-bar__message--error {
+  color: var(--danger);
+}
