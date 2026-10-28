@@ -223,3 +223,6 @@ __marimo__/
 node_modules/
 web/dist/
 *.tsbuildinfo
+
+# Local working files (samples, notes): never versioned
+local-data/
