@@ -1,0 +1,32 @@
+# Comprueba cada cambio: tipos, lint, formato, tests y build de la versión web.
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run format:check
+      # Los tests compilan el código generado con python3, javac, dart, swiftc, rustfmt y php cuando están
+      # instalados; en el runner se omiten los que no lo están y quedan las comprobaciones de instantáneas
+      - run: npm test
+      - run: npm run build

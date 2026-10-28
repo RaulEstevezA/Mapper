@@ -1,0 +1,110 @@
+# Compila la versión web y la publica dentro de la web personal:
+# https://raulesteveza.github.io/tools/Mapper/
+#
+# Se publica en el repositorio RaulEstevezA/RaulEstevezA.github.io, que GitHub
+# Pages sirve al recibir el push:
+#   tools/Mapper/   ← web/dist (la app compilada)
+#
+# Mismo mecanismo que DataCleanr: un token con permiso de escritura
+# (Contents: Read and write) sobre RaulEstevezA.github.io, guardado en este
+# repositorio como secreto de Actions PORTFOLIO_DEPLOY_TOKEN.
+
+name: Deploy web
+
+# Solo se lanza a mano (Actions → Deploy web → Run workflow) hasta que la herramienta se publique:
+# para publicar en cada push a main, añade el disparador `push` como en Api2Class.
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-web
+  cancel-in-progress: false
+
+env:
+  NODE_VERSION: '22'
+  SITE_REPOSITORY: RaulEstevezA/RaulEstevezA.github.io
+  TOOL_PATH: tools/Mapper
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Check deploy token
+        env:
+          PORTFOLIO_DEPLOY_TOKEN: ${{ secrets.PORTFOLIO_DEPLOY_TOKEN }}
+        run: |
+          if [ -z "$PORTFOLIO_DEPLOY_TOKEN" ]; then
+            echo "::error::Falta el secreto PORTFOLIO_DEPLOY_TOKEN (Settings → Secrets and variables → Actions)."
+            exit 1
+          fi
+
+      - name: Checkout app
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install dependencies
+        working-directory: web
+        run: npm ci
+
+      - name: Lint
+        working-directory: web
+        run: npm run lint
+
+      - name: Test
+        working-directory: web
+        run: npm test
+
+      - name: Build
+        working-directory: web
+        # vite.config.ts already sets the base path /tools/Mapper/ for production builds
+        run: npm run build
+
+      - name: Checkout site
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ env.SITE_REPOSITORY }}
+          ref: main
+          token: ${{ secrets.PORTFOLIO_DEPLOY_TOKEN }}
+          path: site
+
+      - name: Copy build into site
+        run: |
+          mkdir -p "site/${TOOL_PATH}"
+          rsync -a --delete web/dist/ "site/${TOOL_PATH}/"
+
+      - name: Commit and push
+        working-directory: site
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "${TOOL_PATH}"
+          if git diff --cached --quiet; then
+            echo "Sin cambios en ${TOOL_PATH}"
+            exit 0
+          fi
+          git commit -m "deploy: actualizar ${TOOL_PATH} desde ${GITHUB_REPOSITORY}@${GITHUB_SHA::7}"
+
+          # Otras demos también publican en este repo:
+          # si el push falla por estar desactualizado, se actualiza y se reintenta.
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              echo "Intento $attempt fallido; reintentando tras actualizar main."
+              sleep 5
+            fi
+          done
+
+          echo "No se pudo publicar tras 3 intentos."
+          exit 1
