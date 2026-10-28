@@ -224,7 +224,7 @@ class CodePanel(Pane):
             lines.append(files[min(self._file_index, len(files) - 1)]["name"])
         if notes:
             lines.append(t.notes_count(len(notes)))
-            lines.extend(f"· {t.note(note)}" for note in notes[:6])
+            lines.extend(f"· {t.note(note)}" for note in notes[:3])
         if self._saved_message:
             lines.append(self._saved_message)
         self.notes.setText("\n".join(lines))

@@ -10,6 +10,7 @@ from PySide6.QtWidgets import (
     QFrame,
     QHBoxLayout,
     QLabel,
+    QLayout,
     QLineEdit,
     QMessageBox,
     QPushButton,
@@ -52,12 +53,16 @@ class MappingPanel(Pane):
         self.redo_button.clicked.connect(session.redo)
         self.restore_button = QPushButton()
         self.restore_button.clicked.connect(self._restore)
-        for button in (self.accept_button, self.undo_button, self.redo_button, self.restore_button):
-            self.header.addWidget(button)
-
         toolbar = section()
         toolbar_layout = QVBoxLayout(toolbar)
         toolbar_layout.setContentsMargins(14, 0, 14, 8)
+        # Buttons on their own row, so the title and the buttons are never cut
+        actions = QHBoxLayout()
+        for button in (self.accept_button, self.undo_button, self.redo_button, self.restore_button):
+            button.setProperty("small", True)
+            actions.addWidget(button)
+        actions.addStretch()
+        toolbar_layout.addLayout(actions)
         self.summary = QLabel()
         self.summary.setWordWrap(True)
         toolbar_layout.addWidget(self.summary)
@@ -73,10 +78,11 @@ class MappingPanel(Pane):
             filters.addWidget(button)
             self._filter_buttons[filter_id] = button
         self._filter_buttons["all"].setChecked(True)
+        filters.addStretch()
+        toolbar_layout.addLayout(filters)
         self.search = QLineEdit()
         self.search.textChanged.connect(self._set_search)
-        filters.addWidget(self.search, 1)
-        toolbar_layout.addLayout(filters)
+        toolbar_layout.addWidget(self.search)
         self.body.addWidget(toolbar)
 
         self._splitter = QSplitter(Qt.Orientation.Vertical)
@@ -87,6 +93,8 @@ class MappingPanel(Pane):
         self._rows = QVBoxLayout(self._content)
         self._rows.setContentsMargins(14, 4, 14, 14)
         self._rows.setSpacing(6)
+        # The rows keep their height and the list scrolls, instead of squeezing them
+        self._rows.setSizeConstraint(QLayout.SizeConstraint.SetMinimumSize)
         self._scroll.setWidget(self._content)
         self._splitter.addWidget(self._scroll)
         self.editor = FieldEditor(i18n)
@@ -101,7 +109,7 @@ class MappingPanel(Pane):
         self._splitter.setSizes([3, 2])
         self.body.addWidget(self._splitter, 1)
 
-        # The checks: a summary, and the list (open when there are errors, as in the web version)
+        # The checks: a summary, always visible, and the list, shown on demand to keep room for the relations
         footer = QVBoxLayout()
         summary_row = QHBoxLayout()
         self.diagnostics = QLabel()
@@ -263,17 +271,17 @@ class MappingPanel(Pane):
         counts = summarize_diagnostics(diagnostics)
         shown = [item for item in diagnostics if item["severity"] != "info" or item["code"] != "unusedSource"]
         lines = []
-        for item in shown[:12]:
+        for item in shown[:8]:
             text = t.diagnostic(item["code"], item.get("target", ""), item.get("params"))
             model = f" ({item['mapping'].replace('->', ' → ')})" if item["mapping"] != mapping_set["root"] else ""
             lines.append(f"{t.severity[item['severity']]}: {text}{model}")
-        if len(shown) > 12:
+        if len(shown) > 8:
             lines.append("…")
         self.details.setText("\n".join(lines))
         self.details_button.setText(t.diagnostics_title)
         self.details_button.setVisible(bool(lines))
         self.details_button.blockSignals(True)
-        self.details_button.setChecked(self._details_open if self._details_open is not None else counts["error"] > 0)
+        self.details_button.setChecked(bool(self._details_open))
         self.details_button.blockSignals(False)
         self.details.setVisible(bool(lines) and self.details_button.isChecked())
         self.diagnostics.setText(
@@ -341,21 +349,13 @@ class MappingPanel(Pane):
         layout.setContentsMargins(10, 6, 10, 6)
         layout.setSpacing(4)
         line = QHBoxLayout()
-        source_widget = self._source_text(field)
-        line.addWidget(source_widget, 3)
-        arrow = QLabel("→")
-        arrow.setProperty("role", "muted")
-        line.addWidget(arrow)
-        target_box = QHBoxLayout()
-        target_name = mono(field["target"])
-        target_box.addWidget(target_name)
-        target_box.addWidget(muted(describe_type(target_field["type"]), False))
+        line.addWidget(mono(field["target"]))
+        line.addWidget(muted(describe_type(target_field["type"]), False))
         if target_field["nullable"]:
-            target_box.addWidget(badge("null"))
+            line.addWidget(badge("null"))
         if needs_value(target_field) and field["status"] != "active":
-            target_box.addWidget(badge(t.required_badge, "danger"))
-        target_box.addStretch()
-        line.addLayout(target_box, 3)
+            line.addWidget(badge(t.required_badge, "danger"))
+        line.addStretch()
         line.addWidget(self._status(field))
         if field["status"] == "pending" and field["confidence"] != "conflict":
             accept = small_button(t.accept)
@@ -369,9 +369,18 @@ class MappingPanel(Pane):
         edit.clicked.connect(lambda _=False: self.open_field(mapping["id"], field["target"]))
         line.addWidget(edit)
         layout.addLayout(line)
+        # Where the value comes from, and how
+        origin = QHBoxLayout()
+        arrow = QLabel("←")
+        arrow.setProperty("role", "muted")
+        origin.addWidget(arrow)
+        source_widget = self._source_text(field)
+        source_widget.setWordWrap(True)
+        origin.addWidget(source_widget, 1)
+        layout.addLayout(origin)
         transform = self._transform_text(mapping, field, source, target)
         if transform:
-            layout.addWidget(muted(f"→ {transform}"))
+            layout.addWidget(muted(transform))
         issues = [
             item
             for item in diagnostics

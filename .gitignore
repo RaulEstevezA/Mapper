@@ -31,6 +31,8 @@ MANIFEST
 #   before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
+# The desktop app's PyInstaller configuration is written by hand
+!desktop/packaging/mapper.spec
 
 # Installer logs
 pip-log.txt

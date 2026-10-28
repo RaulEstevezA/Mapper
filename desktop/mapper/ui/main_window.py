@@ -63,13 +63,13 @@ class MainWindow(QMainWindow):
 
         central = QWidget()
         page = QVBoxLayout(central)
-        page.setContentsMargins(24, 16, 24, 16)
-        page.setSpacing(12)
+        page.setContentsMargins(20, 12, 20, 10)
+        page.setSpacing(10)
 
         intro = QFrame()
         intro.setObjectName("card")
         intro_layout = QHBoxLayout(intro)
-        intro_layout.setContentsMargins(32, 24, 32, 24)
+        intro_layout.setContentsMargins(28, 16, 28, 16)
         text = QVBoxLayout()
         title_row = QHBoxLayout()
         title = QLabel("Mapper")
@@ -128,7 +128,7 @@ class MainWindow(QMainWindow):
         for panel in (inputs, self.mapping_panel, self.code_panel):
             splitter.addWidget(panel)
         splitter.setChildrenCollapsible(False)
-        splitter.setSizes([420, 560, 420])
+        splitter.setSizes([380, 640, 420])
         page.addWidget(splitter, 1)
 
         # Credit at the bottom; the name opens the portfolio in the browser
