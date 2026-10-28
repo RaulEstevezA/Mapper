@@ -51,6 +51,8 @@ export interface Syntax {
   expression: ExpressionSyntax
   /** Wraps a value assigned to a field that may hold null, when the language needs it (Rust `Some`) */
   wrapOptional?(expr: string, type: TypeRef): string
+  /** Written before variable names (`$` in PHP) */
+  variablePrefix?: string
 }
 
 export interface Roots {
@@ -109,7 +111,7 @@ export class Emitter {
 
   private fresh(roots: Roots): string {
     roots.depth++
-    return roots.depth === 1 ? 'value' : `value${roots.depth}`
+    return `${this.syntax.variablePrefix ?? ''}${roots.depth === 1 ? 'value' : `value${roots.depth}`}`
   }
 
   /** Applies `build` to the value of `input`, guarding it when it may be null. */
@@ -171,7 +173,7 @@ export class Emitter {
       case 'mapper':
         return this.guarded(value.value, roots, value.type, (inner) => syntax.mapperCall(value.mapper, inner))
       case 'list': {
-        const item = roots.lists === 0 ? 'item' : `item${roots.lists + 1}`
+        const item = `${syntax.variablePrefix ?? ''}${roots.lists === 0 ? 'item' : `item${roots.lists + 1}`}`
         const elementRoots: Roots = { source: roots.source, item, depth: roots.depth, lists: roots.lists + 1 }
         const element = this.value(value.element, elementRoots)
         const elementIsItem = value.element.k === 'self'

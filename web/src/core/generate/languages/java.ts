@@ -523,7 +523,10 @@ function generateMapStruct(plan: Plan, settings: GenerateSettings): GeneratedCod
       const value = assignment.value
       const attributes: string[] = []
       if (!value) {
-        if (assignment.missing) annotations.push(`    // TODO: no value for "${assignment.field.name}" in the mapping`)
+        if (assignment.missing) {
+          annotations.push(`    // TODO: no value for "${assignment.field.name}" in the mapping`)
+          writer.emitter.notes.push({ code: 'missingValue', params: { field: assignment.field.name } })
+        }
         annotations.push(`    @Mapping(target = ${quote(target)}, ignore = true)`)
         continue
       }

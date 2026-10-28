@@ -419,6 +419,7 @@ function generateAutoMapper(plan: Plan, settings: GenerateSettings): GeneratedCo
       const target = writer.name(assignment.field, 'target')
       const value = assignment.value
       if (!value) {
+        if (assignment.missing) writer.emitter.notes.push({ code: 'missingValue', params: { field: assignment.field.name } })
         members.push(
           `.ForMember(dest => dest.${target}, opt => opt.Ignore())${assignment.missing ? ' // TODO: no value in the mapping' : ''}`,
         )
