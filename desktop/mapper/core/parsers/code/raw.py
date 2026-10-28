@@ -304,3 +304,22 @@ class _Missing:
 
 
 MISSING = _Missing()
+
+
+def parse_declarations(text: str, lexer, read, table: TypeTable, format_id: str, language: str, enums_count=True):
+    """The common steps of a declaration parser: tokenize, read the declarations with read(text, tokens) and
+    build the schema. Without models (or enums, when they count) there is nothing to map."""
+    from ..types import failure, position_at
+    from .lexer import LexError, tokenize
+
+    if trim(text) == "":
+        return failure("empty")
+    try:
+        tokens = tokenize(text, lexer)
+    except LexError as error:
+        return failure(error.code, position_at(text, error.index))
+    declarations = read(text, tokens)
+    if not declarations["models"] and not (enums_count and declarations["enums"]):
+        return failure("noModels")
+    built = build_schema(declarations, table, format_id, language)
+    return {"ok": True, "schema": built["schema"], "warnings": built["warnings"]}

@@ -218,7 +218,9 @@ class _Reader:
                 cursor.next()
                 negative = cursor.eat("-")
                 number = to_number(cursor.next().value)
-                item["values"].append({"name": value_name, "value": -number if negative else number})
+                item["values"].append(
+                    {"name": value_name, "value": -number if negative and number is not None else number}
+                )
                 self._skip_statement()
                 continue
             cursor.next()

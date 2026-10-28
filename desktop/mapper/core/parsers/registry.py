@@ -2,6 +2,9 @@
 web/src/core/parsers/registry.ts."""
 
 from ..js import trim
+from .code.csharp import csharp_parser
+from .code.java import java_parser
+from .code.kotlin import kotlin_parser
 from .data.csv import csv_parser
 from .data.json import json_parser
 from .data.xml import xml_parser
@@ -27,6 +30,9 @@ PARSERS: tuple[InputParser, ...] = (
     protobuf_parser,
     prisma_parser,
     model_schema_parser,
+    java_parser,
+    csharp_parser,
+    kotlin_parser,
     smithy_parser,
 )
 

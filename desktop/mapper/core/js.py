@@ -132,7 +132,7 @@ def is_number(value) -> bool:
 
 
 def to_number(text: str):
-    """Number(text): decimal, 0x, 0o and 0b literals; NaN (None in JSON) for anything else."""
+    """Number(text): decimal, 0x, 0o and 0b literals; None (NaN, which JSON writes as null) for anything else."""
     value = trim(text)
     try:
         lower = value.lower()
@@ -140,4 +140,4 @@ def to_number(text: str):
             return int(value[2:], {"x": 16, "o": 8, "b": 2}[lower[1]])
         return _parse_number(value) if value else 0
     except ValueError:
-        return float("nan")
+        return None

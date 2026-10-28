@@ -272,6 +272,10 @@ class Cursor:
         position = self.index + offset
         return self.tokens[position] if 0 <= position < len(self.tokens) else None
 
+    def at(self, position: int) -> Token | None:
+        """The token at an absolute index, or None outside the tokens (never wrapping around)."""
+        return self.tokens[position] if 0 <= position < len(self.tokens) else None
+
     def value(self, offset: int = 0) -> str:
         """The value of a token ahead, or '' at the end: comparisons need no None checks."""
         token = self.peek(offset)
