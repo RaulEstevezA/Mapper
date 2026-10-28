@@ -55,9 +55,9 @@ function primitiveCompatibility(
   if (from === 'datetime' && (to === 'date' || to === 'time')) return { level: 'conversion', lossy: true }
   if (from === 'boolean' && to === 'integer') return { level: 'conversion' }
   if (from === 'integer' && to === 'boolean') return { level: 'transform' }
-  // Epoch seconds or milliseconds: the unit has to be chosen
-  if (from === 'integer' && (to === 'datetime' || to === 'date')) return { level: 'transform' }
-  if ((from === 'datetime' || from === 'date') && to === 'integer') return { level: 'transform' }
+  // Epoch seconds or milliseconds: the unit has to be chosen (`number` in TypeScript is a float)
+  if ((from === 'integer' || from === 'float') && (to === 'datetime' || to === 'date')) return { level: 'transform' }
+  if ((from === 'datetime' || from === 'date') && (to === 'integer' || to === 'float')) return { level: 'transform' }
   return { level: 'incompatible' }
 }
 
