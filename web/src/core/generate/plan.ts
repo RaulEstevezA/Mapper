@@ -44,7 +44,8 @@ export type ValueNode =
   | { k: 'epoch'; value: Value; unit: 'seconds' | 'milliseconds'; toDate: boolean }
   | { k: 'arithmetic'; value: Value; operator: ArithmeticOperator; operand: number }
   | { k: 'mapper'; value: Value; mapper: MapperPlan }
-  | { k: 'list'; value: Value; element: Value; isMap: boolean }
+  /** `container`: the target's collection type as written (`Set<String>`, `IReadOnlyList<Item>`), when known */
+  | { k: 'list'; value: Value; element: Value; isMap: boolean; container?: string }
   | { k: 'coalesce'; value: Value; fallback: Value }
   | { k: 'expr'; expr: Expr; fields: Map<string, Value> }
 
@@ -89,9 +90,13 @@ function literalType(value: Literal, fallback: TypeRef): TypeRef {
   return fallback
 }
 
+/** Identical types need no conversion. Numbers of different (or unknown) size still get a conversion
+ * node: some languages need a cast (`Math.toIntExact` in Java), others write nothing. */
 function sameScalar(a: TypeRef, b: TypeRef): boolean {
-  const result = compatibility(a, b)
-  return result.level === 'same'
+  if (JSON.stringify(a) === JSON.stringify(b)) return true
+  const numeric = (type: TypeRef) => type.kind === 'primitive' && (type.name === 'integer' || type.name === 'float')
+  if (numeric(a) && numeric(b)) return false
+  return compatibility(a, b).level === 'same'
 }
 
 /** The value converted to the target type when they differ (int → string, enum → string). */
@@ -272,7 +277,12 @@ class Planner {
           )
           element = convertTo(itemValue, targetItems)
         }
-        return make({ k: 'list', value: first, element, isMap: first.type.kind === 'map' }, targetType, first.nullable)
+        const container = targetField.originalType?.split('<')[0].trim()
+        return make(
+          { k: 'list', value: first, element, isMap: first.type.kind === 'map', ...(container ? { container } : {}) },
+          targetType,
+          first.nullable,
+        )
       }
     }
   }

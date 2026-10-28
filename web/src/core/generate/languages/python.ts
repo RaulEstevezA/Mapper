@@ -394,7 +394,7 @@ export const pythonGenerator: CodeGenerator = {
   options: [
     { id: 'sourceAccess', choices: ['attribute', 'dict'] },
     { id: 'targetStyle', choices: ['constructor', 'dict'] },
-    { id: 'modelsModule', choices: ['models', '.models', 'app.models', 'schemas'] },
+    { id: 'modelsModule', kind: 'text', choices: ['models'] },
   ],
   // A JSON document arrives as a dict; a class from code is read by its attributes
   defaults: (plan) => ({

@@ -95,6 +95,8 @@ class Reader {
   readonly source: string
   readonly declarations: RawDeclarations = { models: [], enums: [], warnings: [] }
   private namespace: string | undefined
+  /** Classes being read, outermost first: a nested class is referred to as Outer.Inner */
+  private readonly enclosing: string[] = []
 
   constructor(source: string, tokens: Token[]) {
     this.source = source
@@ -199,7 +201,10 @@ class Reader {
       } else cursor.next()
     }
     this.declarations.models.push(model)
+    if (this.enclosing.length > 0) model.metadata = { ...model.metadata, outer: this.enclosing.join('.') }
+    this.enclosing.push(name)
     const { fields, getters, publicFields } = this.body(name)
+    this.enclosing.pop()
     model.fields.push(...fields)
     // Records are read with name(); classes with getters unless they only expose public fields
     const lombok = names.has('Data') || names.has('Getter') || names.has('Value')

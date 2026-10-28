@@ -39,7 +39,8 @@ export interface Syntax {
   epoch(expr: string, unit: 'seconds' | 'milliseconds', toDate: boolean, from: TypeRef, to: TypeRef): string
   arithmetic(expr: string, operator: ArithmeticOperator, operand: number, type: TypeRef): string
   mapperCall(mapper: MapperPlan, expr: string): string
-  list(expr: string, item: string, element: string, isMap: boolean, elementIsItem: boolean): string
+  /** `container`: the target collection type as written, when known (`Set`, `List`, `IReadOnlyList`) */
+  list(expr: string, item: string, element: string, isMap: boolean, elementIsItem: boolean, container?: string): string
   coalesce(expr: string, fallback: string, type: TypeRef): string
   /** `build(v)` when `expr` is not null, null otherwise */
   nullSafe(expr: string, build: (value: string) => string, context: NullSafeContext): string
@@ -174,7 +175,9 @@ export class Emitter {
         const elementRoots: Roots = { source: roots.source, item, depth: roots.depth, lists: roots.lists + 1 }
         const element = this.value(value.element, elementRoots)
         const elementIsItem = value.element.k === 'self'
-        return this.guarded(value.value, roots, value.type, (inner) => syntax.list(inner, item, element, value.isMap, elementIsItem))
+        return this.guarded(value.value, roots, value.type, (inner) =>
+          syntax.list(inner, item, element, value.isMap, elementIsItem, value.container),
+        )
       }
       case 'coalesce':
         return syntax.coalesce(this.value(value.value, roots), this.value(value.fallback, roots), value.type)

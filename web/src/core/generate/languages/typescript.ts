@@ -381,8 +381,8 @@ export const typeScriptGenerator: CodeGenerator = {
   editorLanguage: 'typescript',
   modes: ['functions'],
   options: [
-    { id: 'sourceModule', choices: ['./models', './source-models', './dto'] },
-    { id: 'targetModule', choices: ['./models', './target-models', './entities'] },
+    { id: 'sourceModule', kind: 'text', choices: ['./models'] },
+    { id: 'targetModule', kind: 'text', choices: ['./models'] },
   ],
   generate: (plan, settings) => generate(plan, settings, true),
 }

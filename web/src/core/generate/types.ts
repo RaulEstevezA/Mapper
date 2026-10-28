@@ -24,7 +24,8 @@ export interface GeneratedCode {
 
 export interface GeneratorOption {
   id: string
-  /** Value used when the user has chosen none; may depend on the models (see `defaults`) */
+  /** `choice`: one of `choices`; `text`: free text (a package or module name), `choices[0]` by default */
+  kind?: 'choice' | 'text'
   choices: readonly string[]
 }
 
@@ -58,7 +59,8 @@ export interface CodeGenerator {
 export function optionValue(generator: CodeGenerator, plan: Plan | null, settings: GenerateSettings, id: string): string {
   const option = generator.options.find((item) => item.id === id)
   const chosen = settings.options[id]
-  if (option && chosen && option.choices.includes(chosen)) return chosen
+  if (option && chosen !== undefined && (option.choices.includes(chosen) || (option.kind === 'text' && /^[\w./@\\-]*$/.test(chosen))))
+    return chosen
   const fallback = plan && generator.defaults ? generator.defaults(plan)[id] : undefined
   return fallback ?? option?.choices[0] ?? ''
 }
