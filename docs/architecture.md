@@ -14,7 +14,7 @@ Every stage has a language-neutral input and output, so adding a format or an ou
 
 | Stage | Input | Output | Code |
 |---|---|---|---|
-| Parsing | text in one of 21 formats | `ModelSchema` | `web/src/core/parsers/` |
+| Parsing | text in one of 23 formats | `ModelSchema` | `web/src/core/parsers/` |
 | Matching | two `ModelSchema` + chosen models | `MappingSet` with confidence | `web/src/core/matching/` |
 | Editing | `MappingSet` + a user action | a new `MappingSet` | `web/src/core/mapping/edit.ts` |
 | Validation | `MappingSet` + both schemas | `Diagnostic[]` | `web/src/core/mapping/validate.ts` |

@@ -11,7 +11,7 @@ Client-side tool that relates two data models (classes, DTOs, JSON, schemas) fie
 
 ## What is this repository?
 
-Mapper helps write the mapping between two models: paste or open the source and the target in any of 21 formats (TypeScript, Python, Java, C#, Kotlin, Dart, Swift, Go, Rust, PHP, JavaScript, JSON, YAML, XML, CSV, JSON Schema, OpenAPI, GraphQL, Protocol Buffers, Prisma or a model schema), review the relations it suggests with their confidence, adjust the transformations, and copy or download the mapping code for TypeScript, JavaScript, Python, Java (also MapStruct), C# (also AutoMapper), Kotlin, Dart, Swift, Go, Rust or PHP.
+Mapper helps write the mapping between two models: paste or open the source and the target in any of 23 formats (TypeScript with or without Zod, Python, Java, C#, Kotlin, Dart, Swift, Go, Rust, PHP, Scala, JavaScript, JSON, YAML, XML, CSV, JSON Schema, OpenAPI, GraphQL, Protocol Buffers, Smithy, Prisma or a model schema), review the relations it suggests with their confidence, adjust the transformations, and copy or download the mapping code for TypeScript, JavaScript, Python, Java (also MapStruct), C# (also AutoMapper), Kotlin, Dart, Swift, Go, Rust or PHP.
 
 It suggests, but never decides an ambiguity: relations that need a review or that have several possible sources wait for the user.
 

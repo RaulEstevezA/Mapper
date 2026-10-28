@@ -82,6 +82,8 @@ Conversion from Api2Class's internal schema (`web/src/core/schema.ts` there):
 | `class` (by `classId`) | `model` with the class name |
 | `optional`, `nullable` | `optional`, `nullable` |
 
+Until that action exists, the classes Api2Class generates can be pasted or opened in Mapper as they are: Mapper reads every language and style Api2Class writes (Python, Java, TypeScript with or without Zod, C#, Kotlin, Dart, Swift, Go, PHP, Rust, Scala, JSON Schema and Smithy).
+
 Mapper then opens with the source filled, says "Model received from Api2Class" and moves to the target, the only thing left to provide.
 
 ## Mapper → DBCreate

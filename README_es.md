@@ -26,8 +26,8 @@ Pegar el origen y el destino  →  Revisar las relaciones sugeridas  →  Ajusta
 
 | Entradas | |
 |---|---|
-| Código | TypeScript, JavaScript, Python, Java, C#, Kotlin, Dart, Swift, Go, Rust, PHP |
-| Esquemas | JSON Schema, OpenAPI / Swagger, GraphQL, Protocol Buffers, Prisma, esquema de modelos de Mapper |
+| Código | TypeScript (también esquemas Zod), JavaScript, Python, Java, C#, Kotlin, Dart, Swift, Go, Rust, PHP, Scala |
+| Esquemas | JSON Schema, OpenAPI / Swagger, GraphQL, Protocol Buffers, Smithy, Prisma, esquema de modelos de Mapper |
 | Documentos de ejemplo | JSON, YAML, XML, CSV |
 
 | Salida | Estilos |
@@ -43,7 +43,7 @@ Pegar el origen y el destino  →  Revisar las relaciones sugeridas  →  Ajusta
 
 ## Trabajar con otras herramientas
 
-- **Desde Api2Class:** un modelo generado por Api2Class puede abrirse en Mapper como origen; solo queda aportar el destino.
+- **Desde Api2Class:** las clases que genera Api2Class, en cualquiera de sus lenguajes y estilos, se abren tal cual en Mapper como origen; solo queda aportar el destino.
 - **Hacia DBCreate:** «Exportar modelo de destino» descarga el destino como esquema de modelos, el formato que leerá DBCreate.
 - **Proyectos:** «Guardar proyecto» descarga las entradas, las relaciones y la configuración de salida; «Abrir proyecto» permite seguir más tarde. «Recordar en este navegador» guarda el trabajo solo en este navegador, hasta que lo borres.
 

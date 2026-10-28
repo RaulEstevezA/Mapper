@@ -28,9 +28,10 @@ interface InputParser {
 | OpenAPI 3 / Swagger 2 | schema | `components.schemas`, `definitions` | `nullable`, `x-nullable`, `allOf` inheritance |
 | GraphQL SDL | schema | `type`, `input`, `interface`, `enum`, `scalar`, `extend` | Fields are nullable unless marked `!`; Query, Mutation and Subscription are skipped |
 | Protocol Buffers | schema | `message` (nested too), `enum`, `oneof`, `map`, `repeated`, `optional` | proto3 presence rules; `google.protobuf` well-known types |
+| Smithy | schema | `structure`, `list`, `map`, `enum`, `intEnum`, traits `@required`, `@jsonName`, `@default`, `@documentation` | Members are optional unless `@required` or with a default |
 | Prisma | schema | `model`, `enum`, `@default`, `@map`, `@updatedAt`, relations | Generated defaults (`autoincrement()`, `now()`) are marked as generated |
 | Model schema | schema | Mapper's own interchange format | Validated field by field |
-| TypeScript | code | interfaces, `type` aliases, classes, enums, literal unions, inline object types, intersections | TypeORM and class-validator decorators |
+| TypeScript | code | interfaces, `type` aliases, classes, enums, literal unions, inline object types, intersections, Zod schemas (`z.object`, named by `z.infer`) | TypeORM and class-validator decorators |
 | JavaScript | code | classes, constructor assignments, JSDoc `@type`, `@param`, `@typedef` | Types from JSDoc or initial values |
 | Python | code | classes, `__init__`, dataclasses, Pydantic, TypedDict, Enum, `Literal` | Django models (with the implicit `id`) and SQLAlchemy (classic and `Mapped`) |
 | Java | code | classes, records, enums, nested classes, inheritance | JPA, Lombok (`@Data`, `@Builder`), Jackson annotations; getters vs public fields |
@@ -40,6 +41,7 @@ interface InputParser {
 | Swift | code | structs, classes, enums with raw values | Codable `CodingKeys` give the names on the wire |
 | Go | code | structs, embedding, pointers, `type X string` + `const` enums, `iota` | `json`, `db` and `gorm` struct tags |
 | Rust | code | structs, enums | serde `rename`, `rename_all`, `default`, `skip`, `alias` |
+| Scala | code | case classes, Scala 3 enums, `sealed trait` + `case object`, `Option`, collections | circe `Json` is a value of any shape |
 | PHP | code | typed and promoted properties, enums | Docblock `@var` types for arrays, Doctrine attributes, getters |
 
 ## How code parsers work
