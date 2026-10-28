@@ -60,11 +60,11 @@ The URL is never used: models can be large and would stay in the browser history
 
 ## Api2Class → Mapper
 
-What Api2Class needs to add (an "Open in Mapper" action next to Copy and Download, as described in personal_web_style `patterns/tool-continuity.md`):
+Api2Class has an "Open in Mapper" action next to Copy and Download (personal_web_style `patterns/tool-continuity.md`), implemented in its `web/src/core/handoff.ts` and `web/src/core/modelSchema.ts`. It sends the generated classes, in the language chosen there, together with their model schema:
 
 ```ts
 // Api2Class: convert its schema to a model-schema, then
-const handoff = { format: 'model-handoff', version: 1, from: 'api2class', role: 'source', model: rootName, schema, text: { format: 'json', content: json } }
+const handoff = { format: 'model-handoff', version: 1, from: 'api2class', role: 'source', model: rootName, schema, text: { format: languageId, content: generatedCode } }
 sessionStorage.setItem('mapper.incoming', JSON.stringify(handoff))
 window.location.href = '/tools/Mapper/'
 ```
@@ -82,7 +82,7 @@ Conversion from Api2Class's internal schema (`web/src/core/schema.ts` there):
 | `class` (by `classId`) | `model` with the class name |
 | `optional`, `nullable` | `optional`, `nullable` |
 
-Until that action exists, the classes Api2Class generates can be pasted or opened in Mapper as they are: Mapper reads every language and style Api2Class writes (Python, Java, TypeScript with or without Zod, C#, Kotlin, Dart, Swift, Go, PHP, Rust, Scala, JSON Schema and Smithy).
+The classes can also be pasted or opened in Mapper by hand: Mapper reads every language and style Api2Class writes (Python, Java, TypeScript with or without Zod, C#, Kotlin, Dart, Swift, Go, PHP, Rust, Scala, JSON Schema and Smithy).
 
 Mapper then opens with the source filled, says "Model received from Api2Class" and moves to the target, the only thing left to provide.
 
