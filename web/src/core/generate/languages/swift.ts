@@ -93,7 +93,8 @@ class SwiftWriter {
     return fieldName(field, side === 'source' ? this.plan.source : this.plan.target, NAMING, this.settings.naming)
   }
 
-  enumCase(enumDef: EnumDef, name: string, side: 'source' | 'target'): string {
+  /** A case written as `.name`: Swift infers the enum from the context. */
+  enumCase(_enumDef: EnumDef, name: string, side: 'source' | 'target'): string {
     const schema = side === 'source' ? this.plan.source : this.plan.target
     const member = schema.origin?.language === 'swift' && isValidIdentifier(name) ? name : toCamelCase(name) || 'value'
     return `.${RESERVED.has(member) ? `\`${member}\`` : member}`
