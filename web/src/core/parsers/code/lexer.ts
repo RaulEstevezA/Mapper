@@ -77,17 +77,21 @@ function isIdentPart(char: string, extra: string): boolean {
 }
 
 function cleanDoc(raw: string): string {
-  return raw
-    .split('\n')
-    .map((line) =>
-      line
-        .replace(/^\s*(\/\*\*?|\*\/|\*|\/\/\/?|#+|""")\s?/, '')
-        .replace(/\*\/\s*$/, '')
-        .trim(),
-    )
-    .filter((line) => line !== '' && !line.startsWith('@'))
-    .join(' ')
-    .trim()
+  return (
+    raw
+      .split('\n')
+      .map((line) =>
+        line
+          .replace(/^\s*(\/\*\*?|\*\/|\*|\/\/\/?|#+|""")\s?/, '')
+          .replace(/\*\/\s*$/, '')
+          .trim(),
+      )
+      .filter((line) => line !== '' && !line.startsWith('@'))
+      .join(' ')
+      // C# XML documentation: <summary>, <remarks>, <see cref="…"/>…
+      .replace(/<\/?(summary|remarks|value|returns|para|c|code|see|seealso|param|example)\b[^>]*>/g, '')
+      .trim()
+  )
 }
 
 export function tokenize(text: string, config: LexerConfig): Token[] {

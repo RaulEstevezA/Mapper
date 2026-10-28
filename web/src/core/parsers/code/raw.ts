@@ -53,6 +53,7 @@ export interface RawModel {
   construction?: ConstructionStyle
   description?: string
   annotations?: Annotation[]
+  metadata?: Record<string, string | number | boolean>
 }
 
 export interface RawEnum {
@@ -254,7 +255,16 @@ export function buildSchema(
       fields.push(field)
     }
     const model: ModelDef = { name: raw.name, kind: raw.kind, fields }
-    for (const key of ['namespace', 'generics', 'extends', 'framework', 'construction', 'description', 'annotations'] as const) {
+    for (const key of [
+      'namespace',
+      'generics',
+      'extends',
+      'framework',
+      'construction',
+      'description',
+      'annotations',
+      'metadata',
+    ] as const) {
       const value = raw[key]
       if (value !== undefined && !(Array.isArray(value) && value.length === 0)) (model as unknown as Record<string, unknown>)[key] = value
     }
