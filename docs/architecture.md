@@ -1,6 +1,6 @@
 # Architecture
 
-Mapper turns two model descriptions into mapping code. Everything runs in the browser; there is no backend.
+Mapper turns two model descriptions into mapping code. Everything runs locally, in the browser or in the desktop version; there is no backend.
 
 ```text
 Source text ──► Parser ──► ModelSchema ─┐
@@ -39,6 +39,12 @@ web/src/
 ├── examples/             Built-in examples, also used as test fixtures
 └── styles/tokens/        Design tokens copied from personal_web_style
 ```
+
+## Desktop version
+
+`desktop/` is the same tool as a Python (PySide6) application. `desktop/mapper/core/` mirrors `web/src/core/` module by module, with the same names, and works on plain dictionaries with the same keys as the TypeScript JSON (a missing key is `undefined`, `None` is `null`), so its results can be compared with the web version's as JSON. `desktop/mapper/ui/` is the window; `desktop/mapper/core/workspace.py` mirrors `app/workspace.ts`.
+
+Both versions read the cases in `shared/test-cases/` ([shared/README.md](../shared/README.md)): calls of core functions with their results, and model pairs with the code every generator writes for them. The web version writes the results (`UPDATE_SHARED=1`) and the desktop tests must give the same ones, so a change in the core is made in both versions.
 
 ## Principles
 

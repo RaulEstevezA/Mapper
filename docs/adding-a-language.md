@@ -54,4 +54,10 @@ npm run check   # types, lint, format and tests
 npm run build
 ```
 
+Then port the change to the desktop version: the same module under `desktop/mapper/core/` (registered in `parsers/registry.py` or `generate/generators.py`), a case in `shared/test-cases/` that uses it, `UPDATE_SHARED=1 npx vitest run src/core/shared.test.ts` from `web/`, and from `desktop/`:
+
+```bash
+ruff check . && ruff format --check . && pytest
+```
+
 Then add the language to the README tables (`README_en.md`, `README_es.md`) and to [parsers.md](parsers.md) or [generators.md](generators.md).

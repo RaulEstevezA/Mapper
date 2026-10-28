@@ -1,6 +1,6 @@
 # Mapper
 
-Mapper relaciona dos modelos de datos y genera el código que convierte uno en el otro. Todo ocurre en el navegador: lo que pegas o abres no se envía a ningún sitio, y el código se analiza, nunca se ejecuta.
+Mapper relaciona dos modelos de datos y genera el código que convierte uno en el otro. Todo ocurre en tu lado, en el navegador o en la aplicación de escritorio: lo que pegas o abres no se envía a ningún sitio, y el código se analiza, nunca se ejecuta.
 
 ```text
 Pegar el origen y el destino  →  Revisar las relaciones sugeridas  →  Ajustar transformaciones  →  Copiar el código de mapping
@@ -45,9 +45,24 @@ Pegar el origen y el destino  →  Revisar las relaciones sugeridas  →  Ajusta
 
 - **Desde Api2Class:** las clases que genera Api2Class, en cualquiera de sus lenguajes y estilos, se abren tal cual en Mapper como origen; solo queda aportar el destino.
 - **Hacia DBCreate:** «Exportar modelo de destino» descarga el destino como esquema de modelos, el formato que leerá DBCreate.
-- **Proyectos:** «Guardar proyecto» descarga las entradas, las relaciones y la configuración de salida; «Abrir proyecto» permite seguir más tarde. «Recordar en este navegador» guarda el trabajo solo en este navegador, hasta que lo borres.
+- **Proyectos:** «Guardar proyecto» descarga las entradas, las relaciones y la configuración de salida; «Abrir proyecto» permite seguir más tarde. «Recordar en este navegador» («Recordar en este equipo» en la aplicación de escritorio) guarda el trabajo solo ahí, hasta que lo borres. Un proyecto guardado en una versión se abre en la otra.
 
 Los formatos están documentados en [docs/interoperability.md](docs/interoperability.md) (en inglés).
+
+## Versiones
+
+| | Web | Escritorio |
+|---|---|---|
+| Tecnología | React + TypeScript + Vite | Python + PySide6 |
+| Dónde se ejecuta | En el navegador | Aplicación instalable (Windows, macOS, Linux) |
+| Estado | Publicada: [raulesteveza.github.io/tools/Mapper](https://raulesteveza.github.io/tools/Mapper/) | [Descargar](./desktop/README_es.md#descargar) (compilada y comprobada en macOS) |
+| Documentación | Este README y [docs/](./docs) | [desktop/README_es.md](./desktop/README_es.md) |
+
+La aplicación de escritorio hace lo mismo que la versión web, con el mismo aspecto, los mismos ejemplos e inglés o castellano. Recibe los modelos de otras herramientas como archivos, en lugar de desde otra pestaña del navegador.
+
+## Comportamiento compartido
+
+Las dos versiones se escriben por separado (TypeScript y Python), pero **se comportan igual**: la carpeta [`shared/`](./shared/README.md) contiene los casos de prueba que definen qué debe hacer cada parte del núcleo, desde detectar y leer cada formato de entrada hasta las sugerencias, las ediciones, las comprobaciones, los borradores de destino, los proyectos y el código exacto de cada generador en cada modo y opción. Los tests de la web y los del escritorio leen los mismos archivos, así que una diferencia en cualquiera de las dos versiones hace fallar sus tests.
 
 ## Desarrollo
 
@@ -61,7 +76,23 @@ npm run check    # tipos, lint, formato y tests
 npm run build    # build de producción en web/dist
 ```
 
-Los tests cubren los parsers de cada formato, el motor de matching, las transformaciones, la validación, los generadores (instantáneas, y una compilación o comprobación de sintaxis cuando están instalados `python3`, `javac`, `dart`, `swiftc`, `rustfmt` o `php`) y los flujos principales de la interfaz.
+Los tests cubren los parsers de cada formato, el motor de matching, las transformaciones, la validación, los generadores (instantáneas, y una compilación o comprobación de sintaxis cuando están instalados `python3`, `javac`, `dart`, `swiftc`, `rustfmt` o `php`), los casos compartidos y los flujos principales de la interfaz.
+
+La versión de escritorio está en [`desktop/`](./desktop): consulta [desktop/README_es.md](./desktop/README_es.md#ejecutar-en-local) para ejecutarla, probarla y crear el ejecutable.
+
+## Estructura del repositorio
+
+```
+web/                     Versión web (React + TypeScript + Vite)
+  src/core/              Lógica sin interfaz: modelo, parsers, matching, mapping, expresiones, generadores, proyectos
+  src/components/        Interfaz React
+desktop/                 Versión de escritorio (Python + PySide6)
+  mapper/core/           La misma lógica que web/src/core/, en Python
+  mapper/ui/             Interfaz con PySide6
+shared/                  Comportamiento común a ambas versiones
+  test-cases/            Llamadas al núcleo y código esperado de cada generador
+docs/                    Documentación técnica e imágenes
+```
 
 ## Documentación técnica
 

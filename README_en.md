@@ -1,6 +1,6 @@
 # Mapper
 
-Mapper relates two data models and generates the code that converts one into the other. Everything happens in the browser: what you paste or open is never sent anywhere, and code is analyzed, never run.
+Mapper relates two data models and generates the code that converts one into the other. Everything happens on your side, in the browser or in the desktop app: what you paste or open is never sent anywhere, and code is analyzed, never run.
 
 ```text
 Paste the source and the target  →  Review the suggested relations  →  Adjust transformations  →  Copy the mapping code
@@ -45,9 +45,24 @@ Paste the source and the target  →  Review the suggested relations  →  Adjus
 
 - **From Api2Class:** the classes Api2Class generates, in any of its languages and styles, open in Mapper as the source as they are; only the target is left to provide.
 - **To DBCreate:** "Export target model" downloads the target as a model schema, the format DBCreate will read.
-- **Projects:** "Save project" downloads the inputs, the relations and the output settings; "Open project" continues later. "Remember in this browser" keeps the work in this browser only, until you delete it.
+- **Projects:** "Save project" downloads the inputs, the relations and the output settings; "Open project" continues later. "Remember in this browser" ("Remember on this computer" in the desktop app) keeps the work there only, until you delete it. A project saved in one version opens in the other.
 
 The formats are documented in [docs/interoperability.md](docs/interoperability.md).
+
+## Versions
+
+| | Web | Desktop |
+|---|---|---|
+| Technology | React + TypeScript + Vite | Python + PySide6 |
+| Runs in | The browser | Installable application (Windows, macOS, Linux) |
+| Status | Published: [raulesteveza.github.io/tools/Mapper](https://raulesteveza.github.io/tools/Mapper/) | [Download](./desktop/README_en.md#download) (built and checked on macOS) |
+| Documentation | This README and [docs/](./docs) | [desktop/README_en.md](./desktop/README_en.md) |
+
+The desktop app does what the web version does, with the same look, the same examples and English or Spanish. It receives models from other tools as files, instead of from another browser tab.
+
+## Shared behavior
+
+The two versions are written separately (TypeScript and Python), but **they behave the same**: the [`shared/`](./shared/README.md) folder holds the test cases that define what each part of the core must do, from detecting and reading every input format to the suggestions, edits, checks, target drafts, projects and the exact code of every generator in every mode and option. The web and desktop tests read the same files, so a difference in either version makes its tests fail.
 
 ## Development
 
@@ -61,7 +76,23 @@ npm run check    # types, lint, format and tests
 npm run build    # production build in web/dist
 ```
 
-The tests include parsers for every format, the matching engine, transformations, validation, generators (snapshots, and a compile or syntax check when `python3`, `javac`, `dart`, `swiftc`, `rustfmt` or `php` are installed) and the main interface flows.
+The tests include parsers for every format, the matching engine, transformations, validation, generators (snapshots, and a compile or syntax check when `python3`, `javac`, `dart`, `swiftc`, `rustfmt` or `php` are installed), the shared cases and the main interface flows.
+
+The desktop version is in [`desktop/`](./desktop): see [desktop/README_en.md](./desktop/README_en.md#run-locally) to run it, test it and build the executable.
+
+## Repository structure
+
+```
+web/                     Web version (React + TypeScript + Vite)
+  src/core/              Logic without interface: model, parsers, matching, mapping, expressions, generators, projects
+  src/components/        React interface
+desktop/                 Desktop version (Python + PySide6)
+  mapper/core/           The same logic as web/src/core/, in Python
+  mapper/ui/             Interface with PySide6
+shared/                  Behavior common to both versions
+  test-cases/            Calls of the core and the code expected from every generator
+docs/                    Technical documentation and images
+```
 
 ## Documentation
 
