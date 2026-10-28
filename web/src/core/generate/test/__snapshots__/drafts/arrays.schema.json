@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Order",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string"
+    },
+    "placedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Item"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "coupon": {
+      "oneOf": [
+        {},
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "orderId",
+    "placedAt",
+    "items",
+    "tags",
+    "coupon"
+  ],
+  "$defs": {
+    "Item": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer"
+        },
+        "unitPrice": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "productId",
+        "title",
+        "quantity",
+        "unitPrice"
+      ]
+    }
+  }
+}

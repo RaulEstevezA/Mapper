@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Product",
+  "type": "object",
+  "properties": {
+    "sku": {
+      "type": "string"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "priceCents": {
+      "type": "number"
+    },
+    "status": {
+      "$ref": "#/$defs/ProductStatus"
+    },
+    "created": {
+      "type": "number"
+    },
+    "stock": {
+      "type": "string"
+    },
+    "discount": {
+      "type": [
+        "number",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "sku",
+    "firstName",
+    "lastName",
+    "priceCents",
+    "status",
+    "created",
+    "stock",
+    "discount"
+  ],
+  "$defs": {
+    "ProductStatus": {
+      "enum": [
+        "ACTIVE",
+        "DISCONTINUED",
+        "DRAFT"
+      ]
+    }
+  }
+}
