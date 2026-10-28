@@ -13,7 +13,10 @@ export default defineConfig(({ command, isPreview }) => ({
         codeSplitting: {
           groups: [
             { name: 'react', test: /node_modules[\\/](react|react-dom|scheduler)[\\/]/ },
-            { name: 'codemirror', test: /node_modules[\\/](@codemirror[\\/](state|view|commands|language)|@lezer[\\/](common|highlight|lr)|style-mod|w3c-keyname|crelt)[\\/]/ },
+            {
+              name: 'codemirror',
+              test: /node_modules[\\/](@codemirror[\\/](state|view|commands|language)|@lezer[\\/](common|highlight|lr)|style-mod|w3c-keyname|crelt)[\\/]/,
+            },
             { name: 'yaml', test: /node_modules[\\/]yaml[\\/]/ },
           ],
         },

@@ -315,18 +315,40 @@ function stripModel(words: string[], model: string[]): string[] {
 
 /** Scores how well a source name matches a target name. `sourceWords` may come from a path
  * (`address.city` → address city). Returns null when they have nothing in common. */
+interface Analysis {
+  raw: string
+  expanded: string[]
+  meaning: string[]
+}
+
+// Every name is compared with many others: its words are worked out once
+const analyses = new Map<string, Analysis>()
+
+function analyze(words: string[]): Analysis {
+  const raw = words.join(' ')
+  let analysis = analyses.get(raw)
+  if (!analysis) {
+    const expanded = expandWordList(words)
+    analysis = { raw, expanded, meaning: meaningWords(expanded) }
+    // A bound so a long session with many inputs does not keep every name forever
+    if (analyses.size > 20000) analyses.clear()
+    analyses.set(raw, analysis)
+  }
+  return analysis
+}
+
 export function compareNames(sourceName: string, sourceWords: string[], targetName: string, context: NameContext): NameMatch | null {
   if (sourceName === targetName) return { score: 1, reason: 'sameName' }
-  const rawSource = sourceWords
-  const rawTarget = nameWords(targetName)
-  if (rawSource.join(' ') === rawTarget.join(' ')) return { score: 0.97, reason: 'sameWords' }
+  const sourceAnalysis = analyze(sourceWords)
+  const targetAnalysis = analyze(nameWords(targetName))
+  if (sourceAnalysis.raw === targetAnalysis.raw) return { score: 0.97, reason: 'sameWords' }
 
-  const source = expandWordList(sourceWords)
-  const target = expandedWords(targetName)
+  const source = sourceAnalysis.expanded
+  const target = targetAnalysis.expanded
   if (sameSet(source, target)) return { score: 0.93, reason: 'abbreviation' }
 
-  const sourceMeaning = meaningWords(source)
-  const targetMeaning = meaningWords(target)
+  const sourceMeaning = sourceAnalysis.meaning
+  const targetMeaning = targetAnalysis.meaning
   if (sameSet(sourceMeaning, targetMeaning)) return { score: 0.88, reason: 'synonym' }
 
   // The model name added to a key: `id` in User and `user_id`
@@ -341,7 +363,9 @@ export function compareNames(sourceName: string, sourceWords: string[], targetNa
 
   const joinedSource = sourceMeaning.join('')
   const joinedTarget = targetMeaning.join('')
-  const fuzzy = 0.5 * dice(sourceMeaning, targetMeaning) + 0.5 * jaroWinkler(joinedSource, joinedTarget)
+  // fuzzy ≥ 0.75 needs a Dice of at least 0.5: Jaro-Winkler, the costly part, is computed only then
+  const words = dice(sourceMeaning, targetMeaning)
+  const fuzzy = words >= 0.5 ? 0.5 * words + 0.5 * jaroWinkler(joinedSource, joinedTarget) : 0
   const contained = containment(sourceMeaning, targetMeaning)
   // Fuzzy similarity alone never reaches "high": a similar name is not the same name
   const fuzzyScore = fuzzy >= 0.75 ? fuzzy * 0.85 : 0

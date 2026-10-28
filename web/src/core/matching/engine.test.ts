@@ -223,3 +223,19 @@ describe('matching engine', () => {
     expect(findMapping(set, set.root)!.fields[1].transform).toEqual({ kind: 'collection', mapping: 'Cat->Category' })
   })
 })
+
+describe('performance', () => {
+  it('suggests a mapping between models of hundreds of fields quickly', () => {
+    const words = ['customer', 'order', 'total', 'amount', 'created', 'status', 'name', 'address', 'city', 'phone', 'email', 'price']
+    const name = (index: number, snake: boolean) => {
+      const [a, b] = [words[index % 12], words[(index * 7) % 12]]
+      // The number stays attached to the last word in both conventions
+      return snake ? `${a}_${b}${index}` : `${a}${b[0].toUpperCase()}${b.slice(1)}${index}`
+    }
+    const fields = (snake: boolean) => Array.from({ length: 300 }, (_, index) => `  ${name(index, snake)}: string`).join('\n')
+    const start = performance.now()
+    const { set } = map(`interface A {\n${fields(false)}\n}`, 'A', `interface B {\n${fields(true)}\n}`, 'B')
+    expect(performance.now() - start).toBeLessThan(1500)
+    expect(findMapping(set, set.root)!.fields.every((field) => field.status === 'active')).toBe(true)
+  })
+})

@@ -348,6 +348,14 @@ function assign(
   pairs.sort((a, b) => b.candidate.score - a.candidate.score)
   const key = (candidate: Candidate) => candidate.sources.map(pathKey).join('+')
   const decided = new Set<string>()
+  // Pairs by source, to find the other targets that want a source without going through every pair
+  const pairsBySource = new Map<string, typeof pairs>()
+  for (const pair of pairs) {
+    for (const path of pair.candidate.sources) {
+      const sourceKey = pathKey(path)
+      pairsBySource.set(sourceKey, [...(pairsBySource.get(sourceKey) ?? []), pair])
+    }
+  }
 
   for (const { target, candidate } of pairs) {
     if (decided.has(target)) continue
@@ -367,7 +375,7 @@ function assign(
           !other.sources.some((path) => usedSources.has(pathKey(path))),
       )
       // Another undecided target that wants this source almost as much
-      const rivalTargets = pairs.filter(
+      const rivalTargets = [...new Set(sourceKeys.flatMap((sourceKey) => pairsBySource.get(sourceKey) ?? []))].filter(
         (other) =>
           other.target !== target &&
           other.candidate.transform.kind !== 'split' &&

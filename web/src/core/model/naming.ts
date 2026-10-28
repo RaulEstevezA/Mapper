@@ -6,6 +6,18 @@ export type NamingConvention = 'PascalCase' | 'camelCase' | 'snake_case' | 'SCRE
  * all give ["postal", "code"]. Accents are removed (`teléfono` → telefono) and digits stay with the
  * word before them (`address2`). */
 export function splitWords(text: string): string[] {
+  const cached = splitCache.get(text)
+  if (cached) return [...cached]
+  const words = split(text)
+  // The matching engine splits the same names many times: they are worked out once
+  if (splitCache.size > 20000) splitCache.clear()
+  splitCache.set(text, words)
+  return [...words]
+}
+
+const splitCache = new Map<string, string[]>()
+
+function split(text: string): string[] {
   const plain = text.normalize('NFD').replace(/\p{M}/gu, '')
   return plain
     .split(/[^\p{L}\p{N}]+/u)
