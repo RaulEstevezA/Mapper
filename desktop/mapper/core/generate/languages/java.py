@@ -119,6 +119,7 @@ _LOWER = re.compile(r"[a-z]")
 _PLAIN_SEPARATOR = re.compile(r"^[\w ,;:-]$")
 _CALL = re.compile(r"^(\w+)\((\w+)\)$")
 _ANY_REMAINING = "MappingConstants.ANY_REMAINING"
+_THROW = "MappingConstants.THROW_EXCEPTION"
 _DECIMAL_METHODS = {"+": "add", "-": "subtract", "*": "multiply", "/": "divide"}
 
 
@@ -637,9 +638,7 @@ def _generate_mapstruct(plan: dict, settings: dict) -> dict:
                             lines.append(f"    @ValueMapping(source = {_ANY_REMAINING}, target = {constant})")
                         # Values without a pair fail at run time, as in the manual mapper (MapStruct 1.5+)
                         elif len(inner["pairs"]) < (len(source["values"]) if source else math.inf):
-                            lines.append(
-                                f"    @ValueMapping(source = {_ANY_REMAINING}, target = MappingConstants.THROW_EXCEPTION)"
-                            )
+                            lines.append(f"    @ValueMapping(source = {_ANY_REMAINING}, target = {_THROW})")
                         enum_class = writer.enum_class(inner["target"])
                         parameter = writer.enum_class(source) if source else "String"
                         lines.append(f"    {enum_class} to{enum_class}({parameter} value);")
