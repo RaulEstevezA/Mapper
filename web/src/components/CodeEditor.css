@@ -1,0 +1,13 @@
+.code-editor {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.code-editor .cm-editor {
+  height: 100%;
+}
+
+.code-editor .cm-editor.cm-focused {
+  outline: none;
+}

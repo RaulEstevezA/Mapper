@@ -1,0 +1,40 @@
+.app-header {
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 24px 24px 8px;
+}
+
+.app-header--wide {
+  max-width: var(--content-width-wide);
+}
+
+.app-header__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-header__controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 4px 16px;
+}
+
+.app-header__logo {
+  color: var(--text);
+  font-weight: 600;
+  transition: opacity var(--transition-fast);
+}
+
+.app-header__logo:hover {
+  opacity: 0.75;
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .app-header {
+    padding: 16px 16px 4px;
+  }
+}

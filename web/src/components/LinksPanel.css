@@ -1,0 +1,19 @@
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: var(--space-16);
+  padding: var(--window-padding);
+}
+
+.links__note {
+  color: var(--muted);
+  font-size: var(--font-note);
+  line-height: var(--leading-code);
+}
+
+@media (max-width: 600px) {
+  .links {
+    padding: var(--window-padding-mobile);
+  }
+}
