@@ -566,3 +566,44 @@ export function coverage(mapping: ModelMapping, source: ModelSchema, target: Mod
     : []
   return { unusedSources, missingRequired }
 }
+
+/** The transformation used when the user picks sources for a target field by hand: the one the types
+ * call for, with the nested mapping suggested when the value is an object or a list of objects. */
+export function defaultTransform(
+  set: MappingSet,
+  source: ModelSchema,
+  target: ModelSchema,
+  id: string,
+  targetField: string,
+  sources: SourcePath[],
+): { set: MappingSet; transform: Transform } {
+  const current = set.mappings.find((mapping) => mapping.id === id)
+  const sourceModel = current && findModel(source, current.source)
+  const targetModel = current && findModel(target, current.target)
+  const field = targetModel && allFields(target, targetModel).find((item) => item.name === targetField)
+  if (!current || !sourceModel || !field) return { set, transform: { kind: 'direct' } }
+  if (sources.length === 0) return { set, transform: { kind: 'constant', value: null } }
+  if (sources.length > 1) return { set, transform: { kind: 'concat', separator: ' ' } }
+  const context: Context = { source, target, mappings: new Map(set.mappings.map((mapping) => [mapping.id, mapping])) }
+  let type: TypeRef | null = { kind: 'model', name: sourceModel.name }
+  let model: ModelDef | undefined = sourceModel
+  for (const part of sources[0]) {
+    const step: FieldDef | undefined = model ? allFields(source, model).find((item) => item.name === part) : undefined
+    if (!step) {
+      type = null
+      break
+    }
+    type = step.type
+    model = step.type.kind === 'model' ? findModel(source, step.type.name) : undefined
+  }
+  if (!type) return { set, transform: { kind: 'direct' } }
+  const result = compatibility(type, field.type)
+  const candidate = completeTransform(
+    { sources, transform: transformFor(result, type, field.type), score: 1, confidence: 'exact', reasons: [] },
+    sourceModel,
+    field,
+    context,
+  )
+  const mappings = [...context.mappings.values()]
+  return { set: { root: set.root, mappings }, transform: candidate.transform }
+}
