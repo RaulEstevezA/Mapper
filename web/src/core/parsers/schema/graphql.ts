@@ -178,6 +178,8 @@ export const graphQlParser: InputParser = {
   extensions: ['.graphql', '.graphqls', '.gql'],
   editorLanguage: 'graphql',
   detect(text) {
+    // TypeScript writes its types in lower case (`string`, `number`); GraphQL in capitals (`String`, `Int`)
+    if (/:\s*(string|number|boolean|unknown|any)\b/.test(text) || /\bexport\s/.test(text)) return 0
     if (
       /^\s*(extend\s+)?(type|input|interface)\s+\w+(\s+implements\s+[\w&\s]+)?\s*(@\w+(\([^)]*\))?\s*)*\{/m.test(text) &&
       /:\s*\[?\w+!?\]?!?/.test(text) &&

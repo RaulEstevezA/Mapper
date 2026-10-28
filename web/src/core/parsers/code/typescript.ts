@@ -601,7 +601,8 @@ export const typeScriptParser: InputParser = {
   extensions: ['.ts', '.tsx', '.mts', '.cts'],
   editorLanguage: 'typescript',
   detect(text) {
-    if (/^\s*(export\s+)?(declare\s+)?(interface|type)\s+\w+[\s<={]/m.test(text)) return 0.9
+    if (/^\s*(export\s+)?(declare\s+)?(interface|type)\s+\w+[\s<={]/m.test(text))
+      return /:\s*(string|number|boolean)\b/.test(text) ? 0.95 : 0.9
     if (
       /^\s*(export\s+)?(abstract\s+)?class\s+\w+/m.test(text) &&
       /\w[?!]?\s*:\s*(string|number|boolean|Date|[A-Z]\w*)(\[\])?\s*[;=\n]/.test(text)
