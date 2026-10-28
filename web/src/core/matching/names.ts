@@ -352,11 +352,15 @@ export function compareNames(sourceName: string, sourceWords: string[], targetNa
   if (sameSet(sourceMeaning, targetMeaning)) return { score: 0.88, reason: 'synonym' }
 
   // The model name added to a key: `id` in User and `user_id`
-  const strippedSource = stripModel(sourceMeaning, context.sourceModel)
-  const strippedTarget = stripModel(targetMeaning, context.targetModel)
-  if ((strippedSource !== sourceMeaning || strippedTarget !== targetMeaning) && sameSet(strippedSource, strippedTarget)) {
-    const isKey = strippedSource.length === 1 && KEY_WORDS.has(strippedSource[0])
-    return { score: isKey ? 0.9 : 0.75, reason: 'modelContext' }
+  // Either model's name counts on either side: a JSON document has no model name of its own, but its
+  // `invoice_id` is the `id` of the target model Invoice
+  for (const model of [context.sourceModel, context.targetModel]) {
+    const strippedSource = stripModel(sourceMeaning, model)
+    const strippedTarget = stripModel(targetMeaning, model)
+    if ((strippedSource !== sourceMeaning || strippedTarget !== targetMeaning) && sameSet(strippedSource, strippedTarget)) {
+      const isKey = strippedSource.length === 1 && KEY_WORDS.has(strippedSource[0])
+      return { score: isKey ? 0.9 : 0.75, reason: 'modelContext' }
+    }
   }
 
   if (weakSame(sourceMeaning, targetMeaning)) return { score: 0.74, reason: 'synonym' }

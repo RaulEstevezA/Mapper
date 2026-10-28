@@ -239,3 +239,17 @@ describe('performance', () => {
     expect(findMapping(set, set.root)!.fields.every((field) => field.status === 'active')).toBe(true)
   })
 })
+
+describe('model names in field names', () => {
+  it('uses the target model name when the source has none', () => {
+    const { set } = map(
+      '{"invoice_id": "INV-1", "total": 3}',
+      'Root',
+      'data class Invoice(val id: String, val total: Int)',
+      'Invoice',
+      'json',
+      'kotlin',
+    )
+    expect(summary(set)[0]).toBe('id ← invoice_id [high, active]')
+  })
+})
