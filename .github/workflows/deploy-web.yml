@@ -17,6 +17,7 @@ on:
     branches: [main]
     paths:
       - 'web/**'
+      - 'shared/**'
       - '.github/workflows/deploy-web.yml'
   workflow_dispatch:
 
