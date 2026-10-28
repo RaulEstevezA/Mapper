@@ -11,9 +11,13 @@
 
 name: Deploy web
 
-# Solo se lanza a mano (Actions → Deploy web → Run workflow) hasta que la herramienta se publique:
-# para publicar en cada push a main, añade el disparador `push` como en Api2Class.
+# Se publica en cada push a main que cambie la app o este workflow; también se puede lanzar a mano.
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'web/**'
+      - '.github/workflows/deploy-web.yml'
   workflow_dispatch:
 
 concurrency:
