@@ -171,6 +171,8 @@ export class TypeResolver {
       const parts = args.map((part) => this.resolve(part, depth + 1))
       return parts.find((part) => part.type.kind === 'model') ?? parts[0] ?? { type: primitive('any'), nullable: false }
     }
+    // A type that is only null (`notes: None`, `notes: null`): a value of unknown shape that is always missing
+    if (args.length === 0 && (this.table.nullNames ?? []).includes(name)) return { type: primitive('any'), nullable: true }
     if (this.matches(this.table.optionals, name) && args.length === 1) {
       return { type: this.resolve(args[0], depth + 1).type, nullable: true }
     }
