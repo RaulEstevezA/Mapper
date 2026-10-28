@@ -53796,5 +53796,1490 @@
    },
    "warnings": []
   }
+ },
+ {
+  "args": [
+   "enabled: yes\ncount: 012\nhex: 0x1F\noct: 0o17\nratio: 1e3\nwhen: 2024-01-02\nnothing: ~\nflag: True\nname: on\n",
+   "yaml"
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "yaml"
+    },
+    "models": [
+     {
+      "name": "Root",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "enabled",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "count",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "hex",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "oct",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "ratio",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "when",
+        "type": {
+         "kind": "primitive",
+         "name": "date"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "nothing",
+        "type": {
+         "kind": "primitive",
+         "name": "any"
+        },
+        "nullable": true,
+        "optional": false
+       },
+       {
+        "name": "flag",
+        "type": {
+         "kind": "primitive",
+         "name": "boolean"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "Root"
+   },
+   "warnings": []
+  }
+ },
+ {
+  "args": [
+   "base: &b\n  id: 1\n  name: x\nother:\n  <<: *b\n  extra: true\n",
+   "yaml"
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "yaml"
+    },
+    "models": [
+     {
+      "name": "Root",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "base",
+        "type": {
+         "kind": "model",
+         "name": "Base"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "other",
+        "type": {
+         "kind": "model",
+         "name": "Other"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     },
+     {
+      "name": "Base",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     },
+     {
+      "name": "Other",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "<<",
+        "type": {
+         "kind": "model",
+         "name": "Model"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "extra",
+        "type": {
+         "kind": "primitive",
+         "name": "boolean"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     },
+     {
+      "name": "Model",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "Root"
+   },
+   "warnings": []
+  }
+ },
+ {
+  "args": [
+   "- id: 1\n  tags: [a, b]\n- id: 2\n  tags: []\n  note: null\n",
+   "yaml",
+   {
+    "rootName": "Items"
+   }
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "yaml"
+    },
+    "models": [
+     {
+      "name": "Item",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "tags",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "primitive",
+          "name": "string"
+         }
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "note",
+        "type": {
+         "kind": "primitive",
+         "name": "any"
+        },
+        "nullable": true,
+        "optional": true
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "Item"
+   },
+   "warnings": []
+  }
+ },
+ {
+  "args": [
+   "2: two\n1: one\nb: bee\na: ay\n",
+   "yaml"
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "yaml"
+    },
+    "models": [
+     {
+      "name": "Root",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "1",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "2",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "b",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "a",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "Root"
+   },
+   "warnings": []
+  }
+ },
+ {
+  "args": [
+   "key: !Ref Something\nlist: !Split [a, b]\n",
+   "yaml"
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "yaml"
+    },
+    "models": [
+     {
+      "name": "Root",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "key",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "list",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "primitive",
+          "name": "string"
+         }
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "Root"
+   },
+   "warnings": []
+  }
+ },
+ {
+  "args": [
+   "key: [unclosed\n",
+   "yaml"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "syntax",
+    "params": {
+     "message": "Flow sequence in block collection must be sufficiently indented and end with a ]"
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "a: 1\na: 2\n",
+   "yaml"
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "yaml"
+    },
+    "models": [
+     {
+      "name": "Root",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "a",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "Root"
+   },
+   "warnings": []
+  }
+ },
+ {
+  "args": [
+   "---\nfirst: 1\n---\nsecond: 2\n",
+   "yaml"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "syntax",
+    "params": {
+     "message": "Source contains multiple documents; please use YAML.parseAllDocuments()"
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "price: 12.50\nqty: -3\nbig: 12345678901234567890\ninf: .inf\n",
+   "yaml"
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "yaml"
+    },
+    "models": [
+     {
+      "name": "Root",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "price",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "qty",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "big",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "inf",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "Root"
+   },
+   "warnings": []
+  }
+ },
+ {
+  "args": [
+   "<?xml version=\"1.0\"?>\n<order id=\"7\" xmlns=\"urn:x\" xmlns:p=\"urn:p\"><p:customer>Ana</p:customer><total>12.5</total><lines><line sku=\"A1\">2</line><line sku=\"B2\">1</line></lines><note><![CDATA[ hi ]]></note></order>",
+   "xml"
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "xml"
+    },
+    "models": [
+     {
+      "name": "Order",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "customer",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "total",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "lines",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "model",
+          "name": "Line"
+         }
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "note",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     },
+     {
+      "name": "Line",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "sku",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "value",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "Order"
+   },
+   "warnings": []
+  }
+ },
+ {
+  "args": [
+   "<people><person><name>A</name></person></people>",
+   "xml"
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "xml"
+    },
+    "models": [
+     {
+      "name": "Person",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "Person"
+   },
+   "warnings": []
+  }
+ },
+ {
+  "args": [
+   "<root><a>1</a><a>2</a><b/></root>",
+   "xml"
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "xml"
+    },
+    "models": [
+     {
+      "name": "Root",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "a",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "primitive",
+          "name": "integer"
+         }
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "b",
+        "type": {
+         "kind": "primitive",
+         "name": "any"
+        },
+        "nullable": true,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "Root"
+   },
+   "warnings": []
+  }
+ },
+ {
+  "args": [
+   "<user active=\"true\">Ana<age>42</age></user>",
+   "xml"
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "xml"
+    },
+    "models": [
+     {
+      "name": "User",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "active",
+        "type": {
+         "kind": "primitive",
+         "name": "boolean"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "age",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "value",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "User"
+   },
+   "warnings": []
+  }
+ },
+ {
+  "args": [
+   "<root><a></root>",
+   "xml"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "syntax",
+    "params": {
+     "message": "1:16: unexpected close tag."
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "<a>1</a><b>2</b>",
+   "xml"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "syntax",
+    "params": {
+     "message": "1:11: documents may contain only one root."
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "<zip>01234</zip>",
+   "xml"
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "xml"
+    },
+    "models": [
+     {
+      "name": "Zip",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "value",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "Zip"
+   },
+   "warnings": []
+  }
+ },
+ {
+  "args": [
+   "id;name;price\n1;\"Doe; John\";12.5\n2;Ana;\n",
+   "csv"
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "csv"
+    },
+    "models": [
+     {
+      "name": "Row",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "name",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "price",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": true,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "Row"
+   },
+   "warnings": []
+  }
+ },
+ {
+  "args": [
+   "a,b\n\"multi\nline\",2\n",
+   "csv",
+   {
+    "rootName": "Thing"
+   }
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "csv"
+    },
+    "models": [
+     {
+      "name": "Thing",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "a",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "b",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "Thing"
+   },
+   "warnings": []
+  }
+ },
+ {
+  "args": [
+   "a\tb\tc\n1\t2\t3\n",
+   "csv"
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "csv"
+    },
+    "models": [
+     {
+      "name": "Row",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "a",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "b",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "c",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "Row"
+   },
+   "warnings": []
+  }
+ },
+ {
+  "args": [
+   "x,y\n\"open,1\n",
+   "csv"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "unterminatedString",
+    "line": 2,
+    "column": 1
+   }
+  }
+ },
+ {
+  "args": [
+   "only,header\n",
+   "csv"
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "csv"
+    },
+    "models": [
+     {
+      "name": "Row",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "only",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": true,
+        "optional": false
+       },
+       {
+        "name": "header",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": true,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "Row"
+   },
+   "warnings": []
+  }
+ },
+ {
+  "args": [
+   ",\n1,2\n",
+   "csv"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "noModels"
+   }
+  }
+ },
+ {
+  "args": [
+   "zip,flag\n01234,TRUE\n00012,false\n",
+   "csv"
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "csv"
+    },
+    "models": [
+     {
+      "name": "Row",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "zip",
+        "type": {
+         "kind": "primitive",
+         "name": "string"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "flag",
+        "type": {
+         "kind": "primitive",
+         "name": "boolean"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "Row"
+   },
+   "warnings": []
+  }
+ },
+ {
+  "args": [
+   "{\"a\": 1,}",
+   "json"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "syntax",
+    "line": 1,
+    "column": 9,
+    "params": {
+     "detail": "json.trailingComma",
+     "found": "}",
+     "key": "a"
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "{\"a\" 1}",
+   "json"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "syntax",
+    "line": 1,
+    "column": 6,
+    "params": {
+     "detail": "json.unexpectedCharacter",
+     "found": "1",
+     "expected": "colon",
+     "key": "a"
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "[1, 2",
+   "json"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "syntax",
+    "line": 1,
+    "column": 6,
+    "params": {
+     "detail": "json.unexpectedEnd",
+     "expected": "commaOrBracket"
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "{\"a\": \"\\x\"}",
+   "json"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "syntax",
+    "line": 1,
+    "column": 9,
+    "params": {
+     "detail": "json.invalidEscape",
+     "found": "x"
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "﻿{\"a\": 01}",
+   "json"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "syntax",
+    "line": 1,
+    "column": 8,
+    "params": {
+     "detail": "json.invalidNumber",
+     "found": "1"
+    }
+   }
+  }
+ },
+ {
+  "args": [
+   "{\"price\": 29.0, \"n\": 29, \"when\": \"2024-01-02T10:00:00Z\", \"id\": \"123e4567-e89b-12d3-a456-426614174000\", \"t\": \"10:30\"}",
+   "json"
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "json"
+    },
+    "models": [
+     {
+      "name": "Root",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "price",
+        "type": {
+         "kind": "primitive",
+         "name": "float"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "n",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "when",
+        "type": {
+         "kind": "primitive",
+         "name": "datetime"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "id",
+        "type": {
+         "kind": "primitive",
+         "name": "uuid"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "t",
+        "type": {
+         "kind": "primitive",
+         "name": "time"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "Root"
+   },
+   "warnings": []
+  }
+ },
+ {
+  "args": [
+   "[[{\"a\": 1}], [{\"a\": null, \"b\": [1, null]}]]",
+   "json",
+   {
+    "rootName": "Matrix"
+   }
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "json"
+    },
+    "models": [
+     {
+      "name": "Matrix",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "a",
+        "type": {
+         "kind": "primitive",
+         "name": "integer"
+        },
+        "nullable": true,
+        "optional": false
+       },
+       {
+        "name": "b",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "primitive",
+          "name": "integer"
+         },
+         "itemsNullable": true
+        },
+        "nullable": false,
+        "optional": true
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "Matrix"
+   },
+   "warnings": []
+  }
+ },
+ {
+  "args": [
+   "{\"mixed\": [1, \"a\"], \"empty\": {}, \"deep\": {\"x\": {\"y\": [ {\"z\": true} ]}}}",
+   "json"
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "json"
+    },
+    "models": [
+     {
+      "name": "Root",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "mixed",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "primitive",
+          "name": "any"
+         }
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "empty",
+        "type": {
+         "kind": "model",
+         "name": "Empty"
+        },
+        "nullable": false,
+        "optional": false
+       },
+       {
+        "name": "deep",
+        "type": {
+         "kind": "model",
+         "name": "Deep"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     },
+     {
+      "name": "Empty",
+      "kind": "object",
+      "fields": []
+     },
+     {
+      "name": "Deep",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "x",
+        "type": {
+         "kind": "model",
+         "name": "X"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     },
+     {
+      "name": "X",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "y",
+        "type": {
+         "kind": "array",
+         "items": {
+          "kind": "model",
+          "name": "YItem"
+         }
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     },
+     {
+      "name": "YItem",
+      "kind": "object",
+      "fields": [
+       {
+        "name": "z",
+        "type": {
+         "kind": "primitive",
+         "name": "boolean"
+        },
+        "nullable": false,
+        "optional": false
+       }
+      ]
+     }
+    ],
+    "enums": [],
+    "root": "Root"
+   },
+   "warnings": [
+    {
+     "code": "mixedTypes",
+     "params": {
+      "field": "mixed[]"
+     }
+    },
+    {
+     "code": "emptyModel",
+     "params": {
+      "model": "Empty"
+     }
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   "{}",
+   "json"
+  ],
+  "result": {
+   "ok": true,
+   "schema": {
+    "format": "model-schema",
+    "version": 1,
+    "origin": {
+     "format": "json"
+    },
+    "models": [
+     {
+      "name": "Root",
+      "kind": "object",
+      "fields": []
+     }
+    ],
+    "enums": [],
+    "root": "Root"
+   },
+   "warnings": [
+    {
+     "code": "emptyModel",
+     "params": {
+      "model": "Root"
+     }
+    }
+   ]
+  }
+ },
+ {
+  "args": [
+   "42",
+   "json"
+  ],
+  "result": {
+   "ok": false,
+   "error": {
+    "code": "noModels"
+   }
+  }
  }
 ]
