@@ -4,6 +4,10 @@ Notable changes to Mapper, the web and the desktop version together. The format 
 
 ## [Unreleased]
 
+### Added
+
+- Web: privacy-first traffic and page-view measurement with Cloudflare Web Analytics.
+
 ## [0.1.1] - 2026-10-29
 
 ### Fixed
