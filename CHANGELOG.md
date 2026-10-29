@@ -4,6 +4,8 @@ Notable changes to Mapper, the web and the desktop version together. The format 
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-10-29
+
 ### Fixed
 
 - **Numbers in custom expressions produced code that did not compile in typed languages.** An expression was translated as text, without looking at the types of its fields or of the target field. With the source field `total_cents: Long`, the target field `total: BigDecimal` and the expression `total_cents > 0 ? round(total_cents / 100) : 0`:
@@ -43,5 +45,6 @@ First release of the desktop version, for Windows, macOS and Linux, with the sam
 
 - The automatic start-up check of the packaged app could crash on Linux when closing (`malloc_consolidate(): unaligned fastbin chunk detected`): the window is now deleted before the process ends.
 
-[Unreleased]: https://github.com/RaulEstevezA/Mapper/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/RaulEstevezA/Mapper/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/RaulEstevezA/Mapper/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/RaulEstevezA/Mapper/releases/tag/v0.1.0

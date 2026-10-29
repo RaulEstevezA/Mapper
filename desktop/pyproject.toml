@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mapper"
-version = "0.1.0"
+version = "0.1.1"
 description = "Desktop tool that relates two data models, suggests the field mapping and generates the mapping code, locally."
 readme = "README_en.md"
 license = "MIT"
