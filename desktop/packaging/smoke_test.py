@@ -10,7 +10,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-from PySide6.QtCore import QTimer
+from PySide6.QtCore import QEvent, QTimer
 
 
 def check(window) -> None:
@@ -46,11 +46,18 @@ def main() -> None:
         try:
             check(window)
         except Exception as error:
-            print(f"Smoke test failed: {error!r}", file=sys.stderr)
+            print(f"Smoke test failed: {error!r}", file=sys.stderr, flush=True)
             app.exit(1)
         else:
-            print("Smoke test passed")
+            print("Smoke test passed", flush=True)
             app.exit(0)
 
     QTimer.singleShot(0, run)
-    sys.exit(app.exec())
+    code = app.exec()
+    # Deleted now, not when the process ends, so pending deletions never meet a window already gone
+    # (on Linux that crashes the process after the test has passed)
+    window.close()
+    window.deleteLater()
+    app.sendPostedEvents(None, QEvent.Type.DeferredDelete)
+    app.processEvents()
+    sys.exit(code)
