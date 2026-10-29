@@ -22,7 +22,7 @@ from ..core.project.project import create_project, project_file_name, project_te
 from ..core.workspace import EMPTY_INPUT, read_input, reconcile, summarize
 from .examples import find_example
 
-TOOL_NAMES = {"api2class": "Api2Class", "dbcreate": "DBCreate", "datacleanr": "DataCleanr", "mapper": "Mapper"}
+TOOL_NAMES = {"api2class": "Api2Class", "model2db": "Model2DB", "datacleanr": "DataCleanr", "mapper": "Mapper"}
 # Steps kept for undo
 HISTORY_LIMIT = 100
 
@@ -283,7 +283,7 @@ class Session(QObject):
         return (project_text(project), project_file_name(project)) if project else None
 
     def target_model_file(self) -> tuple[str, str] | None:
-        """The target's model schema, for DBCreate or another tool, as (text, suggested file name)."""
+        """The target's model schema, for Model2DB or another tool, as (text, suggested file name)."""
         target = self.schema("target")
         if not target:
             return None

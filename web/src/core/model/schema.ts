@@ -1,5 +1,5 @@
 /** The language-neutral description of data models that every parser produces and every other part of
- * Mapper reads. It is also the interchange format with Api2Class and DBCreate (docs/interoperability.md),
+ * Mapper reads. It is also the interchange format with Api2Class and Model2DB (docs/interoperability.md),
  * so it only holds facts about the models, never mapping decisions. */
 
 export const MODEL_SCHEMA_FORMAT = 'model-schema'

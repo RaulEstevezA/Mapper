@@ -62,7 +62,7 @@ export function validateModelSchema(value: unknown): { ok: true; schema: ModelSc
   }
 }
 
-/** A ModelSchema document, the format shared by Api2Class, Mapper and DBCreate (docs/interoperability.md). */
+/** A ModelSchema document, the format shared by Api2Class, Mapper and Model2DB (docs/interoperability.md). */
 export const modelSchemaParser: InputParser = {
   id: 'modelschema',
   kind: 'schema',

@@ -1,14 +1,14 @@
 import type { ModelSchema } from '../model/schema.ts'
 import { validateModelSchema } from '../parsers/schema/modelSchema.ts'
 
-/** Passing a model between the tools of the family (Api2Class → Mapper → DBCreate) without a server.
+/** Passing a model between the tools of the family (Api2Class → Mapper → Model2DB) without a server.
  * The contract is documented in docs/interoperability.md; other tools implement the same few lines. */
 
 export const HANDOFF_FORMAT = 'model-handoff'
 export const HANDOFF_VERSION = 1
 
 /** Tools that may send or receive models. */
-export type ToolId = 'api2class' | 'mapper' | 'dbcreate' | 'datacleanr'
+export type ToolId = 'api2class' | 'mapper' | 'model2db' | 'datacleanr'
 
 export interface Handoff {
   format: typeof HANDOFF_FORMAT
@@ -23,7 +23,7 @@ export interface Handoff {
   text?: { format: string; content: string }
 }
 
-/** Key in sessionStorage of the receiving tool: `mapper.incoming`, `dbcreate.incoming`. */
+/** Key in sessionStorage of the receiving tool: `mapper.incoming`, `model2db.incoming`. */
 export function incomingKey(tool: ToolId): string {
   return `${tool}.incoming`
 }
@@ -31,7 +31,7 @@ export function incomingKey(tool: ToolId): string {
 // Far above any model, and small enough for sessionStorage
 export const MAX_HANDOFF_SIZE = 4 * 1024 * 1024
 
-const TOOLS: readonly ToolId[] = ['api2class', 'mapper', 'dbcreate', 'datacleanr']
+const TOOLS: readonly ToolId[] = ['api2class', 'mapper', 'model2db', 'datacleanr']
 
 /** Checks a received handoff. Anything unexpected is rejected: the content comes from outside the page. */
 export function readHandoff(value: unknown): Handoff | null {
@@ -77,6 +77,28 @@ export function takeIncoming(storage: Pick<Storage, 'getItem' | 'removeItem'>, t
   } catch {
     return null
   }
+}
+
+/** Where each tool that receives models is published, on the same origin as Mapper. */
+export const TOOL_PATHS: Partial<Record<ToolId, string>> = { model2db: '/tools/Model2DB/' }
+
+/** Leaves the handoff for a tool and opens it in the same tab. Returns false when the browser cannot keep it
+ * (storage blocked or full): the user is told and nothing is lost. */
+export function sendToTool(
+  handoff: Handoff,
+  tool: ToolId,
+  storage: Pick<Storage, 'setItem'> = sessionStorage,
+  navigate = (url: string) => window.location.assign(url),
+): boolean {
+  const path = TOOL_PATHS[tool]
+  if (!path) return false
+  try {
+    storage.setItem(incomingKey(tool), JSON.stringify(handoff))
+  } catch {
+    return false
+  }
+  navigate(path)
+  return true
 }
 
 /** Origins allowed to send models with postMessage: the portfolio, where every tool is published, and

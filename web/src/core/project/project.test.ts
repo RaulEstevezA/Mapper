@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { suggestMapping } from '../matching/engine.ts'
 import { emptySchema, primitive, type ModelSchema } from '../model/schema.ts'
 import { parseInput } from '../parsers/registry.ts'
-import { createHandoff, isTrustedOrigin, readHandoff, takeIncoming } from './handoff.ts'
+import { createHandoff, isTrustedOrigin, readHandoff, sendToTool, takeIncoming } from './handoff.ts'
 import { createProject, projectFileName, readProject } from './project.ts'
 
 const schema = (text: string): ModelSchema => {
@@ -60,6 +60,23 @@ describe('handoff between tools', () => {
     expect(readHandoff({ ...createHandoff('api2class', 'source', model), from: 'evil' })).toBeNull()
     expect(readHandoff({ ...createHandoff('api2class', 'source', model), schema: { format: 'model-schema' } })).toBeNull()
     expect(readHandoff({ ...createHandoff('api2class', 'source', model), model: 'Missing' })).not.toHaveProperty('model')
+  })
+
+  it('is left for Model2DB, which opens in the same tab', () => {
+    const store = new Map<string, string>()
+    const opened: string[] = []
+    const handoff = createHandoff('mapper', 'target', model, 'Root')
+    const storage = { setItem: (key: string, value: string) => void store.set(key, value) }
+    expect(sendToTool(handoff, 'model2db', storage, (url) => opened.push(url))).toBe(true)
+    expect(opened).toEqual(['/tools/Model2DB/'])
+    expect(readHandoff(store.get('model2db.incoming'))).toEqual(handoff)
+    const full = {
+      setItem: () => {
+        throw new Error('QuotaExceededError')
+      },
+    }
+    expect(sendToTool(handoff, 'model2db', full, (url) => opened.push(url))).toBe(false)
+    expect(opened).toHaveLength(1)
   })
 
   it('trusts only the portfolio and its own origin', () => {

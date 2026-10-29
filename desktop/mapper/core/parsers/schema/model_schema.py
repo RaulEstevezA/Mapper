@@ -1,4 +1,4 @@
-"""A ModelSchema document, the format shared by Api2Class, Mapper and DBCreate (docs/interoperability.md).
+"""A ModelSchema document, the format shared by Api2Class, Mapper and Model2DB (docs/interoperability.md).
 Mirrors web/src/core/parsers/schema/modelSchema.ts."""
 
 import re

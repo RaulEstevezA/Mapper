@@ -1,4 +1,4 @@
-"""Passing a model between the tools of the family (Api2Class → Mapper → DBCreate). Mirrors
+"""Passing a model between the tools of the family (Api2Class → Mapper → Model2DB). Mirrors
 web/src/core/project/handoff.ts. The desktop version receives a handoff as a file; the contract is documented
 in docs/interoperability.md."""
 
@@ -11,7 +11,7 @@ HANDOFF_FORMAT = "model-handoff"
 HANDOFF_VERSION = 1
 # Far above any model
 MAX_HANDOFF_SIZE = 4 * 1024 * 1024
-TOOLS = ("api2class", "mapper", "dbcreate", "datacleanr")
+TOOLS = ("api2class", "mapper", "model2db", "datacleanr")
 
 
 def read_handoff(value) -> dict | None:

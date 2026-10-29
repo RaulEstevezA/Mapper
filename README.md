@@ -20,7 +20,7 @@ There are two versions that behave the same, checked by shared test cases:
 - **[Web](https://raulesteveza.github.io/tools/Mapper/)**: React + TypeScript, in the browser.
 - **[Desktop](./desktop/README_en.md)**: Python + PySide6. Installable app for Windows, macOS and Linux, with the same features and exactly the same generated code.
 
-It belongs to the same family as [DataCleanr](https://github.com/RaulEstevezA/DataCleanr) and [Api2Class](https://github.com/RaulEstevezA/Api2Class), and can receive models from Api2Class and export models for DBCreate.
+It belongs to the same family as [DataCleanr](https://github.com/RaulEstevezA/DataCleanr) and [Api2Class](https://github.com/RaulEstevezA/Api2Class), and can receive models from Api2Class and send the target model to [Model2DB](https://github.com/RaulEstevezA/Model2DB) to design its database.
 
 ## Suggestions
 

@@ -466,7 +466,12 @@ const en = {
   saveProject: 'Save project',
   openProject: 'Open project',
   exportTarget: 'Export target model',
-  exportTargetTitle: 'Model schema of the target, for DBCreate or another tool',
+  exportTargetTitle: 'Model schema of the target, for Model2DB or another tool',
+  openInModel2DB: 'Open in Model2DB',
+  openInModel2DBTitle: 'Design the database of the target model in Model2DB',
+  openInModel2DBConfirm:
+    'Model2DB opens in this tab and the relations are not kept. Save the project or turn on “Remember in this browser” to come back to them. Continue?',
+  openInModel2DBError: 'The browser could not pass the model to Model2DB. Export the target model and open it there.',
   projectLoaded: (name: string) => `Project “${name}” opened.`,
   projectError: (error: 'notJson' | 'notProject' | 'newerVersion' | 'invalid', path?: string): string => {
     switch (error) {
@@ -916,7 +921,12 @@ const es: Messages = {
   saveProject: 'Guardar proyecto',
   openProject: 'Abrir proyecto',
   exportTarget: 'Exportar modelo de destino',
-  exportTargetTitle: 'Esquema de modelos del destino, para DBCreate u otra herramienta',
+  exportTargetTitle: 'Esquema de modelos del destino, para Model2DB u otra herramienta',
+  openInModel2DB: 'Abrir en Model2DB',
+  openInModel2DBTitle: 'Diseña la base de datos del modelo de destino en Model2DB',
+  openInModel2DBConfirm:
+    'Model2DB se abre en esta pestaña y las relaciones no se conservan. Guarda el proyecto o activa «Recordar en este navegador» para volver a ellas. ¿Continuar?',
+  openInModel2DBError: 'El navegador no ha podido pasar el modelo a Model2DB. Exporta el modelo de destino y ábrelo allí.',
   projectLoaded: (name) => `Proyecto «${name}» abierto.`,
   projectError: (error, path) => {
     switch (error) {

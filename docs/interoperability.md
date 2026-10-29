@@ -1,6 +1,6 @@
 # Interoperability
 
-Mapper works alone, and can also receive models from Api2Class and send them to DBCreate. Three formats make it possible.
+Mapper works alone, and can also receive models from Api2Class and send them to [Model2DB](https://github.com/RaulEstevezA/Model2DB). Three formats make it possible.
 
 | Format | What it holds | Used for |
 |---|---|---|
@@ -86,12 +86,12 @@ The classes can also be pasted or opened in Mapper by hand: Mapper reads every l
 
 Mapper then opens with the source filled, says "Model received from Api2Class" and moves to the target, the only thing left to provide.
 
-## Mapper → DBCreate
+## Mapper → Model2DB
 
-DBCreate does not exist yet, so Mapper only prepares the contract:
+Model2DB turns a model into a database design and its code. Mapper sends it the target:
 
-- **Export target model** (project bar) downloads the target as a model-schema.
-- When DBCreate exists, an "Open in DBCreate" action will send `{ format: 'model-handoff', from: 'mapper', role: 'target', schema: <target model-schema> }` to `sessionStorage['dbcreate.incoming']` and navigate to `/tools/DBCreate/`. DBCreate decides everything about tables and persistence; Mapper sends only the model.
+- **Open in Model2DB** (project bar, web version) leaves `{ format: 'model-handoff', from: 'mapper', role: 'target', model, schema: <target model-schema>, text: { format, content: <target text> } }` in `sessionStorage['model2db.incoming']` and opens `/tools/Model2DB/` in the same tab (`sendToTool` in `core/project/handoff.ts`). Model2DB shows the target's text and opens on its design. Leaving the page loses the relations unless they are kept in the browser, so Mapper asks first when "Remember in this browser" is off. If the browser cannot keep the handoff, Mapper says so and nothing is lost.
+- **Export target model** downloads the target as a model-schema, which Model2DB opens as a file. The desktop version uses this: it cannot open another tool.
 
 ## mapper-project (version 1)
 

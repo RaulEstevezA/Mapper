@@ -7,7 +7,7 @@ import type { GenerateSettings, NamingMode } from './core/generate/types.ts'
 import type { MappingSet } from './core/mapping/types.ts'
 import { validateMapping } from './core/mapping/validate.ts'
 import { MODEL_SCHEMA_FORMAT } from './core/model/schema.ts'
-import { isTrustedOrigin, readHandoff, takeIncoming, type Handoff } from './core/project/handoff.ts'
+import { createHandoff, isTrustedOrigin, readHandoff, sendToTool, takeIncoming, type Handoff } from './core/project/handoff.ts'
 import { findParser } from './core/parsers/registry.ts'
 import type { InputFormatId } from './core/parsers/types.ts'
 import { createProject, projectFileName, readProject, type MapperProject } from './core/project/project.ts'
@@ -30,7 +30,7 @@ type WorkspaceTab = 'source' | 'target' | 'mapping' | 'code'
 const TABS: WorkspaceTab[] = ['source', 'target', 'mapping', 'code']
 // The work kept in this browser when the user asks for it (opt-in): never sent anywhere
 const WORKSPACE_KEY = 'mapper.workspace'
-const TOOL_NAMES: Record<string, string> = { api2class: 'Api2Class', dbcreate: 'DBCreate', datacleanr: 'DataCleanr', mapper: 'Mapper' }
+const TOOL_NAMES: Record<string, string> = { api2class: 'Api2Class', model2db: 'Model2DB', datacleanr: 'DataCleanr', mapper: 'Mapper' }
 
 function loadSaved(): MapperProject | null {
   try {
@@ -294,6 +294,19 @@ function App() {
     downloadBlob(new Blob([JSON.stringify(schema, null, 2)], { type: 'application/json' }), `${targetRead.model ?? 'target'}.model.json`)
   }
 
+  /** The target model, with its text, opened in Model2DB to design its database. Leaving the page loses the
+   * mapping unless it is kept in this browser, so the user confirms first. */
+  function openInModel2DB() {
+    if (!targetSchema || !targetRead.format) return
+    if (!remember && !window.confirm(t.openInModel2DBConfirm)) return
+    const model = targetRead.model ?? targetSchema.root
+    const handoff: Handoff = {
+      ...createHandoff('mapper', 'target', { ...targetSchema, format: MODEL_SCHEMA_FORMAT, root: model }, model),
+      text: { format: targetRead.format, content: target.text },
+    }
+    if (!sendToTool(handoff, 'model2db')) setMessage({ text: t.openInModel2DBError, kind: 'error' })
+  }
+
   /** A new target model written from the source, to edit as text. */
   function createTarget(format: DraftFormat) {
     if (!sourceSchema || !sourceRead.model) return
@@ -333,6 +346,7 @@ function App() {
           onSave={saveProject}
           onOpen={(file) => void openProject(file)}
           onExportTarget={exportTarget}
+          onOpenInModel2DB={openInModel2DB}
           onRememberChange={setRemember}
           onClearSaved={clearSaved}
         />

@@ -4,7 +4,7 @@ Two structures are shared by every part of Mapper: the **ModelSchema**, which de
 
 ## ModelSchema
 
-Defined in `web/src/core/model/schema.ts`. It is also the interchange format with Api2Class and DBCreate ([interoperability.md](interoperability.md)).
+Defined in `web/src/core/model/schema.ts`. It is also the interchange format with Api2Class and Model2DB ([interoperability.md](interoperability.md)).
 
 ```ts
 interface ModelSchema {
