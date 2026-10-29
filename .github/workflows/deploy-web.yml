@@ -1,12 +1,20 @@
 # Comprueba cada cambio: tipos, lint, formato, tests y build de la versión web, y lint, formato y tests
 # de la versión de escritorio. Tras validar un push a main, reutiliza el build web para publicarlo en
 # https://raulesteveza.github.io/tools/Mapper/. También admite una ejecución manual completa.
+#
+# Solo se ejecuta en los push que tocan la app (web, escritorio o lo compartido) o este workflow, y solo se
+# publica cuando cambia lo que forma la web: un cambio solo del escritorio se comprueba, pero no se publica.
 
 name: Deploy web
 
 on:
   push:
     branches: [main]
+    paths:
+      - 'web/**'
+      - 'shared/**'
+      - 'desktop/**'
+      - '.github/workflows/deploy-web.yml'
   pull_request:
   workflow_dispatch:
 
@@ -16,8 +24,30 @@ jobs:
     defaults:
       run:
         working-directory: web
+    outputs:
+      publish: ${{ steps.changes.outputs.publish }}
     steps:
       - uses: actions/checkout@v7
+        with:
+          # El historial, para comparar con el commit anterior del push
+          fetch-depth: 0
+
+      # Se publica si el push cambia la web, lo compartido o este workflow, y siempre al lanzarlo a mano.
+      # Si no se puede comparar (primer push de la rama), se publica.
+      - name: Changes that reach the web
+        id: changes
+        working-directory: .
+        env:
+          BEFORE: ${{ github.event.before }}
+        run: |
+          publish=true
+          if [ "$GITHUB_EVENT_NAME" = "push" ] && git cat-file -e "${BEFORE}^{commit}" 2>/dev/null; then
+            if ! git diff --name-only "$BEFORE" "$GITHUB_SHA" | grep -qE '^(web/|shared/|\.github/workflows/deploy-web\.yml)'; then
+              publish=false
+            fi
+          fi
+          echo "publish=${publish}" >> "$GITHUB_OUTPUT"
+          echo "Publicar: ${publish}"
 
       - uses: actions/setup-node@v7
         with:
@@ -40,9 +70,11 @@ jobs:
           name: web-dist
           path: web/dist
           if-no-files-found: error
+          # Solo pasa el build al job de publicación
+          retention-days: 1
 
   deploy-web:
-    if: github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request' && needs.web.outputs.publish == 'true'
     needs: web
     runs-on: ubuntu-latest
     permissions:
