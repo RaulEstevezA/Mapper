@@ -1,0 +1,380 @@
+{
+ "typescript-functions": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import type { Invoice, InvoiceResponse } from './models'\n\nexport function mapInvoiceResponseToInvoice(source: InvoiceResponse): Invoice {\n  return {\n    total: source.cents > 0 ? Math.round(source.cents / 100) : 0,\n    half: source.cents / 2,\n    size: source.name.length + 1,\n    gap: Math.abs(source.delta),\n    small: Math.min(source.cents, 10),\n  }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "typescript-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import type { Invoice, InvoiceResponse } from './models'\n\nexport function mapInvoiceResponseToInvoice(source: InvoiceResponse): Invoice {\n  return {\n    total: source.cents > 0 ? Math.round(source.cents / 100) : 0,\n    half: source.cents / 2,\n    size: source.name.length + 1,\n    gap: Math.abs(source.delta),\n    small: Math.min(source.cents, 10),\n  }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "typescript-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.ts",
+    "code": "import type { Invoice, InvoiceResponse } from './models'\n\nexport function mapInvoiceResponseToInvoice(source: InvoiceResponse): Invoice {\n  return {\n    total: source.cents > 0 ? Math.round(source.cents / 100) : 0,\n    half: source.cents / 2,\n    size: source.name.length + 1,\n    gap: Math.abs(source.delta),\n    small: Math.min(source.cents, 10),\n  }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "javascript-functions": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {InvoiceResponse} source\n * @returns {Invoice}\n */\nexport function mapInvoiceResponseToInvoice(source) {\n  return {\n    total: source.cents > 0 ? Math.round(source.cents / 100) : 0,\n    half: source.cents / 2,\n    size: source.name.length + 1,\n    gap: Math.abs(source.delta),\n    small: Math.min(source.cents, 10),\n  }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "javascript-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {InvoiceResponse} source\n * @returns {Invoice}\n */\nexport function mapInvoiceResponseToInvoice(source) {\n  return {\n    total: source.cents > 0 ? Math.round(source.cents / 100) : 0,\n    half: source.cents / 2,\n    size: source.name.length + 1,\n    gap: Math.abs(source.delta),\n    small: Math.min(source.cents, 10),\n  }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "javascript-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.js",
+    "code": "/**\n * @param {InvoiceResponse} source\n * @returns {Invoice}\n */\nexport function mapInvoiceResponseToInvoice(source) {\n  return {\n    total: source.cents > 0 ? Math.round(source.cents / 100) : 0,\n    half: source.cents / 2,\n    size: source.name.length + 1,\n    gap: Math.abs(source.delta),\n    small: Math.min(source.cents, 10),\n  }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "python-functions": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from decimal import Decimal\nfrom typing import Any\n\nfrom models import Invoice\n\n\ndef map_invoice_response_to_invoice(source: dict[str, Any]) -> Invoice:\n    return Invoice(\n        total=Decimal(str(round(source[\"cents\"] / 100.0))) if source[\"cents\"] > 0 else Decimal(\"0\"),\n        half=source[\"cents\"] / 2.0,\n        size=len(source[\"name\"]) + 1,\n        gap=abs(source[\"delta\"]),\n        small=min(source[\"cents\"], 10),\n    )\n"
+   }
+  ],
+  "notes": []
+ },
+ "python-naming-keep": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from decimal import Decimal\nfrom typing import Any\n\nfrom models import Invoice\n\n\ndef map_invoice_response_to_invoice(source: dict[str, Any]) -> Invoice:\n    return Invoice(\n        total=Decimal(str(round(source[\"cents\"] / 100.0))) if source[\"cents\"] > 0 else Decimal(\"0\"),\n        half=source[\"cents\"] / 2.0,\n        size=len(source[\"name\"]) + 1,\n        gap=abs(source[\"delta\"]),\n        small=min(source[\"cents\"], 10),\n    )\n"
+   }
+  ],
+  "notes": []
+ },
+ "python-naming-convention": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from decimal import Decimal\nfrom typing import Any\n\nfrom models import Invoice\n\n\ndef map_invoice_response_to_invoice(source: dict[str, Any]) -> Invoice:\n    return Invoice(\n        total=Decimal(str(round(source[\"cents\"] / 100.0))) if source[\"cents\"] > 0 else Decimal(\"0\"),\n        half=source[\"cents\"] / 2.0,\n        size=len(source[\"name\"]) + 1,\n        gap=abs(source[\"delta\"]),\n        small=min(source[\"cents\"], 10),\n    )\n"
+   }
+  ],
+  "notes": []
+ },
+ "python-sourceAccess-dict": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from decimal import Decimal\nfrom typing import Any\n\nfrom models import Invoice\n\n\ndef map_invoice_response_to_invoice(source: dict[str, Any]) -> Invoice:\n    return Invoice(\n        total=Decimal(str(round(source[\"cents\"] / 100.0))) if source[\"cents\"] > 0 else Decimal(\"0\"),\n        half=source[\"cents\"] / 2.0,\n        size=len(source[\"name\"]) + 1,\n        gap=abs(source[\"delta\"]),\n        small=min(source[\"cents\"], 10),\n    )\n"
+   }
+  ],
+  "notes": []
+ },
+ "python-targetStyle-dict": {
+  "files": [
+   {
+    "name": "mapper.py",
+    "code": "from decimal import Decimal\nfrom typing import Any\n\n\ndef map_invoice_response_to_invoice(source: dict[str, Any]) -> dict[str, Any]:\n    return {\n        \"total\": Decimal(str(round(source[\"cents\"] / 100.0))) if source[\"cents\"] > 0 else Decimal(\"0\"),\n        \"half\": source[\"cents\"] / 2.0,\n        \"size\": len(source[\"name\"]) + 1,\n        \"gap\": abs(source[\"delta\"]),\n        \"small\": min(source[\"cents\"], 10),\n    }\n"
+   }
+  ],
+  "notes": []
+ },
+ "java-manual": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.java",
+    "code": "import java.math.BigDecimal;\n\npublic final class InvoiceResponseMapper {\n\n    private InvoiceResponseMapper() {\n    }\n\n    public static Invoice toInvoice(InvoiceResponse source) {\n        if (source == null) {\n            return null;\n        }\n        return new Invoice(\n                source.getCents() > 0 ? BigDecimal.valueOf(Math.round((double) source.getCents() / 100.0)) : new BigDecimal(\"0\"),\n                (double) source.getCents() / 2.0,\n                (long) (source.getName().length() + 1),\n                Math.abs(source.getDelta()),\n                Math.min(source.getCents(), 10)\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "java-mapstruct": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.java",
+    "code": "import org.mapstruct.Mapper;\nimport org.mapstruct.Mapping;\n\nimport java.math.BigDecimal;\n\n@Mapper(imports = {BigDecimal.class})\npublic interface InvoiceResponseMapper {\n\n    @Mapping(target = \"total\", expression = \"java(source.getCents() > 0 ? BigDecimal.valueOf(Math.round((double) source.getCents() / 100.0)) : new BigDecimal(\\\"0\\\"))\")\n    @Mapping(target = \"half\", expression = \"java((double) source.getCents() / 2.0)\")\n    @Mapping(target = \"size\", expression = \"java((long) (source.getName().length() + 1))\")\n    @Mapping(target = \"gap\", expression = \"java(Math.abs(source.getDelta()))\")\n    @Mapping(target = \"small\", expression = \"java(Math.min(source.getCents(), 10))\")\n    Invoice toInvoice(InvoiceResponse source);\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "java-naming-keep": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.java",
+    "code": "import java.math.BigDecimal;\n\npublic final class InvoiceResponseMapper {\n\n    private InvoiceResponseMapper() {\n    }\n\n    public static Invoice toInvoice(InvoiceResponse source) {\n        if (source == null) {\n            return null;\n        }\n        return new Invoice(\n                source.getCents() > 0 ? BigDecimal.valueOf(Math.round((double) source.getCents() / 100.0)) : new BigDecimal(\"0\"),\n                (double) source.getCents() / 2.0,\n                (long) (source.getName().length() + 1),\n                Math.abs(source.getDelta()),\n                Math.min(source.getCents(), 10)\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "java-naming-convention": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.java",
+    "code": "import java.math.BigDecimal;\n\npublic final class InvoiceResponseMapper {\n\n    private InvoiceResponseMapper() {\n    }\n\n    public static Invoice toInvoice(InvoiceResponse source) {\n        if (source == null) {\n            return null;\n        }\n        return new Invoice(\n                source.getCents() > 0 ? BigDecimal.valueOf(Math.round((double) source.getCents() / 100.0)) : new BigDecimal(\"0\"),\n                (double) source.getCents() / 2.0,\n                (long) (source.getName().length() + 1),\n                Math.abs(source.getDelta()),\n                Math.min(source.getCents(), 10)\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "java-componentModel-spring": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.java",
+    "code": "import java.math.BigDecimal;\n\npublic final class InvoiceResponseMapper {\n\n    private InvoiceResponseMapper() {\n    }\n\n    public static Invoice toInvoice(InvoiceResponse source) {\n        if (source == null) {\n            return null;\n        }\n        return new Invoice(\n                source.getCents() > 0 ? BigDecimal.valueOf(Math.round((double) source.getCents() / 100.0)) : new BigDecimal(\"0\"),\n                (double) source.getCents() / 2.0,\n                (long) (source.getName().length() + 1),\n                Math.abs(source.getDelta()),\n                Math.min(source.getCents(), 10)\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "java-componentModel-cdi": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.java",
+    "code": "import java.math.BigDecimal;\n\npublic final class InvoiceResponseMapper {\n\n    private InvoiceResponseMapper() {\n    }\n\n    public static Invoice toInvoice(InvoiceResponse source) {\n        if (source == null) {\n            return null;\n        }\n        return new Invoice(\n                source.getCents() > 0 ? BigDecimal.valueOf(Math.round((double) source.getCents() / 100.0)) : new BigDecimal(\"0\"),\n                (double) source.getCents() / 2.0,\n                (long) (source.getName().length() + 1),\n                Math.abs(source.getDelta()),\n                Math.min(source.getCents(), 10)\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "java-componentModel-jakarta": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.java",
+    "code": "import java.math.BigDecimal;\n\npublic final class InvoiceResponseMapper {\n\n    private InvoiceResponseMapper() {\n    }\n\n    public static Invoice toInvoice(InvoiceResponse source) {\n        if (source == null) {\n            return null;\n        }\n        return new Invoice(\n                source.getCents() > 0 ? BigDecimal.valueOf(Math.round((double) source.getCents() / 100.0)) : new BigDecimal(\"0\"),\n                (double) source.getCents() / 2.0,\n                (long) (source.getName().length() + 1),\n                Math.abs(source.getDelta()),\n                Math.min(source.getCents(), 10)\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "csharp-manual": {
+  "files": [
+   {
+    "name": "InvoiceResponseMappings.cs",
+    "code": "using System;\n\npublic static class InvoiceResponseMappings\n{\n    public static Invoice ToInvoice(this InvoiceResponse source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Invoice\n        {\n            Total = source.Cents > 0 ? (decimal)(Math.Round((double)source.Cents / 100.0)) : 0m,\n            Half = (double)source.Cents / 2.0,\n            Size = source.Name.Length + 1,\n            Gap = Math.Abs(source.Delta),\n            Small = Math.Min(source.Cents, 10),\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "csharp-automapper": {
+  "files": [
+   {
+    "name": "InvoiceResponseProfile.cs",
+    "code": "using System;\nusing AutoMapper;\n\npublic class InvoiceResponseProfile : Profile\n{\n    public InvoiceResponseProfile()\n    {\n        CreateMap<InvoiceResponse, Invoice>()\n            .ForMember(dest => dest.Total, opt => opt.MapFrom(src => src.Cents > 0 ? (decimal)(Math.Round((double)src.Cents / 100.0)) : 0m))\n            .ForMember(dest => dest.Half, opt => opt.MapFrom(src => (double)src.Cents / 2.0))\n            .ForMember(dest => dest.Size, opt => opt.MapFrom(src => src.Name.Length + 1))\n            .ForMember(dest => dest.Gap, opt => opt.MapFrom(src => Math.Abs(src.Delta)))\n            .ForMember(dest => dest.Small, opt => opt.MapFrom(src => Math.Min(src.Cents, 10)));\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "csharp-naming-keep": {
+  "files": [
+   {
+    "name": "InvoiceResponseMappings.cs",
+    "code": "using System;\n\npublic static class InvoiceResponseMappings\n{\n    public static Invoice ToInvoice(this InvoiceResponse source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Invoice\n        {\n            total = source.cents > 0 ? (decimal)(Math.Round((double)source.cents / 100.0)) : 0m,\n            half = (double)source.cents / 2.0,\n            size = source.name.Length + 1,\n            gap = Math.Abs(source.delta),\n            small = Math.Min(source.cents, 10),\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "csharp-naming-convention": {
+  "files": [
+   {
+    "name": "InvoiceResponseMappings.cs",
+    "code": "using System;\n\npublic static class InvoiceResponseMappings\n{\n    public static Invoice ToInvoice(this InvoiceResponse source)\n    {\n        ArgumentNullException.ThrowIfNull(source);\n        return new Invoice\n        {\n            Total = source.Cents > 0 ? (decimal)(Math.Round((double)source.Cents / 100.0)) : 0m,\n            Half = (double)source.Cents / 2.0,\n            Size = source.Name.Length + 1,\n            Gap = Math.Abs(source.Delta),\n            Small = Math.Min(source.Cents, 10),\n        };\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "kotlin-extensions": {
+  "files": [
+   {
+    "name": "InvoiceResponseMappers.kt",
+    "code": "import java.math.BigDecimal\nimport kotlin.math.abs\nimport kotlin.math.round\n\nfun InvoiceResponse.toInvoice(): Invoice = Invoice(\n    total = if (cents > 0L) (round(cents.toDouble() / 100.0)).toBigDecimal() else BigDecimal(\"0\"),\n    half = cents.toDouble() / 2.0,\n    size = (name.length + 1).toLong(),\n    gap = abs(delta),\n    small = minOf(cents, 10L),\n)\n"
+   }
+  ],
+  "notes": []
+ },
+ "kotlin-naming-keep": {
+  "files": [
+   {
+    "name": "InvoiceResponseMappers.kt",
+    "code": "import java.math.BigDecimal\nimport kotlin.math.abs\nimport kotlin.math.round\n\nfun InvoiceResponse.toInvoice(): Invoice = Invoice(\n    total = if (cents > 0L) (round(cents.toDouble() / 100.0)).toBigDecimal() else BigDecimal(\"0\"),\n    half = cents.toDouble() / 2.0,\n    size = (name.length + 1).toLong(),\n    gap = abs(delta),\n    small = minOf(cents, 10L),\n)\n"
+   }
+  ],
+  "notes": []
+ },
+ "kotlin-naming-convention": {
+  "files": [
+   {
+    "name": "InvoiceResponseMappers.kt",
+    "code": "import java.math.BigDecimal\nimport kotlin.math.abs\nimport kotlin.math.round\n\nfun InvoiceResponse.toInvoice(): Invoice = Invoice(\n    total = if (cents > 0L) (round(cents.toDouble() / 100.0)).toBigDecimal() else BigDecimal(\"0\"),\n    half = cents.toDouble() / 2.0,\n    size = (name.length + 1).toLong(),\n    gap = abs(delta),\n    small = minOf(cents, 10L),\n)\n"
+   }
+  ],
+  "notes": []
+ },
+ "dart-extensions": {
+  "files": [
+   {
+    "name": "invoice_response_mapping.dart",
+    "code": "import 'dart:math';\n\nimport 'models.dart';\n\nextension InvoiceResponseMapping on InvoiceResponse {\n  Invoice toInvoice() => Invoice(\n        total: cents > 0 ? (cents.toDouble() / 100.0).roundToDouble() : 0.0,\n        half: cents.toDouble() / 2.0,\n        size: name.length + 1,\n        gap: delta.abs(),\n        small: min(cents, 10),\n      );\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "dart-naming-keep": {
+  "files": [
+   {
+    "name": "invoice_response_mapping.dart",
+    "code": "import 'dart:math';\n\nimport 'models.dart';\n\nextension InvoiceResponseMapping on InvoiceResponse {\n  Invoice toInvoice() => Invoice(\n        total: cents > 0 ? (cents.toDouble() / 100.0).roundToDouble() : 0.0,\n        half: cents.toDouble() / 2.0,\n        size: name.length + 1,\n        gap: delta.abs(),\n        small: min(cents, 10),\n      );\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "dart-naming-convention": {
+  "files": [
+   {
+    "name": "invoice_response_mapping.dart",
+    "code": "import 'dart:math';\n\nimport 'models.dart';\n\nextension InvoiceResponseMapping on InvoiceResponse {\n  Invoice toInvoice() => Invoice(\n        total: cents > 0 ? (cents.toDouble() / 100.0).roundToDouble() : 0.0,\n        half: cents.toDouble() / 2.0,\n        size: name.length + 1,\n        gap: delta.abs(),\n        small: min(cents, 10),\n      );\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "swift-extensions": {
+  "files": [
+   {
+    "name": "InvoiceResponse+Mapping.swift",
+    "code": "import Foundation\n\nextension InvoiceResponse {\n    func toInvoice() -> Invoice {\n        Invoice(\n            total: cents > 0 ? Decimal(round(Double(cents) / 100.0)) : 0,\n            half: Double(cents) / 2.0,\n            size: name.count + 1,\n            gap: abs(delta),\n            small: min(cents, 10)\n        )\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "swift-naming-keep": {
+  "files": [
+   {
+    "name": "InvoiceResponse+Mapping.swift",
+    "code": "import Foundation\n\nextension InvoiceResponse {\n    func toInvoice() -> Invoice {\n        Invoice(\n            total: cents > 0 ? Decimal(round(Double(cents) / 100.0)) : 0,\n            half: Double(cents) / 2.0,\n            size: name.count + 1,\n            gap: abs(delta),\n            small: min(cents, 10)\n        )\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "swift-naming-convention": {
+  "files": [
+   {
+    "name": "InvoiceResponse+Mapping.swift",
+    "code": "import Foundation\n\nextension InvoiceResponse {\n    func toInvoice() -> Invoice {\n        Invoice(\n            total: cents > 0 ? Decimal(round(Double(cents) / 100.0)) : 0,\n            half: Double(cents) / 2.0,\n            size: name.count + 1,\n            gap: abs(delta),\n            small: min(cents, 10)\n        )\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "go-functions": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\nimport \"math\"\n\n// MapInvoiceResponseToInvoice maps a InvoiceResponse to a Invoice.\nfunc MapInvoiceResponseToInvoice(source InvoiceResponse) Invoice {\n\treturn mapInvoiceResponseToInvoice(source)\n}\n\nfunc mapInvoiceResponseToInvoice(source InvoiceResponse) Invoice {\n\treturn Invoice{\n\t\tTotal: func() float64 {\n\t\t\tif source.Cents > 0 {\n\t\t\t\treturn math.Round(float64(source.Cents) / 100.0)\n\t\t\t}\n\t\t\treturn 0.0\n\t\t}(),\n\t\tHalf: float64(source.Cents) / 2.0,\n\t\tSize: int64(len([]rune(source.Name))) + 1,\n\t\tGap: max(source.Delta, -source.Delta),\n\t\tSmall: min(source.Cents, 10),\n\t}\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "go-naming-keep": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\nimport \"math\"\n\n// MapInvoiceResponseToInvoice maps a InvoiceResponse to a Invoice.\nfunc MapInvoiceResponseToInvoice(source InvoiceResponse) Invoice {\n\treturn mapInvoiceResponseToInvoice(source)\n}\n\nfunc mapInvoiceResponseToInvoice(source InvoiceResponse) Invoice {\n\treturn Invoice{\n\t\ttotal: func() float64 {\n\t\t\tif source.cents > 0 {\n\t\t\t\treturn math.Round(float64(source.cents) / 100.0)\n\t\t\t}\n\t\t\treturn 0.0\n\t\t}(),\n\t\thalf: float64(source.cents) / 2.0,\n\t\tsize: int64(len([]rune(source.name))) + 1,\n\t\tgap: max(source.delta, -source.delta),\n\t\tsmall: min(source.cents, 10),\n\t}\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "go-naming-convention": {
+  "files": [
+   {
+    "name": "mapping.go",
+    "code": "package mapping\n\nimport \"math\"\n\n// MapInvoiceResponseToInvoice maps a InvoiceResponse to a Invoice.\nfunc MapInvoiceResponseToInvoice(source InvoiceResponse) Invoice {\n\treturn mapInvoiceResponseToInvoice(source)\n}\n\nfunc mapInvoiceResponseToInvoice(source InvoiceResponse) Invoice {\n\treturn Invoice{\n\t\tTotal: func() float64 {\n\t\t\tif source.Cents > 0 {\n\t\t\t\treturn math.Round(float64(source.Cents) / 100.0)\n\t\t\t}\n\t\t\treturn 0.0\n\t\t}(),\n\t\tHalf: float64(source.Cents) / 2.0,\n\t\tSize: int64(len([]rune(source.Name))) + 1,\n\t\tGap: max(source.Delta, -source.Delta),\n\t\tSmall: min(source.Cents, 10),\n\t}\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "rust-from": {
+  "files": [
+   {
+    "name": "invoice_response_mapping.rs",
+    "code": "use rust_decimal::Decimal;\nuse crate::models::{Invoice, InvoiceResponse};\n\nimpl From<&InvoiceResponse> for Invoice {\n    fn from(source: &InvoiceResponse) -> Self {\n        Self {\n            total: if source.cents > 0 { Decimal::try_from((source.cents as f64 / 100.0).round()).expect(\"number out of range\") } else { Decimal::from(0) },\n            half: source.cents as f64 / 2.0,\n            size: source.name.chars().count() as i64 + 1,\n            gap: source.delta.abs(),\n            small: source.cents.min(10),\n        }\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "rust-naming-keep": {
+  "files": [
+   {
+    "name": "invoice_response_mapping.rs",
+    "code": "use rust_decimal::Decimal;\nuse crate::models::{Invoice, InvoiceResponse};\n\nimpl From<&InvoiceResponse> for Invoice {\n    fn from(source: &InvoiceResponse) -> Self {\n        Self {\n            total: if source.cents > 0 { Decimal::try_from((source.cents as f64 / 100.0).round()).expect(\"number out of range\") } else { Decimal::from(0) },\n            half: source.cents as f64 / 2.0,\n            size: source.name.chars().count() as i64 + 1,\n            gap: source.delta.abs(),\n            small: source.cents.min(10),\n        }\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "rust-naming-convention": {
+  "files": [
+   {
+    "name": "invoice_response_mapping.rs",
+    "code": "use rust_decimal::Decimal;\nuse crate::models::{Invoice, InvoiceResponse};\n\nimpl From<&InvoiceResponse> for Invoice {\n    fn from(source: &InvoiceResponse) -> Self {\n        Self {\n            total: if source.cents > 0 { Decimal::try_from((source.cents as f64 / 100.0).round()).expect(\"number out of range\") } else { Decimal::from(0) },\n            half: source.cents as f64 / 2.0,\n            size: source.name.chars().count() as i64 + 1,\n            gap: source.delta.abs(),\n            small: source.cents.min(10),\n        }\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "php-static": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class InvoiceResponseMapper\n{\n    public static function toInvoice(array $source): Invoice\n    {\n        return new Invoice(\n            total: $source['cents'] > 0 ? round((float) $source['cents'] / 100.0) : 0.0,\n            half: (float) $source['cents'] / 2.0,\n            size: mb_strlen($source['name']) + 1,\n            gap: abs($source['delta']),\n            small: min($source['cents'], 10),\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "php-naming-keep": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class InvoiceResponseMapper\n{\n    public static function toInvoice(array $source): Invoice\n    {\n        return new Invoice(\n            total: $source['cents'] > 0 ? round((float) $source['cents'] / 100.0) : 0.0,\n            half: (float) $source['cents'] / 2.0,\n            size: mb_strlen($source['name']) + 1,\n            gap: abs($source['delta']),\n            small: min($source['cents'], 10),\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "php-naming-convention": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class InvoiceResponseMapper\n{\n    public static function toInvoice(array $source): Invoice\n    {\n        return new Invoice(\n            total: $source['cents'] > 0 ? round((float) $source['cents'] / 100.0) : 0.0,\n            half: (float) $source['cents'] / 2.0,\n            size: mb_strlen($source['name']) + 1,\n            gap: abs($source['delta']),\n            small: min($source['cents'], 10),\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "php-sourceAccess-array": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class InvoiceResponseMapper\n{\n    public static function toInvoice(array $source): Invoice\n    {\n        return new Invoice(\n            total: $source['cents'] > 0 ? round((float) $source['cents'] / 100.0) : 0.0,\n            half: (float) $source['cents'] / 2.0,\n            size: mb_strlen($source['name']) + 1,\n            gap: abs($source['delta']),\n            small: min($source['cents'], 10),\n        );\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ },
+ "php-targetStyle-array": {
+  "files": [
+   {
+    "name": "InvoiceResponseMapper.php",
+    "code": "<?php\n\ndeclare(strict_types=1);\n\nfinal class InvoiceResponseMapper\n{\n    public static function toInvoice(array $source): array\n    {\n        return [\n            'total' => $source['cents'] > 0 ? round((float) $source['cents'] / 100.0) : 0.0,\n            'half' => (float) $source['cents'] / 2.0,\n            'size' => mb_strlen($source['name']) + 1,\n            'gap' => abs($source['delta']),\n            'small' => min($source['cents'], 10),\n        ];\n    }\n}\n"
+   }
+  ],
+  "notes": []
+ }
+}

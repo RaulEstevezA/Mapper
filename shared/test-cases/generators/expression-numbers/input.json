@@ -1,0 +1,54 @@
+{
+  "source": {
+    "text": "{ \"cents\": 152340, \"name\": \"Ana\", \"delta\": -3 }\n",
+    "format": "json",
+    "model": "InvoiceResponse"
+  },
+  "target": {
+    "text": "data class Invoice(\n    val total: java.math.BigDecimal,\n    val half: Double,\n    val size: Long,\n    val gap: Long,\n    val small: Long,\n)\n",
+    "format": "kotlin",
+    "model": "Invoice"
+  },
+  "edits": [
+    {
+      "fn": "edit.setExpression",
+      "args": [
+        "InvoiceResponse->Invoice",
+        "total",
+        "cents > 0 ? round(cents / 100) : 0"
+      ]
+    },
+    {
+      "fn": "edit.setExpression",
+      "args": [
+        "InvoiceResponse->Invoice",
+        "half",
+        "cents / 2"
+      ]
+    },
+    {
+      "fn": "edit.setExpression",
+      "args": [
+        "InvoiceResponse->Invoice",
+        "size",
+        "length(name) + 1"
+      ]
+    },
+    {
+      "fn": "edit.setExpression",
+      "args": [
+        "InvoiceResponse->Invoice",
+        "gap",
+        "abs(delta)"
+      ]
+    },
+    {
+      "fn": "edit.setExpression",
+      "args": [
+        "InvoiceResponse->Invoice",
+        "small",
+        "min(cents, 10)"
+      ]
+    }
+  ]
+}

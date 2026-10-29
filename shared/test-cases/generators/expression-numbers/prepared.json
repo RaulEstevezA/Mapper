@@ -1,0 +1,206 @@
+{
+ "source": {
+  "format": "model-schema",
+  "version": 1,
+  "origin": {
+   "format": "json"
+  },
+  "models": [
+   {
+    "name": "InvoiceResponse",
+    "kind": "object",
+    "fields": [
+     {
+      "name": "cents",
+      "type": {
+       "kind": "primitive",
+       "name": "integer"
+      },
+      "nullable": false,
+      "optional": false
+     },
+     {
+      "name": "name",
+      "type": {
+       "kind": "primitive",
+       "name": "string"
+      },
+      "nullable": false,
+      "optional": false
+     },
+     {
+      "name": "delta",
+      "type": {
+       "kind": "primitive",
+       "name": "integer"
+      },
+      "nullable": false,
+      "optional": false
+     }
+    ]
+   }
+  ],
+  "enums": [],
+  "root": "InvoiceResponse"
+ },
+ "target": {
+  "format": "model-schema",
+  "version": 1,
+  "origin": {
+   "format": "kotlin",
+   "language": "kotlin"
+  },
+  "models": [
+   {
+    "name": "Invoice",
+    "kind": "record",
+    "fields": [
+     {
+      "name": "total",
+      "type": {
+       "kind": "primitive",
+       "name": "decimal"
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "java.math.BigDecimal"
+     },
+     {
+      "name": "half",
+      "type": {
+       "kind": "primitive",
+       "name": "float",
+       "bits": 64
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "Double"
+     },
+     {
+      "name": "size",
+      "type": {
+       "kind": "primitive",
+       "name": "integer",
+       "bits": 64
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "Long"
+     },
+     {
+      "name": "gap",
+      "type": {
+       "kind": "primitive",
+       "name": "integer",
+       "bits": 64
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "Long"
+     },
+     {
+      "name": "small",
+      "type": {
+       "kind": "primitive",
+       "name": "integer",
+       "bits": 64
+      },
+      "nullable": false,
+      "optional": false,
+      "originalType": "Long"
+     }
+    ],
+    "construction": "named"
+   }
+  ],
+  "enums": []
+ },
+ "set": {
+  "root": "InvoiceResponse->Invoice",
+  "mappings": [
+   {
+    "id": "InvoiceResponse->Invoice",
+    "source": "InvoiceResponse",
+    "target": "Invoice",
+    "fields": [
+     {
+      "target": "total",
+      "sources": [
+       [
+        "cents"
+       ]
+      ],
+      "transform": {
+       "kind": "expression",
+       "expression": "cents > 0 ? round(cents / 100) : 0"
+      },
+      "status": "active",
+      "confidence": "none",
+      "manual": true
+     },
+     {
+      "target": "half",
+      "sources": [
+       [
+        "cents"
+       ]
+      ],
+      "transform": {
+       "kind": "expression",
+       "expression": "cents / 2"
+      },
+      "status": "active",
+      "confidence": "none",
+      "manual": true
+     },
+     {
+      "target": "size",
+      "sources": [
+       [
+        "name"
+       ]
+      ],
+      "transform": {
+       "kind": "expression",
+       "expression": "length(name) + 1"
+      },
+      "status": "active",
+      "confidence": "none",
+      "manual": true
+     },
+     {
+      "target": "gap",
+      "sources": [
+       [
+        "delta"
+       ]
+      ],
+      "transform": {
+       "kind": "expression",
+       "expression": "abs(delta)"
+      },
+      "status": "active",
+      "confidence": "none",
+      "manual": true
+     },
+     {
+      "target": "small",
+      "sources": [
+       [
+        "cents"
+       ]
+      ],
+      "transform": {
+       "kind": "expression",
+       "expression": "min(cents, 10)"
+      },
+      "status": "active",
+      "confidence": "none",
+      "manual": true
+     }
+    ],
+    "ignoredSources": []
+   }
+  ]
+ }
+}
