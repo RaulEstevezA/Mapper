@@ -90,7 +90,7 @@ Mapper then opens with the source filled, says "Model received from Api2Class" a
 
 Model2DB turns a model into a database design and its code. Mapper sends it the target:
 
-- **Open in Model2DB** (project bar, web version) leaves `{ format: 'model-handoff', from: 'mapper', role: 'target', model, schema: <target model-schema>, text: { format, content: <target text> } }` in `sessionStorage['model2db.incoming']` and opens `/tools/Model2DB/` in the same tab (`sendToTool` in `core/project/handoff.ts`). Model2DB shows the target's text and opens on its design. Leaving the page loses the relations unless they are kept in the browser, so Mapper asks first when "Remember in this browser" is off. If the browser cannot keep the handoff, Mapper says so and nothing is lost.
+- **Open in Model2DB** (project bar, web version; hidden for now, until the integration has been tested further) leaves `{ format: 'model-handoff', from: 'mapper', role: 'target', model, schema: <target model-schema>, text: { format, content: <target text> } }` in `sessionStorage['model2db.incoming']` and opens `/tools/Model2DB/` in the same tab (`sendToTool` in `core/project/handoff.ts`). Model2DB shows the target's text and opens on its design. Leaving the page loses the relations unless they are kept in the browser, so Mapper asks first when "Remember in this browser" is off. If the browser cannot keep the handoff, Mapper says so and nothing is lost.
 - **Export target model** downloads the target as a model-schema, which Model2DB opens as a file. The desktop version uses this: it cannot open another tool.
 
 ## mapper-project (version 1)

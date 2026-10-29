@@ -44,7 +44,7 @@ Pegar el origen y el destino  →  Revisar las relaciones sugeridas  →  Ajusta
 ## Trabajar con otras herramientas
 
 - **Desde Api2Class:** las clases que genera Api2Class, en cualquiera de sus lenguajes y estilos, se abren tal cual en Mapper como origen; solo queda aportar el destino.
-- **Hacia Model2DB:** «Abrir en Model2DB» abre el modelo de destino en [Model2DB](https://github.com/RaulEstevezA/Model2DB) para diseñar su base de datos. «Exportar modelo de destino» lo descarga como esquema de modelos, que Model2DB (también su versión de escritorio) abre como archivo.
+- **Hacia Model2DB:** «Exportar modelo de destino» descarga el destino como esquema de modelos, que Model2DB (también su versión de escritorio) abre como archivo.
 - **Proyectos:** «Guardar proyecto» descarga las entradas, las relaciones y la configuración de salida; «Abrir proyecto» permite seguir más tarde. «Recordar en este navegador» («Recordar en este equipo» en la aplicación de escritorio) guarda el trabajo solo ahí, hasta que lo borres. Un proyecto guardado en una versión se abre en la otra.
 
 Los formatos están documentados en [docs/interoperability.md](docs/interoperability.md) (en inglés).

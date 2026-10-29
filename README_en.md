@@ -44,7 +44,7 @@ Paste the source and the target  →  Review the suggested relations  →  Adjus
 ## Work with other tools
 
 - **From Api2Class:** the classes Api2Class generates, in any of its languages and styles, open in Mapper as the source as they are; only the target is left to provide.
-- **To Model2DB:** "Open in Model2DB" opens the target model in [Model2DB](https://github.com/RaulEstevezA/Model2DB) to design its database. "Export target model" downloads it as a model schema, which Model2DB (also its desktop version) opens as a file.
+- **To Model2DB:** "Export target model" downloads the target as a model schema, which Model2DB (also its desktop version) opens as a file.
 - **Projects:** "Save project" downloads the inputs, the relations and the output settings; "Open project" continues later. "Remember in this browser" ("Remember on this computer" in the desktop app) keeps the work there only, until you delete it. A project saved in one version opens in the other.
 
 The formats are documented in [docs/interoperability.md](docs/interoperability.md).

@@ -162,20 +162,6 @@ describe('Mapper', () => {
     expect(sessionStorage.getItem('mapper.incoming')).toBeNull()
   })
 
-  it('sends the target model with its text to Model2DB, after confirming', async () => {
-    await renderApp()
-    fireEvent.click(screen.getByRole('button', { name: 'Simple mapping' }))
-    await screen.findByRole('region', { name: 'UserDto → User' })
-    // jsdom does not navigate: the handoff left for Model2DB is what is checked
-    vi.spyOn(console, 'error').mockImplementation(() => {})
-    fireEvent.click(screen.getByRole('button', { name: 'Open in Model2DB' }))
-    expect(window.confirm).toHaveBeenCalledWith(expect.stringContaining('Model2DB opens in this tab'))
-    const handoff = JSON.parse(sessionStorage.getItem('model2db.incoming')!)
-    expect(handoff).toMatchObject({ format: 'model-handoff', from: 'mapper', role: 'target', model: 'User' })
-    expect(handoff.text.format).toBe('typescript')
-    expect(handoff.text.content).toContain('export interface User')
-  })
-
   it('remembers the work only when asked, and deletes it', async () => {
     vi.useFakeTimers({ shouldAdvanceTime: true })
     await renderApp()
