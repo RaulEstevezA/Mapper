@@ -51,6 +51,18 @@ call        := function "(" arguments ")"
 
 Functions: `upper`, `lower`, `trim`, `length`, `concat`, `substring`, `replace`, `round`, `floor`, `ceil`, `abs`, `min`, `max`, `toString`, `toNumber`.
 
+### Numbers
+
+The checker only knows "number", but typed languages have several, so the emitter (`web/src/core/generate/emitter.ts`) gives every part of an expression a number type and writes the conversions it needs, the same way for every language:
+
+- Integers stay integers through `+`, `-`, `*` and `%`. `/` always divides as real numbers, so `cents / 100` is a float, never an integer division.
+- Two numbers of different types meet in a common one before an operator, a comparison, `min`/`max`, `??` or the branches of a conditional: a number literal takes the other side's type when it fits (`cents > 0` stays `cents > 0L` in Kotlin), integers of different sizes meet as 64-bit integers, and anything else as a float.
+- A decimal field (`BigDecimal`, `decimal`, `Decimal`) is read as a float wherever an operator works on it; it stays a decimal when it only passes through a conditional or `??`.
+- `round`, `floor` and `ceil` leave an integer as it is and give a float for a float; `abs` keeps the type of its argument; `length` gives an integer (32-bit, or the language's own size where that differs: Swift, Go, Rust); `toNumber` gives a float.
+- The result is converted to the target field's type with the same conversions as a direct relation (`.toBigDecimal()`, `BigDecimal.valueOf(…)`, `(decimal)…`, `Decimal(str(…))`).
+
+JavaScript and TypeScript have a single number type, so their expressions are written as typed. The case `shared/test-cases/generators/expression-numbers` checks these rules in every language.
+
 ### Safety
 
 - The expression is **parsed into a tree and translated** by each generator; it is never evaluated in the browser. There is no `eval`, no `new Function` and no dynamic code anywhere in Mapper.
