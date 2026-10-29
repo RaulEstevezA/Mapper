@@ -271,7 +271,7 @@ class _Writer:
             return f"{operand(expr)}?{built[1:]}"
         return f"{operand(expr)}?.let {{ {context['variable']} -> {build(context['variable'])} }}"
 
-    def _call(self, name: str, args: list[str]) -> str:
+    def _call(self, name: str, args: list[str], types: list[dict | None]) -> str:
         a = args[0] if args else None
         b = args[1] if len(args) > 1 else None
         c = args[2] if len(args) > 2 else None
@@ -329,7 +329,7 @@ class _Writer:
             expression=make_expression_syntax(
                 binary=lambda operator, left, right: f"{left} {'?:' if operator == '??' else operator} {right}",
                 not_=lambda value: f"!{operand(value)}",
-                conditional=lambda condition, then, otherwise: f"if ({condition}) {then} else {otherwise}",
+                conditional=lambda condition, then, otherwise, _type: f"if ({condition}) {then} else {otherwise}",
                 call=self._call,
             ),
         )

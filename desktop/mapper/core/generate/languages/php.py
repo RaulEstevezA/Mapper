@@ -209,7 +209,7 @@ class _Writer:
             written = operator
         return f"{left} {written} {right}"
 
-    def _call(self, name: str, args: list[str]) -> str:
+    def _call(self, name: str, args: list[str], types: list[dict | None]) -> str:
         a = args[0] if args else None
         b = args[1] if len(args) > 1 else None
         c = args[2] if len(args) > 2 else None
@@ -257,7 +257,7 @@ class _Writer:
             expression=make_expression_syntax(
                 binary=self._binary,
                 not_=lambda value: f"!{operand(value)}",
-                conditional=lambda condition, then, otherwise: f"{condition} ? {then} : {otherwise}",
+                conditional=lambda condition, then, otherwise, _type: f"{condition} ? {then} : {otherwise}",
                 call=self._call,
             ),
         )

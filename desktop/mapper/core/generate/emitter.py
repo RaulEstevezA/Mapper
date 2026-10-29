@@ -16,8 +16,21 @@ def make_syntax(**members) -> SimpleNamespace:
     return SimpleNamespace(**{**defaults, **members})
 
 
-def make_expression_syntax(binary, not_, conditional, call) -> SimpleNamespace:
-    return SimpleNamespace(binary=binary, not_=not_, conditional=conditional, call=call)
+def make_expression_syntax(
+    binary, not_, conditional, call, length_bits: int = 32, one_number_type: bool = False
+) -> SimpleNamespace:
+    """conditional(condition, then, otherwise, type) gets the number type of both branches when they are numbers;
+    call(name, args, types) the number type of each argument (None when it is not a number). length_bits: bits of
+    the integer of text lengths and positions, length() and substring(). one_number_type: every number has the
+    same type (JavaScript), so an expression needs no number conversions."""
+    return SimpleNamespace(
+        binary=binary,
+        not_=not_,
+        conditional=conditional,
+        call=call,
+        length_bits=length_bits,
+        one_number_type=one_number_type,
+    )
 
 
 _PRECEDENCE = {
@@ -36,6 +49,29 @@ _PRECEDENCE = {
     "/": 7,
     "%": 7,
 }
+
+_INTEGER = {"kind": "primitive", "name": "integer"}
+_FLOAT = {"kind": "primitive", "name": "float"}
+
+
+def _is_integer(type_ref: dict) -> bool:
+    return type_ref["kind"] == "primitive" and type_ref["name"] == "integer"
+
+
+def _is_number_type(type_ref: dict) -> bool:
+    return type_ref["kind"] == "primitive" and type_ref["name"] in ("integer", "float", "decimal")
+
+
+def _is_number_literal(expr: dict) -> bool:
+    value = expr.get("value")
+    return expr["kind"] == "literal" and isinstance(value, (int, float)) and not isinstance(value, bool)
+
+
+def _same_number(a: dict, b: dict) -> bool:
+    """Same number type: integers without a size are 64-bit."""
+    if a["kind"] != "primitive" or b["kind"] != "primitive" or a["name"] != b["name"]:
+        return a == b
+    return a.get("bits", 64) == b.get("bits", 64) if a["name"] in ("integer", "float") else True
 
 
 def roots(source: str, item: str = "item") -> dict:
@@ -168,9 +204,92 @@ class Emitter:
             )
         if kind == "coalesce":
             return syntax.coalesce(self.value(inner, roots_), self.value(value["fallback"], roots_), value["type"])
-        return self._expression(value["expr"], value["fields"], roots_, 0)
+        target = value["type"]
+        return self._typed(value["expr"], value["fields"], roots_, 0, target if _is_number_type(target) else None)
 
-    def _expression(self, expr: dict, fields: dict, roots_: dict, parent: int) -> str:
+    def _number_type(self, expr: dict, fields: dict) -> dict | None:
+        """Number type of an expression's value, None when it is not a number. Integers stay integers; / divides as
+        real numbers, so it gives a float, like any operation with a float or a decimal."""
+        kind = expr["kind"]
+        if kind == "literal":
+            if not _is_number_literal(expr):
+                return None
+            return _INTEGER if float(expr["value"]).is_integer() else _FLOAT
+        if kind == "field":
+            value = fields.get(".".join(expr["path"]))
+            return value["type"] if value and _is_number_type(value["type"]) else None
+        if kind == "unary":
+            return self._number_type(expr["operand"], fields) if expr["operator"] == "-" else None
+        if kind == "binary":
+            operator = expr["operator"]
+            if operator == "/":
+                return _FLOAT
+            if operator == "??":
+                return self._common_type(expr["left"], expr["right"], fields, True)
+            return (
+                self._common_type(expr["left"], expr["right"], fields, False)
+                if operator in ("+", "-", "*", "%")
+                else None
+            )
+        if kind == "conditional":
+            return self._common_type(expr["then"], expr["otherwise"], fields, True)
+        name = expr["name"]
+        if name in ("round", "floor", "ceil", "abs"):
+            type_ref = self._number_type(expr["args"][0], fields)
+            return type_ref if type_ref and _is_integer(type_ref) else _FLOAT
+        if name in ("min", "max"):
+            return self._common_type(expr["args"][0], expr["args"][1], fields, False)
+        if name == "length":
+            return self._text_integer()
+        return _FLOAT if name == "toNumber" else None
+
+    def _text_integer(self) -> dict:
+        """The integer type of text lengths and positions (length, substring)."""
+        return {"kind": "primitive", "name": "integer", "bits": self.syntax.expression.length_bits}
+
+    def _common_type(self, a: dict, b: dict, fields: dict, keep_decimal: bool) -> dict | None:
+        """The type two numbers are brought to before they meet: a number literal takes the other side's type when it
+        fits, integers of different sizes meet as 64-bit integers and anything else as a float. A decimal only stays
+        a decimal where no operator works on it (keep_decimal: conditional branches, ??)."""
+        left = self._number_type(a, fields)
+        right = self._number_type(b, fields)
+        if not left or not right:
+            return None
+
+        def usable(type_ref: dict) -> bool:
+            return keep_decimal or type_ref["kind"] != "primitive" or type_ref["name"] != "decimal"
+
+        def fits(literal: dict, type_ref: dict) -> bool:
+            return (
+                _is_number_literal(literal)
+                and usable(type_ref)
+                and (not _is_integer(type_ref) or float(literal["value"]).is_integer())
+            )
+
+        if fits(b, left):
+            return left
+        if fits(a, right):
+            return right
+        if _same_number(left, right) and usable(left):
+            return left
+        return _INTEGER if _is_integer(left) and _is_integer(right) else _FLOAT
+
+    def _typed(self, expr: dict, fields: dict, roots_: dict, parent: int, want: dict | None) -> str:
+        """An expression whose value is brought to the number type want, when given: a number literal is written in
+        that type, anything else is converted. Conditionals pass want on to their branches."""
+        if not want or self.syntax.expression.one_number_type:
+            return self._expression(expr, fields, roots_, parent, None)
+        kind = expr["kind"]
+        if kind in ("conditional", "unary") or (kind == "binary" and expr["operator"] == "??"):
+            return self._expression(expr, fields, roots_, parent, want)
+        type_ref = self._number_type(expr, fields)
+        if not type_ref or _same_number(type_ref, want):
+            return self._expression(expr, fields, roots_, parent, None)
+        if _is_number_literal(expr):
+            return self.syntax.literal(expr["value"], want)
+        return self.syntax.convert(self._expression(expr, fields, roots_, 0, None), type_ref, want)
+
+    def _expression(self, expr: dict, fields: dict, roots_: dict, parent: int, want: dict | None) -> str:
         syntax = self.syntax.expression
         kind = expr["kind"]
         if kind == "literal":
@@ -184,22 +303,55 @@ class Emitter:
             value = fields.get(".".join(expr["path"]))
             return self.value(value, roots_) if value else "null"
         if kind == "unary":
-            operand = self._expression(expr["operand"], fields, roots_, 8)
-            return syntax.not_(operand) if expr["operator"] == "!" else f"-{operand}"
+            if expr["operator"] == "!":
+                return syntax.not_(self._expression(expr["operand"], fields, roots_, 8, None))
+            return f"-{self._typed(expr['operand'], fields, roots_, 8, want)}"
         if kind == "binary":
-            precedence = _PRECEDENCE[expr["operator"]]
-            left = self._expression(expr["left"], fields, roots_, precedence)
-            right = self._expression(expr["right"], fields, roots_, precedence + 1)
-            code = syntax.binary(expr["operator"], left, right)
+            operator = expr["operator"]
+            precedence = _PRECEDENCE[operator]
+            # Both sides in the same number type: / always divides as real numbers
+            if operator == "/":
+                sides = _FLOAT
+            elif operator == "??":
+                sides = want or self._common_type(expr["left"], expr["right"], fields, True)
+            elif operator in ("&&", "||"):
+                sides = None
+            else:
+                sides = self._common_type(expr["left"], expr["right"], fields, False)
+            left = self._typed(expr["left"], fields, roots_, precedence, sides)
+            right = self._typed(expr["right"], fields, roots_, precedence + 1, sides)
+            code = syntax.binary(operator, left, right)
             return f"({code})" if precedence < parent else code
         if kind == "conditional":
+            type_ref = want or self._common_type(expr["then"], expr["otherwise"], fields, True)
             code = syntax.conditional(
-                self._expression(expr["condition"], fields, roots_, 1),
-                self._expression(expr["then"], fields, roots_, 1),
-                self._expression(expr["otherwise"], fields, roots_, 1),
+                self._expression(expr["condition"], fields, roots_, 1, None),
+                self._typed(expr["then"], fields, roots_, 1, type_ref),
+                self._typed(expr["otherwise"], fields, roots_, 1, type_ref),
+                None if syntax.one_number_type else type_ref,
             )
             return f"({code})" if parent > 0 else code
-        return syntax.call(expr["name"], [self._expression(arg, fields, roots_, 0) for arg in expr["args"]])
+        name = expr["name"]
+        args = expr["args"]
+        wants: list[dict | None] = [None] * len(args)
+        if name in ("round", "floor", "ceil", "abs"):
+            type_ref = self._number_type(args[0], fields)
+            # An integer is already whole
+            if type_ref and _is_integer(type_ref):
+                if name != "abs":
+                    return self._expression(args[0], fields, roots_, parent, None)
+            else:
+                wants = [_FLOAT]
+        elif name in ("min", "max"):
+            type_ref = self._common_type(args[0], args[1], fields, False)
+            wants = [type_ref, type_ref]
+        elif name == "substring":
+            wants = [None, self._text_integer(), self._text_integer()]
+        types = [
+            None if syntax.one_number_type else (wants[i] or self._number_type(arg, fields))
+            for i, arg in enumerate(args)
+        ]
+        return syntax.call(name, [self._typed(arg, fields, roots_, 0, wants[i]) for i, arg in enumerate(args)], types)
 
 
 def enum_value_name(enum_def: dict, name: str) -> str:

@@ -215,6 +215,8 @@ class SwiftWriter {
       unwrap: (expr) => `${operand(expr)}!`,
       placeholder: (_type, field) => `fatalError("No value for ${field.name} in the mapping")`,
       expression: {
+        // String.count is an Int
+        lengthBits: 64,
         binary: (operator, left, right) => `${left} ${operator} ${right}`,
         not: (value) => `!${operand(value)}`,
         conditional: (condition, then, otherwise) => `${condition} ? ${then} : ${otherwise}`,

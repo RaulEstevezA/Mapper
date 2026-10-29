@@ -60,6 +60,11 @@ function rustNumber(type: TypeRef): string {
   return type.bits === 32 ? 'i32' : type.bits === 16 ? 'i16' : type.bits === 8 ? 'i8' : 'i64'
 }
 
+/** Parenthesizes an expression before a method call or `as`, which bind tighter than any operator. */
+function receiver(code: string): string {
+  return /^[\w.()&:]+$/.test(code) ? code : `(${code})`
+}
+
 /** A reference to a value: fields read from `source` are borrowed; closure parameters already are references. */
 function reference(expr: string): string {
   return /^source(\.\w+)+$/.test(expr) ? `&${expr}` : expr
@@ -121,7 +126,7 @@ class RustWriter {
           ? `${expr}.to_f64().expect("number out of range")`
           : `${expr}.to_i64().expect("number out of range")`
       }
-      return rustNumber(from) === rustNumber(to) ? expr : `${expr} as ${rustNumber(to)}`
+      return rustNumber(from) === rustNumber(to) ? expr : `${receiver(expr)} as ${rustNumber(to)}`
     }
     if (isPrimitive(to, 'string')) {
       if (isPrimitive(from, 'string')) return `${expr}.clone()`
@@ -237,6 +242,7 @@ class RustWriter {
       unwrap: (expr) => `${expr}.expect("a required value is missing in the source")`,
       placeholder: (_type, field) => `todo!(${quote(`no value for ${field.name} in the mapping`)})`,
       expression: {
+        lengthBits: 64,
         binary: (operator, left, right) => (operator === '??' ? `${left}.unwrap_or(${right})` : `${left} ${operator} ${right}`),
         not: (value) => `!${value}`,
         conditional: (condition, then, otherwise) => `if ${condition} { ${then} } else { ${otherwise} }`,
@@ -250,7 +256,7 @@ class RustWriter {
             case 'trim':
               return `${a}.trim().to_string()`
             case 'length':
-              return `${a}.chars().count()`
+              return `${a}.chars().count() as i64`
             case 'concat':
               return `format!(${quote(args.map(() => '{}').join(''))}, ${args.join(', ')})`
             case 'substring':
@@ -263,10 +269,10 @@ class RustWriter {
             case 'floor':
             case 'ceil':
             case 'abs':
-              return `${a}.${name}()`
+              return `${receiver(a)}.${name}()`
             case 'min':
             case 'max':
-              return `${a}.${name}(${b})`
+              return `${receiver(a)}.${name}(${b})`
             case 'toString':
               return `${a}.to_string()`
             case 'toNumber':

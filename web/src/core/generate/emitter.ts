@@ -1,4 +1,4 @@
-import type { EnumDef, FieldDef, Literal, ModelDef, TypeRef } from '../model/schema.ts'
+import { sameType, type EnumDef, type FieldDef, type Literal, type ModelDef, type TypeRef } from '../model/schema.ts'
 import type { BinaryOperator, Expr, FunctionName } from '../transform/expression.ts'
 import type { ArithmeticOperator } from '../mapping/types.ts'
 import type { Assignment, MapperPlan, PathStep, Value, ValueNode } from './plan.ts'
@@ -21,8 +21,14 @@ export interface NullSafeContext {
 export interface ExpressionSyntax {
   binary(operator: BinaryOperator, left: string, right: string): string
   not(operand: string): string
-  conditional(condition: string, then: string, otherwise: string): string
-  call(name: FunctionName, args: string[]): string
+  /** `type`: the number type of both branches, when they are numbers */
+  conditional(condition: string, then: string, otherwise: string, type: TypeRef | null): string
+  /** `types`: the number type of each argument, null when it is not a number */
+  call(name: FunctionName, args: string[], types: (TypeRef | null)[]): string
+  /** Bits of the integer of text lengths and positions, `length()` and `substring()` (default 32) */
+  lengthBits?: 32 | 64
+  /** Every number has the same type (JavaScript): an expression needs no number conversions */
+  oneNumberType?: boolean
 }
 
 export interface Syntax {
@@ -80,6 +86,12 @@ const PRECEDENCE: Record<string, number> = {
   '/': 7,
   '%': 7,
 }
+
+const INTEGER: TypeRef = { kind: 'primitive', name: 'integer' }
+const FLOAT: TypeRef = { kind: 'primitive', name: 'float' }
+const isInteger = (type: TypeRef) => type.kind === 'primitive' && type.name === 'integer'
+const isNumberType = (type: TypeRef) => type.kind === 'primitive' && ['integer', 'float', 'decimal'].includes(type.name)
+const isNumberLiteral = (expr: Expr) => expr.kind === 'literal' && typeof expr.value === 'number'
 
 export class Emitter {
   readonly syntax: Syntax
@@ -184,11 +196,85 @@ export class Emitter {
       case 'coalesce':
         return syntax.coalesce(this.value(value.value, roots), this.value(value.fallback, roots), value.type)
       case 'expr':
-        return this.expression(value.expr, value.fields, roots, 0)
+        return this.typed(value.expr, value.fields, roots, 0, isNumberType(value.type) ? value.type : null)
     }
   }
 
-  private expression(expr: Expr, fields: Map<string, Value>, roots: Roots, parent: number): string {
+  /** Number type of an expression's value, null when it is not a number. Integers stay integers; `/`
+   * divides as real numbers, so it gives a float, like any operation with a float or a decimal. */
+  private numberType(expr: Expr, fields: Map<string, Value>): TypeRef | null {
+    switch (expr.kind) {
+      case 'literal':
+        return typeof expr.value === 'number' ? (Number.isInteger(expr.value) ? INTEGER : FLOAT) : null
+      case 'field': {
+        const type = fields.get(expr.path.join('.'))?.type
+        return type && isNumberType(type) ? type : null
+      }
+      case 'unary':
+        return expr.operator === '-' ? this.numberType(expr.operand, fields) : null
+      case 'binary':
+        if (expr.operator === '/') return FLOAT
+        if (expr.operator === '??') return this.commonType(expr.left, expr.right, fields, true)
+        return ['+', '-', '*', '%'].includes(expr.operator) ? this.commonType(expr.left, expr.right, fields, false) : null
+      case 'conditional':
+        return this.commonType(expr.then, expr.otherwise, fields, true)
+      case 'call': {
+        switch (expr.name) {
+          case 'round':
+          case 'floor':
+          case 'ceil':
+          case 'abs': {
+            const type = this.numberType(expr.args[0], fields)
+            return type && isInteger(type) ? type : FLOAT
+          }
+          case 'min':
+          case 'max':
+            return this.commonType(expr.args[0], expr.args[1], fields, false)
+          case 'length':
+            return this.textInteger()
+          case 'toNumber':
+            return FLOAT
+          default:
+            return null
+        }
+      }
+    }
+  }
+
+  /** The integer type of text lengths and positions (`length`, `substring`) */
+  private textInteger(): TypeRef {
+    return { kind: 'primitive', name: 'integer', bits: this.syntax.expression.lengthBits ?? 32 }
+  }
+
+  /** The type two numbers are brought to before they meet: a number literal takes the other side's type
+   * when it fits, integers of different sizes meet as 64-bit integers and anything else as a float. A
+   * decimal only stays a decimal where no operator works on it (`keepDecimal`: conditional branches, `??`). */
+  private commonType(a: Expr, b: Expr, fields: Map<string, Value>, keepDecimal: boolean): TypeRef | null {
+    const left = this.numberType(a, fields)
+    const right = this.numberType(b, fields)
+    if (!left || !right) return null
+    const usable = (type: TypeRef) => keepDecimal || type.kind !== 'primitive' || type.name !== 'decimal'
+    const fits = (literal: Expr, type: TypeRef) =>
+      isNumberLiteral(literal) && usable(type) && (!isInteger(type) || Number.isInteger((literal as { value: number }).value))
+    if (fits(b, left)) return left
+    if (fits(a, right)) return right
+    if (sameNumber(left, right) && usable(left)) return left
+    return isInteger(left) && isInteger(right) ? INTEGER : FLOAT
+  }
+
+  /** An expression whose value is brought to the number type `want`, when given: a number literal is
+   * written in that type, anything else is converted. Conditionals pass `want` on to their branches. */
+  private typed(expr: Expr, fields: Map<string, Value>, roots: Roots, parent: number, want: TypeRef | null): string {
+    if (!want || this.syntax.expression.oneNumberType) return this.expression(expr, fields, roots, parent, null)
+    if (expr.kind === 'conditional' || expr.kind === 'unary' || (expr.kind === 'binary' && expr.operator === '??'))
+      return this.expression(expr, fields, roots, parent, want)
+    const type = this.numberType(expr, fields)
+    if (!type || sameNumber(type, want)) return this.expression(expr, fields, roots, parent, null)
+    if (expr.kind === 'literal' && typeof expr.value === 'number') return this.syntax.literal(expr.value, want)
+    return this.syntax.convert(this.expression(expr, fields, roots, 0, null), type, want)
+  }
+
+  private expression(expr: Expr, fields: Map<string, Value>, roots: Roots, parent: number, want: TypeRef | null): string {
     const syntax = this.syntax.expression
     switch (expr.kind) {
       case 'literal':
@@ -203,31 +289,75 @@ export class Emitter {
         return value ? this.value(value, roots) : 'null'
       }
       case 'unary': {
-        const operand = this.expression(expr.operand, fields, roots, 8)
-        return expr.operator === '!' ? syntax.not(operand) : `-${operand}`
+        if (expr.operator === '!') return syntax.not(this.expression(expr.operand, fields, roots, 8, null))
+        return `-${this.typed(expr.operand, fields, roots, 8, want)}`
       }
       case 'binary': {
         const precedence = PRECEDENCE[expr.operator]
-        const left = this.expression(expr.left, fields, roots, precedence)
-        const right = this.expression(expr.right, fields, roots, precedence + 1)
+        // Both sides in the same number type: `/` always divides as real numbers
+        const sides =
+          expr.operator === '/'
+            ? FLOAT
+            : expr.operator === '??'
+              ? (want ?? this.commonType(expr.left, expr.right, fields, true))
+              : expr.operator === '&&' || expr.operator === '||'
+                ? null
+                : this.commonType(expr.left, expr.right, fields, false)
+        const left = this.typed(expr.left, fields, roots, precedence, sides)
+        const right = this.typed(expr.right, fields, roots, precedence + 1, sides)
         const code = syntax.binary(expr.operator, left, right)
         return precedence < parent ? `(${code})` : code
       }
       case 'conditional': {
+        const type = want ?? this.commonType(expr.then, expr.otherwise, fields, true)
         const code = syntax.conditional(
-          this.expression(expr.condition, fields, roots, 1),
-          this.expression(expr.then, fields, roots, 1),
-          this.expression(expr.otherwise, fields, roots, 1),
+          this.expression(expr.condition, fields, roots, 1, null),
+          this.typed(expr.then, fields, roots, 1, type),
+          this.typed(expr.otherwise, fields, roots, 1, type),
+          syntax.oneNumberType ? null : type,
         )
         return parent > 0 ? `(${code})` : code
       }
-      case 'call':
+      case 'call': {
+        const [first, second] = expr.args
+        let wants: (TypeRef | null)[] = expr.args.map(() => null)
+        switch (expr.name) {
+          case 'round':
+          case 'floor':
+          case 'ceil':
+          case 'abs': {
+            const type = this.numberType(first, fields)
+            // An integer is already whole
+            if (type && isInteger(type)) {
+              if (expr.name !== 'abs') return this.expression(first, fields, roots, parent, null)
+            } else wants = [FLOAT]
+            break
+          }
+          case 'min':
+          case 'max': {
+            const type = this.commonType(first, second, fields, false)
+            wants = [type, type]
+            break
+          }
+          case 'substring':
+            wants = [null, this.textInteger(), this.textInteger()]
+            break
+        }
+        const types = expr.args.map((arg, index) => (syntax.oneNumberType ? null : (wants[index] ?? this.numberType(arg, fields))))
         return syntax.call(
           expr.name,
-          expr.args.map((arg) => this.expression(arg, fields, roots, 0)),
+          expr.args.map((arg, index) => this.typed(arg, fields, roots, 0, wants[index])),
+          types,
         )
+      }
     }
   }
+}
+
+/** Same number type: integers without a size are 64-bit. */
+function sameNumber(a: TypeRef, b: TypeRef): boolean {
+  if (a.kind !== 'primitive' || b.kind !== 'primitive' || a.name !== b.name) return sameType(a, b)
+  return a.name === 'integer' || a.name === 'float' ? (a.bits ?? 64) === (b.bits ?? 64) : true
 }
 
 /** Enum value names as written in code: the name, unless only the wire value is known. */

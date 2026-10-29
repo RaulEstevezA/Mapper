@@ -227,8 +227,10 @@ class DartWriter {
             case 'round':
             case 'floor':
             case 'ceil':
+              // The ToDouble forms keep a double, like the expression's numbers
+              return `${operand(a)}.${name}ToDouble()`
             case 'abs':
-              return `${operand(a)}.${name}()`
+              return `${operand(a)}.abs()`
             case 'min':
             case 'max':
               this.usesMath = true

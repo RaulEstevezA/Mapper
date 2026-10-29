@@ -193,7 +193,7 @@ class _Writer:
         # Fields cannot be promoted to non-null: the value is asserted inside the check
         return f"{operand(expr)} == null ? null : {build(f'{operand(expr)}!')}"
 
-    def _call(self, name: str, args: list[str]) -> str:
+    def _call(self, name: str, args: list[str], types: list[dict | None]) -> str:
         a = args[0] if args else None
         b = args[1] if len(args) > 1 else None
         c = args[2] if len(args) > 2 else None
@@ -215,8 +215,11 @@ class _Writer:
             )
         if name == "replace":
             return f"{operand(a)}.replaceAll({b}, {c})"
-        if name in ("round", "floor", "ceil", "abs"):
-            return f"{operand(a)}.{name}()"
+        if name in ("round", "floor", "ceil"):
+            # The ToDouble forms keep a double, like the expression's numbers
+            return f"{operand(a)}.{name}ToDouble()"
+        if name == "abs":
+            return f"{operand(a)}.abs()"
         if name in ("min", "max"):
             self.uses_math = True
             return f"{name}({a}, {b})"
@@ -252,7 +255,7 @@ class _Writer:
             expression=make_expression_syntax(
                 binary=lambda operator, left, right: f"{left} {operator} {right}",
                 not_=lambda value: f"!{operand(value)}",
-                conditional=lambda condition, then, otherwise: f"{condition} ? {then} : {otherwise}",
+                conditional=lambda condition, then, otherwise, _type: f"{condition} ? {then} : {otherwise}",
                 call=self._call,
             ),
         )

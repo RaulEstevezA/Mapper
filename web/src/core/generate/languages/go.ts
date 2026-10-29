@@ -284,6 +284,7 @@ class GoWriter {
       unwrap: (expr) => `*${expr}`,
       placeholder: (type) => this.placeholder(type),
       expression: {
+        lengthBits: 64,
         binary: (operator, left, right) => {
           if (operator === '??') {
             this.helpers.add('valueOr')
@@ -292,9 +293,9 @@ class GoWriter {
           return `${left} ${operator} ${right}`
         },
         not: (value) => `!${value}`,
-        conditional: (condition, then, otherwise) =>
-          `func() any {\n\tif ${condition} {\n\t\treturn ${then}\n\t}\n\treturn ${otherwise}\n}()`,
-        call: (name, args) => {
+        conditional: (condition, then, otherwise, type) =>
+          `func() ${type ? this.goType(type, 'target') : 'any'} {\n\tif ${condition} {\n\t\treturn ${then}\n\t}\n\treturn ${otherwise}\n}()`,
+        call: (name, args, types) => {
           const [a, b, c] = args
           switch (name) {
             case 'upper':
@@ -307,7 +308,7 @@ class GoWriter {
               this.imports.add('strings')
               return `strings.TrimSpace(${a})`
             case 'length':
-              return `len([]rune(${a}))`
+              return `int64(len([]rune(${a})))`
             case 'concat':
               this.imports.add('fmt')
               return `fmt.Sprint(${args.join(', ')})`
@@ -316,10 +317,14 @@ class GoWriter {
             case 'replace':
               this.imports.add('strings')
               return `strings.ReplaceAll(${a}, ${b}, ${c})`
+            case 'abs':
+              // math.Abs only takes a float64
+              if (types[0] && isPrimitive(types[0], 'integer')) return `max(${a}, -${a})`
+              this.imports.add('math')
+              return `math.Abs(${a})`
             case 'round':
             case 'floor':
             case 'ceil':
-            case 'abs':
               this.imports.add('math')
               return `math.${name.charAt(0).toUpperCase()}${name.slice(1)}(${a})`
             case 'min':

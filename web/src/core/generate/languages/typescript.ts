@@ -221,6 +221,7 @@ class TypeScriptWriter {
       unwrap: (expr) => (typed ? `${operand(expr)}!` : expr),
       placeholder: (type) => this.placeholder(type),
       expression: {
+        oneNumberType: true,
         binary: (operator, left, right) => `${left} ${operator === '==' ? '===' : operator === '!=' ? '!==' : operator} ${right}`,
         not: (value) => `!${operand(value)}`,
         conditional: (condition, then, otherwise) => `${condition} ? ${then} : ${otherwise}`,

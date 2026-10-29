@@ -50,6 +50,14 @@ _BRACES = re.compile(r"[{}]")
 MISSING_MESSAGE = '.expect("a required value is missing in the source")'
 
 
+_RECEIVER = re.compile(r"^[\w.()&:]+$")
+
+
+def _receiver(code: str) -> str:
+    """Parenthesizes an expression before a method call or `as`, which bind tighter than any operator."""
+    return code if _RECEIVER.match(code) else f"({code})"
+
+
 def _reference(expr: str) -> str:
     """A reference to a value: fields read from source are borrowed; closure parameters already are references."""
     return f"&{expr}" if _SOURCE_FIELD.match(expr) else expr
@@ -116,7 +124,7 @@ class _Writer:
                 self.uses.add("rust_decimal::prelude::ToPrimitive")
                 method = "to_f64" if _is_primitive(to, "float") else "to_i64"
                 return f'{expr}.{method}().expect("number out of range")'
-            return expr if _rust_number(origin) == _rust_number(to) else f"{expr} as {_rust_number(to)}"
+            return expr if _rust_number(origin) == _rust_number(to) else f"{_receiver(expr)} as {_rust_number(to)}"
         if _is_primitive(to, "string"):
             if _is_primitive(origin, "string"):
                 return f"{expr}.clone()"
@@ -240,7 +248,7 @@ class _Writer:
         owned = f"{expr}.as_ref()" if expr.startswith("source.") else expr
         return f"{owned}.{method}(|{variable}| {leaf})"
 
-    def _call(self, name: str, args: list[str]) -> str:
+    def _call(self, name: str, args: list[str], types: list[dict | None]) -> str:
         a = args[0] if args else None
         b = args[1] if len(args) > 1 else None
         c = args[2] if len(args) > 2 else None
@@ -251,7 +259,7 @@ class _Writer:
         if name == "trim":
             return f"{a}.trim().to_string()"
         if name == "length":
-            return f"{a}.chars().count()"
+            return f"{a}.chars().count() as i64"
         if name == "concat":
             return f"format!({quote(''.join('{}' for _ in args))}, {', '.join(args)})"
         if name == "substring":
@@ -261,9 +269,9 @@ class _Writer:
         if name == "replace":
             return f"{a}.replace({b}, {c})"
         if name in ("round", "floor", "ceil", "abs"):
-            return f"{a}.{name}()"
+            return f"{_receiver(a)}.{name}()"
         if name in ("min", "max"):
-            return f"{a}.{name}({b})"
+            return f"{_receiver(a)}.{name}({b})"
         if name == "toString":
             return f"{a}.to_string()"
         return f'{a}.parse::<f64>().expect("not a number")'
@@ -291,8 +299,11 @@ class _Writer:
                     f"{left}.unwrap_or({right})" if operator == "??" else f"{left} {operator} {right}"
                 ),
                 not_=lambda value: f"!{value}",
-                conditional=lambda condition, then, otherwise: f"if {condition} {{ {then} }} else {{ {otherwise} }}",
+                conditional=lambda condition, then, otherwise, _type: (
+                    f"if {condition} {{ {then} }} else {{ {otherwise} }}"
+                ),
                 call=self._call,
+                length_bits=64,
             ),
         )
 

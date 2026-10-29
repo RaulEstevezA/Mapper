@@ -290,7 +290,7 @@ class _Writer:
             return f"valueOr({left}, {right})"
         return f"{left} {operator} {right}"
 
-    def _call(self, name: str, args: list[str]) -> str:
+    def _call(self, name: str, args: list[str], types: list[dict | None]) -> str:
         a = args[0] if args else None
         b = args[1] if len(args) > 1 else None
         c = args[2] if len(args) > 2 else None
@@ -299,7 +299,7 @@ class _Writer:
             self.imports.add("strings")
             return f"strings.{functions[name]}({a})"
         if name == "length":
-            return f"len([]rune({a}))"
+            return f"int64(len([]rune({a})))"
         if name == "concat":
             self.imports.add("fmt")
             return f"fmt.Sprint({', '.join(args)})"
@@ -308,7 +308,13 @@ class _Writer:
         if name == "replace":
             self.imports.add("strings")
             return f"strings.ReplaceAll({a}, {b}, {c})"
-        if name in ("round", "floor", "ceil", "abs"):
+        if name == "abs":
+            # math.Abs only takes a float64
+            if types[0] and _is_primitive(types[0], "integer"):
+                return f"max({a}, -{a})"
+            self.imports.add("math")
+            return f"math.Abs({a})"
+        if name in ("round", "floor", "ceil"):
             self.imports.add("math")
             return f"math.{name[:1].upper()}{name[1:]}({a})"
         if name in ("min", "max"):
@@ -339,10 +345,12 @@ class _Writer:
             expression=make_expression_syntax(
                 binary=self._binary,
                 not_=lambda value: f"!{value}",
-                conditional=lambda condition, then, otherwise: (
-                    f"func() any {{\n\tif {condition} {{\n\t\treturn {then}\n\t}}\n\treturn {otherwise}\n}}()"
+                conditional=lambda condition, then, otherwise, type_ref: (
+                    f"func() {self.go_type(type_ref, 'target') if type_ref else 'any'} "
+                    f"{{\n\tif {condition} {{\n\t\treturn {then}\n\t}}\n\treturn {otherwise}\n}}()"
                 ),
                 call=self._call,
+                length_bits=64,
             ),
         )
 
