@@ -20,6 +20,8 @@ interface CodePanelProps {
   output: GeneratedCode | null
   onGeneratorChange: (id: string) => void
   onSettingsChange: (settings: GenerateSettings) => void
+  /** Opens the target model in Model2DB; hidden for now (see openInModel2DB in App.tsx) */
+  // onOpenInModel2DB?: () => void
 }
 
 export function CodePanel({ generator, settings, plan, output, onGeneratorChange, onSettingsChange }: CodePanelProps) {
@@ -99,6 +101,11 @@ export function CodePanel({ generator, settings, plan, output, onGeneratorChange
             )}
           </div>
           <div className="actions">
+            {/* {onOpenInModel2DB && (
+              <button type="button" className="button" onClick={onOpenInModel2DB} title={t.openInModel2DBTitle}>
+                {t.openInModel2DB}
+              </button>
+            )} */}
             <button type="button" className="button" onClick={copy} disabled={!file}>
               {copied ? t.copied : t.copy}
             </button>

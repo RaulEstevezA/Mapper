@@ -88,15 +88,11 @@ class MainWindow(QMainWindow):
         self.description.setWordWrap(True)
         text.addWidget(self.tagline)
         text.addWidget(self.description)
-        intro_layout.addLayout(text, 3)
+        intro_layout.addLayout(text, 2)
 
         side = QVBoxLayout()
         # The language switcher sits in the card's top right corner: there is no header line
         side.addWidget(LanguageSwitcher(i18n), 0, Qt.AlignmentFlag.AlignRight)
-        self.privacy_points = QLabel()
-        self.privacy_points.setProperty("role", "muted")
-        self.privacy_points.setWordWrap(True)
-        side.addWidget(self.privacy_points)
         self.examples_label = QLabel()
         self.examples_label.setProperty("role", "fieldLabel")
         side.addWidget(self.examples_label)
@@ -110,7 +106,7 @@ class MainWindow(QMainWindow):
             self._example_buttons[example["id"]] = button
         examples.addStretch()
         side.addLayout(examples)
-        intro_layout.addLayout(side, 2)
+        intro_layout.addLayout(side, 1)
         page.addWidget(intro)
 
         self.project_bar = ProjectBar(i18n, session)
@@ -159,7 +155,6 @@ class MainWindow(QMainWindow):
         self.privacy_tag.setText(t.privacy_short)
         self.tagline.setText(t.tagline)
         self.description.setText(t.intro_description)
-        self.privacy_points.setText("\n".join(f"· {point}" for point in t.privacy_points))
         self.examples_label.setText(t.examples_label)
         for example_id, button in self._example_buttons.items():
             button.setText(t.examples[example_id])

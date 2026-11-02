@@ -40,13 +40,8 @@ const JSON_DETAIL_ES: Record<string, string> = {
 const en = {
   tagline: 'Relate two data models and generate the code that converts one into the other',
   introDescription:
-    'Paste or open the source and the target (classes, DTOs, JSON, schemas), review the relations Mapper suggests field by field, adjust the transformations and get the mapping code for TypeScript, Python, Java, C#, Kotlin, Dart, Swift, Go, Rust or PHP.',
+    'Paste or open the source and the target in any of 23 formats (classes, DTOs, JSON, schemas), review the relations Mapper suggests field by field with how sure it is, adjust the transformations (renamed fields, conversions, nested objects and lists) and get the mapping code for TypeScript, JavaScript, Python, Java (also MapStruct), C# (also AutoMapper), Kotlin, Dart, Swift, Go, Rust or PHP. Relations it is not sure about wait for you, and the checks warn about required fields without a source, incompatible types and conversions that can lose data. Everything happens in your browser: what you paste is never sent anywhere, and code is analyzed, never run.',
   privacyShort: 'Processed locally',
-  privacyPoints: [
-    'What you paste or open never leaves your browser.',
-    'Code is analyzed, never run.',
-    'Nothing is saved unless you turn on “Remember in this browser”.',
-  ],
   examplesLabel: 'Try an example',
   examples: {
     simple: 'Simple mapping',
@@ -499,13 +494,8 @@ export type Messages = typeof en
 const es: Messages = {
   tagline: 'Relaciona dos modelos de datos y genera el código que convierte uno en el otro',
   introDescription:
-    'Pega o abre el origen y el destino (clases, DTOs, JSON, esquemas), revisa las relaciones que propone Mapper campo a campo, ajusta las transformaciones y obtén el código de mapping para TypeScript, Python, Java, C#, Kotlin, Dart, Swift, Go, Rust o PHP.',
+    'Pega o abre el origen y el destino en cualquiera de 23 formatos (clases, DTOs, JSON, esquemas), revisa las relaciones que propone Mapper campo a campo con cuánta seguridad, ajusta las transformaciones (campos renombrados, conversiones, objetos anidados y listas) y obtén el código de mapping para TypeScript, JavaScript, Python, Java (también MapStruct), C# (también AutoMapper), Kotlin, Dart, Swift, Go, Rust o PHP. Las relaciones de las que no está seguro te esperan, y las comprobaciones avisan de campos obligatorios sin origen, tipos incompatibles y conversiones que pueden perder datos. Todo ocurre en tu navegador: lo que pegas no se envía a ningún sitio, y el código se analiza, nunca se ejecuta.',
   privacyShort: 'Procesado en local',
-  privacyPoints: [
-    'Lo que pegas o abres no sale del navegador.',
-    'El código se analiza, nunca se ejecuta.',
-    'No se guarda nada salvo que actives «Recordar en este navegador».',
-  ],
   examplesLabel: 'Prueba un ejemplo',
   examples: {
     simple: 'Mapping simple',

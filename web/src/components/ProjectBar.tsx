@@ -11,7 +11,6 @@ interface ProjectBarProps {
   onSave: () => void
   onOpen: (file: File) => void
   onExportTarget: () => void
-  onOpenInModel2DB: () => void
   onRememberChange: (remember: boolean) => void
   onClearSaved: () => void
 }
@@ -26,7 +25,6 @@ export function ProjectBar({
   onSave,
   onOpen,
   onExportTarget,
-  onOpenInModel2DB,
   onRememberChange,
   onClearSaved,
 }: ProjectBarProps) {
@@ -44,9 +42,6 @@ export function ProjectBar({
         </button>
         <button type="button" className="button" onClick={onExportTarget} disabled={!canExportTarget} title={t.exportTargetTitle}>
           {t.exportTarget}
-        </button>
-        <button type="button" className="button" onClick={onOpenInModel2DB} disabled={!canExportTarget} title={t.openInModel2DBTitle}>
-          {t.openInModel2DB}
         </button>
         <input
           ref={fileInput}
