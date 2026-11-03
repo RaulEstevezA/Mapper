@@ -10,7 +10,10 @@ export function IntroPanel({ onExample }: { onExample: (id: ExampleId) => void }
     <section className="intro window" aria-labelledby="intro-title">
       <div className="intro__text">
         <div className="intro__title">
-          <h1 id="intro-title">Mapper</h1>
+          <h1 id="intro-title" className="intro__name">
+            <img className="intro__icon" src={`${import.meta.env.BASE_URL}favicon.svg`} width="32" height="32" alt="" />
+            Mapper
+          </h1>
           <span className="intro__badge">{t.privacyShort}</span>
         </div>
         <p className="intro__subtitle">{t.tagline}</p>

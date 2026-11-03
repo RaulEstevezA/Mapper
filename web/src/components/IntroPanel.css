@@ -24,6 +24,22 @@
   line-height: var(--leading-tight);
 }
 
+/* The tool's icon next to its name, as tall as the title line. Its tile has the window's color, so the border
+   draws its edge, with the icon's own radius (7 of 32) */
+.intro__name {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.intro__icon {
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: var(--border-line);
+  border-radius: 22%;
+}
+
 .intro__badge {
   padding: 2px 10px;
   border: 1px solid var(--success);
@@ -78,5 +94,10 @@
 
   .intro h1 {
     font-size: var(--font-h1-md);
+  }
+
+  .intro__icon {
+    width: 2rem;
+    height: 2rem;
   }
 }

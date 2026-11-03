@@ -6,6 +6,7 @@ Notable changes to Mapper, the web and the desktop version together. The format 
 
 ### Added
 
+- Web: the tool's icon next to its name in the introduction.
 - Web: privacy-first traffic and page-view measurement with Cloudflare Web Analytics.
 - Web: **Open in Model2DB** sends the target model, with its text, to [Model2DB](https://github.com/RaulEstevezA/Model2DB) to design its database. It sits next to Copy and Download, and is hidden for now, until Model2DB is published.
 
