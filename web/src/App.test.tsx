@@ -29,7 +29,7 @@ beforeAll(() => {
 beforeEach(() => {
   localStorage.clear()
   sessionStorage.clear()
-  localStorage.setItem('mapper.language', 'en')
+  localStorage.setItem('lang', 'en')
   vi.spyOn(window, 'confirm').mockReturnValue(true)
 })
 
