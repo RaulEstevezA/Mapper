@@ -228,3 +228,6 @@ web/dist/
 
 # Local working files (samples, notes): never versioned
 local-data/
+
+# macOS
+.DS_Store
