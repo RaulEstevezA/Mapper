@@ -384,13 +384,10 @@ def _score(value: float) -> int:
 
 EN = SimpleNamespace(
     tagline="Relate two data models and generate the code that converts one into the other",
-    intro_description="Paste or open the source and the target in any of 23 formats (classes, DTOs, JSON, schemas), "
-    "review the relations Mapper suggests field by field with how sure it is, adjust the transformations (renamed "
-    "fields, conversions, nested objects and lists) and get the mapping code for TypeScript, JavaScript, Python, Java "
-    "(also MapStruct), C# (also AutoMapper), Kotlin, Dart, Swift, Go, Rust or PHP. Relations it is not sure about wait "
-    "for you, and the checks warn about required fields without a source, incompatible types and conversions that can "
-    "lose data. Everything happens on your computer: what you paste is never sent anywhere, and code is analyzed, "
-    "never run.",
+    intro_description="Paste or open the source and target models in any of the 23 supported formats. Mapper suggests "
+    "the relations, lets you adjust transformations and generates the mapping code in your chosen language, while "
+    "warning you about problematic fields or conversions. Everything is processed locally: your data is never sent "
+    "anywhere and your code is never run.",
     privacy_short="Processed locally",
     examples_label="Try an example",
     examples={
@@ -620,13 +617,10 @@ EN = SimpleNamespace(
 
 ES = SimpleNamespace(
     tagline="Relaciona dos modelos de datos y genera el código que convierte uno en el otro",
-    intro_description="Pega o abre el origen y el destino en cualquiera de 23 formatos (clases, DTOs, JSON, esquemas), "
-    "revisa las relaciones que propone Mapper campo a campo con cuánta seguridad, ajusta las transformaciones (campos "
-    "renombrados, conversiones, objetos anidados y listas) y obtén el código de mapping para TypeScript, JavaScript, "
-    "Python, Java (también MapStruct), C# (también AutoMapper), Kotlin, Dart, Swift, Go, Rust o PHP. Las relaciones de "
-    "las que no está seguro te esperan, y las comprobaciones avisan de campos obligatorios sin origen, tipos "
-    "incompatibles y conversiones que pueden perder datos. Todo ocurre en tu equipo: lo que pegas no se envía a ningún "
-    "sitio, y el código se analiza, nunca se ejecuta.",
+    intro_description="Pega o abre los modelos de origen y destino en cualquiera de los 23 formatos compatibles. Mapper "
+    "propone las relaciones, permite ajustar las transformaciones y genera el código de mapping en el lenguaje que "
+    "elijas, avisándote de campos o conversiones problemáticos. Todo se procesa en local: tus datos no se envían a "
+    "ningún sitio y el código nunca se ejecuta.",
     privacy_short="Procesado en local",
     examples_label="Prueba un ejemplo",
     examples={
