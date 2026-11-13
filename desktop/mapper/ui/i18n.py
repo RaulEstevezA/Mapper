@@ -617,10 +617,10 @@ EN = SimpleNamespace(
 
 ES = SimpleNamespace(
     tagline="Relaciona dos modelos de datos y genera el código que convierte uno en el otro",
-    intro_description="Pega o abre los modelos de origen y destino en cualquiera de los 23 formatos compatibles. Mapper "
-    "propone las relaciones, permite ajustar las transformaciones y genera el código de mapping en el lenguaje que "
-    "elijas, avisándote de campos o conversiones problemáticos. Todo se procesa en local: tus datos no se envían a "
-    "ningún sitio y el código nunca se ejecuta.",
+    intro_description="Pega o abre los modelos de origen y destino en cualquiera de los 23 formatos compatibles. "
+    "Mapper propone las relaciones, permite ajustar las transformaciones y genera el código de mapping en el lenguaje "
+    "que elijas, avisándote de campos o conversiones problemáticos. Todo se procesa en local: tus datos no se "
+    "envían a ningún sitio y el código nunca se ejecuta.",
     privacy_short="Procesado en local",
     examples_label="Prueba un ejemplo",
     examples={
