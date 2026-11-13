@@ -14,4 +14,13 @@
   /* ---------- Transiciones ---------- */
   --transition-fast: 0.15s ease; /* hover de botones, enlaces y bordes */
   --transition-sheet: 0.25s ease; /* apertura de hojas inferiores en móvil */
+
+  /* ---------- Fade in (patterns/fade-in.md) ---------- */
+  --fade-page-out: 0.16s ease-in;
+  --fade-page-in: 0.28s ease-out;
+  --fade-reveal: 0.25s ease;
+  --fade-reveal-timeout: 1.5s;
+  --fade-modal-in: 0.2s ease;
+  --fade-modal-out: 0.18s ease-in;
+  --fade-modal-scale: 0.97;
 }

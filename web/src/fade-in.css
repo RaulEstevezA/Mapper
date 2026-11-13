@@ -1,0 +1,51 @@
+/* Fade in protocol from personal_web_style/patterns/fade-in.md.
+   Progressive enhancement: unsupported browsers change instantly. */
+
+@view-transition {
+  navigation: auto;
+}
+
+/* Keep the shared chrome fixed while the page content fades. */
+.app > header {
+  view-transition-name: site-header;
+}
+
+.app > footer {
+  view-transition-name: site-footer;
+}
+
+::view-transition-old(root) {
+  animation: fade-out var(--fade-page-out) both;
+}
+
+::view-transition-new(root) {
+  animation: fade-in var(--fade-page-in) both;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+
+  *,
+  *::before,
+  *::after,
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
